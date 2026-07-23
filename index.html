@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maor Cohen Falah — Product / UX-UI Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --thumb:#EDECE9;
+    --ink:#141414;
+    --muted:#767676;
+    --line: rgba(20,20,20,0.12);
+    --maxw: 820px;
+
+    --frame-bg:#C9C2ED;
+    --cream:#F3EFE4;
+    --violet:#5B4CE0;
+    --lime:#D3F26A;
+    --yellow:#F4C93B;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--cream); color:var(--ink);
+    font-family:'Inter',sans-serif; font-weight:300;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+    font-size:16px;
+  }
+  a{ color:inherit; text-decoration:none; }
+  img,svg{ display:block; max-width:100%; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+  .eyebrow-label{ font-size:12px; font-weight:700; letter-spacing:0.05em; color:var(--violet); text-transform:uppercase; }
+  .section-head{ display:flex; align-items:baseline; gap:14px; margin:0 0 32px; }
+  .section-head h2{ font-family:'Fraunces', serif; font-weight:500; font-size:26px; }
+
+  /* ---------- HERO FRAME ---------- */
+  .hero-frame-outer{
+    background:var(--frame-bg);
+    padding:18px;
+  }
+  .hero-card{
+    position:relative; overflow:hidden;
+    background:var(--cream);
+    border:1.5px solid var(--ink);
+    border-radius:22px;
+    background-image: radial-gradient(rgba(20,20,20,0.16) 1px, transparent 1px);
+    background-size:22px 22px;
+  }
+
+  /* ---------- NAV (inside hero card) ---------- */
+  header{ padding:0; position:relative; z-index:5; }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding:22px 28px; max-width:none; border-bottom:1.5px solid var(--ink); }
+  .logo-mark{
+    width:30px; height:30px; border-radius:8px; background:var(--ink); color:var(--cream);
+    display:flex; align-items:center; justify-content:center; font-weight:600; font-size:14px;
+    border:1.5px solid var(--ink);
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .wordmark{ font-weight:500; font-size:15px; }
+  .nav-links{ display:flex; align-items:center; gap:26px; }
+  .nav-links a{ font-size:14px; color:var(--ink); opacity:0.7; }
+  .nav-links a:hover{ opacity:1; }
+  .cv-link{
+    font-size:14px; font-weight:600; background:var(--lime); color:var(--ink);
+    border:1.5px solid var(--ink); padding:9px 18px; border-radius:999px;
+    box-shadow:3px 3px 0 var(--ink);
+    transition:transform .15s, box-shadow .15s;
+  }
+  .cv-link:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--ink); }
+
+  /* ---------- HERO CONTENT ---------- */
+  .hero{ padding:56px 28px 90px; position:relative; z-index:5; text-align:center; }
+  .badges{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:38px; }
+  .badge{
+    display:flex; align-items:center; gap:9px; background:var(--paper);
+    border:1.5px solid var(--ink); border-radius:999px; padding:8px 16px 8px 10px;
+  }
+  .badge .icon{ font-size:15px; }
+  .badge .eyebrow{ font-size:10px; font-weight:700; letter-spacing:0.04em; color:var(--violet); display:block; }
+  .badge .main{ font-size:13px; font-weight:600; color:var(--ink); }
+
+  .hero h1{
+    font-family:'Fraunces', serif; font-weight:400;
+    font-size:clamp(38px, 6vw, 66px); line-height:1.12; letter-spacing:-0.01em;
+    max-width:680px; margin:0 auto;
+  }
+  .hero h1 .accent{ color:var(--violet); font-style:italic; }
+  .hero h1 .icon-chip{
+    display:inline-flex; width:0.85em; height:0.85em; vertical-align:middle;
+    background:var(--paper); border:2px solid var(--ink); border-radius:12px;
+    align-items:center; justify-content:center; margin:0 6px; transform:translateY(-0.06em);
+  }
+  .hero h1 .icon-chip svg{ width:55%; height:55%; }
+
+  .hero .lead{
+    margin:30px auto 0; color:var(--ink); opacity:0.68; font-size:16px; max-width:440px; font-weight:400;
+  }
+  .hero-actions{ display:flex; gap:14px; justify-content:center; margin-top:38px; flex-wrap:wrap; }
+  .hbtn{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:15px;
+    padding:15px 26px; border-radius:999px; border:1.5px solid var(--ink);
+    box-shadow:3px 3px 0 var(--ink); transition:transform .15s, box-shadow .15s;
+  }
+  .hbtn-primary{ background:var(--lime); color:var(--ink); }
+  .hbtn-ghost{ background:var(--paper); color:var(--ink); }
+  .hbtn:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--ink); }
+
+  /* ---------- COLLAGE DECOR ---------- */
+  .decor{ position:absolute; z-index:1; opacity:0.92; }
+  .decor svg{ display:block; }
+  .d-monitor{ top:120px; left:38px; transform:rotate(-9deg); width:120px; }
+  .d-cursor{ top:80px; right:46px; transform:rotate(10deg); width:110px; }
+  .d-notebook{ bottom:36px; left:60px; transform:rotate(-6deg); width:130px; }
+  .d-swatch{ bottom:54px; right:70px; transform:rotate(8deg); width:90px; }
+  .d-sticky{ position:absolute; background:var(--yellow); border:1.5px solid var(--ink); width:46px; height:46px; border-radius:8px; }
+  .d-sticky.s1{ top:170px; left:150px; transform:rotate(14deg); }
+  .d-sticky.s2{ bottom:110px; right:160px; transform:rotate(-10deg); }
+
+  .spin-badge{
+    position:absolute; bottom:-34px; left:36px; width:96px; height:96px; z-index:6;
+    animation:spin 10s linear infinite;
+  }
+  @keyframes spin{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
+
+  @media (max-width: 720px){
+    .decor{ display:none; }
+    nav.wrap{ flex-wrap:wrap; gap:14px; padding:18px; }
+    .nav-links{ order:3; width:100%; justify-content:center; gap:18px; }
+    .hero{ padding:42px 18px 70px; }
+    .spin-badge{ display:none; }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:70px 0; }
+  .maxw-wide{ --maxw: 860px; }
+
+  .card{
+    background:#FFFFFF; border:1.5px solid var(--ink); border-radius:18px;
+    box-shadow:5px 5px 0 var(--ink);
+  }
+
+  .project{
+    padding:30px; margin-bottom:28px; transition:transform .18s, box-shadow .18s;
+  }
+  a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink); }
+  .project .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .tag-pill{
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.03em;
+    color:var(--violet); background:var(--cream); border:1.2px solid var(--ink);
+    padding:5px 11px; border-radius:999px;
+  }
+  .project h3{ font-family:'Fraunces', serif; font-size:22px; font-weight:500; margin-bottom:12px; display:block; }
+  .project p.desc{ color:var(--ink); opacity:0.68; font-size:15px; max-width:560px; margin-bottom:20px; }
+  .thumb{
+    background:var(--cream); border:1.5px solid var(--ink); border-radius:10px; aspect-ratio:16/10;
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+    background-image: radial-gradient(rgba(20,20,20,0.14) 1px, transparent 1px);
+    background-size:16px 16px;
+  }
+  .thumb .ph-label{ color:var(--ink); opacity:0.42; font-size:12.5px; }
+  .thumb-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6px; }
+  .thumb-grid .thumb{ aspect-ratio:4/3; }
+  .read-link{
+    display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600;
+    background:var(--lime); border:1.2px solid var(--ink); padding:8px 16px; border-radius:999px;
+  }
+  .soon{
+    display:inline-block; font-size:12px; font-weight:700; color:var(--ink); opacity:0.55;
+    border:1.2px dashed var(--ink); padding:6px 14px; border-radius:999px; margin-top:6px;
+  }
+
+  .section-note{ color:var(--ink); opacity:0.65; font-size:15px; max-width:560px; margin-bottom:40px; }
+
+  /* ---------- ABOUT ---------- */
+  .about-card{ padding:38px; display:grid; grid-template-columns:0.8fr 1.2fr; gap:36px; align-items:center; }
+  .about-visual{
+    aspect-ratio:1; border-radius:14px; background:var(--violet); border:1.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+  }
+  .about-visual span{ font-family:'Fraunces', serif; font-size:64px; color:#fff; }
+  .about p{ color:var(--ink); opacity:0.72; font-size:15.5px; margin-bottom:16px; }
+  .about p b{ color:var(--ink); opacity:1; font-weight:600; }
+  .about-facts{ display:flex; gap:12px; margin-top:22px; flex-wrap:wrap; }
+  .fact-pill{
+    background:var(--cream); border:1.2px solid var(--ink); border-radius:999px;
+    padding:8px 14px; font-size:13px; font-weight:600; display:flex; align-items:center; gap:6px;
+  }
+  .fact-pill b{ font-family:'Fraunces', serif; font-weight:600; }
+
+  /* ---------- FOOTER ---------- */
+  .footer-card{ padding:56px 40px; text-align:center; }
+  .footer-card h2{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(26px,3.4vw,38px); margin-bottom:16px; }
+  .footer-card p.sub{ color:var(--ink); opacity:0.65; font-size:15.5px; margin-bottom:30px; }
+  .social-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
+  .social-row a{
+    font-size:13.5px; font-weight:600; border:1.2px solid var(--ink); border-radius:999px;
+    padding:8px 16px; background:#fff;
+  }
+  .social-row a:hover{ background:var(--cream); }
+  footer{ padding:70px 0 60px; }
+  .credit{ text-align:center; margin-top:34px; font-size:13px; color:var(--ink); opacity:0.5; }
+
+  @media (max-width: 640px){
+    .thumb-grid{ grid-template-columns:1fr; }
+    .nav-links{ gap:16px; }
+    .about-card{ grid-template-columns:1fr; }
+    .about-visual{ max-width:160px; margin:0 auto; }
+    .project{ padding:22px; }
+    .footer-card{ padding:40px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero-frame-outer">
+  <div class="hero-card">
+
+    <!-- decorative collage -->
+    <div class="decor d-monitor">
+      <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><pattern id="dots1" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r="1.2" fill="#141414"/></pattern></defs>
+        <rect x="6" y="6" width="108" height="70" rx="6" fill="url(#dots1)" stroke="#141414" stroke-width="2"/>
+        <rect x="18" y="18" width="84" height="46" rx="3" fill="#F3EFE4" stroke="#141414" stroke-width="1.5"/>
+        <rect x="48" y="80" width="24" height="10" fill="#141414"/>
+        <rect x="34" y="90" width="52" height="6" rx="3" fill="#141414"/>
+      </svg>
+    </div>
+
+    <div class="decor d-cursor">
+      <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 15 L20 85 L38 68 L50 92 L62 86 L50 62 L75 62 Z" fill="#F3EFE4" stroke="#141414" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="decor d-notebook">
+      <svg viewBox="0 0 130 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="6" width="118" height="88" rx="6" fill="#FFFFFF" stroke="#141414" stroke-width="2"/>
+        <line x1="6" y1="26" x2="124" y2="26" stroke="#141414" stroke-width="1.2"/>
+        <line x1="22" y1="40" x2="100" y2="40" stroke="#141414" stroke-width="1.2" opacity="0.5"/>
+        <line x1="22" y1="52" x2="100" y2="52" stroke="#141414" stroke-width="1.2" opacity="0.5"/>
+        <line x1="22" y1="64" x2="80" y2="64" stroke="#141414" stroke-width="1.2" opacity="0.5"/>
+        <path d="M92 70 L112 50 L120 58 L100 78 Z" fill="#D3F26A" stroke="#141414" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <div class="decor d-swatch">
+      <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="4" width="92" height="52" rx="10" fill="#FFFFFF" stroke="#141414" stroke-width="2"/>
+        <circle cx="28" cy="30" r="11" fill="#5B4CE0" stroke="#141414" stroke-width="1.5"/>
+        <circle cx="50" cy="30" r="11" fill="#F4C93B" stroke="#141414" stroke-width="1.5"/>
+        <circle cx="72" cy="30" r="11" fill="#141414" stroke="#141414" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <div class="d-sticky s1"></div>
+    <div class="d-sticky s2"></div>
+
+    <header>
+      <nav class="wrap">
+        <div class="brand">
+          <div class="logo-mark">M</div>
+          <a href="#top" class="wordmark">Maor Cohen Falah</a>
+        </div>
+        <div class="nav-links">
+          <a href="#work">Work</a>
+          <a href="#playground">Playground</a>
+          <a href="#about">About</a>
+        </div>
+        <a href="#" class="cv-link">Résumé ↓</a>
+      </nav>
+    </header>
+
+    <section id="top" class="hero">
+      <div class="badges">
+        <div class="badge"><span class="icon">🟢</span><span><span class="eyebrow">STATUS</span><span class="main">Open to new roles</span></span></div>
+        <div class="badge"><span class="icon">🎨</span><span><span class="eyebrow">EXPERIENCE</span><span class="main">4+ years in UX/UI</span></span></div>
+      </div>
+
+      <h1><span class="accent">Clarity</span> meets<br>clean interfaces<br><span class="icon-chip"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16M12 4v16" stroke="#141414" stroke-width="2.4" stroke-linecap="round"/></svg></span> that just work.</h1>
+
+      <p class="lead">I turn messy problems into interfaces people don't have to think about. Research, wireframes, pixels, and everything between.</p>
+
+      <div class="hero-actions">
+        <a href="#work" class="hbtn hbtn-primary">View my work →</a>
+        <a href="#about" class="hbtn hbtn-ghost">See my process ↓</a>
+      </div>
+
+      <div class="spin-badge">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs><path id="circlePath" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"/></defs>
+          <circle cx="50" cy="50" r="48" fill="#D3F26A" stroke="#141414" stroke-width="1.5"/>
+          <text font-size="8.6" font-weight="700" letter-spacing="1.5" fill="#141414">
+            <textPath href="#circlePath">OPEN TO WORK • OPEN TO WORK • </textPath>
+          </text>
+          <path d="M42 42 L58 58 M58 42 L58 58 L42 58" stroke="#141414" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(0,0)"/>
+        </svg>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-head"><span class="eyebrow-label">01 · Selected work</span></div>
+
+    <a href="#" class="project card" style="display:block;">
+      <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">Usability Testing</span><span class="tag-pill">UX Writing</span></div>
+      <h3>Product migration automation</h3>
+      <p class="desc">A tool that removed the developer bottleneck from price increases and product migrations, giving PMs the velocity to run them on their own.</p>
+      <div class="thumb" style="margin-bottom:20px;"><span class="ph-label">Project image — replace me</span></div>
+      <span class="read-link">Read case study →</span>
+    </a>
+
+    <a href="#" class="project card" style="display:block;">
+      <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">Platform Design</span><span class="tag-pill">Design Ops</span></div>
+      <h3>Purchase funnels tool</h3>
+      <p class="desc">A three-layer platform that helped new products launch their purchase funnels from 0→1 in days instead of months.</p>
+      <div class="thumb" style="margin-bottom:20px;"><span class="ph-label">Project image — replace me</span></div>
+      <span class="read-link">Read case study →</span>
+    </a>
+
+    <a href="#" class="project card" style="display:block;">
+      <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">UX Writing</span><span class="tag-pill">Platform Design</span></div>
+      <h3>Purchase platform redesign</h3>
+      <p class="desc">A redesign of the platform where every product is configured, removing the specialist team as a company-wide bottleneck so any PM can run it themselves.</p>
+      <div class="thumb" style="margin-bottom:20px;"><span class="ph-label">Project image — replace me</span></div>
+      <span class="read-link">Read case study →</span>
+    </a>
+
+    <div class="project card">
+      <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">Platform Design</span><span class="tag-pill">Design Ops</span></div>
+      <h3>New platform checkout</h3>
+      <p class="desc">The new consumer checkout for every product sold, designed to make completing a purchase fast and clear.</p>
+      <div class="soon">Coming soon</div>
+    </div>
+  </section>
+
+  <!-- PLAYGROUND -->
+  <section id="playground">
+    <div class="section-head"><span class="eyebrow-label">02 · Playground</span></div>
+    <p class="section-note">Personal projects born out of pure curiosity — not for every portfolio, but definitely for the soul.</p>
+
+    <div class="project card">
+      <div class="tags"><span class="tag-pill">Processing</span><span class="tag-pill">Generative</span></div>
+      <h3>Emergence</h3>
+      <p class="desc">An interactive experience built as a final project, exploring how complex systems and patterns form from simple interactions — how water drops become an ocean, or how neurons firing electricity somehow produce consciousness. 1+1=3.</p>
+      <div class="thumb-grid">
+        <div class="thumb"><span class="ph-label">Image 1</span></div>
+        <div class="thumb"><span class="ph-label">Image 2</span></div>
+        <div class="thumb"><span class="ph-label">Video 1</span></div>
+        <div class="thumb"><span class="ph-label">Video 2</span></div>
+      </div>
+    </div>
+
+    <div class="project card">
+      <div class="tags"><span class="tag-pill">Branding</span><span class="tag-pill">Digital</span></div>
+      <h3>Eidos — i'm not a robot</h3>
+      <p class="desc">A branding project inspired by brands like Off-White and Nothing — a digital brand that embraces technology but also questions its relationship with humanity.</p>
+      <div class="thumb-grid">
+        <div class="thumb"><span class="ph-label">Video 1</span></div>
+        <div class="thumb"><span class="ph-label">Video 2</span></div>
+        <div class="thumb"><span class="ph-label">Image 1</span></div>
+        <div class="thumb"><span class="ph-label">Image 2</span></div>
+      </div>
+    </div>
+
+    <div class="project card">
+      <div class="tags"><span class="tag-pill">Ink</span><span class="tag-pill">Freehand</span></div>
+      <h3>Sketches and doodling</h3>
+      <p class="desc">I cultivate the habit of drawing from imagination, letting my mind draw whatever it wants without judging it. It keeps my creativity sharp.</p>
+      <div class="thumb-grid">
+        <div class="thumb"><span class="ph-label">Sketch 1</span></div>
+        <div class="thumb"><span class="ph-label">Sketch 2</span></div>
+        <div class="thumb"><span class="ph-label">Sketch 3</span></div>
+        <div class="thumb"><span class="ph-label">Sketch 4</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="section-head"><span class="eyebrow-label">03 · About</span></div>
+    <div class="about-card card">
+      <div class="about-visual"><span>M</span></div>
+      <div>
+        <p><b>Maor, a UX/UI Designer</b> with a background in graphic design. I love working on complex products — the kind that need systems thinking, not just a pretty screen.</p>
+        <p><b>Current role</b> — UX/UI Designer on a B2B product. I define and design end-to-end flows, scope trade-offs with PMs and engineers, run research, and talk to real users.</p>
+        <p>Outside of work you'll find me trying new tools, doodling sketches, and testing how far AI can shorten my path without hurting quality.</p>
+        <div class="about-facts">
+          <div class="fact-pill"><b>4+</b> years experience</div>
+          <div class="fact-pill"><b>18</b> projects shipped</div>
+          <div class="fact-pill"><b>TLV</b> based</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-card card">
+      <h2>Got an interesting product? Let's talk.</h2>
+      <p class="sub">Open to new roles and freelance work. I'd love to hear about what you're building.</p>
+      <a href="mailto:hello@example.com" class="hbtn hbtn-primary">hello@example.com</a>
+      <div class="social-row">
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <p class="credit">© 2026 Maor Cohen Falah — built with care, detail by detail.</p>
+  </footer>
+
+</main>
+
+</body>
+</html>
