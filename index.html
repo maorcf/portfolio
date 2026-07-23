@@ -231,6 +231,28 @@
   footer{ padding:70px 0 60px; }
   .credit{ text-align:center; margin-top:34px; font-size:13px; color:var(--ink); opacity:0.5; }
 
+  /* ---------- HOVER MAGNIFY EFFECT ---------- */
+  .tag-pill, .wordmark, .social-row a{ display:inline-block; }
+  .tag-pill, .project h3, .wordmark, .about p, .fact-pill,
+  .footer-card h2, .footer-card p.sub, .social-row a{
+    transition:transform .25s cubic-bezier(.2,.8,.2,1);
+  }
+  .tag-pill:hover, .project h3:hover, .wordmark:hover, .about p:hover, .fact-pill:hover,
+  .footer-card h2:hover, .footer-card p.sub:hover, .social-row a:hover{
+    transform:scale(1.08);
+    cursor:none;
+  }
+
+  .cursor-lens{
+    position:fixed; top:0; left:0; width:46px; height:46px; border-radius:50%;
+    background:var(--lime); border:1.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    pointer-events:none; z-index:999; opacity:0;
+    transform:translate(-50%,-50%) scale(0.6);
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .cursor-lens.active{ opacity:1; transform:translate(-50%,-50%) scale(1); }
+
   @media (max-width: 640px){
     .thumb-grid{ grid-template-columns:1fr; }
     .about-card{ grid-template-columns:1fr; }
@@ -453,6 +475,13 @@
   <a href="#" class="cv-link" onclick="closeMobileNav()">Résumé ↓</a>
 </nav>
 
+<div class="cursor-lens" id="cursorLens">
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="10" cy="10" r="7" stroke="#141414" stroke-width="2"/>
+    <line x1="15" y1="15" x2="21" y2="21" stroke="#141414" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</div>
+
 <script>
   function openMobileNav(){
     document.getElementById('mobileNav').classList.add('open');
@@ -462,6 +491,16 @@
     document.getElementById('mobileNav').classList.remove('open');
     document.getElementById('mobileNavOverlay').classList.remove('open');
   }
+
+  var lens = document.getElementById('cursorLens');
+  document.addEventListener('mousemove', function(e){
+    lens.style.left = e.clientX + 'px';
+    lens.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('.tag-pill, .project h3, .wordmark, .about p, .fact-pill, .footer-card h2, .footer-card p.sub, .social-row a').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ lens.classList.add('active'); });
+    el.addEventListener('mouseleave', function(){ lens.classList.remove('active'); });
+  });
 </script>
 
 </body>
