@@ -164,6 +164,12 @@
     box-shadow:5px 5px 0 var(--ink);
   }
 
+  .project-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .project-grid .project{ margin-bottom:0; }
+  @media (max-width: 720px){
+    .project-grid{ grid-template-columns:1fr; }
+  }
+
   .project{
     padding:30px; margin-bottom:28px; transition:transform .18s, box-shadow .18s;
   }
@@ -329,35 +335,37 @@
   <section id="work">
     <div class="section-head"><span class="eyebrow-label">01 · Selected work</span></div>
 
-    <a href="#" class="project card" style="display:block;">
-      <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">Usability Testing</span><span class="tag-pill">UX Writing</span></div>
-      <h3>Product migration automation</h3>
-      <p class="desc">A tool that removed the developer bottleneck from price increases and product migrations, giving PMs the velocity to run them on their own.</p>
-      <div class="thumb" style="margin-bottom:20px;"><span class="ph-label">Project image — replace me</span></div>
-      <span class="read-link">Read case study →</span>
-    </a>
+    <div class="project-grid">
+      <a href="#" class="project card" style="display:block;">
+        <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">Usability Testing</span><span class="tag-pill">UX Writing</span></div>
+        <h3>Product migration automation</h3>
+        <p class="desc">A tool that removed the developer bottleneck from price increases and product migrations, giving PMs the velocity to run them on their own.</p>
+        <div class="thumb" style="margin-bottom:20px;"><span class="ph-label">Project image — replace me</span></div>
+        <span class="read-link">Read case study →</span>
+      </a>
 
-    <a href="#" class="project card" style="display:block;">
-      <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">Platform Design</span><span class="tag-pill">Design Ops</span></div>
-      <h3>Purchase funnels tool</h3>
-      <p class="desc">A three-layer platform that helped new products launch their purchase funnels from 0→1 in days instead of months.</p>
-      <div class="thumb" style="margin-bottom:20px;"><span class="ph-label">Project image — replace me</span></div>
-      <span class="read-link">Read case study →</span>
-    </a>
+      <a href="#" class="project card" style="display:block;">
+        <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">Platform Design</span><span class="tag-pill">Design Ops</span></div>
+        <h3>Purchase funnels tool</h3>
+        <p class="desc">A three-layer platform that helped new products launch their purchase funnels from 0→1 in days instead of months.</p>
+        <div class="thumb" style="margin-bottom:20px;"><span class="ph-label">Project image — replace me</span></div>
+        <span class="read-link">Read case study →</span>
+      </a>
 
-    <a href="#" class="project card" style="display:block;">
-      <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">UX Writing</span><span class="tag-pill">Platform Design</span></div>
-      <h3>Purchase platform redesign</h3>
-      <p class="desc">A redesign of the platform where every product is configured, removing the specialist team as a company-wide bottleneck so any PM can run it themselves.</p>
-      <div class="thumb" style="margin-bottom:20px;"><span class="ph-label">Project image — replace me</span></div>
-      <span class="read-link">Read case study →</span>
-    </a>
+      <a href="#" class="project card" style="display:block;">
+        <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">UX Writing</span><span class="tag-pill">Platform Design</span></div>
+        <h3>Purchase platform redesign</h3>
+        <p class="desc">A redesign of the platform where every product is configured, removing the specialist team as a company-wide bottleneck so any PM can run it themselves.</p>
+        <div class="thumb" style="margin-bottom:20px;"><span class="ph-label">Project image — replace me</span></div>
+        <span class="read-link">Read case study →</span>
+      </a>
 
-    <div class="project card">
-      <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">Platform Design</span><span class="tag-pill">Design Ops</span></div>
-      <h3>New platform checkout</h3>
-      <p class="desc">The new consumer checkout for every product sold, designed to make completing a purchase fast and clear.</p>
-      <div class="soon">Coming soon</div>
+      <div class="project card">
+        <div class="tags"><span class="tag-pill">Product Design</span><span class="tag-pill">Platform Design</span><span class="tag-pill">Design Ops</span></div>
+        <h3>New platform checkout</h3>
+        <p class="desc">The new consumer checkout for every product sold, designed to make completing a purchase fast and clear.</p>
+        <div class="soon">Coming soon</div>
+      </div>
     </div>
   </section>
 
