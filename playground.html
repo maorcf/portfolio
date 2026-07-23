@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Maor Cohen Falah — Playground: personal graphic design and creative projects.">
+<title>Playground — Maor Cohen Falah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="hero-frame-outer page-frame">
+  <div class="hero-card">
+
+    <div class="decor d-monitor">
+      <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><pattern id="dots1" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r="1.2" fill="#141414"/></pattern></defs>
+        <rect x="6" y="6" width="108" height="70" rx="6" fill="url(#dots1)" stroke="#141414" stroke-width="2"/>
+        <rect x="18" y="18" width="84" height="46" rx="3" fill="#F3EFE4" stroke="#141414" stroke-width="1.5"/>
+        <rect x="48" y="80" width="24" height="10" fill="#141414"/>
+        <rect x="34" y="90" width="52" height="6" rx="3" fill="#141414"/>
+      </svg>
+    </div>
+
+    <div class="decor d-swatch">
+      <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="4" width="92" height="52" rx="10" fill="#FFFFFF" stroke="#141414" stroke-width="2"/>
+        <circle cx="28" cy="30" r="11" fill="#5B4CE0" stroke="#141414" stroke-width="1.5"/>
+        <circle cx="50" cy="30" r="11" fill="#F4C93B" stroke="#141414" stroke-width="1.5"/>
+        <circle cx="72" cy="30" r="11" fill="#141414" stroke="#141414" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <header>
+      <nav class="wrap">
+        <div class="brand">
+          <div class="logo-mark">M</div>
+          <a href="index.html" class="wordmark">Maor Cohen Falah</a>
+        </div>
+        <div class="nav-links">
+          <a href="index.html#work">Work</a>
+          <a href="playground.html">Playground</a>
+          <a href="about.html">About</a>
+        </div>
+        <a href="#" class="cv-link">Résumé ↓</a>
+        <button class="menu-toggle" aria-label="Open menu" onclick="openMobileNav()">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke="#141414" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </nav>
+    </header>
+
+    <div class="page-title">
+      <h1>Playground</h1>
+      <p>Personal projects born out of pure curiosity — not for every portfolio, but definitely for the soul.</p>
+    </div>
+
+  </div>
+</div>
+
+<main class="wrap maxw-wide">
+
+  <section id="playground">
+    <div class="project card">
+      <div class="tags"><span class="tag-pill">Processing</span><span class="tag-pill">Generative</span></div>
+      <h3>Emergence</h3>
+      <p class="desc">An interactive experience built as a final project, exploring how complex systems and patterns form from simple interactions — how water drops become an ocean, or how neurons firing electricity somehow produce consciousness. 1+1=3.</p>
+      <div class="thumb-grid">
+        <div class="thumb"><span class="ph-label">Image 1</span></div>
+        <div class="thumb"><span class="ph-label">Image 2</span></div>
+        <div class="thumb"><span class="ph-label">Video 1</span></div>
+        <div class="thumb"><span class="ph-label">Video 2</span></div>
+      </div>
+    </div>
+
+    <div class="project card">
+      <div class="tags"><span class="tag-pill">Branding</span><span class="tag-pill">Digital</span></div>
+      <h3>Eidos — i'm not a robot</h3>
+      <p class="desc">A branding project inspired by brands like Off-White and Nothing — a digital brand that embraces technology but also questions its relationship with humanity.</p>
+      <div class="thumb-grid">
+        <div class="thumb"><span class="ph-label">Video 1</span></div>
+        <div class="thumb"><span class="ph-label">Video 2</span></div>
+        <div class="thumb"><span class="ph-label">Image 1</span></div>
+        <div class="thumb"><span class="ph-label">Image 2</span></div>
+      </div>
+    </div>
+
+    <div class="project card">
+      <div class="tags"><span class="tag-pill">Ink</span><span class="tag-pill">Freehand</span></div>
+      <h3>Sketches and doodling</h3>
+      <p class="desc">I cultivate the habit of drawing from imagination, letting my mind draw whatever it wants without judging it. It keeps my creativity sharp.</p>
+      <div class="thumb-grid">
+        <div class="thumb"><span class="ph-label">Sketch 1</span></div>
+        <div class="thumb"><span class="ph-label">Sketch 2</span></div>
+        <div class="thumb"><span class="ph-label">Sketch 3</span></div>
+        <div class="thumb"><span class="ph-label">Sketch 4</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-card card">
+      <h2>Got an interesting product? Let's talk.</h2>
+      <p class="sub">Open to new roles and freelance work. I'd love to hear about what you're building.</p>
+      <a href="mailto:hello@example.com" class="hbtn hbtn-primary">hello@example.com</a>
+      <div class="social-row">
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <p class="credit">© 2026 Maor Cohen Falah — built with care, detail by detail.</p>
+  </footer>
+
+</main>
+
+<div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" aria-label="Close menu" onclick="closeMobileNav()">✕</button>
+  <a href="index.html#work" onclick="closeMobileNav()">Work</a>
+  <a href="playground.html" onclick="closeMobileNav()">Playground</a>
+  <a href="about.html" onclick="closeMobileNav()">About</a>
+  <a href="#" class="cv-link" onclick="closeMobileNav()">Résumé ↓</a>
+</nav>
+
+<script src="script.js"></script>
+
+</body>
+</html>
