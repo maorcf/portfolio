@@ -42,6 +42,8 @@
   .hero-frame-outer{
     background:var(--frame-bg);
     padding:18px;
+    min-height:100vh; box-sizing:border-box;
+    display:flex;
   }
   .hero-card{
     position:relative; overflow:hidden;
@@ -50,6 +52,8 @@
     border-radius:22px;
     background-image: radial-gradient(rgba(20,20,20,0.16) 1px, transparent 1px);
     background-size:22px 22px;
+    flex:1;
+    display:flex; flex-direction:column;
   }
 
   /* ---------- NAV (inside hero card) ---------- */
@@ -100,7 +104,10 @@
   }
 
   /* ---------- HERO CONTENT ---------- */
-  .hero{ padding:56px 28px 90px; position:relative; z-index:5; text-align:center; }
+  .hero{
+    padding:56px 28px 90px; position:relative; z-index:5; text-align:center;
+    flex:1; display:flex; flex-direction:column; justify-content:center;
+  }
 
   .hero h1{
     font-family:'Inter', sans-serif; font-weight:600;
