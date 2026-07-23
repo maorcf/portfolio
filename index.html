@@ -145,6 +145,21 @@
   }
   @keyframes spin{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
 
+  /* ---------- LARGE DESKTOP HERO SCALE-UP ---------- */
+  @media (min-width: 1440px){
+    .hero{ padding:100px 40px 160px; }
+    .hero h1{ font-size:clamp(50px, 4.6vw, 88px); max-width:1450px; }
+    .hero .lead{ font-size:22px; max-width:640px; margin-top:36px; }
+    .hero-actions{ gap:20px; margin-top:52px; }
+    .hero .hbtn{ font-size:19px; padding:20px 34px; }
+    .d-monitor{ width:200px; }
+    .d-cursor{ width:185px; }
+    .d-notebook{ width:220px; }
+    .d-swatch{ width:150px; }
+    .d-sticky{ width:76px; height:76px; }
+    .spin-badge{ width:160px; height:160px; bottom:-56px; left:60px; }
+  }
+
   @media (max-width: 720px){
     .decor{ display:none; }
     .d-sticky{ display:none; }
