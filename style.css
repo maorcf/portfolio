@@ -32,8 +32,8 @@ img,svg{ display:block; max-width:100%; }
   background:var(--frame-bg);
   padding:18px;
   min-height:100vh;
-  min-height:100svh;
   min-height:100dvh;
+  min-height:100svh;
   box-sizing:border-box;
   display:flex;
 }
@@ -81,7 +81,7 @@ nav.wrap{ display:flex; align-items:center; justify-content:space-between; paddi
 .mobile-nav-overlay.open{ opacity:1; pointer-events:auto; }
 .mobile-nav{
   position:fixed; top:0; right:-280px; width:260px; z-index:50;
-  height:100vh; height:100dvh;
+  height:100vh; height:100dvh; height:100svh;
   background:var(--cream); border-left:1.5px solid var(--ink);
   display:flex; flex-direction:column; gap:22px; padding:80px 28px 28px;
   transition:right .25s ease;
