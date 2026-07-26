@@ -31,7 +31,10 @@ img,svg{ display:block; max-width:100%; }
 .hero-frame-outer{
   background:var(--frame-bg);
   padding:18px;
-  min-height:100vh; box-sizing:border-box;
+  min-height:100vh;
+  min-height:100svh;
+  min-height:100dvh;
+  box-sizing:border-box;
   display:flex;
 }
 .hero-frame-outer.page-frame{ min-height:auto; }
@@ -77,7 +80,8 @@ nav.wrap{ display:flex; align-items:center; justify-content:space-between; paddi
 }
 .mobile-nav-overlay.open{ opacity:1; pointer-events:auto; }
 .mobile-nav{
-  position:fixed; top:0; right:-280px; width:260px; height:100%; z-index:50;
+  position:fixed; top:0; right:-280px; width:260px; z-index:50;
+  height:100vh; height:100dvh;
   background:var(--cream); border-left:1.5px solid var(--ink);
   display:flex; flex-direction:column; gap:22px; padding:80px 28px 28px;
   transition:right .25s ease;
