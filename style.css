@@ -247,22 +247,22 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .fact-pill b{ font-family:'Inter', sans-serif; font-weight:600; }
 
 /* ---------- FOOTER ---------- */
-.footer-card{ padding:56px 40px; text-align:center; }
+.footer-card{ padding:0; text-align:left; }
 .footer-card h2{ font-family:'Inter', sans-serif; font-weight:500; font-size:clamp(26px,3.4vw,38px); margin-bottom:16px; }
-.footer-card p.sub{ color:var(--ink); opacity:0.65; font-size:15.5px; margin-bottom:30px; }
-.social-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
-.social-row a{
-  font-size:13.5px; font-weight:600; border:1.2px solid var(--ink); border-radius:999px;
-  padding:8px 16px; background:#fff;
+.footer-card p.sub{ color:var(--ink); opacity:0.65; font-size:15.5px; margin-bottom:24px; max-width:480px; }
+.footer-email{
+  display:inline-block; font-size:16px; font-weight:600; color:var(--violet);
 }
-.social-row a:hover{ background:var(--cream); }
+.footer-email:hover{ text-decoration:underline; }
+.social-row{ display:flex; gap:20px; flex-wrap:wrap; margin-top:22px; }
+.social-row a{ font-size:14px; font-weight:600; color:var(--ink); }
+.social-row a:hover{ color:var(--violet); }
 footer{ padding:70px 0 60px; }
-.credit{ text-align:center; margin-top:34px; font-size:13px; color:var(--ink); opacity:0.5; }
+.credit{ text-align:left; margin-top:34px; font-size:13px; color:var(--ink); opacity:0.5; }
 
 @media (max-width: 640px){
   .thumb-grid{ grid-template-columns:1fr; }
   .about-card{ grid-template-columns:1fr; }
   .about-visual{ max-width:160px; margin:0 auto; }
   .project{ padding:22px; }
-  .footer-card{ padding:40px 22px; }
 }
