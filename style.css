@@ -31,10 +31,10 @@ img,svg{ display:block; max-width:100%; }
 .hero-frame-outer{
   background:var(--frame-bg);
   padding:18px;
-  box-sizing:border-box;
+  min-height:100vh; box-sizing:border-box;
   display:flex;
-  min-height:calc(100vh - var(--header-h, 90px));
 }
+.hero-frame-outer.page-frame{ min-height:auto; }
 .hero-card{
   position:relative; overflow:hidden;
   background:var(--cream);
@@ -47,10 +47,7 @@ img,svg{ display:block; max-width:100%; }
 }
 
 /* ---------- NAV (inside hero card) ---------- */
-header{
-  padding:0; position:sticky; top:0; z-index:100;
-  background:var(--cream);
-}
+header{ padding:0; position:relative; z-index:5; }
 nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding:22px 28px; max-width:none; border-bottom:1.5px solid var(--ink); }
 .logo-mark{
   width:30px; height:30px; border-radius:8px; background:var(--ink); color:var(--cream);
@@ -77,12 +74,12 @@ nav.wrap{ display:flex; align-items:center; justify-content:space-between; paddi
 
 /* ---------- MOBILE SIDE MENU ---------- */
 .mobile-nav-overlay{
-  position:fixed; inset:0; background:rgba(20,20,20,0.4); z-index:150;
+  position:fixed; inset:0; background:rgba(20,20,20,0.4); z-index:40;
   opacity:0; pointer-events:none; transition:opacity .25s ease;
 }
 .mobile-nav-overlay.open{ opacity:1; pointer-events:auto; }
 .mobile-nav{
-  position:fixed; top:0; right:-280px; width:260px; height:100%; z-index:160;
+  position:fixed; top:0; right:-280px; width:260px; height:100%; z-index:50;
   background:var(--cream); border-left:1.5px solid var(--ink);
   display:flex; flex-direction:column; gap:22px; padding:80px 28px 28px;
   transition:right .25s ease;
