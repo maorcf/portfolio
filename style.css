@@ -240,7 +240,10 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
 }
 .case-cover .thumb{ border-radius:12px; margin-bottom:0; }
-.case-cover-img{ width:100%; border-radius:12px; border:1.5px solid var(--ink); }
+.case-cover-img{
+  width:100%; max-height:55vh; object-fit:cover;
+  border-radius:12px; border:1.5px solid var(--ink);
+}
 .project-detail{ padding:40px; margin-bottom:60px; }
 .project-detail .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
 .project-detail .thumb-tall{ margin-bottom:32px; }
