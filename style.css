@@ -121,8 +121,8 @@ nav.wrap{ display:flex; align-items:center; justify-content:space-between; paddi
 }
 .hero h1 .accent{ color:var(--violet); }
 .hero h1 .char{
-  display:inline-block; cursor:default;
-  transition:transform .35s cubic-bezier(.2,.8,.2,1); will-change:transform;
+  display:inline-block; cursor:default; position:relative;
+  transition:transform .5s cubic-bezier(.34,1.15,.64,1); will-change:transform;
 }
 .hero h1 .icon-chip{
   display:inline-flex; width:0.85em; height:0.85em; vertical-align:middle;
