@@ -58,14 +58,20 @@ if(floatingNav || backToTop){
 
   var radius = 70;
   var maxPush = 34;
+  var ticking = false;
+  var pointerX = null;
+  var pointerY = null;
 
-  heroSection.addEventListener('mousemove', function(e){
+  function applyRepel(){
+    ticking = false;
+    if(pointerX === null) return;
     baseRects.forEach(function(item){
-      var dx = item.cx - e.clientX;
-      var dy = item.cy - e.clientY;
+      var dx = item.cx - pointerX;
+      var dy = item.cy - pointerY;
       var dist = Math.sqrt(dx * dx + dy * dy);
       if(dist < radius){
         var factor = (radius - dist) / radius;
+        factor = factor * factor * (3 - 2 * factor); // smoothstep easing
         var push = maxPush * factor;
         var angle = Math.atan2(dy, dx);
         var mx = Math.cos(angle) * push;
@@ -75,8 +81,23 @@ if(floatingNav || backToTop){
         item.el.style.transform = 'translate(0px,0px)';
       }
     });
+  }
+
+  function requestApply(){
+    if(!ticking){
+      ticking = true;
+      requestAnimationFrame(applyRepel);
+    }
+  }
+
+  heroSection.addEventListener('mousemove', function(e){
+    pointerX = e.clientX;
+    pointerY = e.clientY;
+    requestApply();
   });
   heroSection.addEventListener('mouseleave', function(){
+    pointerX = null;
+    pointerY = null;
     baseRects.forEach(function(item){ item.el.style.transform = 'translate(0px,0px)'; });
   });
 })();
