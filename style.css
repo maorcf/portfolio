@@ -235,10 +235,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   display:inline-block; margin-bottom:24px; font-size:14px; font-weight:600; color:var(--ink);
 }
 .back-link:hover{ color:var(--violet); }
-.case-cover{
-  background:var(--frame-bg); padding:20px; margin-bottom:40px;
-  width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
-}
+.case-cover{ background:var(--frame-bg); border-radius:22px; padding:20px; margin-bottom:40px; }
 .case-cover .thumb{ border-radius:12px; margin-bottom:0; }
 .case-cover-img{ width:100%; border-radius:12px; border:1.5px solid var(--ink); }
 .project-detail{ padding:40px; margin-bottom:60px; }
