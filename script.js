@@ -8,12 +8,11 @@ function closeMobileNav(){
 }
 
 var floatingNav = document.querySelector('.floating-nav');
-if(floatingNav){
+var backToTop = document.querySelector('.back-to-top');
+if(floatingNav || backToTop){
   window.addEventListener('scroll', function(){
-    if(window.scrollY > 200){
-      floatingNav.classList.add('visible');
-    } else {
-      floatingNav.classList.remove('visible');
-    }
+    var pastThreshold = window.scrollY > 200;
+    if(floatingNav) floatingNav.classList.toggle('visible', pastThreshold);
+    if(backToTop) backToTop.classList.toggle('visible', pastThreshold);
   });
 }
