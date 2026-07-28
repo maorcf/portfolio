@@ -248,6 +248,8 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .case-section p b{ color:var(--ink); opacity:1; }
 .case-section .thumb-tall{ margin-top:20px; margin-bottom:0; }
 .case-list{ color:var(--ink); opacity:0.72; font-size:15.5px; max-width:640px; padding-left:20px; margin-bottom:14px; }
+.case-list li b{ color:var(--ink); opacity:1; }
+.case-subhead{ font-size:16px; font-weight:600; margin:20px 0 10px; }
 
 .case-row{ display:flex; gap:40px; margin-bottom:32px; }
 .case-row-label{ flex:0 0 140px; font-size:17px; font-weight:600; }
