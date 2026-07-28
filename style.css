@@ -15,11 +15,7 @@
 *{ box-sizing:border-box; margin:0; padding:0; }
 html{ scroll-behavior:smooth; }
 body{
-  background-color:var(--cream); color:var(--ink);
-  background-image:url('texture.svg');
-  background-repeat:repeat;
-  background-size:140px 140px;
-  background-blend-mode:multiply;
+  background:var(--cream); color:var(--ink);
   font-family:'Inter',sans-serif; font-weight:300;
   line-height:1.65; -webkit-font-smoothing:antialiased;
   font-size:16px;
