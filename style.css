@@ -237,7 +237,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .back-link:hover{ color:var(--violet); }
 .case-cover{ margin-bottom:40px; }
 .case-cover .thumb{ border-radius:12px; margin-bottom:0; }
-.case-cover-img{ width:100%; border-radius:12px; }
+.case-cover-img{ width:100%; border-radius:12px; box-shadow:0 20px 40px -12px rgba(20,20,20,0.35); }
 .project-detail{ padding:40px; margin-bottom:60px; }
 .project-detail .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
 .project-detail .thumb-tall{ margin-bottom:32px; }
