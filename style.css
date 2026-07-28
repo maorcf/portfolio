@@ -215,7 +215,9 @@ section{ padding:70px 0; }
 
 .project{
   padding:30px; margin-bottom:28px; transition:transform .18s, box-shadow .18s;
+  display:flex; flex-direction:column; height:100%;
 }
+.project .read-link, .project .soon{ margin-top:auto; align-self:flex-start; }
 a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink); }
 .project .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
 .tag-pill{
