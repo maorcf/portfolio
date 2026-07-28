@@ -248,6 +248,15 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .case-section p b{ color:var(--ink); opacity:1; }
 .case-section .thumb-tall{ margin-top:20px; margin-bottom:0; }
 .case-list{ color:var(--ink); opacity:0.72; font-size:15.5px; max-width:640px; padding-left:20px; margin-bottom:14px; }
+
+.case-row{ display:flex; gap:40px; margin-bottom:32px; }
+.case-row-label{ flex:0 0 140px; font-size:17px; font-weight:600; }
+.case-row p{ flex:1; color:var(--ink); opacity:0.72; font-size:15.5px; max-width:640px; margin:0; }
+.case-divider{ border:none; border-top:1.5px solid var(--line); margin:8px 0 40px; }
+@media (max-width: 640px){
+  .case-row{ flex-direction:column; gap:8px; }
+  .case-row-label{ flex:none; }
+}
 .case-list li{ margin-bottom:8px; }
 
 .case-figure{ margin:0 0 40px; }
