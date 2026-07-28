@@ -37,7 +37,7 @@ img,svg{ display:block; max-width:100%; }
   box-sizing:border-box;
   display:flex;
 }
-.hero-frame-outer.page-frame{ min-height:auto; }
+.hero-frame-outer.page-frame{ min-height:auto; background:transparent; }
 .hero-card{
   position:relative; overflow:hidden;
   background:var(--cream);
