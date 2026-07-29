@@ -210,11 +210,14 @@ section{ padding:70px 0; }
 }
 
 .project{
-  padding:30px; margin-bottom:28px; transition:transform .18s, box-shadow .18s;
-  display:flex; flex-direction:column; height:100%;
+  margin-bottom:28px; transition:transform .18s, box-shadow .18s;
+  display:flex; flex-direction:column; height:100%; overflow:hidden;
 }
 .project .read-link, .project .soon{ margin-top:auto; align-self:flex-start; }
 a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink); }
+.project-cover{ flex-shrink:0; }
+.project-cover .thumb{ border:none; border-radius:0; margin:0; }
+.project-body{ padding:30px; display:flex; flex-direction:column; flex:1; }
 .project .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
 .tag-pill{
   font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.03em;
@@ -356,5 +359,5 @@ footer{ padding:70px 0 60px; }
   .thumb-grid{ grid-template-columns:1fr; }
   .about-card{ grid-template-columns:1fr; }
   .about-visual{ max-width:160px; margin:0 auto; }
-  .project{ padding:22px; }
+  .project-body{ padding:22px; }
 }
