@@ -232,6 +232,14 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .thumb .ph-label{ color:var(--ink); opacity:0.42; font-size:12.5px; }
 .thumb-tall{ aspect-ratio:16/9; margin-bottom:20px; }
 
+.browser-mockup{
+  flex-direction:column; align-items:stretch; justify-content:flex-start;
+  padding:0; background-image:none;
+}
+.browser-bar{ display:flex; gap:6px; padding:10px 14px; border-bottom:1.5px solid var(--ink); flex-shrink:0; }
+.browser-bar span{ width:9px; height:9px; border-radius:50%; background:var(--ink); opacity:0.25; }
+.browser-mockup-img{ flex:1; width:100%; height:100%; object-fit:cover; object-position:top; }
+
 /* ---------- PROJECT DETAIL ---------- */
 .back-link{
   display:inline-block; margin-bottom:24px; font-size:14px; font-weight:600; color:var(--ink);
