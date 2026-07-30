@@ -321,7 +321,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 }
 .back-to-top.visible{ opacity:1; pointer-events:auto; transform:translateY(0); }
 .back-to-top:hover{ color:var(--violet); }
-.thumb-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6px; max-width:560px; }
+.thumb-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6px; }
 .thumb-grid .thumb{ aspect-ratio:4/3; }
 .read-link{
   display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600;
