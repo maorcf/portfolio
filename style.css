@@ -210,9 +210,10 @@ section{ padding:70px 0; }
 }
 
 .project{
-  margin-bottom:28px; transition:transform .18s, box-shadow .18s;
+  padding:30px; margin-bottom:28px; transition:transform .18s, box-shadow .18s;
   display:flex; flex-direction:column; height:100%; overflow:hidden;
 }
+.project:has(.project-cover){ padding:0; }
 .project .read-link, .project .soon{ margin-top:auto; align-self:flex-start; }
 a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink); }
 .project-cover{ flex-shrink:0; padding:16px 16px 0; }
@@ -320,7 +321,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 }
 .back-to-top.visible{ opacity:1; pointer-events:auto; transform:translateY(0); }
 .back-to-top:hover{ color:var(--violet); }
-.thumb-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6px; }
+.thumb-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6px; max-width:560px; }
 .thumb-grid .thumb{ aspect-ratio:4/3; }
 .read-link{
   display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600;
@@ -368,5 +369,6 @@ footer{ padding:70px 0 60px; }
   .about-card{ grid-template-columns:1fr; }
   .about-visual{ max-width:160px; margin:0 auto; }
   .project-body{ padding:22px; }
+  .project:not(:has(.project-cover)){ padding:22px; }
   .project-detail{ padding:32px; }
 }
