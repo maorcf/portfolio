@@ -49,30 +49,6 @@ img,svg{ display:block; max-width:100%; }
   display:flex; flex-direction:column;
 }
 
-/* ---------- HERO ENTRANCE REVEAL ---------- */
-.hero-reveal{
-  position:absolute; inset:0; z-index:15;
-  display:grid;
-  grid-template-columns:repeat(8, 1fr);
-  grid-template-rows:repeat(5, 1fr);
-  pointer-events:none;
-}
-.hero-reveal .tile{
-  transform-origin:center;
-  animation:tileReveal .6s cubic-bezier(.6,0,.2,1) forwards;
-}
-.hero-reveal .tile.c-ink{ background:var(--ink); }
-.hero-reveal .tile.c-violet{ background:var(--violet); }
-.hero-reveal .tile.c-lime{ background:var(--lime); }
-.hero-reveal .tile.c-cream{ background:var(--cream); }
-@keyframes tileReveal{
-  0%{ transform:scale(1); opacity:1; }
-  100%{ transform:scale(0); opacity:0; }
-}
-@media (prefers-reduced-motion: reduce){
-  .hero-reveal{ display:none; }
-}
-
 /* ---------- NAV (inside hero card) ---------- */
 header{ padding:0; position:relative; z-index:5; }
 nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding:22px 28px; max-width:none; border-bottom:1.5px solid var(--ink); }
