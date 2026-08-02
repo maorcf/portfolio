@@ -1,3 +1,26 @@
+(function(){
+  var reveal = document.getElementById('heroReveal');
+  if(!reveal) return;
+  var cols = 8, rows = 5;
+  var colors = ['c-ink', 'c-violet', 'c-lime'];
+  var maxDelay = 0;
+  for(var r = 0; r < rows; r++){
+    for(var c = 0; c < cols; c++){
+      var tile = document.createElement('div');
+      var idx = r * cols + c;
+      var color = (idx % 9 === 0) ? 'c-cream' : colors[(r + c) % colors.length];
+      tile.className = 'tile ' + color;
+      var delay = (r + c) * 35;
+      tile.style.animationDelay = delay + 'ms';
+      if(delay > maxDelay) maxDelay = delay;
+      reveal.appendChild(tile);
+    }
+  }
+  setTimeout(function(){
+    reveal.style.display = 'none';
+  }, maxDelay + 650);
+})();
+
 function openMobileNav(){
   document.getElementById('mobileNav').classList.add('open');
   document.getElementById('mobileNavOverlay').classList.add('open');
