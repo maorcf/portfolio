@@ -247,6 +247,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .case-cover .thumb{ border-radius:12px; margin-bottom:0; }
 .case-cover-img{ width:100%; border-radius:12px; box-shadow:0 20px 40px -12px rgba(20,20,20,0.35); }
 .project-detail{ padding:72px; margin-bottom:72px; }
+.project-detail.card{ background:none; border:none; box-shadow:none; border-radius:0; }
 .project-detail .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:40px; }
 .project-detail .thumb-tall{ margin-bottom:48px; }
 .case-section{ margin-bottom:72px; }
