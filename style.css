@@ -323,6 +323,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .back-to-top.visible{ opacity:1; pointer-events:auto; transform:translateY(0); }
 .back-to-top:hover{ color:var(--violet); }
 .thumb-grid{ column-count:2; column-gap:12px; margin-top:6px; }
+.thumb-grid-single{ column-count:1; }
 .thumb-grid .thumb{ aspect-ratio:auto; background:none; display:block; break-inside:avoid; margin-bottom:12px; }
 .thumb-grid .thumb img, .thumb-grid .thumb video{ width:100%; height:auto; display:block; }
 .read-link{
