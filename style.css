@@ -245,7 +245,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .back-link:hover{ color:var(--violet); }
 .case-cover{ margin-bottom:40px; }
 .case-cover .thumb{ border-radius:12px; margin-bottom:0; }
-.case-cover-img{ width:100%; border-radius:12px; box-shadow:0 20px 40px -12px rgba(20,20,20,0.35); }
+.case-cover-img{ width:100%; border-radius:12px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); }
 .project-detail{ padding:72px; margin-bottom:72px; }
 .project-detail.card{ background:none; border:none; box-shadow:none; border-radius:0; }
 #playground .project.card{ background:none; border:none; box-shadow:none; border-radius:0; }
