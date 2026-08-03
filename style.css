@@ -297,10 +297,10 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   max-width:1400px; width:100%; padding:0 40px;
 }
 .case-compare figure{ margin:0; }
-.case-compare img{ width:100%; border-radius:12px; box-shadow:0 20px 40px -12px rgba(20,20,20,0.35); }
+.case-compare img{ width:100%; border-radius:12px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); }
 .case-compare figcaption{
   text-align:center; color:var(--ink); opacity:0.6; font-size:13px; font-weight:600;
-  margin-top:12px; text-transform:uppercase; letter-spacing:0.04em;
+  margin-bottom:12px; text-transform:uppercase; letter-spacing:0.04em;
 }
 @media (max-width:780px){
   .case-compare{ grid-template-columns:1fr; padding:0 24px; gap:40px; }
