@@ -48,6 +48,10 @@ img,svg{ display:block; max-width:100%; }
   flex:1;
   display:flex; flex-direction:column;
 }
+.hero-particles{
+  position:absolute; inset:0; width:100%; height:100%;
+  z-index:2; pointer-events:none;
+}
 
 /* ---------- NAV (inside hero card) ---------- */
 header{ padding:0; position:relative; z-index:5; }
