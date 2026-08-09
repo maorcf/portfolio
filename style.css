@@ -253,7 +253,8 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .project-detail .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:40px; }
 .project-detail .thumb-tall{ margin-bottom:48px; }
 .case-section{ margin-bottom:72px; }
-.case-section h2{ font-size:22px; font-weight:600; margin-bottom:24px; }
+.case-section h2{ font-size:22px; font-weight:600; margin-bottom:24px; display:flex; align-items:center; gap:10px; }
+.h2-icon{ flex-shrink:0; }
 .case-section p{ color:var(--ink); opacity:0.72; font-size:15.5px; line-height:1.85; max-width:640px; }
 .case-section p + p{ margin-top:28px; }
 .case-section p b{ color:var(--ink); opacity:1; }
