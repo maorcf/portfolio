@@ -376,4 +376,6 @@ footer{ padding:70px 0 60px; }
   .project-body{ padding:22px; }
   .project:not(:has(.project-cover)){ padding:22px; }
   .project-detail{ padding:32px; }
+  .project .tags, .project-detail .tags{ flex-wrap:nowrap; gap:4px; }
+  .tag-pill{ font-size:7.5px; padding:3px 6px; }
 }
