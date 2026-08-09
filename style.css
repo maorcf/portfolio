@@ -286,6 +286,12 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   .inspo-grid figcaption{ font-size:11px; }
 }
 
+.wireframe-grid{ grid-template-columns:1fr 1fr; max-width:640px; margin-top:24px; }
+.wireframe-grid img{ aspect-ratio:auto; object-fit:unset; }
+@media (max-width: 640px){
+  .wireframe-grid{ grid-template-columns:1fr; max-width:360px; margin-left:auto; margin-right:auto; }
+}
+
 .case-compare-breakout{
   width:100vw; margin-left:calc(50% - 50vw); margin-bottom:72px;
   display:flex; justify-content:center;
