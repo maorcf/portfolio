@@ -295,6 +295,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   display:grid; grid-template-columns:1fr 1fr; gap:32px;
   max-width:1400px; width:100%; padding:0 40px;
 }
+.case-compare-3{ grid-template-columns:1fr 1fr 1fr; max-width:1600px; }
 .case-compare figure{ margin:0; }
 .case-compare img{ width:100%; border-radius:12px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); }
 .case-compare figcaption{
