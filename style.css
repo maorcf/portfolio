@@ -350,7 +350,9 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   display:flex; align-items:flex-start; gap:18px; width:max-content;
   animation: mag-scroll 34s linear infinite;
 }
-.mag-carousel:hover .mag-carousel-track{ animation-play-state:paused; }
+@media (hover: hover){
+  .mag-carousel:hover .mag-carousel-track{ animation-play-state:paused; }
+}
 .mag-carousel-track img{
   height:340px; width:auto; flex-shrink:0; display:block;
   border-radius:8px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22);
