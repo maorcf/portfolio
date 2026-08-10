@@ -340,7 +340,6 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .thumb-grid-single{ column-count:1; }
 .thumb-grid .thumb{ aspect-ratio:auto; background:none; border:none; display:block; break-inside:avoid; margin-bottom:12px; }
 .thumb-grid .thumb img, .thumb-grid .thumb video{ width:100%; height:auto; display:block; border-radius:10px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); }
-.thumb-grid-single .thumb img{ box-shadow:0 4px 10px -8px rgba(20,20,20,0.06); }
 .read-link{
   display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600;
   background:var(--lime); border:1.2px solid var(--ink); padding:8px 16px; border-radius:999px;
