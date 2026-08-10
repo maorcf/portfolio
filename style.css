@@ -340,6 +340,27 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .thumb-grid-single{ column-count:1; }
 .thumb-grid .thumb{ aspect-ratio:auto; background:none; border:none; display:block; break-inside:avoid; margin-bottom:12px; }
 .thumb-grid .thumb img, .thumb-grid .thumb video{ width:100%; height:auto; display:block; border-radius:10px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); }
+
+.mag-carousel{
+  margin-top:24px; overflow:hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 48px, black calc(100% - 48px), transparent);
+  mask-image: linear-gradient(to right, transparent, black 48px, black calc(100% - 48px), transparent);
+}
+.mag-carousel-track{
+  display:flex; align-items:flex-start; gap:18px; width:max-content;
+  animation: mag-scroll 34s linear infinite;
+}
+.mag-carousel:hover .mag-carousel-track{ animation-play-state:paused; }
+.mag-carousel-track img{
+  height:340px; width:auto; flex-shrink:0; display:block;
+  border-radius:8px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22);
+}
+@keyframes mag-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){ .mag-carousel-track{ animation:none; } }
+@media (max-width: 640px){
+  .mag-carousel-track img{ height:220px; }
+  .mag-carousel-track{ animation-duration:24s; }
+}
 .read-link{
   display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600;
   background:var(--lime); border:1.2px solid var(--ink); padding:8px 16px; border-radius:999px;
