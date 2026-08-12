@@ -381,6 +381,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
 }
 .about-visual span{ font-family:'Inter', sans-serif; font-size:64px; color:#fff; }
+.about-visual img{ width:100%; height:100%; object-fit:cover; }
 .about p{ color:var(--ink); opacity:0.72; font-size:15.5px; margin-bottom:16px; }
 .about p b{ color:var(--ink); opacity:1; font-weight:600; }
 .about-facts{ display:flex; gap:12px; margin-top:22px; flex-wrap:wrap; }
