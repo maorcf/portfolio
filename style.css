@@ -363,7 +363,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 @media (max-width: 640px){
   .mag-carousel-track img{ height:220px; }
   .mag-carousel-track{ animation-duration:24s; }
-  .mag-carousel-rtl .mag-carousel-track{ animation-duration:40s; }
+  .mag-carousel-rtl .mag-carousel-track{ animation-duration:70s; }
 }
 .crumple-spread{
   position:relative; margin-top:24px; border-radius:8px; overflow:hidden;
