@@ -358,10 +358,12 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   border-radius:8px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22);
 }
 @keyframes mag-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+.mag-carousel-rtl .mag-carousel-track{ animation-duration:56s; animation-direction:reverse; }
 @media (prefers-reduced-motion: reduce){ .mag-carousel-track{ animation:none; } }
 @media (max-width: 640px){
   .mag-carousel-track img{ height:220px; }
   .mag-carousel-track{ animation-duration:24s; }
+  .mag-carousel-rtl .mag-carousel-track{ animation-duration:40s; }
 }
 .read-link{
   display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600;
