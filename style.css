@@ -365,6 +365,20 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   .mag-carousel-track{ animation-duration:24s; }
   .mag-carousel-rtl .mag-carousel-track{ animation-duration:40s; }
 }
+.crumple-spread{
+  position:relative; margin-top:24px; border-radius:8px; overflow:hidden;
+  box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); cursor:pointer;
+}
+.crumple-spread img{ display:block; width:100%; height:auto; }
+.crumple-crumpled{
+  position:absolute; inset:0; transition:opacity .7s ease, transform .7s ease;
+}
+.crumple-flat{ transform:scale(1.01); transition:transform .7s ease; }
+.crumple-spread:hover .crumple-crumpled{ opacity:0; transform:scale(1.01); }
+.crumple-spread:hover .crumple-flat{ transform:scale(1); }
+@media (prefers-reduced-motion: reduce){
+  .crumple-crumpled, .crumple-flat{ transition:none; }
+}
 .read-link{
   display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600;
   background:var(--lime); border:1.2px solid var(--ink); padding:8px 16px; border-radius:999px;
