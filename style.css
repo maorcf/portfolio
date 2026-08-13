@@ -246,6 +246,34 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .case-cover{ margin-bottom:40px; }
 .case-cover .thumb{ border-radius:12px; margin-bottom:0; }
 .case-cover-img{ width:100%; border-radius:12px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); }
+
+.iphone-mockup{
+  position:relative; width:260px; margin:0 auto; aspect-ratio:1179/2221;
+  border-radius:44px; border:10px solid var(--ink); background:var(--ink);
+  overflow:hidden; box-shadow:0 24px 48px -20px rgba(20,20,20,0.35);
+}
+.iphone-mockup img{ width:100%; height:100%; object-fit:cover; display:block; }
+.iphone-mockup::after{
+  content:''; position:absolute; top:12px; left:50%; transform:translateX(-50%);
+  width:36%; height:20px; background:var(--ink); border-radius:999px; z-index:2;
+}
+.case-cover-phone{
+  display:flex; justify-content:center; padding:48px 24px 56px; margin-bottom:8px;
+  background:var(--frame-bg); border-radius:20px; border:1.5px solid var(--ink);
+}
+.mockup-hero{ width:300px; }
+.mockup-row{
+  display:flex; justify-content:center; align-items:flex-start; gap:40px;
+  flex-wrap:wrap; margin:48px 0;
+}
+.mockup-row > div{ text-align:center; }
+.mockup-caption{ margin-top:16px; font-size:14px; font-weight:600; color:var(--ink); opacity:0.7; }
+@media (max-width:640px){
+  .iphone-mockup{ width:210px; }
+  .mockup-hero{ width:240px; }
+  .case-cover-phone{ padding:32px 16px 40px; }
+  .mockup-row{ gap:28px; }
+}
 .project-detail{ padding:72px; margin-bottom:72px; }
 .project-detail.card{ background:none; border:none; box-shadow:none; border-radius:0; }
 #playground .project.card{ background:none; border:none; box-shadow:none; border-radius:0; }
