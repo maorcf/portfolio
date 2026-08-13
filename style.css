@@ -401,6 +401,29 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 @media (prefers-reduced-motion: reduce){
   .crumple-crumpled, .crumple-flat{ transition:none; }
 }
+.hand-particles-card{ display:block; }
+.hp-preview{
+  position:relative; margin-top:24px; aspect-ratio:16/10; border-radius:10px;
+  background:#0a0a0a; border:1.5px solid var(--ink); overflow:hidden;
+}
+.hp-char{
+  position:absolute; color:#B88CFF; font-weight:700; font-size:26px;
+  font-family:Arial, sans-serif; transition:transform .25s ease;
+}
+.hand-particles-card:hover .hp-char{ transform:scale(1.15) rotate(0deg) !important; }
+.hp-hand{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  font-size:34px; filter:grayscale(0.15);
+}
+.hp-cta{
+  position:absolute; left:50%; bottom:16px; transform:translateX(-50%);
+  background:var(--lime); color:var(--ink); font-size:13px; font-weight:700;
+  padding:8px 16px; border-radius:999px; border:1.2px solid var(--ink); white-space:nowrap;
+}
+@media (max-width:640px){
+  .hp-char{ font-size:20px; }
+  .hp-hand{ font-size:26px; }
+}
 .read-link{
   display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600;
   background:var(--lime); border:1.2px solid var(--ink); padding:8px 16px; border-radius:999px;

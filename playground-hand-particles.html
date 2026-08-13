@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hand Particle Interaction | Maor Cohen Falah</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+  }
+
+  canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #camera {
+    display: none;
+  }
+
+  .instruction {
+    position: fixed;
+    top: 18px;
+    left: 22px;
+    z-index: 10;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .back-link {
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    z-index: 10;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    opacity: 0.75;
+  }
+  .back-link:hover { opacity: 1; }
+</style>
+</head>
+
+<body>
+
+<div class="instruction">
+  👋 Raise your hand in front of the camera to push the letters
+</div>
+<a href="playground.html" class="back-link">← Back to Playground</a>
+
+<video id="camera" autoplay playsinline></video>
+<canvas id="canvas"></canvas>
+
+<!-- MediaPipe -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+
+<script>
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const video = document.getElementById("camera");
+
+let width;
+let height;
+
+function resize() {
+  width = canvas.width = window.innerWidth * devicePixelRatio;
+  height = canvas.height = window.innerHeight * devicePixelRatio;
+
+  canvas.style.width = window.innerWidth + "px";
+  canvas.style.height = window.innerHeight + "px";
+
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+}
+
+resize();
+window.addEventListener("resize", resize);
+
+
+/* -----------------------------
+   PARTICLES
+----------------------------- */
+
+const characters =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+const particles = [];
+
+const PARTICLE_COUNT = 180;
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+
+  particles.push({
+    char:
+      characters[
+        Math.floor(Math.random() * characters.length)
+      ],
+
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+
+    vx: (Math.random() - 0.5) * 0.25,
+    vy: (Math.random() - 0.5) * 0.25,
+
+    size:
+      18 + Math.random() * 18,
+
+    rotation:
+      Math.random() * Math.PI * 2,
+
+    rotationSpeed:
+      (Math.random() - 0.5) * 0.01
+  });
+
+}
+
+
+/* -----------------------------
+   HAND POSITION
+----------------------------- */
+
+let hand = {
+  x: null,
+  y: null,
+  active: false
+};
+
+
+/* -----------------------------
+   HAND TRACKING
+----------------------------- */
+
+const hands = new Hands({
+  locateFile: (file) => {
+    return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+  }
+});
+
+hands.setOptions({
+
+  maxNumHands: 2,
+
+  modelComplexity: 1,
+
+  minDetectionConfidence: 0.5,
+
+  minTrackingConfidence: 0.5
+
+});
+
+
+hands.onResults(results => {
+
+  if (
+    results.multiHandLandmarks &&
+    results.multiHandLandmarks.length
+  ) {
+
+    const landmark =
+      results.multiHandLandmarks[0][9];
+
+    /*
+      MediaPipe coordinates:
+      x = 0 → left
+      x = 1 → right
+
+      Mirror the X axis because
+      webcam behaves like a mirror.
+    */
+
+    hand.x =
+      (1 - landmark.x) *
+      window.innerWidth;
+
+    hand.y =
+      landmark.y *
+      window.innerHeight;
+
+    hand.active = true;
+
+  } else {
+
+    hand.active = false;
+
+  }
+
+});
+
+
+/* -----------------------------
+   CAMERA
+----------------------------- */
+
+const camera = new Camera(video, {
+
+  onFrame: async () => {
+
+    await hands.send({
+      image: video
+    });
+
+  },
+
+  width: 1280,
+  height: 720
+
+});
+
+camera.start();
+
+
+/* -----------------------------
+   PARTICLE PHYSICS
+----------------------------- */
+
+function updateParticles() {
+
+  particles.forEach(p => {
+
+    /*
+      Natural floating movement
+    */
+
+    p.x += p.vx;
+    p.y += p.vy;
+
+    p.rotation += p.rotationSpeed;
+
+
+    /*
+      Hand interaction
+    */
+
+    if (hand.active) {
+
+      const dx =
+        p.x - hand.x;
+
+      const dy =
+        p.y - hand.y;
+
+      const distance =
+        Math.sqrt(dx * dx + dy * dy);
+
+      const interactionRadius = 180;
+
+      if (distance < interactionRadius) {
+
+        /*
+          Direction away from hand
+        */
+
+        const angle =
+          Math.atan2(dy, dx);
+
+        /*
+          Stronger force when closer
+        */
+
+        const force =
+          Math.pow(
+            1 - distance / interactionRadius,
+            2
+          );
+
+        p.vx +=
+          Math.cos(angle) *
+          force *
+          3.5;
+
+        p.vy +=
+          Math.sin(angle) *
+          force *
+          3.5;
+
+      }
+
+    }
+
+
+    /*
+      Friction
+    */
+
+    p.vx *= 0.985;
+    p.vy *= 0.985;
+
+
+    /*
+      Keep particles slowly moving
+    */
+
+    p.vx +=
+      (Math.random() - 0.5) *
+      0.01;
+
+    p.vy +=
+      (Math.random() - 0.5) *
+      0.01;
+
+
+    /*
+      Wrap around screen
+    */
+
+    if (p.x < -50)
+      p.x = window.innerWidth + 50;
+
+    if (p.x > window.innerWidth + 50)
+      p.x = -50;
+
+    if (p.y < -50)
+      p.y = window.innerHeight + 50;
+
+    if (p.y > window.innerHeight + 50)
+      p.y = -50;
+
+  });
+
+}
+
+
+/* -----------------------------
+   DRAW
+----------------------------- */
+
+function draw() {
+
+  ctx.clearRect(
+    0,
+    0,
+    window.innerWidth,
+    window.innerHeight
+  );
+
+
+  particles.forEach(p => {
+
+    ctx.save();
+
+    ctx.translate(
+      p.x,
+      p.y
+    );
+
+    ctx.rotate(
+      p.rotation
+    );
+
+    ctx.font =
+      `700 ${p.size}px Arial`;
+
+    ctx.fillStyle =
+      "#B88CFF";
+
+    ctx.textAlign =
+      "center";
+
+    ctx.textBaseline =
+      "middle";
+
+    ctx.fillText(
+      p.char,
+      0,
+      0
+    );
+
+    ctx.restore();
+
+  });
+
+}
+
+
+/* -----------------------------
+   ANIMATION LOOP
+----------------------------- */
+
+function animate() {
+
+  updateParticles();
+
+  draw();
+
+  requestAnimationFrame(
+    animate
+  );
+
+}
+
+animate();
+
+</script>
+
+</body>
+</html>
