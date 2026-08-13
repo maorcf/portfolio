@@ -257,11 +257,12 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   content:''; position:absolute; top:12px; left:50%; transform:translateX(-50%);
   width:36%; height:20px; background:var(--ink); border-radius:999px; z-index:2;
 }
-.case-cover-phone{
-  display:flex; justify-content:center; padding:48px 24px 56px; margin-bottom:8px;
-  background:var(--frame-bg); border-radius:20px; border:1.5px solid var(--ink);
+.hero-mockup-row{
+  display:flex; justify-content:center; align-items:flex-start; gap:22px;
+  flex-wrap:wrap; margin-bottom:48px;
 }
-.mockup-hero{ width:300px; }
+.mockup-sm{ width:165px; border-width:7px; border-radius:28px; }
+.mockup-sm::after{ height:13px; top:8px; }
 .mockup-row{
   display:flex; justify-content:center; align-items:flex-start; gap:40px;
   flex-wrap:wrap; margin:48px 0;
@@ -270,8 +271,8 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .mockup-caption{ margin-top:16px; font-size:14px; font-weight:600; color:var(--ink); opacity:0.7; }
 @media (max-width:640px){
   .iphone-mockup{ width:210px; }
-  .mockup-hero{ width:240px; }
-  .case-cover-phone{ padding:32px 16px 40px; }
+  .mockup-sm{ width:130px; }
+  .hero-mockup-row{ gap:14px; }
   .mockup-row{ gap:28px; }
 }
 .project-detail{ padding:72px; margin-bottom:72px; }
