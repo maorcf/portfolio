@@ -339,20 +339,31 @@ function updateParticles() {
 
 
     /*
-      Wrap around screen
+      Bounce off the edges so every
+      letter stays on screen
     */
 
-    if (p.x < -50)
-      p.x = window.innerWidth + 50;
+    const margin = p.size * 0.6;
 
-    if (p.x > window.innerWidth + 50)
-      p.x = -50;
+    if (p.x < margin) {
+      p.x = margin;
+      p.vx = Math.abs(p.vx);
+    }
 
-    if (p.y < -50)
-      p.y = window.innerHeight + 50;
+    if (p.x > window.innerWidth - margin) {
+      p.x = window.innerWidth - margin;
+      p.vx = -Math.abs(p.vx);
+    }
 
-    if (p.y > window.innerHeight + 50)
-      p.y = -50;
+    if (p.y < margin) {
+      p.y = margin;
+      p.vy = Math.abs(p.vy);
+    }
+
+    if (p.y > window.innerHeight - margin) {
+      p.y = window.innerHeight - margin;
+      p.vy = -Math.abs(p.vy);
+    }
 
   });
 
