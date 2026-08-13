@@ -144,6 +144,25 @@ let hand = {
   active: false
 };
 
+const INTERACTION_RADIUS = 180;
+
+/*
+  Standard 21-point MediaPipe hand
+  connections, used to draw the
+  skeleton overlay.
+*/
+const HAND_CONNECTIONS = [
+  [0,1],[1,2],[2,3],[3,4],
+  [0,5],[5,6],[6,7],[7,8],
+  [5,9],[9,10],[10,11],[11,12],
+  [9,13],[13,14],[14,15],[15,16],
+  [13,17],[17,18],[18,19],[19,20],
+  [0,17]
+];
+
+let handSkeletons = [];
+let handCenters = [];
+
 
 /* -----------------------------
    HAND TRACKING
@@ -175,9 +194,6 @@ hands.onResults(results => {
     results.multiHandLandmarks.length
   ) {
 
-    const landmark =
-      results.multiHandLandmarks[0][9];
-
     /*
       MediaPipe coordinates:
       x = 0 → left
@@ -187,18 +203,23 @@ hands.onResults(results => {
       webcam behaves like a mirror.
     */
 
-    hand.x =
-      (1 - landmark.x) *
-      window.innerWidth;
+    handSkeletons = results.multiHandLandmarks.map(
+      landmarks => landmarks.map(lm => ({
+        x: (1 - lm.x) * window.innerWidth,
+        y: lm.y * window.innerHeight
+      }))
+    );
 
-    hand.y =
-      landmark.y *
-      window.innerHeight;
+    handCenters = handSkeletons.map(points => points[9]);
 
+    hand.x = handCenters[0].x;
+    hand.y = handCenters[0].y;
     hand.active = true;
 
   } else {
 
+    handSkeletons = [];
+    handCenters = [];
     hand.active = false;
 
   }
@@ -248,22 +269,21 @@ function updateParticles() {
 
     /*
       Hand interaction
+      (every tracked hand pushes particles away)
     */
 
-    if (hand.active) {
+    handCenters.forEach(center => {
 
       const dx =
-        p.x - hand.x;
+        p.x - center.x;
 
       const dy =
-        p.y - hand.y;
+        p.y - center.y;
 
       const distance =
         Math.sqrt(dx * dx + dy * dy);
 
-      const interactionRadius = 180;
-
-      if (distance < interactionRadius) {
+      if (distance < INTERACTION_RADIUS) {
 
         /*
           Direction away from hand
@@ -278,7 +298,7 @@ function updateParticles() {
 
         const force =
           Math.pow(
-            1 - distance / interactionRadius,
+            1 - distance / INTERACTION_RADIUS,
             2
           );
 
@@ -294,7 +314,7 @@ function updateParticles() {
 
       }
 
-    }
+    });
 
 
     /*
@@ -383,6 +403,68 @@ function draw() {
       0,
       0
     );
+
+    ctx.restore();
+
+  });
+
+  drawHandSkeletons();
+
+}
+
+
+/* -----------------------------
+   HAND SKELETON OVERLAY
+----------------------------- */
+
+function drawHandSkeletons() {
+
+  handSkeletons.forEach((points, i) => {
+
+    const center = handCenters[i];
+
+    /*
+      Dashed circle showing the
+      interaction radius
+    */
+
+    ctx.save();
+    ctx.setLineDash([6, 6]);
+    ctx.strokeStyle = "rgba(255, 60, 140, 0.85)";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(center.x, center.y, INTERACTION_RADIUS, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    /*
+      Skeleton connections
+    */
+
+    ctx.save();
+    ctx.strokeStyle = "#00FFFF";
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+
+    HAND_CONNECTIONS.forEach(([a, b]) => {
+      const p1 = points[a];
+      const p2 = points[b];
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.stroke();
+    });
+
+    /*
+      Joints
+    */
+
+    ctx.fillStyle = "#00FFFF";
+    points.forEach(pt => {
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
+      ctx.fill();
+    });
 
     ctx.restore();
 
