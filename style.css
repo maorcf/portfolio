@@ -237,6 +237,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .thumb-tall{ aspect-ratio:16/9; margin-bottom:20px; }
 
 .project-cover-img{ width:100%; height:100%; object-fit:cover; object-position:top; }
+.project-cover-img.mockup-contain{ object-fit:contain; padding:20px; }
 
 /* ---------- PROJECT DETAIL ---------- */
 .back-link{
