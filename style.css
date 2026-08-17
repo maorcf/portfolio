@@ -226,7 +226,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   padding:3px 8px; border-radius:999px; white-space:nowrap;
 }
 .project h3{ font-family:'Inter', sans-serif; font-size:22px; font-weight:500; margin-bottom:12px; display:block; }
-.project p.desc{ color:var(--ink); opacity:0.68; font-size:15px; max-width:560px; margin-bottom:20px; }
+.project p.desc{ color:var(--ink); opacity:0.68; font-size:15px; max-width:560px; margin-bottom:20px; text-wrap:pretty; }
 .thumb{
   background:var(--cream); border:1.5px solid var(--ink); border-radius:10px; aspect-ratio:16/10;
   display:flex; align-items:center; justify-content:center; overflow:hidden;
