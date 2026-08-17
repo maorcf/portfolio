@@ -266,10 +266,12 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 }
 .mockup-sm{ width:165px; border-width:7px; border-radius:28px; }
 .mockup-sm::after{ height:13px; top:8px; }
+.hero-mockup-img{ width:260px; height:auto; border-radius:16px; }
 @media (max-width:640px){
   .iphone-mockup{ width:210px; }
   .mockup-sm{ width:130px; }
   .hero-mockup-row{ gap:14px; }
+  .hero-mockup-img{ width:150px; }
 }
 .project-detail{ padding:72px; margin-bottom:72px; }
 .project-detail.card{ background:none; border:none; box-shadow:none; border-radius:0; }
