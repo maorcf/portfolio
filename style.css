@@ -273,7 +273,6 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   .hero-mockup-row{ gap:14px; }
   .hero-mockup-img{ width:150px; }
 }
-.process-shots img{ aspect-ratio:auto; object-fit:unset; }
 .project-detail{ padding:72px; margin-bottom:72px; }
 .project-detail.card{ background:none; border:none; box-shadow:none; border-radius:0; }
 #playground .project.card{ background:none; border:none; box-shadow:none; border-radius:0; }
@@ -319,6 +318,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 
 .wireframe-grid{ grid-template-columns:1fr 1fr; max-width:640px; margin-top:24px; }
 .wireframe-grid img{ aspect-ratio:auto; object-fit:unset; }
+.process-shots img{ aspect-ratio:auto; object-fit:unset; }
 @media (max-width: 640px){
   .wireframe-grid{ grid-template-columns:1fr; max-width:360px; margin-left:auto; margin-right:auto; }
 }
