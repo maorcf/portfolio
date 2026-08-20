@@ -273,6 +273,11 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   .hero-mockup-row{ gap:14px; }
   .hero-mockup-img{ width:150px; }
 }
+.hero-mockup-row figure{ margin:0; }
+.hero-mockup-row figcaption{
+  text-align:center; color:var(--ink); opacity:0.6; font-size:12.5px; font-weight:600;
+  margin-top:10px;
+}
 .project-detail{ padding:72px; margin-bottom:72px; }
 .project-detail.card{ background:none; border:none; box-shadow:none; border-radius:0; }
 #playground .project.card{ background:none; border:none; box-shadow:none; border-radius:0; }
