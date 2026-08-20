@@ -248,6 +248,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .back-link:hover{ color:var(--violet); }
 .case-links-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px; }
 .case-links-row .back-link{ margin-bottom:0; }
+.case-links-row-end{ justify-content:center; margin-top:48px; margin-bottom:0; }
 .live-link{
   display:inline-flex; align-items:center; gap:6px;
   font-size:13px; font-weight:700; color:var(--violet);
