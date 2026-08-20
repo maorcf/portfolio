@@ -266,7 +266,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 }
 .mockup-sm{ width:165px; border-width:7px; border-radius:28px; }
 .mockup-sm::after{ height:13px; top:8px; }
-.hero-mockup-img{ width:240px; height:auto; border-radius:28px; }
+.hero-mockup-img{ width:240px; height:auto; border-radius:12px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); }
 @media (max-width:640px){
   .iphone-mockup{ width:210px; }
   .mockup-sm{ width:130px; }
