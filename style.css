@@ -246,6 +246,18 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   display:inline-block; margin-bottom:24px; font-size:14px; font-weight:600; color:var(--ink);
 }
 .back-link:hover{ color:var(--violet); }
+.case-links-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px; }
+.case-links-row .back-link{ margin-bottom:0; }
+.live-link{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:13px; font-weight:700; color:var(--violet);
+  background:var(--cream); border:1px solid var(--ink);
+  padding:7px 14px; border-radius:999px; transition:background .15s, color .15s;
+}
+.live-link:hover{ background:var(--ink); color:var(--cream); }
+@media (max-width:640px){
+  .case-links-row{ flex-wrap:wrap; }
+}
 .case-cover{ margin-bottom:40px; }
 .case-cover .thumb{ border-radius:12px; margin-bottom:0; }
 .case-cover-img{ width:100%; border-radius:12px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); }
