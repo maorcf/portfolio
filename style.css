@@ -267,11 +267,11 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .live-link{
   display:inline-flex; align-items:center; gap:6px;
   font-size:13px; font-weight:700; color:var(--ink);
-  background:var(--yellow); border:1.5px solid var(--ink);
+  background:var(--lime); border:1.5px solid var(--ink);
   padding:7px 14px; border-radius:999px; transition:background .15s, transform .15s;
   box-shadow:0 6px 14px -8px rgba(20,20,20,0.35);
 }
-.live-link:hover{ background:var(--ink); color:var(--yellow); transform:translateY(-1px); }
+.live-link:hover{ background:var(--ink); color:var(--lime); transform:translateY(-1px); }
 @media (max-width:640px){
   .case-links-row{ flex-wrap:wrap; }
 }
