@@ -278,12 +278,12 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 }
 .mockup-sm{ width:165px; border-width:7px; border-radius:28px; }
 .mockup-sm::after{ height:13px; top:8px; }
-.hero-mockup-img{ width:340px; height:auto; border-radius:14px; box-shadow:0 16px 32px -16px rgba(20,20,20,0.26); }
+.hero-mockup-img{ width:300px; height:auto; border-radius:14px; box-shadow:0 16px 32px -16px rgba(20,20,20,0.26); }
 @media (max-width:640px){
   .iphone-mockup{ width:210px; }
   .mockup-sm{ width:130px; }
-  .hero-mockup-row{ gap:14px; }
-  .hero-mockup-img{ width:150px; }
+  .hero-mockup-row{ gap:9px; }
+  .hero-mockup-img{ width:100px; }
 }
 .hero-mockup-row figure{ margin:0; }
 .hero-mockup-row figcaption{
