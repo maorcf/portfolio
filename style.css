@@ -226,16 +226,17 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 }
 .teaser-pill:hover{ background:var(--ink); color:var(--cream); }
 .teaser-head span{ font-size:16px; color:var(--ink); opacity:0.68; }
-.teaser-grid{ column-count:4; column-gap:18px; }
-.teaser-grid a{ display:block; break-inside:avoid; margin-bottom:18px; }
-.teaser-grid img{
-  width:100%; height:auto; display:block; border-radius:12px;
-  box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); transition:transform .3s;
+.teaser-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; }
+.teaser-grid a{
+  display:flex; align-items:center; justify-content:center; aspect-ratio:1/1;
+  border-radius:12px; overflow:hidden; background:#fff; border:1.5px solid var(--line);
 }
-.teaser-grid a:hover img{ transform:scale(1.03); }
+.teaser-grid img{
+  width:100%; height:100%; object-fit:contain; display:block; transition:transform .3s;
+}
+.teaser-grid a:hover img{ transform:scale(1.05); }
 @media (max-width:720px){
-  .teaser-grid{ column-count:2; column-gap:12px; }
-  .teaser-grid a{ margin-bottom:12px; }
+  .teaser-grid{ grid-template-columns:repeat(2, 1fr); gap:12px; }
 }
 .project-body{ padding:26px 30px; display:flex; flex-direction:column; flex:1; }
 .project .tags{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
