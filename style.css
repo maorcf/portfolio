@@ -226,6 +226,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 }
 .teaser-pill:hover{ background:var(--ink); color:var(--cream); }
 .teaser-head span{ font-size:16px; color:var(--ink); opacity:0.68; }
+.teaser-frame{ padding:28px; overflow:hidden; }
 .teaser-grid{ column-count:4; column-gap:18px; }
 .teaser-grid a{ display:block; break-inside:avoid; margin-bottom:18px; }
 .teaser-grid img{
@@ -234,6 +235,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 }
 .teaser-grid a:hover img{ transform:scale(1.03); }
 @media (max-width:720px){
+  .teaser-frame{ padding:16px; }
   .teaser-grid{ column-count:2; column-gap:12px; }
   .teaser-grid a{ margin-bottom:12px; }
 }
