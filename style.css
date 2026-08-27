@@ -479,32 +479,25 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   background:var(--lime); border:1.2px solid var(--ink); padding:8px 16px; border-radius:999px;
 }
 .soon{
-  display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:700; color:var(--ink);
-  background:var(--yellow); border:1.2px solid var(--ink); padding:7px 14px 7px 10px; border-radius:999px; margin-top:6px;
+  display:inline-flex; align-items:center; gap:7px; font-size:9.5px; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.02em; color:var(--violet);
+  background:var(--cream); border:1px solid var(--ink); padding:5px 11px 5px 9px; border-radius:999px; margin-top:6px;
 }
 .soon-dot{
-  width:7px; height:7px; border-radius:50%; background:var(--ink); flex-shrink:0;
-  animation:soon-pulse 1.4s ease-in-out infinite;
+  width:6px; height:6px; border-radius:50%; background:var(--violet); flex-shrink:0;
+  animation:soon-pulse 1.6s ease-in-out infinite;
 }
 @keyframes soon-pulse{
-  0%,100%{ opacity:1; transform:scale(1); }
-  50%{ opacity:0.35; transform:scale(0.7); }
+  0%,100%{ opacity:1; }
+  50%{ opacity:0.3; }
 }
 .soon-thumb{
-  position:relative; overflow:hidden;
   background-color:var(--frame-bg);
   background-image: radial-gradient(rgba(20,20,20,0.16) 1.5px, transparent 1.5px);
   background-size:16px 16px;
 }
-.soon-icon-svg{
-  animation:soon-pop 2.2s ease-in-out infinite;
-}
-@keyframes soon-pop{
-  0%,100%{ transform:scale(1); }
-  50%{ transform:scale(1.08); }
-}
 @media (prefers-reduced-motion: reduce){
-  .soon-dot, .soon-icon-svg{ animation:none; }
+  .soon-dot{ animation:none; }
 }
 
 .section-note{ color:var(--ink); opacity:0.65; font-size:15px; max-width:560px; margin-bottom:40px; }
