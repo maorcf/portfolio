@@ -492,22 +492,19 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 }
 .soon-thumb{
   position:relative; overflow:hidden;
-  background-image:
-    radial-gradient(rgba(20,20,20,0.14) 1px, transparent 1px),
-    linear-gradient(135deg, var(--frame-bg), var(--lime));
-  background-size:16px 16px, 100% 100%;
-  background-position:0 0, 0 0;
+  background-color:var(--frame-bg);
+  background-image: radial-gradient(rgba(20,20,20,0.16) 1.5px, transparent 1.5px);
+  background-size:16px 16px;
 }
-.soon-icon{
-  font-size:44px;
-  animation:soon-float 2.6s ease-in-out infinite;
+.soon-icon-svg{
+  animation:soon-pop 2.2s ease-in-out infinite;
 }
-@keyframes soon-float{
-  0%,100%{ transform:translateY(0) rotate(-4deg); }
-  50%{ transform:translateY(-6px) rotate(4deg); }
+@keyframes soon-pop{
+  0%,100%{ transform:scale(1); }
+  50%{ transform:scale(1.08); }
 }
 @media (prefers-reduced-motion: reduce){
-  .soon-dot, .soon-icon{ animation:none; }
+  .soon-dot, .soon-icon-svg{ animation:none; }
 }
 
 .section-note{ color:var(--ink); opacity:0.65; font-size:15px; max-width:560px; margin-bottom:40px; }
