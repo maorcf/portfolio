@@ -54,10 +54,76 @@
     opacity: 0.75;
   }
   .back-link:hover { opacity: 1; }
+
+  .intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(3px);
+    padding: 24px;
+    transition: opacity 0.4s ease;
+  }
+
+  .intro-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .intro-card {
+    max-width: 360px;
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+
+  .intro-emoji {
+    font-size: 44px;
+    margin-bottom: 16px;
+  }
+
+  .intro-card h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 12px;
+  }
+
+  .intro-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin: 0 0 24px;
+  }
+
+  .intro-dismiss {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #141414;
+    background: #D3F26A;
+    border: none;
+    border-radius: 999px;
+    padding: 11px 26px;
+    cursor: pointer;
+  }
+
+  .intro-dismiss:hover { opacity: 0.9; }
 </style>
 </head>
 
 <body>
+
+<div class="intro-overlay" id="introOverlay">
+  <div class="intro-card">
+    <div class="intro-emoji">👋</div>
+    <h1>Raise your hand</h1>
+    <p>Allow camera access, then hold your hand up in front of your webcam to push the floating letters out of the way. It's tracked live in the browser, nothing is recorded or sent anywhere.</p>
+    <button class="intro-dismiss" id="introDismiss">Got it</button>
+  </div>
+</div>
 
 <div class="instruction">
   👋 Raise your hand in front of the camera to push the letters
@@ -78,6 +144,15 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const video = document.getElementById("camera");
+
+const introOverlay = document.getElementById("introOverlay");
+function dismissIntro() {
+  introOverlay.classList.add("hidden");
+}
+document.getElementById("introDismiss").addEventListener("click", dismissIntro);
+introOverlay.addEventListener("click", e => {
+  if (e.target === introOverlay) dismissIntro();
+});
 
 let width;
 let height;
@@ -215,6 +290,8 @@ hands.onResults(results => {
     hand.x = handCenters[0].x;
     hand.y = handCenters[0].y;
     hand.active = true;
+
+    dismissIntro();
 
   } else {
 
