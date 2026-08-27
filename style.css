@@ -318,6 +318,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   .mockup-sm{ width:130px; }
   .hero-mockup-row{ gap:9px; }
   .hero-mockup-img{ width:100px; }
+  .hero-mockup-row figure{ width:100px; }
 }
 .hero-mockup-row figure{ margin:0; }
 .hero-mockup-row figcaption{
