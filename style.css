@@ -491,11 +491,6 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   0%,100%{ opacity:1; }
   50%{ opacity:0.3; }
 }
-.soon-thumb{
-  background-color:var(--frame-bg);
-  background-image: radial-gradient(rgba(20,20,20,0.16) 1.5px, transparent 1.5px);
-  background-size:16px 16px;
-}
 @media (prefers-reduced-motion: reduce){
   .soon-dot{ animation:none; }
 }
