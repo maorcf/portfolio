@@ -529,14 +529,6 @@ a.project:hover h3{ color:var(--violet); }
 footer{ padding:70px 0 60px; }
 .credit{ text-align:left; margin-top:34px; font-size:13px; color:var(--ink); opacity:0.5; }
 
-/* ---------- RUNNING TEXT HOVER ---------- */
-.hero .lead, .page-title p, .project p.desc, .case-section p, .case-list, .case-row p,
-.about p, .footer-card p.sub, .credit{ transition:color 0.15s ease, opacity 0.15s ease; }
-.hero .lead:hover, .page-title p:hover, .project p.desc:hover, .case-section p:hover,
-.case-row p:hover, .case-list:hover, .about p:hover, .footer-card p.sub:hover, .credit:hover{
-  color:var(--violet); opacity:1;
-}
-
 @media (max-width: 640px){
   .thumb-grid{ column-count:1; }
   .about-card{ grid-template-columns:1fr; }
