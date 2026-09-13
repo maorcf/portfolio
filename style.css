@@ -528,6 +528,35 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 footer{ padding:70px 0 60px; }
 .credit{ text-align:left; margin-top:34px; font-size:13px; color:var(--ink); opacity:0.5; }
 
+/* ---------- LIGHTBOX ---------- */
+.thumb-grid .thumb, .mag-carousel img, .crumple-flat{ cursor:zoom-in; }
+.lightbox-overlay{
+  position:fixed; inset:0; z-index:80;
+  background:rgba(20,20,20,0.45);
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none;
+  transition:opacity .25s ease;
+}
+.lightbox-overlay.open{ opacity:1; pointer-events:auto; }
+.lightbox-content{
+  max-width:88vw; max-height:86vh;
+  transform:scale(0.94); transition:transform .25s ease;
+}
+.lightbox-overlay.open .lightbox-content{ transform:scale(1); }
+.lightbox-content img, .lightbox-content video{
+  display:block; max-width:88vw; max-height:86vh;
+  width:auto; height:auto;
+  border-radius:12px; border:1.5px solid var(--ink);
+  box-shadow:0 24px 48px -20px rgba(20,20,20,0.5);
+}
+.lightbox-close{
+  position:fixed; top:22px; right:22px; z-index:81;
+  width:42px; height:42px; display:flex; align-items:center; justify-content:center;
+  background:var(--paper); border:1.5px solid var(--ink); border-radius:8px; cursor:pointer;
+  font-size:16px;
+}
+
 @media (max-width: 640px){
   .thumb-grid{ column-count:1; }
   .about-card{ grid-template-columns:1fr; }

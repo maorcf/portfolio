@@ -77,3 +77,51 @@ if(floatingNav || backToTop){
   wrapChars(heading);
 })();
 
+(function(){
+  var overlay = document.getElementById('lightbox');
+  if(!overlay) return;
+  var content = overlay.querySelector('.lightbox-content');
+  var lastFocused = null;
+
+  function openLightbox(el){
+    content.innerHTML = '';
+    if(el.tagName === 'VIDEO'){
+      var v = document.createElement('video');
+      v.src = el.currentSrc || el.src;
+      v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true; v.controls = true;
+      content.appendChild(v);
+    } else {
+      var img = document.createElement('img');
+      img.src = el.currentSrc || el.src;
+      img.alt = el.alt || '';
+      content.appendChild(img);
+    }
+    lastFocused = document.activeElement;
+    overlay.classList.add('open');
+    overlay.removeAttribute('inert');
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onLightboxKeydown);
+  }
+  function closeLightbox(){
+    overlay.classList.remove('open');
+    overlay.setAttribute('inert', '');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onLightboxKeydown);
+    setTimeout(function(){ content.innerHTML = ''; }, 250);
+    if(lastFocused) lastFocused.focus();
+  }
+  function onLightboxKeydown(e){ if(e.key === 'Escape') closeLightbox(); }
+  window.closeLightbox = closeLightbox;
+
+  overlay.addEventListener('click', function(e){
+    if(e.target === overlay) closeLightbox();
+  });
+
+  document.querySelectorAll('.thumb-grid .thumb, .mag-carousel img, .crumple-flat').forEach(function(el){
+    el.addEventListener('click', function(){
+      var media = el.tagName === 'IMG' || el.tagName === 'VIDEO' ? el : el.querySelector('img, video');
+      if(media) openLightbox(media);
+    });
+  });
+})();
+
