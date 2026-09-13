@@ -641,9 +641,12 @@ footer{ padding:70px 0 60px; }
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   gap:14px;
   opacity:0; visibility:hidden; pointer-events:none;
-  transition:opacity .5s ease;
+  transition:opacity .5s ease, visibility 0s linear .5s;
 }
-.screensaver.active{ opacity:1; visibility:visible; pointer-events:auto; }
+.screensaver.active{
+  opacity:1; visibility:visible; pointer-events:auto;
+  transition:opacity .5s ease, visibility 0s linear 0s;
+}
 .screensaver .logo-mark{ position:absolute; top:28px; left:28px; background:var(--cream); color:var(--ink); }
 .screensaver h2{
   font-family:'Inter', sans-serif; font-weight:700; text-transform:uppercase;
