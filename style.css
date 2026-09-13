@@ -506,20 +506,6 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   .playground-strip-label{ font-size:13px; padding:10px; }
 }
 
-.crumple-spread{
-  position:relative; margin-top:24px; border-radius:8px; overflow:hidden;
-  box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); cursor:pointer;
-}
-.crumple-spread img{ display:block; width:100%; height:auto; }
-.crumple-crumpled{
-  position:absolute; inset:0; transition:opacity .7s ease, transform .7s ease;
-}
-.crumple-flat{ transform:scale(1.01); transition:transform .7s ease; }
-.crumple-spread:hover .crumple-crumpled{ opacity:0; transform:scale(1.01); }
-.crumple-spread:hover .crumple-flat{ transform:scale(1); }
-@media (prefers-reduced-motion: reduce){
-  .crumple-crumpled, .crumple-flat{ transition:none; }
-}
 .hand-particles-card{ display:block; }
 .hp-preview{
   position:relative; margin-top:24px; aspect-ratio:16/10; border-radius:10px;

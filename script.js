@@ -200,7 +200,7 @@ if(floatingNav || backToTop){
     setTimeout(function(){ wheelLocked = false; }, 350);
   }, { passive: false });
 
-  document.querySelectorAll('.thumb-grid .thumb, .crumple-flat').forEach(function(el){
+  document.querySelectorAll('.thumb-grid .thumb').forEach(function(el){
     el.addEventListener('click', function(){
       var media = el.tagName === 'IMG' || el.tagName === 'VIDEO' ? el : el.querySelector('img, video');
       if(media) openLightbox(media, [media]);
