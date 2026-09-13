@@ -1,3 +1,33 @@
+(function(){
+  var IDLE_MS = 10000;
+  var saver = document.createElement('div');
+  saver.className = 'screensaver';
+  saver.setAttribute('aria-hidden', 'true');
+  saver.innerHTML =
+    '<a href="index.html" class="logo-mark">M</a>' +
+    '<h2>Let\'s talk.</h2>' +
+    '<p>maorcohenfalah.com</p>';
+  document.body.appendChild(saver);
+
+  var idleTimer;
+  function show(){ saver.classList.add('active'); }
+  function hide(){ saver.classList.remove('active'); }
+  function resetIdle(){
+    if(saver.classList.contains('active')) hide();
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(show, IDLE_MS);
+  }
+
+  ['mousemove','mousedown','keydown','touchstart','scroll','wheel'].forEach(function(evt){
+    document.addEventListener(evt, resetIdle, { passive:true });
+  });
+  saver.addEventListener('click', function(e){
+    if(e.target === saver) resetIdle();
+  });
+
+  resetIdle();
+})();
+
 var lastMenuToggle = null;
 function openMobileNav(){
   var nav = document.getElementById('mobileNav');

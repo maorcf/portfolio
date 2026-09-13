@@ -631,3 +631,25 @@ footer{ padding:70px 0 60px; }
   .project .tags, .project-detail .tags{ flex-wrap:nowrap; gap:4px; }
   .tag-pill{ font-size:7.5px; padding:3px 6px; }
 }
+
+/* ---------- SCREENSAVER (idle overlay) ---------- */
+.screensaver{
+  position:fixed; inset:0; z-index:9999;
+  background:var(--ink);
+  background-image: radial-gradient(rgba(243,239,228,0.09) 1px, transparent 1px);
+  background-size:22px 22px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:14px;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .5s ease;
+}
+.screensaver.active{ opacity:1; visibility:visible; pointer-events:auto; }
+.screensaver .logo-mark{ position:absolute; top:28px; left:28px; background:var(--cream); color:var(--ink); }
+.screensaver h2{
+  font-family:'Inter', sans-serif; font-weight:700; text-transform:uppercase;
+  font-size:clamp(32px, 6vw, 64px); color:var(--cream); letter-spacing:0.01em;
+}
+.screensaver p{
+  font-family:'Inter', sans-serif; font-weight:700; text-transform:uppercase;
+  font-size:clamp(13px, 1.6vw, 17px); color:var(--lime); letter-spacing:0.04em;
+}
