@@ -467,6 +467,9 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
     mask-image: linear-gradient(to right, black calc(100% - 36px), transparent);
   }
 }
+#ondo .side-gallery, #malkam .side-gallery{
+  -webkit-mask-image:none; mask-image:none;
+}
 .playground-strip-track > img{ cursor:zoom-in; }
 #fashion-festival .thumb img{ width:auto; max-width:420px; margin:0 auto; }
 
