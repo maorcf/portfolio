@@ -142,13 +142,15 @@ if(floatingNav || backToTop){
     if(e.target === overlay) closeLightbox();
   });
 
-  // Swipe left/right (touch)
+  // Swipe left/right (touch) — magazine galleries only
   var touchStartX = 0, touchStartY = 0;
   content.addEventListener('touchstart', function(e){
+    if(gallery.length < 2) return;
     touchStartX = e.changedTouches[0].clientX;
     touchStartY = e.changedTouches[0].clientY;
   }, { passive: true });
   content.addEventListener('touchend', function(e){
+    if(gallery.length < 2) return;
     var dx = e.changedTouches[0].clientX - touchStartX;
     var dy = e.changedTouches[0].clientY - touchStartY;
     if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)){
@@ -156,9 +158,10 @@ if(floatingNav || backToTop){
     }
   }, { passive: true });
 
-  // Horizontal scroll / trackpad swipe
+  // Horizontal scroll / trackpad swipe — magazine galleries only
   var wheelLocked = false;
   overlay.addEventListener('wheel', function(e){
+    if(gallery.length < 2) return;
     if(Math.abs(e.deltaX) < Math.abs(e.deltaY) || Math.abs(e.deltaX) < 12) return;
     e.preventDefault();
     if(wheelLocked) return;
