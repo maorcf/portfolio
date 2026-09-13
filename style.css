@@ -431,7 +431,6 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .mag-carousel-track{
   display:flex; align-items:flex-start; gap:18px; width:max-content;
   animation: mag-scroll 34s linear infinite;
-  will-change:transform; transform:translateZ(0);
 }
 @media (hover: hover){
   .mag-carousel:hover .mag-carousel-track{ animation-play-state:paused; }
@@ -477,7 +476,6 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .playground-strip-track{
   display:flex; align-items:center; gap:16px; width:max-content;
   animation: playground-scroll 62s linear infinite;
-  will-change:transform; transform:translateZ(0);
 }
 @media (hover: hover){
   .playground-strip:hover .playground-strip-track{ animation-play-state:paused; }
