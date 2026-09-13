@@ -142,6 +142,31 @@ if(floatingNav || backToTop){
     if(e.target === overlay) closeLightbox();
   });
 
+  // Swipe left/right (touch)
+  var touchStartX = 0, touchStartY = 0;
+  content.addEventListener('touchstart', function(e){
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
+  content.addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)){
+      if(dx < 0) lightboxNext(); else lightboxPrev();
+    }
+  }, { passive: true });
+
+  // Horizontal scroll / trackpad swipe
+  var wheelLocked = false;
+  overlay.addEventListener('wheel', function(e){
+    if(Math.abs(e.deltaX) < Math.abs(e.deltaY) || Math.abs(e.deltaX) < 12) return;
+    e.preventDefault();
+    if(wheelLocked) return;
+    wheelLocked = true;
+    if(e.deltaX > 0) lightboxNext(); else lightboxPrev();
+    setTimeout(function(){ wheelLocked = false; }, 350);
+  }, { passive: false });
+
   document.querySelectorAll('.thumb-grid .thumb, .crumple-flat').forEach(function(el){
     el.addEventListener('click', function(){
       var media = el.tagName === 'IMG' || el.tagName === 'VIDEO' ? el : el.querySelector('img, video');
