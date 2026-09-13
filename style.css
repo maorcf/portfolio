@@ -476,6 +476,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .playground-strip-track{
   display:flex; align-items:center; gap:16px; width:max-content;
   animation: playground-scroll 62s linear infinite;
+  will-change:transform; transform:translateZ(0);
 }
 @media (hover: hover){
   .playground-strip:hover .playground-strip-track{ animation-play-state:paused; }
@@ -501,7 +502,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 @keyframes playground-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 @media (prefers-reduced-motion: reduce){ .playground-strip-track{ animation:none; } }
 @media (max-width: 640px){
-  .playground-strip-track img{ height:190px; }
+  .playground-strip-track img{ height:190px; box-shadow:none; }
   .playground-strip-track{ animation-duration:40s; }
   .playground-strip-label{ font-size:13px; padding:10px; }
 }
