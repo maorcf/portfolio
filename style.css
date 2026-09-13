@@ -461,9 +461,13 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 @media (max-width: 640px){
   .side-gallery-track img{ height:260px; }
 }
-#hobbies .side-gallery-track img{ height:300px; }
+.hobbies-grid{ column-count:3; }
+@media (max-width: 900px){
+  .hobbies-grid{ column-count:2; }
+}
 @media (max-width: 640px){
-  #hobbies .side-gallery-track img{ height:190px; }
+  .hobbies-grid{ column-count:2; column-gap:8px; }
+  .hobbies-grid .thumb{ margin-bottom:8px; }
 }
 #fashion-festival .thumb img{ width:auto; max-width:420px; margin:0 auto; }
 
