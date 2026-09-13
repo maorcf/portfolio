@@ -451,15 +451,21 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .side-gallery{
   margin-top:20px; overflow-x:auto; overflow-y:hidden;
   -webkit-overflow-scrolling:touch; scroll-snap-type:x proximity;
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 70px), transparent);
+  mask-image: linear-gradient(to right, black calc(100% - 70px), transparent);
 }
 .side-gallery-track{ display:flex; gap:16px; padding-bottom:10px; width:max-content; }
 .side-gallery-track img{
-  height:480px; width:auto; flex-shrink:0; display:block;
+  height:400px; width:auto; flex-shrink:0; display:block;
   border-radius:14px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22);
   scroll-snap-align:start;
 }
 @media (max-width: 640px){
-  .side-gallery-track img{ height:260px; }
+  .side-gallery-track img{ height:240px; }
+  .side-gallery{
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 36px), transparent);
+    mask-image: linear-gradient(to right, black calc(100% - 36px), transparent);
+  }
 }
 .playground-strip-track > img{ cursor:zoom-in; }
 #fashion-festival .thumb img{ width:auto; max-width:420px; margin:0 auto; }
