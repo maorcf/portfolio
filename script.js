@@ -26,6 +26,17 @@
   });
 
   resetIdle();
+
+  var autoVideos = document.querySelectorAll('video[autoplay]');
+  if(autoVideos.length && 'IntersectionObserver' in window){
+    var videoObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting) entry.target.play().catch(function(){});
+        else entry.target.pause();
+      });
+    }, { rootMargin: '200px' });
+    autoVideos.forEach(function(v){ videoObserver.observe(v); });
+  }
 })();
 
 var lastMenuToggle = null;

@@ -431,6 +431,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .mag-carousel-track{
   display:flex; align-items:flex-start; gap:18px; width:max-content;
   animation: mag-scroll 34s linear infinite;
+  will-change:transform; transform:translateZ(0);
 }
 @media (hover: hover){
   .mag-carousel:hover .mag-carousel-track{ animation-play-state:paused; }
@@ -443,7 +444,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .mag-carousel-rtl .mag-carousel-track{ animation-duration:56s; animation-direction:reverse; }
 @media (prefers-reduced-motion: reduce){ .mag-carousel-track{ animation:none; } }
 @media (max-width: 640px){
-  .mag-carousel-track img{ height:220px; }
+  .mag-carousel-track img{ height:220px; box-shadow:none; }
   .mag-carousel-track{ animation-duration:24s; }
   .mag-carousel-rtl .mag-carousel-track{ animation-duration:70s; }
 }
