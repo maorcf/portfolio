@@ -438,13 +438,13 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 }
 .mag-carousel-track img{
   height:340px; width:auto; flex-shrink:0; display:block;
-  border-radius:8px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22);
+  border-radius:8px;
 }
 @keyframes mag-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 .mag-carousel-rtl .mag-carousel-track{ animation-duration:56s; animation-direction:reverse; }
 @media (prefers-reduced-motion: reduce){ .mag-carousel-track{ animation:none; } }
 @media (max-width: 640px){
-  .mag-carousel-track img{ height:220px; box-shadow:none; }
+  .mag-carousel-track img{ height:220px; }
   .mag-carousel-track{ animation-duration:24s; }
   .mag-carousel-rtl .mag-carousel-track{ animation-duration:70s; }
 }
@@ -488,7 +488,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 }
 .playground-strip-track img{
   height:300px; width:auto; flex-shrink:0; display:block;
-  border-radius:10px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22);
+  border-radius:10px;
   transition:transform .3s;
 }
 .playground-strip-track a:hover img{ transform:scale(0.97); }
@@ -503,7 +503,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 @keyframes playground-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 @media (prefers-reduced-motion: reduce){ .playground-strip-track{ animation:none; } }
 @media (max-width: 640px){
-  .playground-strip-track img{ height:190px; box-shadow:none; }
+  .playground-strip-track img{ height:190px; }
   .playground-strip-track{ animation-duration:40s; }
   .playground-strip-label{ font-size:13px; padding:10px; }
 }
