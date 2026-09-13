@@ -244,7 +244,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   color:var(--violet); background:var(--cream); border:1px solid var(--ink);
   padding:3px 8px; border-radius:999px; white-space:nowrap;
 }
-.project h3{ font-family:'Inter', sans-serif; font-size:22px; font-weight:500; margin-bottom:12px; display:block; }
+.project h3{ font-family:'Inter', sans-serif; font-size:28px; font-weight:500; margin-bottom:12px; display:block; }
 .project p.desc{ color:var(--ink); opacity:0.68; font-size:15px; max-width:560px; margin-bottom:20px; text-wrap:pretty; }
 .thumb{
   background:var(--cream); border:1.5px solid var(--ink); border-radius:10px; aspect-ratio:16/10;
@@ -643,6 +643,7 @@ footer{ padding:70px 0 60px; }
   .project:not(:has(.project-cover)){ padding:22px; }
   .project-detail{ padding:32px; }
   .project .tags, .project-detail .tags{ flex-wrap:nowrap; gap:4px; }
+  .project h3{ font-size:22px; }
   .tag-pill{ font-size:7.5px; padding:3px 6px; }
 }
 
