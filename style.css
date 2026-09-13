@@ -446,6 +446,34 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   .mag-carousel-track{ animation-duration:24s; }
   .mag-carousel-rtl .mag-carousel-track{ animation-duration:70s; }
 }
+
+/* ---------- PLAYGROUND STRIP (full-bleed) ---------- */
+#playground-teaser{ margin-top:56px; }
+.playground-strip{
+  display:block; overflow:hidden;
+  width:100vw; position:relative; left:50%; margin-left:-50vw;
+  margin-top:22px;
+}
+.playground-strip-track{
+  display:flex; align-items:center; gap:16px; width:max-content;
+  animation: playground-scroll 42s linear infinite;
+}
+@media (hover: hover){
+  .playground-strip:hover .playground-strip-track{ animation-play-state:paused; }
+}
+.playground-strip-track img{
+  height:300px; width:auto; flex-shrink:0; display:block;
+  border-radius:10px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22);
+  transition:transform .3s;
+}
+.playground-strip:hover .playground-strip-track img{ transform:scale(0.98); }
+@keyframes playground-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){ .playground-strip-track{ animation:none; } }
+@media (max-width: 640px){
+  .playground-strip-track img{ height:190px; }
+  .playground-strip-track{ animation-duration:28s; }
+}
+
 .crumple-spread{
   position:relative; margin-top:24px; border-radius:8px; overflow:hidden;
   box-shadow:0 12px 24px -14px rgba(20,20,20,0.22); cursor:pointer;
