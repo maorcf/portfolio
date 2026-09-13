@@ -461,9 +461,9 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 @media (max-width: 640px){
   .side-gallery-track img{ height:260px; }
 }
-#hobbies .side-gallery-track img{ height:360px; }
+#hobbies .side-gallery-track img{ height:300px; }
 @media (max-width: 640px){
-  #hobbies .side-gallery-track img{ height:220px; }
+  #hobbies .side-gallery-track img{ height:190px; }
 }
 #fashion-festival .thumb img{ width:auto; max-width:420px; margin:0 auto; }
 
