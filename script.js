@@ -239,5 +239,17 @@ if(floatingNav || backToTop){
       });
     });
   });
+
+  document.querySelectorAll('.playground-strip-track').forEach(function(track){
+    var allImgs = Array.prototype.slice.call(track.querySelectorAll(':scope > img'));
+    var uniqueImgs = allImgs.filter(function(img){ return img.getAttribute('aria-hidden') !== 'true'; });
+    if(!uniqueImgs.length) return;
+    allImgs.forEach(function(img){
+      img.addEventListener('click', function(){
+        var match = uniqueImgs.filter(function(i){ return i.src === img.src; })[0];
+        openLightbox(match || uniqueImgs[0], uniqueImgs);
+      });
+    });
+  });
 })();
 
