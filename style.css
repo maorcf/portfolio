@@ -15,6 +15,7 @@
 }
 *{ box-sizing:border-box; margin:0; padding:0; }
 html{ scroll-behavior:smooth; }
+#photography, #through-the-lens, #tel-aviv, #salt-water-solutions{ scroll-margin-top:100px; }
 p, li, h1, h2, h3, figcaption, .desc, .lead{ text-wrap:pretty; }
 body{
   background:var(--cream); color:var(--ink);
@@ -461,12 +462,13 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 @media (hover: hover){
   .playground-strip:hover .playground-strip-track{ animation-play-state:paused; }
 }
+.playground-strip-track a{ display:block; flex-shrink:0; }
 .playground-strip-track img{
   height:300px; width:auto; flex-shrink:0; display:block;
   border-radius:10px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22);
   transition:transform .3s;
 }
-.playground-strip:hover .playground-strip-track img{ transform:scale(0.98); }
+.playground-strip-track a:hover img{ transform:scale(0.97); }
 @keyframes playground-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 @media (prefers-reduced-motion: reduce){ .playground-strip-track{ animation:none; } }
 @media (max-width: 640px){
