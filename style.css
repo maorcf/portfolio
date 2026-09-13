@@ -156,13 +156,13 @@ nav.wrap{ display:flex; align-items:center; justify-content:space-between; paddi
 /* ---------- COLLAGE DECOR ---------- */
 .decor{ position:absolute; z-index:1; opacity:0.92; }
 .decor svg{ display:block; }
-.d-monitor{ top:120px; left:38px; transform:rotate(-9deg); width:120px; }
-.d-cursor{ top:80px; right:46px; transform:rotate(10deg); width:110px; }
-.d-notebook{ bottom:36px; left:60px; transform:rotate(-6deg); width:130px; }
-.d-swatch{ bottom:54px; right:70px; transform:rotate(8deg); width:90px; }
+.d-monitor{ top:120px; left:38px; transform:rotate(-9deg); width:120px; --decor-rot:-9deg; }
+.d-cursor{ top:80px; right:46px; transform:rotate(10deg); width:110px; --decor-rot:10deg; }
+.d-notebook{ bottom:36px; left:60px; transform:rotate(-6deg); width:130px; --decor-rot:-6deg; }
+.d-swatch{ bottom:54px; right:70px; transform:rotate(8deg); width:90px; --decor-rot:8deg; }
 .d-sticky{ position:absolute; background:var(--yellow); border:1.5px solid var(--ink); width:46px; height:46px; border-radius:8px; }
-.d-sticky.s1{ bottom:110px; left:160px; transform:rotate(14deg); }
-.d-sticky.s2{ bottom:110px; right:160px; transform:rotate(-10deg); }
+.d-sticky.s1{ bottom:110px; left:160px; transform:rotate(14deg); --decor-rot:14deg; }
+.d-sticky.s2{ bottom:110px; right:160px; transform:rotate(-10deg); --decor-rot:-10deg; }
 
 .spin-badge{
   position:absolute; bottom:-34px; left:36px; width:96px; height:96px; z-index:6;
@@ -655,4 +655,35 @@ footer{ padding:70px 0 60px; }
 .screensaver p{
   font-family:'Inter', sans-serif; font-weight:700; text-transform:uppercase;
   font-size:clamp(13px, 1.6vw, 17px); color:var(--lime); letter-spacing:0.04em;
+}
+
+/* ---------- HERO ENTRANCE ANIMATION ---------- */
+@keyframes heroPop{
+  from{ opacity:0; transform:translateY(18px) scale(.94); }
+  to{ opacity:1; transform:translateY(0) scale(1); }
+}
+@keyframes heroDecorPop{
+  from{ opacity:0; transform:translateY(10px) scale(.8) rotate(var(--decor-rot, 0deg)); }
+  to{ opacity:1; transform:translateY(0) scale(1) rotate(var(--decor-rot, 0deg)); }
+}
+.hero h1, .hero .lead, .hero .hero-actions, .hero .spin-badge, .hero-card .decor, .hero-card .d-sticky{
+  opacity:0;
+  animation:heroPop .7s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+.hero h1{ animation-delay:.05s; }
+.hero .lead{ animation-delay:.16s; }
+.hero .hero-actions{ animation-delay:.26s; }
+.hero .spin-badge{ animation-delay:.34s; animation-duration:.8s; }
+.hero-card .decor, .hero-card .d-sticky{ animation-name:heroDecorPop; animation-duration:.8s; }
+.hero-card .d-monitor{ animation-delay:.02s; }
+.hero-card .d-cursor{ animation-delay:.12s; }
+.hero-card .d-notebook{ animation-delay:.22s; }
+.hero-card .d-swatch{ animation-delay:.3s; }
+.hero-card .d-sticky.s1{ animation-delay:.38s; }
+.hero-card .d-sticky.s2{ animation-delay:.44s; }
+
+@media (prefers-reduced-motion: reduce){
+  .hero h1, .hero .lead, .hero .hero-actions, .hero .spin-badge, .hero-card .decor, .hero-card .d-sticky{
+    animation:none; opacity:1;
+  }
 }
