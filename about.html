@@ -78,6 +78,23 @@
     </div>
   </section>
 
+  <section id="hobbies" class="about">
+    <div class="section-head"><span class="eyebrow-label">Off screen</span><h2>I also throw pottery</h2></div>
+    <p style="max-width:640px;">Something about wheel throwing scratches the same itch as design — shaping something by hand until it feels right. Here's a few pieces, mostly photographed wherever the light was good that day.</p>
+    <div class="side-gallery">
+      <div class="side-gallery-track">
+        <img src="about-ceramic-1.jpg" alt="Speckled stoneware vase, tan and cream glaze" loading="lazy">
+        <img src="about-ceramic-2.jpg" alt="Wide-necked stoneware vase, tan and cream glaze" loading="lazy">
+        <img src="about-ceramic-5.jpg" alt="Wide grey ceramic bowl held against a white t-shirt, desert background" loading="lazy">
+        <img src="about-ceramic-6.jpg" alt="Grey ceramic bowl held up against a desert sky" loading="lazy">
+        <img src="about-ceramic-7.jpg" alt="Three stacked ceramic cups on rocky desert ground" loading="lazy">
+        <img src="about-ceramic-8.jpg" alt="Tall speckled ceramic cup held in two hands, desert background" loading="lazy">
+        <img src="about-ceramic-3.jpg" alt="Tall speckled stoneware vase with narrow neck" loading="lazy">
+        <img src="about-ceramic-4.jpg" alt="Rounded stoneware vase, brown and cream glaze" loading="lazy">
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="footer-card">
       <h2>Let's talk.</h2>
@@ -100,6 +117,13 @@
   <a href="about.html" onclick="closeMobileNav()">About</a>
   <a href="resume.pdf?v=4" target="_blank" rel="noopener" class="cv-link" onclick="closeMobileNav()">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </nav>
+
+<div class="lightbox-overlay" id="lightbox" inert>
+  <button class="lightbox-close" aria-label="Close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-arrow lightbox-prev" aria-label="Previous" onclick="lightboxPrev()">‹</button>
+  <div class="lightbox-content"></div>
+  <button class="lightbox-arrow lightbox-next" aria-label="Next" onclick="lightboxNext()">›</button>
+</div>
 
 <script src="script.js?v=89"></script>
 
