@@ -502,7 +502,7 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 @media (prefers-reduced-motion: reduce){ .playground-strip-track{ animation:none; } }
 @media (max-width: 640px){
   .playground-strip-track img{ height:190px; }
-  .playground-strip-track{ animation-duration:40s; }
+  .playground-strip-track{ animation-duration:62s; }
   .playground-strip-label{ font-size:13px; padding:10px; }
 }
 
