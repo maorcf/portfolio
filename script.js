@@ -219,5 +219,14 @@ if(floatingNav || backToTop){
       });
     });
   });
+
+  document.querySelectorAll('.side-gallery').forEach(function(gallery){
+    var imgs = Array.prototype.slice.call(gallery.querySelectorAll('img'));
+    imgs.forEach(function(img){
+      img.addEventListener('click', function(){
+        openLightbox(img, imgs);
+      });
+    });
+  });
 })();
 

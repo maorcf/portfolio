@@ -591,7 +591,7 @@ footer{ padding:70px 0 60px; }
 .credit{ text-align:left; margin-top:34px; font-size:13px; color:var(--ink); opacity:0.5; }
 
 /* ---------- LIGHTBOX ---------- */
-.thumb-grid .thumb, .mag-carousel img, .crumple-flat{ cursor:zoom-in; }
+.thumb-grid .thumb, .mag-carousel img, .crumple-flat, .side-gallery-track img{ cursor:zoom-in; }
 .lightbox-overlay{
   position:fixed; inset:0; z-index:80;
   background:rgba(20,20,20,0.45);
