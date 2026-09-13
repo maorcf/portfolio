@@ -547,7 +547,7 @@ footer{ padding:70px 0 60px; }
 .lightbox-content img, .lightbox-content video{
   display:block; max-width:88vw; max-height:86vh;
   width:auto; height:auto;
-  border-radius:12px; border:1.5px solid var(--ink);
+  border-radius:12px;
   box-shadow:0 24px 48px -20px rgba(20,20,20,0.5);
 }
 .lightbox-close{
@@ -555,6 +555,20 @@ footer{ padding:70px 0 60px; }
   width:42px; height:42px; display:flex; align-items:center; justify-content:center;
   background:var(--paper); border:1.5px solid var(--ink); border-radius:8px; cursor:pointer;
   font-size:16px;
+}
+.lightbox-arrow{
+  position:fixed; top:50%; transform:translateY(-50%); z-index:81;
+  width:48px; height:48px; display:none; align-items:center; justify-content:center;
+  background:var(--paper); border:1.5px solid var(--ink); border-radius:50%; cursor:pointer;
+  font-size:22px; line-height:1;
+}
+.lightbox-overlay.has-gallery .lightbox-arrow{ display:flex; }
+.lightbox-prev{ left:22px; }
+.lightbox-next{ right:22px; }
+@media (max-width:640px){
+  .lightbox-arrow{ width:40px; height:40px; font-size:18px; }
+  .lightbox-prev{ left:10px; }
+  .lightbox-next{ right:10px; }
 }
 
 @media (max-width: 640px){
