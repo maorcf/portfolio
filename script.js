@@ -1,5 +1,5 @@
 (function(){
-  var IDLE_MS = 10000;
+  var IDLE_MS = 45000;
   var saver = document.createElement('div');
   saver.className = 'screensaver';
   saver.setAttribute('aria-hidden', 'true');
