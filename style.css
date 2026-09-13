@@ -448,6 +448,20 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   .mag-carousel-rtl .mag-carousel-track{ animation-duration:70s; }
 }
 
+.side-gallery{
+  margin-top:20px; overflow-x:auto; overflow-y:hidden;
+  -webkit-overflow-scrolling:touch; scroll-snap-type:x proximity;
+}
+.side-gallery-track{ display:flex; gap:16px; padding-bottom:10px; width:max-content; }
+.side-gallery-track img{
+  height:420px; width:auto; flex-shrink:0; display:block;
+  border-radius:14px; box-shadow:0 12px 24px -14px rgba(20,20,20,0.22);
+  scroll-snap-align:start;
+}
+@media (max-width: 640px){
+  .side-gallery-track img{ height:260px; }
+}
+
 /* ---------- PLAYGROUND STRIP (full-bleed) ---------- */
 #playground-teaser{ margin-top:56px; }
 #playground-teaser .section-head{ justify-content:space-between; align-items:center; }
