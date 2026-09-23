@@ -82,7 +82,7 @@ if(floatingNav || backToTop){
     requestAnimationFrame(function(){
       var currentY = window.scrollY;
       var pastThreshold = currentY > 200;
-      var navThreshold = pageCover ? pageCover.offsetTop - 60 : 200;
+      var navThreshold = pageCover ? pageCover.offsetTop + 120 : 200;
       var scrollingDown = currentY > lastScrollY;
       if(floatingNav) floatingNav.classList.toggle('visible', currentY > navThreshold && scrollingDown);
       if(backToTop) backToTop.classList.toggle('visible', pastThreshold);
