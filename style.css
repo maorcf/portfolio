@@ -46,11 +46,6 @@ img,svg{ display:block; max-width:100%; }
   position:relative; z-index:1; background:var(--cream);
   border-radius:28px 28px 0 0; border-top:1.5px solid var(--ink);
 }
-.hero-card{ border-bottom:none; border-radius:22px 22px 0 0; }
-.page-cover{
-  position:relative; z-index:1; background:var(--cream);
-  border-top:1.5px solid var(--ink);
-}
 .hero-card{
   position:relative; overflow:hidden;
   background:var(--cream);
