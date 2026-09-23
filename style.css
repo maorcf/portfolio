@@ -171,8 +171,8 @@ nav.wrap{ display:flex; align-items:center; justify-content:space-between; paddi
 
 .spin-badge{
   position:absolute; bottom:-34px; left:36px; width:96px; height:96px; z-index:6;
-  animation:spin 10s linear infinite;
 }
+.spin-badge svg{ animation:spin 10s linear infinite; }
 @keyframes spin{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
 
 /* ---------- LARGE DESKTOP HERO SCALE-UP ---------- */
