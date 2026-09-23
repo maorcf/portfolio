@@ -44,7 +44,7 @@ img,svg{ display:block; max-width:100%; }
 .hero-frame-outer:not(.page-frame){ position:sticky; top:0; z-index:0; }
 .page-cover{
   position:relative; z-index:1; background:var(--cream);
-  border-radius:28px 28px 0 0; border-top:1.5px solid var(--ink);
+  border-top:1.5px solid var(--ink);
 }
 .hero-card{
   position:relative; overflow:hidden;
