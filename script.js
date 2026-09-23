@@ -262,8 +262,7 @@ if(floatingNav || backToTop){
   if(!hero || !cover || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var delay = 0, ticking = false;
   function measure(){
-    delay = Math.round(window.innerHeight * 0.3);
-    cover.style.marginTop = delay + 'px';
+    delay = parseFloat(getComputedStyle(cover).marginTop) || 0;
     update();
   }
   function update(){
@@ -274,6 +273,9 @@ if(floatingNav || backToTop){
   window.addEventListener('scroll', function(){
     if(!ticking){ ticking = true; requestAnimationFrame(update); }
   }, { passive: true });
-  window.addEventListener('resize', measure);
+  var lastW = window.innerWidth;
+  window.addEventListener('resize', function(){
+    if(window.innerWidth !== lastW){ lastW = window.innerWidth; measure(); }
+  });
   measure();
 })();
