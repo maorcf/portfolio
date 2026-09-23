@@ -256,15 +256,22 @@ if(floatingNav || backToTop){
 
 (function(){
   var hero = document.querySelector('.hero-frame-outer:not(.page-frame)');
-  if(!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var ticking = false;
+  var cover = document.querySelector('.page-cover');
+  if(!hero || !cover || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var delay = 0, ticking = false;
+  function measure(){
+    delay = Math.round(window.innerHeight * 0.3);
+    cover.style.marginTop = delay + 'px';
+    update();
+  }
   function update(){
-    var y = Math.min(window.scrollY, window.innerHeight);
+    var y = Math.max(0, Math.min(window.scrollY - delay, window.innerHeight));
     hero.style.transform = 'translate3d(0,' + (-y * 0.3).toFixed(1) + 'px,0)';
     ticking = false;
   }
   window.addEventListener('scroll', function(){
     if(!ticking){ ticking = true; requestAnimationFrame(update); }
   }, { passive: true });
-  update();
+  window.addEventListener('resize', measure);
+  measure();
 })();
