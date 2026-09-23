@@ -254,28 +254,3 @@ if(floatingNav || backToTop){
     });
   });
 })();
-
-
-(function(){
-  var hero = document.querySelector('.hero-frame-outer:not(.page-frame)');
-  var cover = document.querySelector('.page-cover');
-  if(!hero || !cover || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var delay = 0, ticking = false;
-  function measure(){
-    delay = parseFloat(getComputedStyle(cover).marginTop) || 0;
-    update();
-  }
-  function update(){
-    var y = Math.max(0, Math.min(window.scrollY - delay, window.innerHeight));
-    hero.style.transform = 'translate3d(0,' + (-y * 0.3).toFixed(1) + 'px,0)';
-    ticking = false;
-  }
-  window.addEventListener('scroll', function(){
-    if(!ticking){ ticking = true; requestAnimationFrame(update); }
-  }, { passive: true });
-  var lastW = window.innerWidth;
-  window.addEventListener('resize', function(){
-    if(window.innerWidth !== lastW){ lastW = window.innerWidth; measure(); }
-  });
-  measure();
-})();
