@@ -41,6 +41,12 @@ img,svg{ display:block; max-width:100%; }
   display:flex;
 }
 .hero-frame-outer.page-frame{ min-height:auto; background:transparent; }
+.hero-frame-outer:not(.page-frame){ position:sticky; top:0; z-index:0; }
+.page-cover{
+  position:relative; z-index:1; background:var(--cream);
+  margin-top:-22px; padding-top:22px; border-radius:28px 28px 0 0;
+  box-shadow:0 -14px 40px -12px rgba(20,20,20,0.28); border-top:1.5px solid var(--ink);
+}
 .hero-card{
   position:relative; overflow:hidden;
   background:var(--cream);
