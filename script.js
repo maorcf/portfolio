@@ -253,3 +253,29 @@ if(floatingNav || backToTop){
   });
 })();
 
+
+(function(){
+  var card = document.querySelector('.hero-card');
+  var reveal = card && card.querySelector('.hero-reveal');
+  if(!reveal || window.matchMedia('(hover: none)').matches) return;
+  var x = 0, y = 0, r = 0, targetR = 0, raf = null;
+  card.addEventListener('mousemove', function(e){
+    var b = card.getBoundingClientRect();
+    x = e.clientX - b.left; y = e.clientY - b.top;
+    targetR = 170;
+    if(!raf) raf = requestAnimationFrame(step);
+  });
+  card.addEventListener('mouseleave', function(){
+    targetR = 0;
+    if(!raf) raf = requestAnimationFrame(step);
+  });
+  function step(){
+    r += (targetR - r) * 0.16;
+    if(Math.abs(targetR - r) < 0.5) r = targetR;
+    reveal.style.setProperty('--mx', x + 'px');
+    reveal.style.setProperty('--my', y + 'px');
+    reveal.style.setProperty('--r', r.toFixed(1) + 'px');
+    raf = (r !== targetR) ? requestAnimationFrame(step) : null;
+  }
+  card.addEventListener('mousemove', function(){ if(!raf) raf = requestAnimationFrame(step); });
+})();

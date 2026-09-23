@@ -56,6 +56,15 @@ img,svg{ display:block; max-width:100%; }
   flex:1;
   display:flex; flex-direction:column;
 }
+.hero-reveal{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-color:var(--frame-bg);
+  background-image:radial-gradient(rgba(20,20,20,0.18) 1px, transparent 1px);
+  background-size:22px 22px;
+  --mx:50%; --my:50%; --r:0px;
+  -webkit-mask-image:radial-gradient(circle var(--r) at var(--mx) var(--my), #000 calc(100% - 2px), transparent 100%);
+  mask-image:radial-gradient(circle var(--r) at var(--mx) var(--my), #000 calc(100% - 2px), transparent 100%);
+}
 /* ---------- NAV (inside hero card) ---------- */
 header{ padding:0; position:relative; z-index:5; }
 nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding:22px 28px; max-width:none; border-bottom:1.5px solid var(--ink); }
