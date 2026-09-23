@@ -130,6 +130,30 @@ if(floatingNav || backToTop){
     if(i > -1) setWave(i);
   });
   heading.addEventListener('mouseleave', function(){ setWave(-1); });
+
+  var ns = 'http://www.w3.org/2000/svg';
+  var svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('width', '0'); svg.setAttribute('height', '0');
+  svg.setAttribute('aria-hidden', 'true'); svg.style.position = 'absolute';
+  svg.innerHTML = '<filter id="heroGoo" x="-10%" y="-30%" width="120%" height="160%" color-interpolation-filters="sRGB">' +
+    '<feGaussianBlur in="SourceGraphic" stdDeviation="0" result="blur"/>' +
+    '<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9"/></filter>';
+  document.body.appendChild(svg);
+  var blurNode = svg.querySelector('feGaussianBlur');
+  var melting = false;
+  function melt(){
+    if(melting || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    melting = true;
+    heading.style.filter = 'url(#heroGoo)';
+    var start = performance.now(), dur = 1100, peak = 7;
+    (function tick(now){
+      var t = Math.min(1, (now - start) / dur);
+      blurNode.setAttribute('stdDeviation', (Math.sin(t * Math.PI) * peak).toFixed(2));
+      if(t < 1){ requestAnimationFrame(tick); }
+      else { heading.style.filter = ''; melting = false; }
+    })(start);
+  }
+  heading.addEventListener('mouseenter', melt);
 })();
 
 (function(){
