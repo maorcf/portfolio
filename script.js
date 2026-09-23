@@ -116,6 +116,20 @@ if(floatingNav || backToTop){
     });
   }
   wrapChars(heading);
+
+  var chars = Array.prototype.slice.call(heading.querySelectorAll('.char'));
+  function setWave(center){
+    chars.forEach(function(c, i){
+      var lift = center < 0 ? 0 : Math.max(0, 1 - Math.abs(i - center) / 3.5);
+      c.style.setProperty('--lift', lift.toFixed(3));
+      c.classList.toggle('is-hot', i === center);
+    });
+  }
+  heading.addEventListener('mouseover', function(e){
+    var i = chars.indexOf(e.target);
+    if(i > -1) setWave(i);
+  });
+  heading.addEventListener('mouseleave', function(){ setWave(-1); });
 })();
 
 (function(){
