@@ -253,3 +253,18 @@ if(floatingNav || backToTop){
   });
 })();
 
+
+(function(){
+  var hero = document.querySelector('.hero-frame-outer:not(.page-frame)');
+  if(!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var ticking = false;
+  function update(){
+    var y = Math.min(window.scrollY, window.innerHeight);
+    hero.style.transform = 'translate3d(0,' + (-y * 0.3).toFixed(1) + 'px,0)';
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  update();
+})();
