@@ -72,6 +72,7 @@ function onMobileNavKeydown(e){
 
 var floatingNav = document.querySelector('.floating-nav');
 var backToTop = document.querySelector('.back-to-top');
+var pageCover = document.querySelector('.page-cover');
 if(floatingNav || backToTop){
   var scrollTicking = false;
   var lastScrollY = window.scrollY;
@@ -81,8 +82,9 @@ if(floatingNav || backToTop){
     requestAnimationFrame(function(){
       var currentY = window.scrollY;
       var pastThreshold = currentY > 200;
+      var navThreshold = pageCover ? pageCover.offsetTop - 60 : 200;
       var scrollingDown = currentY > lastScrollY;
-      if(floatingNav) floatingNav.classList.toggle('visible', pastThreshold && scrollingDown);
+      if(floatingNav) floatingNav.classList.toggle('visible', currentY > navThreshold && scrollingDown);
       if(backToTop) backToTop.classList.toggle('visible', pastThreshold);
       lastScrollY = currentY;
       scrollTicking = false;
