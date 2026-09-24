@@ -57,7 +57,7 @@ img,svg{ display:block; max-width:100%; }
 }
 /* ---------- NAV (inside hero card) ---------- */
 header{ padding:0; position:relative; z-index:5; }
-nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding:22px 28px; max-width:none; border-bottom:1.5px solid var(--ink); }
+nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding:22px 28px; max-width:none; }
 .logo-mark{
   width:30px; height:30px; border-radius:8px; background:var(--ink); color:var(--cream);
   display:flex; align-items:center; justify-content:center; font-weight:600; font-size:14px;
