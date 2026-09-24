@@ -220,6 +220,59 @@ for (let i = 0; i < PARTICLE_COUNT; i++) {
 
 
 /* -----------------------------
+   SENTENCE FORMATION
+   When nothing is touching the letters they
+   glide into place and spell a sentence.
+----------------------------- */
+
+const SENTENCE_LINES = ["I SHOT AND EDITED", "THIS IN MEXICO"];
+const FORM_DELAY = 1400;
+
+const sentenceLetters = [];
+SENTENCE_LINES.forEach(line => {
+  line.split("").forEach(ch => {
+    if (ch !== " ") sentenceLetters.push(ch);
+  });
+});
+
+sentenceLetters.forEach((ch, i) => {
+  particles[i].char = ch;
+  particles[i].target = { x: 0, y: 0, size: 32 };
+  particles[i].freeUntil = 0;
+});
+
+function layoutSentence() {
+  const fs = Math.max(20, Math.min(84, window.innerWidth / 13));
+  const spacing = fs * 0.1;
+  const lineHeight = fs * 1.35;
+  const totalH = lineHeight * SENTENCE_LINES.length;
+  ctx.save();
+  ctx.font = `700 ${fs}px Arial`;
+  let idx = 0;
+  SENTENCE_LINES.forEach((line, li) => {
+    const widths = line.split("").map(ch => ctx.measureText(ch).width + spacing);
+    const lineW = widths.reduce((a, b) => a + b, 0) - spacing;
+    let x = (window.innerWidth - lineW) / 2;
+    const y = (window.innerHeight - totalH) / 2 + lineHeight * (li + 0.5);
+    line.split("").forEach((ch, ci) => {
+      if (ch !== " ") {
+        const t = particles[idx].target;
+        t.x = x + widths[ci] / 2 - spacing / 2;
+        t.y = y;
+        t.size = fs;
+        idx++;
+      }
+      x += widths[ci];
+    });
+  });
+  ctx.restore();
+}
+
+layoutSentence();
+window.addEventListener("resize", layoutSentence);
+
+
+/* -----------------------------
    HAND POSITION
 ----------------------------- */
 
@@ -368,7 +421,12 @@ camera.start();
 
 function updateParticles() {
 
+  const now = performance.now();
+
   particles.forEach(p => {
+
+    const forming = p.target && now >= p.freeUntil;
+    if (p.baseSize === undefined) p.baseSize = p.size;
 
     /*
       Natural floating movement
@@ -377,7 +435,7 @@ function updateParticles() {
     p.x += p.vx;
     p.y += p.vy;
 
-    p.rotation += p.rotationSpeed;
+    if (!forming) p.rotation += p.rotationSpeed;
 
 
     /*
@@ -401,6 +459,8 @@ function updateParticles() {
         /*
           Direction away from hand
         */
+
+        if (p.target) p.freeUntil = now + FORM_DELAY;
 
         const angle =
           Math.atan2(dy, dx);
@@ -434,21 +494,35 @@ function updateParticles() {
       Friction
     */
 
-    p.vx *= 0.99;
-    p.vy *= 0.99;
+    if (forming) {
+      /* glide into the sentence */
+      p.vx += (p.target.x - p.x) * 0.02;
+      p.vy += (p.target.y - p.y) * 0.02;
+      p.vx *= 0.86;
+      p.vy *= 0.86;
+      const full = Math.PI * 2;
+      p.rotation += (Math.round(p.rotation / full) * full - p.rotation) * 0.1;
+      p.size += (p.target.size - p.size) * 0.1;
+    } else {
+      p.vx *= 0.99;
+      p.vy *= 0.99;
+      p.size += (p.baseSize - p.size) * 0.05;
+    }
 
 
     /*
       Keep particles slowly moving
     */
 
-    p.vx +=
-      (Math.random() - 0.5) *
-      0.03;
+    if (!forming) {
+      p.vx +=
+        (Math.random() - 0.5) *
+        0.03;
 
-    p.vy +=
-      (Math.random() - 0.5) *
-      0.03;
+      p.vy +=
+        (Math.random() - 0.5) *
+        0.03;
+    }
 
 
     /*
