@@ -336,6 +336,9 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
   margin-top:10px;
 }
 .project-detail{ padding:72px; margin-bottom:72px; }
+.project-detail:not(:last-of-type){ margin-bottom:0; }
+.project-detail + .project-detail{ padding-top:0; }
+.project-detail > .case-section:last-child{ margin-bottom:0; }
 .project-detail.card{ background:none; border:none; box-shadow:none; border-radius:0; }
 #playground .project.card{ background:none; border:none; box-shadow:none; border-radius:0; }
 .about-card.card{ background:none; border:none; box-shadow:none; border-radius:0; }
