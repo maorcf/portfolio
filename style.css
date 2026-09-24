@@ -67,7 +67,6 @@ nav.wrap{ display:flex; align-items:center; justify-content:space-between; paddi
 .brand{ display:flex; align-items:center; gap:10px; }
 .logo-mark, .wordmark{ transition:background-color .2s, color .2s; }
 .brand:hover .logo-mark{ background:var(--lime); color:var(--ink); }
-.brand:hover .wordmark{ color:var(--violet); }
 .wordmark{ font-weight:500; font-size:15px; }
 .nav-links{ display:flex; align-items:center; gap:26px; }
 .nav-links a{ font-size:14px; font-weight:500; color:var(--ink); }
