@@ -715,7 +715,7 @@ footer{ padding:70px 0 60px; }
   background:linear-gradient(165deg, #C0E4F7 0%, #8DC3F1 42%, #C369CD 118%);
   transform:scale(calc(1 - var(--p, 0) * 0.06)); transform-origin:50% 0;
   border-radius:calc(var(--p, 0) * 40px);
-  will-change:transform;
+  will-change:transform; --hh:calc(100svh - 128px);
 }
 .cs-hero-word{
   position:absolute; left:5vw; top:50%; transform:translateY(-52%); text-align:left;
@@ -723,14 +723,15 @@ footer{ padding:70px 0 60px; }
   color:rgba(255,255,255,0.95); pointer-events:none; user-select:none;
 }
 .cs-hero-phones{
-  position:absolute; right:4vw; bottom:0;
+  position:absolute; right:4vw; bottom:5%;
   display:flex; align-items:flex-end; justify-content:flex-end; gap:clamp(8px, 1.4vw, 22px); width:max-content;
 }
 .cs-hero-phones img{
-  display:block; width:clamp(90px, 12vw, 200px); height:auto; border-radius:20px 20px 0 0;
-  box-shadow:0 30px 60px -20px rgba(29,15,19,0.4); margin-bottom:-3%;
+  display:block; height:auto; border-radius:22px;
+  width:min(calc(var(--hh) * 0.68 * 0.461), 14vw);
+  box-shadow:0 30px 60px -22px rgba(29,15,19,0.42);
 }
-.cs-hero-phones img:nth-child(2){ width:clamp(112px, 15vw, 250px); margin-bottom:0; }
+.cs-hero-phones img:nth-child(2){ width:min(calc(var(--hh) * 0.8 * 0.461), 17vw); }
 .cs-back{
   position:absolute; left:clamp(18px,4vw,56px); top:20px; z-index:3;
   font-size:14px; font-weight:600; color:var(--ink);
@@ -796,6 +797,7 @@ footer{ padding:70px 0 60px; }
   .cs-hero{ height:calc(100svh - 110px); min-height:520px; }
   .cs-hero-word{ left:0; right:0; top:12%; transform:none; text-align:center; font-size:28vw; }
   .cs-hero-phones{ left:50%; right:auto; transform:translateX(-50%); }
+  .cs-hero-phones{ bottom:4%; }
   .cs-hero-phones img{ width:26vw; }
   .cs-hero-phones img:nth-child(2){ width:33vw; }
   .cs-trio, .cs-cards, .cs-cards-2, .cs-persona, .cs-statements div{ grid-template-columns:1fr; }

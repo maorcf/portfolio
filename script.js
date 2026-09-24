@@ -389,7 +389,7 @@ if(floatingNav || backToTop){
   var hero = document.getElementById('csHero');
   if(hero){
     var t = false;
-    var fit = function(){ var top = hero.getBoundingClientRect().top + window.scrollY; hero.style.height = Math.max(window.innerHeight - top, 520) + 'px'; };
+    var fit = function(){ var top = hero.getBoundingClientRect().top + window.scrollY; var hh = Math.max(window.innerHeight - top, 520); hero.style.height = hh + 'px'; hero.style.setProperty('--hh', hh + 'px'); };
     fit(); window.addEventListener('resize', fit); window.addEventListener('load', fit);
     var upd = function(){
       var p = Math.min(Math.max(window.scrollY / (window.innerHeight * 0.75), 0), 1);
