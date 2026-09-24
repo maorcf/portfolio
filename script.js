@@ -295,7 +295,7 @@ if(floatingNav || backToTop){
 
   var rect = card.getBoundingClientRect(), rectDirty = false;
   var tx = 0, ty = 0, x = 0, y = 0, vx = 0, vy = 0;
-  var inside = false, appear = 0, raf = 0, last = 0;
+  var inside = false, appear = 0, raf = 0, last = 0, lastMove = 0;
   var N = 9;
 
   function markDirty(){ rectDirty = true; if(!raf) raf = requestAnimationFrame(frame); }
@@ -307,13 +307,13 @@ if(floatingNav || backToTop){
     rect = card.getBoundingClientRect();
     tx = e.clientX - rect.left; ty = e.clientY - rect.top;
     if(!inside && appear < 0.02){ x = tx; y = ty; }
-    inside = true;
+    inside = true; lastMove = performance.now();
     if(!raf){ last = 0; raf = requestAnimationFrame(frame); }
   });
   card.addEventListener('pointermove', function(e){
     if(e.pointerType && e.pointerType !== 'mouse') return;
     tx = e.clientX - rect.left; ty = e.clientY - rect.top;
-    inside = true;
+    inside = true; lastMove = performance.now();
     if(!raf){ last = 0; raf = requestAnimationFrame(frame); }
   });
   card.addEventListener('pointerleave', function(){ inside = false; });
@@ -322,7 +322,7 @@ if(floatingNav || backToTop){
     var pts = [], i, a, r, px, py, ca = Math.cos(angle), sa = Math.sin(angle), sy = 1 / (1 + (sx - 1) * 0.6);
     for(i = 0; i < N; i++){
       a = (i / N) * Math.PI * 2;
-      r = R * (1 + 0.20 * Math.sin(t * 1.3 + i * 2.1) + 0.13 * Math.sin(t * 2.2 + i * 3.7) + 0.06 * Math.sin(t * 3.1 + i * 1.3));
+      r = R * (1 + 0.13 * Math.sin(t * 1.3 + i * 2.1) + 0.09 * Math.sin(t * 2.2 + i * 3.7) + 0.04 * Math.sin(t * 3.1 + i * 1.3));
       px = Math.cos(a) * r; py = Math.sin(a) * r;
       var rx = px * ca + py * sa, ry = -px * sa + py * ca;
       rx *= sx; ry *= sy;
@@ -350,12 +350,13 @@ if(floatingNav || backToTop){
     x += (tx - x) * ease; y += (ty - y) * ease;
     vx += ((x - px) / dt - vx) * 0.25; vy += ((y - py) / dt - vy) * 0.25;
     var speed = Math.sqrt(vx * vx + vy * vy);
-    appear += ((inside ? 1 : 0) - appear) * (1 - Math.pow(1 - (inside ? 0.12 : 0.09), dt));
-    if(!inside && appear < 0.01){
+    var active = inside && (now - lastMove) < 200;
+    appear += ((active ? 1 : 0) - appear) * (1 - Math.pow(1 - (active ? 0.22 : 0.2), dt));
+    if(!active && appear < 0.01){
       appear = 0; blob.setAttribute('d', ''); last = 0; return;
     }
-    var R = appear * (105 + Math.min(speed * 2.2, 80));
-    var sx = 1 + Math.min(speed / 38, 0.7);
+    var R = appear * (34 + Math.min(speed * 1.2, 30));
+    var sx = 1 + Math.min(speed / 70, 0.3);
     blob.setAttribute('d', pathFor(now / 1000, R, sx, Math.atan2(vy, vx)));
     raf = requestAnimationFrame(frame);
   }
