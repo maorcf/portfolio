@@ -242,7 +242,12 @@ sentenceLetters.forEach((ch, i) => {
 });
 
 function layoutSentence() {
-  const fs = Math.max(20, Math.min(84, window.innerWidth / 13));
+  let fs = Math.max(20, Math.min(84, window.innerWidth / 13));
+  ctx.save();
+  ctx.font = `700 ${fs}px Arial`;
+  const longest = Math.max(...SENTENCE_LINES.map(l => ctx.measureText(l).width + l.length * fs * 0.1));
+  ctx.restore();
+  if (longest > window.innerWidth * 0.88) fs *= (window.innerWidth * 0.88) / longest;
   const spacing = fs * 0.1;
   const lineHeight = fs * 1.35;
   const totalH = lineHeight * SENTENCE_LINES.length;
@@ -416,6 +421,66 @@ camera.start();
 
 
 /* -----------------------------
+   COVER + REVEAL
+   A dark cover hides the photo. Wherever the
+   hand moves it wipes the cover away, then
+   the cover slowly fades back in.
+----------------------------- */
+
+const COVER_COLOR = "rgba(6, 10, 9, 0.93)";
+const REVEAL_SCALE = 1 / 6;
+const REVEAL_RADIUS = 80;
+
+const reveal = document.createElement("canvas");
+const rctx = reveal.getContext("2d", { willReadFrequently: true });
+let revealFrame = 0;
+
+function resizeReveal() {
+  reveal.width = Math.ceil(window.innerWidth * REVEAL_SCALE);
+  reveal.height = Math.ceil(window.innerHeight * REVEAL_SCALE);
+}
+resizeReveal();
+window.addEventListener("resize", resizeReveal);
+
+function updateReveal() {
+  /* cover comes back gradually (~3s) */
+  const img = rctx.getImageData(0, 0, reveal.width, reveal.height);
+  const d = img.data;
+  const dec = (revealFrame++ % 2) ? 2 : 1;
+  for (let i = 3; i < d.length; i += 4) {
+    if (d[i] > 0) d[i] = d[i] > dec ? d[i] - dec : 0;
+  }
+  rctx.putImageData(img, 0, 0);
+
+  /* the hand wipes it away */
+  const r = REVEAL_RADIUS * REVEAL_SCALE;
+  handCenters.forEach(c => {
+    const x = c.x * REVEAL_SCALE;
+    const y = c.y * REVEAL_SCALE;
+    const g = rctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, "rgba(0,0,0,1)");
+    g.addColorStop(0.6, "rgba(0,0,0,0.85)");
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    rctx.fillStyle = g;
+    rctx.beginPath();
+    rctx.arc(x, y, r, 0, Math.PI * 2);
+    rctx.fill();
+  });
+}
+
+function drawCover() {
+  ctx.fillStyle = COVER_COLOR;
+  ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+  ctx.save();
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(reveal, 0, 0, window.innerWidth, window.innerHeight);
+  ctx.restore();
+}
+
+
+/* -----------------------------
    PARTICLE PHYSICS
 ----------------------------- */
 
@@ -570,6 +635,7 @@ function draw() {
     window.innerHeight
   );
 
+  drawCover();
 
   particles.forEach(p => {
 
@@ -665,6 +731,7 @@ function drawHandSkeletons() {
 function animate() {
 
   updateParticles();
+  updateReveal();
 
   draw();
 
