@@ -550,13 +550,9 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .hand-particles-card:hover .hp-preview video{ transform:scale(1.03); }
 .hp-cta{
   position:absolute; left:50%; bottom:16px; transform:translateX(-50%);
-  display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
-  font-size:13px; font-weight:700; color:var(--ink);
-  background:var(--lime); border:1.5px solid var(--ink);
-  padding:7px 14px; border-radius:999px; transition:background .15s, color .15s;
-  box-shadow:0 6px 14px -8px rgba(20,20,20,0.35);
+  background:var(--lime); color:var(--ink); font-size:13px; font-weight:700;
+  padding:8px 16px; border-radius:999px; border:1.2px solid var(--ink); white-space:nowrap;
 }
-.hand-particles-card:hover .hp-cta{ background:var(--ink); color:var(--lime); }
 .read-link{
   display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600;
   background:var(--lime); color:var(--ink); border:1.2px solid var(--ink); padding:8px 16px; border-radius:999px;
