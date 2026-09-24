@@ -270,3 +270,94 @@ if(floatingNav || backToTop){
   window.addEventListener('load', setStick);
   setStick();
 })();
+
+(function(){
+  var card = document.querySelector('.hero-frame-outer .hero-card');
+  if(!card || !document.querySelector('.hero')) return;
+  if(window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block;';
+  svg.innerHTML =
+    '<defs>' +
+      '<clipPath id="heroBlobClip"><path id="heroBlob" d=""/></clipPath>' +
+      '<pattern id="heroBlobDots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="rgba(20,20,20,0.16)"/></pattern>' +
+    '</defs>' +
+    '<g clip-path="url(#heroBlobClip)">' +
+      '<rect id="heroBlobFill" width="100%" height="100%" fill="#C9C2ED"/>' +
+      '<rect width="100%" height="100%" fill="url(#heroBlobDots)"/>' +
+    '</g>';
+  card.insertBefore(svg, card.firstChild);
+  var blob = svg.querySelector('#heroBlob');
+
+  var rect = card.getBoundingClientRect(), rectDirty = false;
+  var tx = 0, ty = 0, x = 0, y = 0, vx = 0, vy = 0;
+  var inside = false, appear = 0, raf = 0, last = 0;
+  var N = 9;
+
+  function markDirty(){ rectDirty = true; if(!raf) raf = requestAnimationFrame(frame); }
+  window.addEventListener('scroll', markDirty, { passive: true });
+  window.addEventListener('resize', markDirty);
+
+  card.addEventListener('pointerenter', function(e){
+    if(e.pointerType && e.pointerType !== 'mouse') return;
+    rect = card.getBoundingClientRect();
+    tx = e.clientX - rect.left; ty = e.clientY - rect.top;
+    if(!inside && appear < 0.02){ x = tx; y = ty; }
+    inside = true;
+    if(!raf){ last = 0; raf = requestAnimationFrame(frame); }
+  });
+  card.addEventListener('pointermove', function(e){
+    if(e.pointerType && e.pointerType !== 'mouse') return;
+    tx = e.clientX - rect.left; ty = e.clientY - rect.top;
+    inside = true;
+    if(!raf){ last = 0; raf = requestAnimationFrame(frame); }
+  });
+  card.addEventListener('pointerleave', function(){ inside = false; });
+
+  function pathFor(t, R, sx, angle){
+    var pts = [], i, a, r, px, py, ca = Math.cos(angle), sa = Math.sin(angle), sy = 1 / (1 + (sx - 1) * 0.6);
+    for(i = 0; i < N; i++){
+      a = (i / N) * Math.PI * 2;
+      r = R * (1 + 0.20 * Math.sin(t * 1.3 + i * 2.1) + 0.13 * Math.sin(t * 2.2 + i * 3.7) + 0.06 * Math.sin(t * 3.1 + i * 1.3));
+      px = Math.cos(a) * r; py = Math.sin(a) * r;
+      var rx = px * ca + py * sa, ry = -px * sa + py * ca;
+      rx *= sx; ry *= sy;
+      pts.push([x + rx * ca - ry * sa, y + rx * sa + ry * ca]);
+    }
+    var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+    for(i = 0; i < N; i++){
+      var p0 = pts[(i - 1 + N) % N], p1 = pts[i], p2 = pts[(i + 1) % N], p3 = pts[(i + 2) % N];
+      d += 'C' + (p1[0] + (p2[0] - p0[0]) / 6).toFixed(1) + ' ' + (p1[1] + (p2[1] - p0[1]) / 6).toFixed(1) + ' ' +
+                 (p2[0] - (p3[0] - p1[0]) / 6).toFixed(1) + ' ' + (p2[1] - (p3[1] - p1[1]) / 6).toFixed(1) + ' ' +
+                 p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
+    }
+    return d + 'Z';
+  }
+
+  function frame(now){
+    raf = 0;
+    if(rectDirty){
+      rect = card.getBoundingClientRect(); rectDirty = false;
+      svg.setAttribute('viewBox', '0 0 ' + rect.width.toFixed(0) + ' ' + rect.height.toFixed(0));
+    }
+    var dt = last ? Math.min((now - last) / 16.67, 3) : 1; last = now;
+    var px = x, py = y;
+    var ease = 1 - Math.pow(1 - 0.16, dt);
+    x += (tx - x) * ease; y += (ty - y) * ease;
+    vx += ((x - px) / dt - vx) * 0.25; vy += ((y - py) / dt - vy) * 0.25;
+    var speed = Math.sqrt(vx * vx + vy * vy);
+    appear += ((inside ? 1 : 0) - appear) * (1 - Math.pow(1 - (inside ? 0.12 : 0.09), dt));
+    if(!inside && appear < 0.01){
+      appear = 0; blob.setAttribute('d', ''); last = 0; return;
+    }
+    var R = appear * (105 + Math.min(speed * 2.2, 80));
+    var sx = 1 + Math.min(speed / 38, 0.7);
+    blob.setAttribute('d', pathFor(now / 1000, R, sx, Math.atan2(vy, vx)));
+    raf = requestAnimationFrame(frame);
+  }
+  svg.setAttribute('viewBox', '0 0 ' + rect.width.toFixed(0) + ' ' + rect.height.toFixed(0));
+})();
