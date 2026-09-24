@@ -711,29 +711,33 @@ footer{ padding:70px 0 60px; }
 /* ---------- IMMERSIVE CASE STUDY (cs-*) ---------- */
 .cs-hero{
   position:relative; width:100vw; margin-left:calc(50% - 50vw);
-  height:min(86vh, 860px); min-height:560px; overflow:hidden;
+  height:100vh; height:100svh; min-height:560px; overflow:hidden;
   background:linear-gradient(165deg, #C0E4F7 0%, #8DC3F1 42%, #C369CD 118%);
   transform:scale(calc(1 - var(--p, 0) * 0.06)); transform-origin:50% 0;
   border-radius:calc(var(--p, 0) * 40px);
-  will-change:transform; margin-top:8px;
+  will-change:transform;
 }
 .cs-hero-word{
-  position:absolute; left:0; right:0; top:9%; display:flex; justify-content:center; align-items:flex-start; gap:0;
-  font-size:clamp(120px, 24vw, 380px); line-height:.9; font-weight:700; letter-spacing:-0.04em;
+  position:absolute; left:0; right:0; top:21%; text-align:center;
+  font-size:clamp(120px, 22vw, 340px); line-height:.9; font-weight:700; letter-spacing:-0.04em;
   color:rgba(255,255,255,0.95); pointer-events:none; user-select:none;
 }
-.cs-hero-gap{ display:block; width:clamp(150px, 21vw, 330px); flex:none; }
-.cs-hero-word span:first-child{ flex:1 1 0; text-align:right; }
-.cs-hero-word span:last-child{ flex:1 1 0; text-align:left; }
 .cs-hero-phones{
-  position:absolute; left:50%; bottom:0; transform:translateX(-50%); display:flex; align-items:flex-end; width:max-content;
+  position:absolute; left:50%; bottom:0; transform:translateX(-50%);
+  display:flex; align-items:flex-end; justify-content:center; gap:clamp(8px, 1.6vw, 26px); width:max-content;
 }
 .cs-hero-phones img{
-  display:block; width:clamp(130px, 19vw, 300px); height:auto; border-radius:24px 24px 0 0;
-  box-shadow:0 30px 60px -20px rgba(29,15,19,0.4);
+  display:block; width:clamp(96px, 12.5vw, 205px); height:auto; border-radius:20px 20px 0 0;
+  box-shadow:0 30px 60px -20px rgba(29,15,19,0.4); margin-bottom:-3%;
 }
-.cs-hero-tags{ position:absolute; left:clamp(18px,4vw,56px); top:clamp(14px,3vw,28px); display:flex; gap:8px; flex-wrap:wrap; z-index:2; }
-
+.cs-hero-phones img:nth-child(2){ width:clamp(120px, 15vw, 250px); margin-bottom:0; }
+.cs-back{
+  position:absolute; left:clamp(18px,4vw,56px); top:clamp(92px, 11vh, 120px); z-index:3;
+  font-size:14px; font-weight:600; color:var(--ink);
+}
+.cs-back:hover{ color:var(--violet); }
+.cs-page .hero-frame-outer.page-frame{ position:absolute; top:0; left:0; right:0; z-index:20; }
+.cs-page .hero-frame-outer.page-frame .hero-card{ background:transparent; background-image:none; }
 .cs-lead{ max-width:920px; margin:96px auto 0; text-align:left; }
 .cs-lead h1{ font-size:clamp(28px, 4.2vw, 48px); line-height:1.15; font-weight:600; letter-spacing:-0.02em; }
 .cs-lead p{ margin-top:24px; font-size:18px; line-height:1.8; color:var(--ink); opacity:.72; max-width:760px; }
@@ -791,10 +795,9 @@ footer{ padding:70px 0 60px; }
 @media (prefers-reduced-motion: reduce){ .cs-reveal{ opacity:1; transform:none; transition:none; } .cs-hero{ transform:none; border-radius:0; } }
 
 @media (max-width:820px){
-  .cs-hero{ height:560px; min-height:0; }
-  .cs-hero-word{ top:38%; font-size:27vw; }
-  .cs-hero-gap{ width:152px; }
-  .cs-hero-phones img{ width:144px; }
+  .cs-hero-word{ top:20%; font-size:28vw; }
+  .cs-hero-phones img{ width:26vw; }
+  .cs-hero-phones img:nth-child(2){ width:33vw; }
   .cs-trio, .cs-cards, .cs-cards-2, .cs-persona, .cs-statements div{ grid-template-columns:1fr; }
   .cs-trio > div + div{ padding-left:0; border-left:none; border-top:1.5px solid var(--line); padding-top:32px; margin-top:24px; }
   .cs-shots-3{ grid-template-columns:1fr 1fr 1fr; gap:10px; }
