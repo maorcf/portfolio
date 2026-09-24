@@ -719,7 +719,8 @@ footer{ padding:70px 0 60px; }
   height:calc(100vh - 128px); height:calc(100svh - 128px); min-height:520px; overflow:hidden;
   background:var(--hero-bg, linear-gradient(165deg, #C0E4F7 0%, #8DC3F1 42%, #C369CD 118%));
   transform:scale(calc(1 - var(--p, 0) * 0.06)); transform-origin:50% 0;
-  border-radius:calc(var(--p, 0) * 40px);
+  border-radius:calc(28px + var(--p, 0) * 12px) calc(28px + var(--p, 0) * 12px) calc(var(--p, 0) * 40px) calc(var(--p, 0) * 40px);
+  margin-top:10px; box-shadow:0 -1px 0 rgba(20,20,20,0.06), 0 -14px 28px -22px rgba(20,20,20,0.18);
   will-change:transform; --hh:calc(100svh - 128px);
 }
 .cs-hero-word{
