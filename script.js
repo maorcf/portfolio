@@ -389,6 +389,8 @@ if(floatingNav || backToTop){
   var hero = document.getElementById('csHero');
   if(hero){
     var t = false;
+    var fit = function(){ var top = hero.getBoundingClientRect().top + window.scrollY; hero.style.height = Math.max(window.innerHeight - top, 520) + 'px'; };
+    fit(); window.addEventListener('resize', fit); window.addEventListener('load', fit);
     var upd = function(){
       var p = Math.min(Math.max(window.scrollY / (window.innerHeight * 0.75), 0), 1);
       hero.style.setProperty('--p', p.toFixed(3)); t = false;
