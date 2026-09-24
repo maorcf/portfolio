@@ -820,7 +820,7 @@ footer{ padding:70px 0 60px; }
 /* per-project hero themes */
 .cs-hero-chido{ --hero-bg:linear-gradient(165deg, #FFE8A3 0%, #FDB101 58%, #F29A00 120%); --hero-word:#2A5E21; --ar:0.5625; --hero-fs:clamp(90px, 13vw, 220px); --hero-fs-m:24vw; }
 .cs-hero-filmroll{ --hero-bg:linear-gradient(165deg, #FBF8F3 0%, #F1E7DA 55%, #E6D5C1 120%); --hero-word:#2B1A10; --hero-fs:clamp(70px, 10vw, 170px); --hero-fs-m:17vw; }
-.cs-hero-austrip{ --hero-bg:linear-gradient(165deg, #FFE1E1 0%, #FFA9A9 55%, #FF6F6F 120%); --hero-word:#4A1616; --hero-fs:clamp(70px, 9.5vw, 170px); --hero-fs-m:18vw; }
+.cs-hero-austrip{ --hero-bg:linear-gradient(165deg, #FFE1E1 0%, #FFA9A9 55%, #FF6F6F 120%); --hero-word:#D6454D; --hero-fs:clamp(70px, 9.5vw, 170px); --hero-fs-m:18vw; }
 .cs-hero-browser{
   position:absolute; right:4vw; bottom:5%; width:min(52vw, calc(var(--hh) * 0.86 * 1.3));
   background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 34px 70px -24px rgba(74,22,22,0.5);
