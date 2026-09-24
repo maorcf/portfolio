@@ -847,3 +847,11 @@ footer{ padding:70px 0 60px; }
 @media (max-width:820px){
   .cs-hero-browser{ left:50%; right:auto; transform:translateX(-50%); width:88vw; bottom:4%; }
 }
+
+/* hero arc headline */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero-arc{width:min(1100px,100%);height:auto;margin:0 auto;display:block;overflow:visible}
+.hero-arc text{font-family:'Titan One',sans-serif;fill:var(--ink)}
+.hero-arc .arc-l1{font-size:104px}
+.hero-arc .arc-l2{font-size:66px}
+.hero-arc .accent{fill:var(--violet)}

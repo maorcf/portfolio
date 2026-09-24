@@ -12,9 +12,9 @@
 <meta property="og:url" content="https://maorcohenfalah.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Titan+One&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=195">
+<link rel="stylesheet" href="style.css?v=196">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -75,7 +75,15 @@
 
     <section id="top" class="hero">
 
-      <h1>Hi, I'm <span class="accent">Maor</span><br>UX/UI <span class="icon-chip"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16M12 4v16" stroke="#141414" stroke-width="2.4" stroke-linecap="round"/></svg></span> Graphic&nbsp;Designer</h1>
+      <h1 class="sr-only">Hi, I'm Maor, UX/UI Graphic Designer</h1>
+      <svg class="hero-arc" viewBox="0 0 1200 430" aria-hidden="true">
+        <defs>
+          <path id="arc1" d="M40,210 Q600,-10 1160,210"/>
+          <path id="arc2" d="M10,400 Q600,150 1190,400"/>
+        </defs>
+        <text class="arc-l1"><textPath href="#arc1" startOffset="50%" text-anchor="middle">Hi, I&#8217;m <tspan class="accent">Maor</tspan></textPath></text>
+        <text class="arc-l2"><textPath href="#arc2" startOffset="50%" text-anchor="middle">UX/UI + Graphic&#160;Designer</textPath></text>
+      </svg>
 
       <p class="lead">I turn messy problems into clean, usable products. Research, systems thinking, and pixels that hold up under pressure.</p>
 
