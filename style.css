@@ -712,15 +712,23 @@ footer{ padding:70px 0 60px; }
 .cs-hero{
   position:relative; width:100vw; margin-left:calc(50% - 50vw);
   height:calc(100vh - 128px); height:calc(100svh - 128px); min-height:520px; overflow:hidden;
-  background:linear-gradient(165deg, #C0E4F7 0%, #8DC3F1 42%, #C369CD 118%);
+  background:
+    radial-gradient(900px 520px at 80% 28%, rgba(255,255,255,0.55), transparent 62%),
+    linear-gradient(160deg, #DDF4FF 0%, #A6DEFF 46%, #62BCFF 100%);
   transform:scale(calc(1 - var(--p, 0) * 0.06)); transform-origin:50% 0;
   border-radius:calc(var(--p, 0) * 40px);
   will-change:transform; --hh:calc(100svh - 128px);
 }
+.cs-hero::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.32) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.32) 1px, transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:linear-gradient(180deg, #000 0%, transparent 85%); mask-image:linear-gradient(180deg, #000 0%, transparent 85%);
+}
 .cs-hero-word{
   position:absolute; left:5vw; top:50%; transform:translateY(-52%); text-align:left;
   font-size:clamp(110px, 17vw, 270px); line-height:.9; font-weight:700; letter-spacing:-0.04em;
-  color:rgba(255,255,255,0.95); pointer-events:none; user-select:none;
+  color:#1B1464; pointer-events:none; user-select:none;
 }
 .cs-hero-phones{
   position:absolute; right:4vw; bottom:5%;
