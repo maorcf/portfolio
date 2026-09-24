@@ -214,11 +214,15 @@ section{ padding:70px 0; }
 
 .project-grid{ display:grid; grid-template-columns:1fr; gap:28px; }
 .project-grid .project{ margin-bottom:0; height:auto; }
+.project-grid .project.card{ border:none; box-shadow:0 18px 40px -22px rgba(20,20,20,0.28); border-radius:22px; }
+.project-grid a.project.card:hover{ transform:translateY(-4px); box-shadow:0 24px 48px -22px rgba(20,20,20,0.34); }
 @media (min-width: 900px){
+  .project-grid{ gap:36px; }
   .project-grid .project:has(.project-cover){ flex-direction:row; align-items:stretch; }
-  .project-grid .project-cover{ flex:0 0 58%; padding:16px; }
-  .project-grid .project-cover .thumb{ height:100%; }
-  .project-grid .project-body{ justify-content:center; padding:40px 48px; }
+  .project-grid .project-cover{ flex:0 0 62%; padding:14px; }
+  .project-grid .project-cover .thumb{ height:100%; border-radius:14px; }
+  .project-grid .project-body{ justify-content:center; padding:32px 36px; }
+  .project-grid .project h3{ font-size:32px; }
   .project-grid .project .read-link{ margin-top:8px; }
 }
 
