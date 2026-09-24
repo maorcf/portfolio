@@ -278,87 +278,109 @@ if(floatingNav || backToTop){
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var NS = 'http://www.w3.org/2000/svg';
+  var POOL = 60, N = 8, SPACING = 13;
   var svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('aria-hidden', 'true');
   svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block;';
   svg.innerHTML =
     '<defs>' +
-      '<clipPath id="heroBlobClip"><path id="heroBlob" d=""/></clipPath>' +
-      '<pattern id="heroBlobDots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="rgba(20,20,20,0.16)"/></pattern>' +
+      '<mask id="heroTrailMask" maskUnits="userSpaceOnUse" x="-200" y="-200" width="6000" height="6000"><g id="heroTrailPaths"></g></mask>' +
+      '<pattern id="heroTrailDots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="rgba(20,20,20,0.16)"/></pattern>' +
     '</defs>' +
-    '<g clip-path="url(#heroBlobClip)">' +
-      '<rect id="heroBlobFill" width="100%" height="100%" fill="#C9C2ED"/>' +
-      '<rect width="100%" height="100%" fill="url(#heroBlobDots)"/>' +
+    '<g mask="url(#heroTrailMask)">' +
+      '<rect width="100%" height="100%" fill="#C9C2ED"/>' +
+      '<rect width="100%" height="100%" fill="url(#heroTrailDots)"/>' +
     '</g>';
   card.insertBefore(svg, card.firstChild);
-  var blob = svg.querySelector('#heroBlob');
+  var group = svg.querySelector('#heroTrailPaths');
+
+  var parts = [], i;
+  for(i = 0; i < POOL; i++){
+    var el = document.createElementNS(NS, 'path');
+    el.setAttribute('fill', '#fff');
+    el.setAttribute('opacity', '0');
+    group.appendChild(el);
+    parts.push({ el: el, alive: false, x: 0, y: 0, r: 0, rot: 0, born: 0, life: 0, ph: 0, wob: 0 });
+  }
+  var next = 0;
 
   var rect = card.getBoundingClientRect(), rectDirty = false;
-  var tx = 0, ty = 0, x = 0, y = 0, vx = 0, vy = 0;
-  var inside = false, appear = 0, raf = 0, last = 0, lastMove = 0;
-  var N = 9;
+  var tx = 0, ty = 0, hx = 0, hy = 0, sx = 0, sy = 0;
+  var haveHead = false, moving = false, lastMove = 0, raf = 0;
 
   function markDirty(){ rectDirty = true; if(!raf) raf = requestAnimationFrame(frame); }
   window.addEventListener('scroll', markDirty, { passive: true });
   window.addEventListener('resize', markDirty);
 
+  function setTarget(e){
+    tx = e.clientX - rect.left; ty = e.clientY - rect.top;
+    lastMove = performance.now(); moving = true;
+    if(!haveHead){ hx = sx = tx; hy = sy = ty; haveHead = true; }
+    if(!raf) raf = requestAnimationFrame(frame);
+  }
   card.addEventListener('pointerenter', function(e){
     if(e.pointerType && e.pointerType !== 'mouse') return;
-    rect = card.getBoundingClientRect();
-    tx = e.clientX - rect.left; ty = e.clientY - rect.top;
-    if(!inside && appear < 0.02){ x = tx; y = ty; }
-    inside = true; lastMove = performance.now();
-    if(!raf){ last = 0; raf = requestAnimationFrame(frame); }
+    rect = card.getBoundingClientRect(); haveHead = false; setTarget(e);
   });
   card.addEventListener('pointermove', function(e){
     if(e.pointerType && e.pointerType !== 'mouse') return;
-    tx = e.clientX - rect.left; ty = e.clientY - rect.top;
-    inside = true; lastMove = performance.now();
-    if(!raf){ last = 0; raf = requestAnimationFrame(frame); }
+    setTarget(e);
   });
-  card.addEventListener('pointerleave', function(){ inside = false; });
+  card.addEventListener('pointerleave', function(){ moving = false; haveHead = false; });
 
-  function pathFor(t, R, sx, angle){
-    var pts = [], i, a, r, px, py, ca = Math.cos(angle), sa = Math.sin(angle), sy = 1 / (1 + (sx - 1) * 0.6);
-    for(i = 0; i < N; i++){
-      a = (i / N) * Math.PI * 2;
-      r = R * (1 + 0.13 * Math.sin(t * 1.3 + i * 2.1) + 0.09 * Math.sin(t * 2.2 + i * 3.7) + 0.04 * Math.sin(t * 3.1 + i * 1.3));
-      px = Math.cos(a) * r; py = Math.sin(a) * r;
-      var rx = px * ca + py * sa, ry = -px * sa + py * ca;
-      rx *= sx; ry *= sy;
-      pts.push([x + rx * ca - ry * sa, y + rx * sa + ry * ca]);
+  function spawn(x, y, now){
+    var p = parts[next]; next = (next + 1) % POOL;
+    p.alive = true; p.x = x; p.y = y; p.born = now;
+    p.r = 35 + Math.random() * 15;
+    p.rot = Math.random() * Math.PI * 2;
+    p.life = 1500 + Math.random() * 1500;
+    p.ph = Math.random() * 6.28; p.wob = 0.8 + Math.random() * 1.2;
+  }
+
+  function draw(p, now){
+    var age = now - p.born;
+    if(age >= p.life){ p.alive = false; p.el.setAttribute('opacity', '0'); return; }
+    var k = age / p.life;
+    var fadeIn = Math.min(age / 120, 1);
+    var alpha = fadeIn * Math.pow(1 - k, 1.3);
+    var scale = (0.55 + 0.45 * fadeIn) * (1 - 0.25 * k);
+    var t = age / 1000, pts = [], a, r, c = Math.cos(p.rot), sn = Math.sin(p.rot), j;
+    for(j = 0; j < N; j++){
+      a = (j / N) * 6.2832 + p.rot;
+      r = p.r * scale * (1 + 0.16 * Math.sin(t * p.wob * 2 + j * 2.1 + p.ph) + 0.09 * Math.sin(t * p.wob * 3.3 + j * 3.7));
+      pts.push([p.x + Math.cos(a) * r * 1.08, p.y + Math.sin(a) * r * 0.92]);
     }
-    var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
-    for(i = 0; i < N; i++){
-      var p0 = pts[(i - 1 + N) % N], p1 = pts[i], p2 = pts[(i + 1) % N], p3 = pts[(i + 2) % N];
+    var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1), p0, p1, p2, p3;
+    for(j = 0; j < N; j++){
+      p0 = pts[(j - 1 + N) % N]; p1 = pts[j]; p2 = pts[(j + 1) % N]; p3 = pts[(j + 2) % N];
       d += 'C' + (p1[0] + (p2[0] - p0[0]) / 6).toFixed(1) + ' ' + (p1[1] + (p2[1] - p0[1]) / 6).toFixed(1) + ' ' +
                  (p2[0] - (p3[0] - p1[0]) / 6).toFixed(1) + ' ' + (p2[1] - (p3[1] - p1[1]) / 6).toFixed(1) + ' ' +
                  p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
     }
-    return d + 'Z';
+    p.el.setAttribute('d', d + 'Z');
+    p.el.setAttribute('opacity', alpha.toFixed(3));
   }
 
   function frame(now){
     raf = 0;
-    if(rectDirty){
-      rect = card.getBoundingClientRect(); rectDirty = false;
-      svg.setAttribute('viewBox', '0 0 ' + rect.width.toFixed(0) + ' ' + rect.height.toFixed(0));
+    if(rectDirty){ rect = card.getBoundingClientRect(); rectDirty = false; }
+    if(moving && now - lastMove > 90) moving = false;
+    if(haveHead && moving){
+      hx += (tx - hx) * 0.35; hy += (ty - hy) * 0.35;
+      var dx = hx - sx, dy = hy - sy, dist = Math.sqrt(dx * dx + dy * dy);
+      if(dist >= SPACING){
+        var steps = Math.min(Math.floor(dist / SPACING), 10), s;
+        for(s = 1; s <= steps; s++){
+          var f = (s * SPACING) / dist;
+          spawn(sx + dx * f + (Math.random() - 0.5) * 6, sy + dy * f + (Math.random() - 0.5) * 6, now);
+        }
+        sx += dx * (steps * SPACING) / dist; sy += dy * (steps * SPACING) / dist;
+      }
     }
-    var dt = last ? Math.min((now - last) / 16.67, 3) : 1; last = now;
-    var px = x, py = y;
-    var ease = 1 - Math.pow(1 - 0.16, dt);
-    x += (tx - x) * ease; y += (ty - y) * ease;
-    vx += ((x - px) / dt - vx) * 0.25; vy += ((y - py) / dt - vy) * 0.25;
-    var speed = Math.sqrt(vx * vx + vy * vy);
-    var active = inside && (now - lastMove) < 200;
-    appear += ((active ? 1 : 0) - appear) * (1 - Math.pow(1 - (active ? 0.22 : 0.2), dt));
-    if(!active && appear < 0.01){
-      appear = 0; blob.setAttribute('d', ''); last = 0; return;
+    var any = false;
+    for(i = 0; i < POOL; i++){
+      if(parts[i].alive){ draw(parts[i], now); any = parts[i].alive || any; }
     }
-    var R = appear * (34 + Math.min(speed * 1.2, 30));
-    var sx = 1 + Math.min(speed / 70, 0.3);
-    blob.setAttribute('d', pathFor(now / 1000, R, sx, Math.atan2(vy, vx)));
-    raf = requestAnimationFrame(frame);
+    if(any || moving) raf = requestAnimationFrame(frame);
   }
-  svg.setAttribute('viewBox', '0 0 ' + rect.width.toFixed(0) + ' ' + rect.height.toFixed(0));
 })();
