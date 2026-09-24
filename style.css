@@ -709,7 +709,6 @@ footer{ padding:70px 0 60px; }
 }
 
 /* ---------- IMMERSIVE CASE STUDY (cs-*) ---------- */
-body.cs-page{ --cream:#F2F9FF; background:var(--cream); }
 .cs-hero{
   position:relative; width:100vw; margin-left:calc(50% - 50vw);
   height:calc(100vh - 128px); height:calc(100svh - 128px); min-height:520px; overflow:hidden;
@@ -770,7 +769,7 @@ body.cs-page{ --cream:#F2F9FF; background:var(--cream); }
 .cs-shots img{ width:100%; height:auto; border-radius:20px; box-shadow:0 24px 50px -28px rgba(20,20,20,.35); display:block; }
 .cs-shots figcaption{ text-align:center; margin-top:14px; font-size:13px; font-weight:600; opacity:.6; }
 
-.cs-band-tint{ width:100vw; margin-left:calc(50% - 50vw); margin-top:120px; padding:110px 24px; background:linear-gradient(180deg, #E4F1FF, #ECEBFB); }
+.cs-band-tint{ width:100vw; margin-left:calc(50% - 50vw); margin-top:120px; padding:110px 24px; background:linear-gradient(180deg, #E4F2FB, #EFE5F5); }
 .cs-band-tint .cs-block{ margin-top:0; }
 
 .cs-persona{ display:grid; grid-template-columns:.85fr 1.15fr; gap:56px; margin-top:56px; align-items:start; }
