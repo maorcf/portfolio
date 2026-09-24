@@ -709,12 +709,13 @@ footer{ padding:70px 0 60px; }
 }
 
 /* ---------- IMMERSIVE CASE STUDY (cs-*) ---------- */
+body.cs-page{ --cream:#E7F3FF; background:var(--cream); }
 .cs-hero{
   position:relative; width:100vw; margin-left:calc(50% - 50vw);
   height:calc(100vh - 128px); height:calc(100svh - 128px); min-height:520px; overflow:hidden;
   background:
     radial-gradient(900px 520px at 80% 28%, rgba(255,255,255,0.55), transparent 62%),
-    linear-gradient(160deg, #DDF4FF 0%, #A6DEFF 46%, #62BCFF 100%);
+    linear-gradient(160deg, #CBEBFF 0%, #8FD1FF 50%, #4FAEFF 100%);
   transform:scale(calc(1 - var(--p, 0) * 0.06)); transform-origin:50% 0;
   border-radius:calc(var(--p, 0) * 40px);
   will-change:transform; --hh:calc(100svh - 128px);
@@ -777,7 +778,7 @@ footer{ padding:70px 0 60px; }
 .cs-shots img{ width:100%; height:auto; border-radius:20px; box-shadow:0 24px 50px -28px rgba(20,20,20,.35); display:block; }
 .cs-shots figcaption{ text-align:center; margin-top:14px; font-size:13px; font-weight:600; opacity:.6; }
 
-.cs-band-tint{ width:100vw; margin-left:calc(50% - 50vw); margin-top:120px; padding:110px 0; background:linear-gradient(180deg, #E4F2FB, #EFE5F5); }
+.cs-band-tint{ width:100vw; margin-left:calc(50% - 50vw); margin-top:120px; padding:110px 24px; background:linear-gradient(180deg, #D5EAFF, #E3E1FA); }
 .cs-band-tint .cs-block{ margin-top:0; }
 
 .cs-persona{ display:grid; grid-template-columns:.85fr 1.15fr; gap:56px; margin-top:56px; align-items:start; }
@@ -814,7 +815,7 @@ footer{ padding:70px 0 60px; }
   .cs-swatches{ grid-template-columns:repeat(5,1fr); }
   .cs-swatches div{ font-size:10px; padding:8px; }
   .cs-block{ margin-top:80px; }
-  .cs-band-tint{ margin-top:80px; padding:72px 0; }
+  .cs-band-tint{ margin-top:80px; padding:72px 24px; }
   .cs-lead{ margin-top:64px; }
   .cs-statements div{ gap:14px; }
 }
