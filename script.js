@@ -384,3 +384,24 @@ if(floatingNav || backToTop){
     if(any || moving) raf = requestAnimationFrame(frame);
   }
 })();
+
+(function(){
+  var hero = document.getElementById('csHero');
+  if(hero){
+    var t = false;
+    var upd = function(){
+      var p = Math.min(Math.max(window.scrollY / (window.innerHeight * 0.75), 0), 1);
+      hero.style.setProperty('--p', p.toFixed(3)); t = false;
+    };
+    window.addEventListener('scroll', function(){ if(!t){ t = true; requestAnimationFrame(upd); } }, { passive: true });
+    upd();
+  }
+  var items = document.querySelectorAll('.cs-reveal');
+  if(items.length){
+    if(!('IntersectionObserver' in window)){ items.forEach(function(e){ e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    items.forEach(function(e){ io.observe(e); });
+  }
+})();
