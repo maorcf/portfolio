@@ -847,3 +847,8 @@ footer{ padding:70px 0 60px; }
 @media (max-width:820px){
   .cs-hero-browser{ left:50%; right:auto; transform:translateX(-50%); width:88vw; bottom:4%; }
 }
+
+@media (max-width:720px){
+  #work{ padding-bottom:20px; }
+  #playground-teaser{ margin-top:0; padding-top:24px; }
+}
