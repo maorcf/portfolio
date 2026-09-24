@@ -49,7 +49,6 @@ img,svg{ display:block; max-width:100%; }
 .hero-card{
   position:relative; overflow:hidden;
   background:var(--cream);
-  border:1.5px solid var(--ink);
   border-radius:22px;
   background-image: radial-gradient(rgba(20,20,20,0.16) 1px, transparent 1px);
   background-size:22px 22px;
