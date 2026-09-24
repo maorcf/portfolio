@@ -203,8 +203,8 @@ for (let i = 0; i < PARTICLE_COUNT; i++) {
     x: Math.random() * window.innerWidth,
     y: Math.random() * window.innerHeight,
 
-    vx: (Math.random() - 0.5) * 0.25,
-    vy: (Math.random() - 0.5) * 0.25,
+    vx: (Math.random() - 0.5) * 0.7,
+    vy: (Math.random() - 0.5) * 0.7,
 
     size:
       18 + Math.random() * 18,
@@ -229,7 +229,33 @@ let hand = {
   active: false
 };
 
-const INTERACTION_RADIUS = 180;
+const INTERACTION_RADIUS = 55;
+
+/*
+  Every point on the hand (joints, bones and palm)
+  can touch a letter, not just the palm center.
+*/
+function handTouchPoints(points) {
+  const out = points.slice();
+  HAND_CONNECTIONS.forEach(([a, b]) => {
+    [0.25, 0.5, 0.75].forEach(t => {
+      out.push({
+        x: points[a].x + (points[b].x - points[a].x) * t,
+        y: points[a].y + (points[b].y - points[a].y) * t
+      });
+    });
+  });
+  const palm = [0, 5, 9, 13, 17].map(i => points[i]);
+  const cx = palm.reduce((s, q) => s + q.x, 0) / palm.length;
+  const cy = palm.reduce((s, q) => s + q.y, 0) / palm.length;
+  out.push({ x: cx, y: cy });
+  palm.forEach(q => {
+    [0.35, 0.7].forEach(t => {
+      out.push({ x: cx + (q.x - cx) * t, y: cy + (q.y - cy) * t });
+    });
+  });
+  return out;
+}
 
 /*
   Standard 21-point MediaPipe hand
@@ -295,10 +321,10 @@ hands.onResults(results => {
       }))
     );
 
-    handCenters = handSkeletons.map(points => points[9]);
+    handCenters = handSkeletons.flatMap(handTouchPoints);
 
-    hand.x = handCenters[0].x;
-    hand.y = handCenters[0].y;
+    hand.x = handSkeletons[0][9].x;
+    hand.y = handSkeletons[0][9].y;
     hand.active = true;
 
     dismissIntro();
@@ -392,12 +418,12 @@ function updateParticles() {
         p.vx +=
           Math.cos(angle) *
           force *
-          3.5;
+          2.2;
 
         p.vy +=
           Math.sin(angle) *
           force *
-          3.5;
+          2.2;
 
       }
 
@@ -408,8 +434,8 @@ function updateParticles() {
       Friction
     */
 
-    p.vx *= 0.985;
-    p.vy *= 0.985;
+    p.vx *= 0.99;
+    p.vy *= 0.99;
 
 
     /*
@@ -418,11 +444,11 @@ function updateParticles() {
 
     p.vx +=
       (Math.random() - 0.5) *
-      0.01;
+      0.03;
 
     p.vy +=
       (Math.random() - 0.5) *
-      0.01;
+      0.03;
 
 
     /*
@@ -521,22 +547,6 @@ function draw() {
 function drawHandSkeletons() {
 
   handSkeletons.forEach((points, i) => {
-
-    const center = handCenters[i];
-
-    /*
-      Dashed circle showing the
-      interaction radius
-    */
-
-    ctx.save();
-    ctx.setLineDash([6, 6]);
-    ctx.strokeStyle = "rgba(255, 60, 140, 0.85)";
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.arc(center.x, center.y, INTERACTION_RADIUS, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.restore();
 
     /*
       Skeleton connections
