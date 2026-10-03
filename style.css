@@ -829,6 +829,8 @@ footer{ padding:70px 0 60px; }
 /* per-project hero themes */
 .cs-hero-chido{ --hero-bg:linear-gradient(165deg, #FFE8A3 0%, #FDB101 58%, #F29A00 120%); --hero-word:#2A5E21; --ar:0.5625; --hero-fs:clamp(90px, 13vw, 220px); --hero-fs-m:24vw; }
 .cs-hero-filmroll{ --hero-bg:linear-gradient(165deg, #FBF8F3 0%, #F1E7DA 55%, #E6D5C1 120%); --hero-word:#2B1A10; --hero-fs:clamp(70px, 10vw, 170px); --hero-fs-m:17vw; }
+.cs-hero-fireline{ --hero-bg:linear-gradient(165deg, #A4F6DF 0%, #21C9CF 52%, #078DA8 120%); --hero-word:#FFD840; --hero-font:'Lilita One', sans-serif; --hero-fs:clamp(70px, 10vw, 180px); --hero-fs-m:16vw; }
+.cs-hero-fireline .cs-hero-word{ text-transform:uppercase; letter-spacing:.01em; -webkit-text-stroke:.05em #102B3B; paint-order:stroke fill; text-shadow:0 .06em 0 #102B3B; }
 .cs-hero-austrip{ --hero-bg:linear-gradient(165deg, #FFC7C7 0%, #FF9C9C 55%, #FF6F6F 120%); --hero-word:#FFFFFF; --hero-fs:clamp(70px, 9.5vw, 170px); --hero-fs-m:18vw; }
 .cs-hero-austrip .cs-hero-word{ text-shadow:0 4px 36px rgba(200,60,70,0.35); }
 .cs-hero-browser{
