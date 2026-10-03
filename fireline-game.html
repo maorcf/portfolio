@@ -2385,16 +2385,24 @@ const CW = 2.6, FH = 3.0;
 const LEVELS = [
   { id: 1, name: "Maple Street House", sub: "Training call. A small family home, two fires and one person at a window.", cols: 3, floors: 2, style: "siding", roof: "gable", sky: "day", time: 150, yard: 2.4,
     grow: 4.5, spread: 0.035, fires: [[0, 0, 45], [2, 1, 35]], people: [[1, 1, "person"]], gas: [], props: [], hydrant: -6.5, truck: -13, flare: 0 },
-  { id: 2, name: "Market Bakery", sub: "Cakes on the sidewalk, a gas tank on the balcony and a dog waiting for you.", cols: 4, floors: 2, style: "bakery", roof: "flat", sky: "golden", time: 150,
+  { id: 2, name: "Market Bakery", tip: "Keep the cakes dry and watch the gas tank!", sub: "Cakes on the sidewalk, a gas tank on the balcony and a dog waiting for you.", cols: 4, floors: 2, style: "bakery", roof: "flat", sky: "golden", time: 150,
     grow: 6.5, spread: 0.06, fires: [[1, 0, 50], [3, 0, 40], [2, 1, 30]], people: [[0, 1, "person"], [3, 1, "dog"]], gas: [[2, 1]], props: [["cake", -2.6, 2.1], ["cake", 2.8, 2.1]], hydrant: 7, truck: -14, flare: 0 },
-  { id: 3, name: "Riverside Apartments", sub: "Five floors at night. Only the jet reaches the top floors.", cols: 4, floors: 5, style: "apartment", roof: "flat", sky: "night", time: 180,
+  { id: 3, name: "Riverside Apartments", tip: "The jet reaches the high floors. Switch nozzles with the button below", sub: "Five floors at night. Only the jet reaches the top floors.", cols: 4, floors: 5, style: "apartment", roof: "flat", sky: "night", time: 180,
     grow: 7, spread: 0.075, fires: [[1, 0, 50], [2, 2, 45], [0, 3, 40], [3, 1, 35]], people: [[1, 1, "person"], [3, 2, "person"], [0, 4, "person"], ["roof", 1.2, "cat"]], gas: [[0, 2], [3, 3]],
     props: [["laptop", 2.6, 2.2], ["books", -2.8, 2.2]], hydrant: -8.5, truck: -15, flare: 32 },
-  { id: 4, name: "Garage Blaze", sub: "Burning oil. Foam nozzle.", soon: true },
-  { id: 5, name: "Old Library", sub: "Books in every window.", soon: true },
-  { id: 6, name: "Night Hotel", sub: "Many windows, many guests.", soon: true },
-  { id: 7, name: "Forest Cabin", sub: "Fire jumps to the trees.", soon: true },
-  { id: 8, name: "Skyscraper", sub: "The boss level.", soon: true }
+  { id: 4, name: "Garage Blaze", tip: "Gas cans glow red when they get hot. Spray them to cool them down!", sub: "Gas cans next to the garage. Cool them down before they blow!", cols: 3, floors: 2, style: "brick", roof: "gable", sky: "golden", time: 150, yard: 2.4,
+    grow: 6.5, spread: 0.065, fires: [[0, 0, 55], [2, 0, 45], [0, 1, 25]], people: [[2, 1, "person"], [1, 1, "dog"]], gas: [[0, 0], [2, 0], [0, 1]], props: [], hydrant: 6.5, truck: -13, flare: 0 },
+  { id: 5, name: "Old Library", tip: "Don't spray the book carts on the sidewalk!", sub: "Five fires in a wide old building. Keep the book carts on the sidewalk dry.", cols: 4, floors: 3, style: "brick", roof: "flat", sky: "day", time: 170,
+    grow: 7, spread: 0.07, fires: [[0, 0, 50], [3, 0, 45], [2, 1, 45], [0, 2, 35], [3, 2, 30]], people: [[1, 2, "person"], [3, 1, "person"], ["roof", -2.2, "cat"]], gas: [[2, 2]],
+    props: [["books", -3.6, 2.2], ["books", 3.6, 2.2]], hydrant: -9, truck: -16, flare: 0 },
+  { id: 6, name: "Night Hotel", tip: "Use the jet for the top floors and watch the gas tanks!", sub: "Six floors of guests at night. Fires on every side.", cols: 4, floors: 6, style: "apartment", roof: "flat", sky: "night", time: 190,
+    grow: 7.5, spread: 0.08, fires: [[0, 0, 50], [3, 1, 45], [2, 2, 45], [1, 4, 40], [3, 5, 35]], people: [[1, 1, "person"], [3, 2, "person"], [0, 3, "person"], [2, 4, "person"], [2, 5, "dog"]], gas: [[2, 1], [0, 4]],
+    props: [["laptop", 3.8, 2.2], ["laptop", -3.8, 2.2]], hydrant: 9, truck: -17, flare: 36 },
+  { id: 7, name: "Dry Summer House", tip: "This fire spreads fast. Hit the biggest flames first!", sub: "A hot, dry evening. The fire spreads very fast, so keep moving.", cols: 3, floors: 2, style: "siding", roof: "gable", sky: "golden", time: 140, yard: 2.4,
+    grow: 9.5, spread: 0.13, fires: [[0, 0, 60], [2, 1, 55]], people: [[0, 1, "person"], [2, 0, "cat"], [1, 1, "dog"]], gas: [[2, 1]], props: [], hydrant: -6.5, truck: -13, flare: 0 },
+  { id: 8, name: "City Tower", tip: "Final call! Save everyone and keep the gas tanks cool.", sub: "The big one. Six floors, gas tanks and a crowd waiting for the ladder.", cols: 4, floors: 6, style: "apartment", roof: "flat", sky: "night", time: 220,
+    grow: 8.5, spread: 0.1, fires: [[0, 0, 55], [3, 0, 50], [2, 1, 50], [0, 3, 45], [3, 3, 45], [2, 4, 40], [1, 5, 35]], people: [[1, 1, "person"], [3, 1, "person"], [1, 3, "person"], [3, 4, "person"], [0, 5, "person"], [3, 5, "cat"], ["roof", 2.5, "dog"]],
+    gas: [[0, 2], [3, 2], [2, 3]], props: [["laptop", 3.8, 2.2], ["books", -3.8, 2.2]], hydrant: -9, truck: -17, flare: 30 }
 ];
 
 /* ================= world state ================= */
@@ -2693,8 +2701,7 @@ function startLevel(L) {
   show(null);
   AudioFX.siren();
   if (L.id === 1) setTimeout(() => hint("aim", "Hold your finger on the screen to spray the fire", 4), 600);
-  else if (L.id === 3) setTimeout(() => toast("The jet reaches the high floors. Switch nozzles with the button below", "good", 4), 600);
-  else setTimeout(() => toast("Keep the cakes dry and watch the gas tank!", "good", 3), 600);
+  else if (L.tip) setTimeout(() => toast(L.tip, "good", 3.5), 600);
 }
 function endLevel(win, reason) {
   G.mode = "end"; G.spraying = false; stream.visible = false; $("toast").className = ""; toastT = 0;
@@ -3092,8 +3099,10 @@ function frame() {
     G.lookAt.set(0, B.bh * 0.55, 0); camera.lookAt(G.lookAt);
   } else {
     const camX = G.px - 0.25;
-    camera.position.set(camX + 1.1, 3.0, 19.6);
-    const base = _v.set(G.px * 0.85 + 0.4, Math.min(B.bh * 0.5 + 1.6, 6.8), 0);
+    // tall or wide buildings: step the camera back and look a little higher so the whole facade fits
+    const back = Math.max(0, (B.bh - 15.5) * 1.1, (B.bw - 11.4) * 1.6);
+    camera.position.set(camX + 1.1, 3.0 + back * 0.25, 19.6 + back);
+    const base = _v.set(G.px * 0.85 + 0.4, Math.min(B.bh * 0.5 + 1.6, 6.8 + back * 0.55), 0);
     if (G.spraying && playing) base.lerp(G.aim, 0.28);
     G.lookAt.lerp(base, 1 - Math.exp(-dt * 3));
     camera.lookAt(G.lookAt);
