@@ -131,6 +131,11 @@ svg.i { width: 1em; height: 1em; display: block; flex: none; }
 .edge.l { --nx: -5px; } .edge.r { --nx: 5px; }
 
 /* message banner: navy card; "good" hints use the cream specialty card, "bad" goes red */
+#aim-ret { position: absolute; left: 0; top: 0; width: 46px; height: 46px; margin: -23px 0 0 -23px; pointer-events: none; z-index: 4; opacity: 0; transition: opacity .12s; }
+#aim-ret.on { opacity: 1; }
+#aim-ret::before { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px rgba(16,43,59,.55), inset 0 0 0 2px rgba(16,43,59,.35); }
+#aim-ret::after { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: var(--yellow, #ffd840); box-shadow: 0 0 0 2px rgba(16,43,59,.6); }
+#aim-ret i { position: absolute; left: 50%; width: 3px; margin-left: -1.5px; top: 46px; height: 0; background: linear-gradient(rgba(255,255,255,.7), rgba(255,255,255,0)); border-radius: 2px; }
 #toast { position: absolute; left: 50%; top: calc(env(safe-area-inset-top, 0px) + 172px); transform: translateX(-50%) scale(.6); width: max-content; max-width: min(84vw, 400px);
   padding: 9px 18px 10px; border-radius: 6px; text-align: center; text-wrap: balance; pointer-events: none; opacity: 0; transition: opacity .18s, transform .3s cubic-bezier(.2, 1.7, .4, 1);
   font-size: 17px; line-height: 1.2; color: #fff; text-shadow: 0 2px 0 #000; text-transform: uppercase;
@@ -398,6 +403,7 @@ svg.i { width: 1em; height: 1em; display: block; flex: none; }
 
   <div id="popups"></div>
   <div id="flash"></div>
+  <div id="aim-ret"><i></i></div>
   <div id="toast"></div>
 
   <section class="screen" id="scr-title">
@@ -2700,11 +2706,11 @@ function startLevel(L) {
   updateHud(true);
   show(null);
   AudioFX.siren();
-  if (L.id === 1) setTimeout(() => hint("aim", "Hold your finger on the screen to spray the fire", 4), 600);
+  if (L.id === 1) setTimeout(() => hint("aim", "Hold your finger just below the fire to spray it", 4), 600);
   else if (L.tip) setTimeout(() => toast(L.tip, "good", 3.5), 600);
 }
 function endLevel(win, reason) {
-  G.mode = "end"; G.spraying = false; stream.visible = false; $("toast").className = ""; toastT = 0;
+  G.mode = "end"; G.spraying = false; stream.visible = false; $("aim-ret").classList.remove("on"); $("toast").className = ""; toastT = 0;
   const L = G.level;
   let stars = 0;
   if (win) { stars = 1; if (G.strikes === 0 && G.rescued === G.toRescue) stars++; if (G.time > L.time * 0.4) stars++; }
@@ -2763,13 +2769,24 @@ let sprayPointer = null;
 canvas.addEventListener("pointerdown", (e) => {
   if (G.mode !== "play") return;
   AudioFX.init();
-  sprayPointer = e.pointerId; canvas.setPointerCapture(e.pointerId);
+  sprayPointer = e.pointerId; try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
   setAimFromEvent(e); G.spraying = true; G.refilling = false;
 });
 canvas.addEventListener("pointermove", (e) => { if (e.pointerId === sprayPointer) setAimFromEvent(e); });
-const endSpray = (e) => { if (e.pointerId === sprayPointer) { sprayPointer = null; G.spraying = false; } };
+const endSpray = (e) => { if (e.pointerId === sprayPointer) { sprayPointer = null; G.spraying = false; $("aim-ret").classList.remove("on"); } };
 canvas.addEventListener("pointerup", endSpray); canvas.addEventListener("pointercancel", endSpray);
-function setAimFromEvent(e) { G.aimNdc.set((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1); }
+// on touch screens the aim point sits above the finger so the finger never hides what is being sprayed
+const AIM_LIFT = 100;
+function setAimFromEvent(e) {
+  const touch = e.pointerType !== "mouse";
+  const lift = touch ? Math.min(AIM_LIFT, window.innerHeight * 0.13) : 0;
+  const x = e.clientX, y = Math.max(8, e.clientY - lift);
+  G.aimNdc.set((x / window.innerWidth) * 2 - 1, -(y / window.innerHeight) * 2 + 1);
+  const r = $("aim-ret");
+  r.style.transform = `translate(${x}px, ${y}px)`;
+  r.querySelector("i").style.height = Math.max(0, lift - 34) + "px";
+  r.classList.remove("on");
+}
 
 $("btn-nozzle").addEventListener("click", () => { setNozzle(1 - G.nozzle); AudioFX.click(); });
 // refill: tap to fill the tank from the engine; spraying again stops the refill
@@ -3215,7 +3232,7 @@ function brief(L) {
   $("br-howto").innerHTML = HOWTO.map(([ic, t]) => `<div><span class="ib"><svg class="i"><use href="#${ic}"/></svg></span><span>${t}</span></div>`).join("");
   show("scr-brief");
 }
-function pause() { if (G.mode !== "play") return; G.mode = "pause"; G.spraying = false; sprayPointer = null; show("scr-pause"); }
+function pause() { if (G.mode !== "play") return; G.mode = "pause"; G.spraying = false; sprayPointer = null; $("aim-ret").classList.remove("on"); show("scr-pause"); }
 function toTitle() { G.mode = "title"; buildLevel(LEVELS[0]); G.demoT = 0; show("scr-title"); }
 function toLevels() { if (G.mode !== "title") { G.mode = "title"; buildLevel(LEVELS[0]); } renderLevels(); show("scr-levels"); }
 
