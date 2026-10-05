@@ -273,7 +273,7 @@ if(floatingNav || backToTop){
 
 (function(){
   var card = document.querySelector('.hero-frame-outer .hero-card');
-  if(!card || !document.querySelector('.hero')) return;
+  if(!card || !document.querySelector('.hero') || card.querySelector('.liquid-canvas')) return; // the liquid headline replaces the dot trail
   if(window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

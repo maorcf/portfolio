@@ -854,3 +854,13 @@ footer{ padding:70px 0 60px; }
   #work{ padding-bottom:20px; }
   #playground-teaser{ margin-top:0; padding-top:24px; }
 }
+
+/* ---------- HERO LIQUID HEADLINE (hero-liquid.js) ---------- */
+.hero{ z-index:auto; }
+.hero-card > .liquid-canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:4; pointer-events:none; border-radius:inherit; }
+.hero h1, .hero .lead{ position:relative; z-index:3; }
+.hero-card.liquid-on .hero h1 .char{ transition:none; }
+/* the canvas paints the headline (so letters can inflate); the DOM text stays for layout, selection and screen readers */
+.hero-card.liquid-on .hero h1, .hero-card.liquid-on .hero h1 *{ color:transparent; }
+.hero-card.liquid-on .hero h1 .char:hover{ transform:none; }
+.hero .hero-actions{ position:relative; z-index:6; }
