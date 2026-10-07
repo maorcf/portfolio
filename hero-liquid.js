@@ -23,16 +23,16 @@
   var HEAD = '#version 300 es\nprecision highp float;in vec2 vUv;out vec4 o;\n';
 
   var FS = {
+    /* additive gaussian, blended straight into the field and scissored to the blob's box */
     splat: HEAD +
-      'uniform sampler2D uTarget;uniform float uAspect;uniform vec2 uPoint;uniform vec3 uValue;uniform float uRadius;uniform vec2 uDir;uniform float uStretch;uniform float uCap;' +
+      'uniform float uAspect;uniform vec2 uPoint;uniform vec3 uValue;uniform float uRadius;uniform vec2 uDir;uniform float uStretch;' +
       'void main(){vec2 d=vUv-uPoint;d.x*=uAspect;float a=dot(d,uDir);float p=dot(d,vec2(-uDir.y,uDir.x));' +
-      'float e=exp(-(a*a/uStretch+p*p)/uRadius);vec3 b=texture(uTarget,vUv).xyz+uValue*e;' +
-      'if(uCap>0.)b.x=min(b.x,uCap);o=vec4(b,1.);}',
+      'float e=exp(-(a*a/uStretch+p*p)/uRadius);o=vec4(uValue*e,0.);}',
 
     advect: HEAD +
       'uniform sampler2D uVelocity;uniform sampler2D uSource;uniform vec2 uTexel;uniform float uDt;uniform float uDissipation;' +
-      'uniform vec4 uZone;uniform float uZoneFade;uniform sampler2D uText;uniform vec4 uTextRect;uniform float uCling;' +
-      'void main(){vec2 c=vUv-uDt*texture(uVelocity,vUv).xy*uTexel;vec4 r=texture(uSource,c);' +
+      'uniform vec4 uZone;uniform float uZoneFade;uniform sampler2D uText;uniform vec4 uTextRect;uniform float uCling;uniform float uCap;' +
+      'void main(){vec2 c=vUv-uDt*texture(uVelocity,vUv).xy*uTexel;vec4 r=texture(uSource,c);if(uCap>0.)r.x=min(r.x,uCap);' +
       'float diss=uDissipation;' +
       'vec2 q=max(uZone.xy-vUv,vUv-uZone.zw);float out_=smoothstep(0.,.06,max(q.x,q.y));diss+=out_*uZoneFade;' +
       'vec2 tu=(vUv-uTextRect.xy)/uTextRect.zw;float t=(tu.x>0.&&tu.x<1.&&tu.y>0.&&tu.y<1.)?texture(uText,tu).a:0.;' +
@@ -98,7 +98,7 @@
       'float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);' +
       'return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}' +
       'float fbm(vec2 p){float s=0.,a=.5;for(int i=0;i<4;i++){s+=a*noise(p);p=p*2.03+17.1;a*=.5;}return s;}' +
-      'float field(vec2 uv){float d=texture(uDye,uv).x;vec2 px=uv*uSize;' +
+      'float field(vec2 uv){float d=texture(uDye,uv).x;if(d<.05)return d;vec2 px=uv*uSize;' +
       'float n=fbm(px*.012+vec2(uTime*.07,-uTime*.05))-.5;return d+n*.13*smoothstep(.05,.45,d);}' +
       'float height(float f){float x=max(f-.3,0.);return 1.-exp(-x*3.2);}' +
       /* inflated headline: each letter is warped around its own centre (independent x/y) and its
@@ -131,14 +131,14 @@
       'return vec4(mix(bg,h.rgb,h.a),max(t.a,h.a));}' +
       'void main(){vec2 uv=vUv;vec2 px=uv*uSize;vec2 e=vec2(3.5/uSize.x,3.5/uSize.y);' +
       'float f=field(uv);float H=height(f);' +
-      'float hx=height(field(uv+vec2(e.x,0.)))-height(field(uv-vec2(e.x,0.)));' +
-      'float hy=height(field(uv+vec2(0.,e.y)))-height(field(uv-vec2(0.,e.y)));' +
-      'vec3 n=normalize(vec3(-hx*2.6,-hy*2.6,1.));' +
       'float aa=fwidth(f)*1.2+1e-3;float cut=smoothstep(uTopCut,uTopCut+16.,uSize.y-px.y);float alpha=smoothstep(.3-aa,.3+aa,f)*cut;' +
       /* cast shadow on paper (light comes from upper left) */
       'float sh=texture(uDye,uv+vec2(-7.,9.)/uSize).x;float shadow=smoothstep(.3,.75,sh)*.2*cut;' +
       'vec4 hd=headShaded(px);vec4 base=vec4(hd.rgb*hd.a,hd.a)+vec4(0.,0.,0.,shadow*(1.-hd.a));' +
       'if(alpha<=0.){o=base;return;}' +
+      'float hx=height(field(uv+vec2(e.x,0.)))-height(field(uv-vec2(e.x,0.)));' +
+      'float hy=height(field(uv+vec2(0.,e.y)))-height(field(uv-vec2(0.,e.y)));' +
+      'vec3 n=normalize(vec3(-hx*2.6,-hy*2.6,1.));' +
       'float th=clamp(H,0.,1.);' +
       /* refraction: bend the headline underneath through the surface */
       'vec2 off=-n.xy*(10.+38.*th);vec4 sc=scene(px+off);' +
@@ -303,11 +303,16 @@
 
   /* ---------------- sizing ---------------- */
   var W = 1, H = 1, dpr = 1, vel, dye, prs, div, crl, cardOffset = [0,0];
-  function resize(){
-    var r = host.getBoundingClientRect();
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = r.width; H = r.height;
+  var dprCap = 2, fontSize = 50, hostRect = null;
+  function sizeCanvas(){
+    dpr = Math.min(window.devicePixelRatio || 1, dprCap);
     canvas.width = Math.round(W*dpr); canvas.height = Math.round(H*dpr);
+  }
+  function resize(){
+    var r = hostRect = host.getBoundingClientRect();
+    W = r.width; H = r.height;
+    fontSize = parseFloat(getComputedStyle(heading).fontSize) || 50;
+    sizeCanvas();
     var simScale = Math.min(1, 240/Math.max(1, Math.min(W,H)));
     var sw = Math.max(16, Math.round(W*simScale)), sh = Math.max(16, Math.round(H*simScale));
     var dyeScale = Math.min(1, 720/Math.max(W,H));
@@ -328,13 +333,12 @@
   var target = { x:0, y:0 }, blob = { x:0, y:0, vx:0, vy:0 }, inside = false, hasPointer = false;
   var lastInput = 0, zoneUv = [0,0,1,1], topCut = 0;
   var header = host.querySelector('header');
-  function headingZone(){
-    var hr = host.getBoundingClientRect();
-    return { l:0, t:topCut, r:hr.width, b:hr.height, hr:hr };
-  }
+  // reading layout on every pointermove forces style/layout work; only re-measure after a scroll
+  window.addEventListener('scroll', function(){ hostRect = null; }, { passive:true });
   function onMove(e){
-    var z = headingZone(), x = e.clientX - z.hr.left, y = e.clientY - z.hr.top;
-    var now = x > z.l && x < z.r && y > z.t && y < z.b;
+    var hr = hostRect || (hostRect = host.getBoundingClientRect());
+    var x = e.clientX - hr.left, y = e.clientY - hr.top;
+    var now = x > 0 && x < hr.width && y > topCut && y < hr.height;
     if(now && !inside){ blob.x = x; blob.y = y; blob.vx = blob.vy = 0; }
     inside = now; target.x = x; target.y = y; hasPointer = true;
     lastInput = performance.now();
@@ -389,28 +393,38 @@
     }
   }
   function letterUniforms(U){
-    var n = glyphs.length;
-    for(var i = 0; i < n; i++){
+    var n = 0;
+    for(var i = 0; i < glyphs.length; i++){
       var g = glyphs[i];
-      letterBuf[i*4] = g.x; letterBuf[i*4+1] = H - g.y; letterBuf[i*4+2] = g.hw; letterBuf[i*4+3] = g.hh;
-      shapeBuf[i*4] = Math.max(.5, g.sx); shapeBuf[i*4+1] = Math.max(.5, g.sy); shapeBuf[i*4+2] = Math.max(0, g.p); shapeBuf[i*4+3] = 0;
+      if(g.p < .002) continue;
+      letterBuf[n*4] = g.x; letterBuf[n*4+1] = H - g.y; letterBuf[n*4+2] = g.hw; letterBuf[n*4+3] = g.hh;
+      shapeBuf[n*4] = Math.max(.5, g.sx); shapeBuf[n*4+1] = Math.max(.5, g.sy); shapeBuf[n*4+2] = g.p; shapeBuf[n*4+3] = 0;
+      n++;
     }
     gl.uniform4fv(U['uLetters[0]'], letterBuf); gl.uniform4fv(U['uShape[0]'], shapeBuf); gl.uniform1i(U.uCount, n);
   }
 
   /* ---------------- simulation ---------------- */
+  /* Splats used to redraw both whole fields (twice per splat, up to ~25 splats a frame).
+     Now each one is added in place with blending, and only inside the box where the
+     gaussian is non-zero (exp(-9) ~ 1e-4 at the edge). The dye cap moved into advect. */
+  function scissorTo(target, x, y, hw, hh){
+    var sx = target.w/W, sy = target.h/H;
+    var x0 = Math.max(0, Math.floor((x - hw)*sx)), x1 = Math.min(target.w, Math.ceil((x + hw)*sx));
+    var y0 = Math.max(0, Math.floor((H - y - hh)*sy)), y1 = Math.min(target.h, Math.ceil((H - y + hh)*sy));
+    gl.scissor(x0, y0, Math.max(0, x1 - x0), Math.max(0, y1 - y0));
+  }
   function splat(x, y, dvx, dvy, amount, radius, stretch, dirx, diry){
     var u = x/W, v = 1 - y/H, aspect = W/H;
+    var reach = 3*Math.sqrt(Math.max(1, stretch))*radius + 2;
     gl.useProgram(P.splat.p); var U = P.splat.u;
     gl.uniform1f(U.uAspect, aspect); gl.uniform2f(U.uPoint, u, v);
     gl.uniform2f(U.uDir, dirx, diry); gl.uniform1f(U.uStretch, stretch);
     gl.uniform1f(U.uRadius, (radius/H)*(radius/H));
-    gl.uniform1i(U.uTarget, bindTex(0, vel.read.tex));
-    gl.uniform3f(U.uValue, dvx, dvy, 0); gl.uniform1f(U.uCap, 0);
-    draw(vel.write); vel.swap();
-    gl.uniform1i(U.uTarget, bindTex(0, dye.read.tex));
-    gl.uniform3f(U.uValue, amount, 0, 0); gl.uniform1f(U.uCap, 1.35);
-    draw(dye.write); dye.swap();
+    gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE); gl.enable(gl.SCISSOR_TEST);
+    if(dvx || dvy){ gl.uniform3f(U.uValue, dvx, dvy, 0); scissorTo(vel, x, y, reach, reach); draw(vel.read); }
+    if(amount){ gl.uniform3f(U.uValue, amount, 0, 0); scissorTo(dye, x, y, reach, reach); draw(dye.read); }
+    gl.disable(gl.SCISSOR_TEST); gl.disable(gl.BLEND);
   }
 
   function step(dt, t){
@@ -450,10 +464,10 @@
     gl.uniform1i(U.uText, bindTex(2, headTex)); gl.uniform4fv(U.uTextRect, textRect);
     gl.uniform4fv(U.uZone, zoneUv);
     gl.uniform1i(U.uVelocity, bindTex(0, vel.read.tex)); gl.uniform1i(U.uSource, bindTex(1, vel.read.tex));
-    gl.uniform1f(U.uDissipation, 3.6); gl.uniform1f(U.uZoneFade, 4); gl.uniform1f(U.uCling, 0);
+    gl.uniform1f(U.uDissipation, 3.6); gl.uniform1f(U.uZoneFade, 4); gl.uniform1f(U.uCling, 0); gl.uniform1f(U.uCap, 0);
     draw(vel.write); vel.swap();
     gl.uniform1i(U.uVelocity, bindTex(0, vel.read.tex)); gl.uniform1i(U.uSource, bindTex(1, dye.read.tex));
-    gl.uniform1f(U.uDissipation, inside ? .6 : 1.4); gl.uniform1f(U.uZoneFade, 6); gl.uniform1f(U.uCling, .2);
+    gl.uniform1f(U.uDissipation, inside ? .6 : 1.4); gl.uniform1f(U.uZoneFade, 6); gl.uniform1f(U.uCling, .2); gl.uniform1f(U.uCap, 1.35);
     draw(dye.write); dye.swap();
   }
 
@@ -471,13 +485,21 @@
     draw(null);
   }
 
-  var running = false, visible = true, last = 0, frame = 0;
-  function wake(){ if(!running && visible){ running = true; last = performance.now(); requestAnimationFrame(loop); } }
+  var running = false, visible = true, last = 0, frame = 0, slowSum = 0, slowN = 0;
+  function wake(){ if(!running && visible){ running = true; last = performance.now(); frame = 0; requestAnimationFrame(loop); } }
+  /* if the GPU can't keep up, render the canvas at a lower pixel density instead of stuttering */
+  function adapt(ms){
+    if(frame < 8 || dpr <= 1) return;
+    slowSum += ms; slowN++;
+    if(slowN < 30) return;
+    if(slowSum/slowN > 24){ dprCap = Math.max(1, dpr - .5); sizeCanvas(); }
+    slowSum = slowN = 0;
+  }
   function loop(now){
     if(!visible){ running = false; return; }
+    adapt(now - last);
     var dt = Math.min(1/30, (now - last)/1000); last = now; frame++;
     var t = now/1000;
-    var z = headingZone();
     zoneUv = [-1, -1, 2, 1 - topCut/H]; // the hero card below the header
 
     grow(dt);
@@ -490,8 +512,7 @@
       blob.x += blob.vx*dt; blob.y += blob.vy*dt;
       var dx = blob.x - px, dy = blob.y - py, dist = Math.hypot(dx, dy);
       var speed = Math.hypot(blob.vx, blob.vy);
-      var fs = parseFloat(getComputedStyle(heading).fontSize) || 50;
-      var rad = fs*(.34 + Math.min(.3, speed/2600));
+      var rad = fontSize*(.34 + Math.min(.3, speed/2600));
       var dirx = speed > 1 ? blob.vx/speed : 1, diry = speed > 1 ? -blob.vy/speed : 0;
       var stretch = 1 + Math.min(3.5, speed/450);
       var steps = Math.max(1, Math.min(10, Math.ceil(dist/(rad*.35))));
