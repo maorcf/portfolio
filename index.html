@@ -14,7 +14,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=206">
+<link rel="stylesheet" href="style.css?v=207">
+<script>try{if(localStorage.getItem('workView')==='index')document.documentElement.setAttribute('data-work-view','index');}catch(e){}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -103,7 +104,13 @@
 
   <!-- WORK -->
   <section id="work">
-    <div class="section-head"><span class="eyebrow-label">Selected work</span></div>
+    <div class="section-head work-head">
+      <span class="eyebrow-label">Selected work</span>
+      <div class="view-switch" role="group" aria-label="Project view">
+        <button type="button" data-view="grid" aria-pressed="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.6"/><rect x="9.5" y="1.5" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.6"/><rect x="1.5" y="9.5" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.6"/><rect x="9.5" y="9.5" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.6"/></svg>Grid</button>
+        <button type="button" data-view="index" aria-pressed="false"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M1.5 3.5h13M1.5 8h13M1.5 12.5h13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Index</button>
+      </div>
+    </div>
 
     <div class="project-grid">
       <a href="work-chido.html" class="project card">
@@ -246,7 +253,7 @@
 </nav>
 
 <script src="hero-liquid.js?v=1"></script>
-<script src="script.js?v=109"></script>
+<script src="script.js?v=110"></script>
 
 </body>
 </html>

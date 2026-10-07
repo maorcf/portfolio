@@ -407,3 +407,66 @@ if(floatingNav || backToTop){
     items.forEach(function(e){ io.observe(e); });
   }
 })();
+
+(function(){
+  var sw = document.querySelector('.view-switch');
+  var grid = document.querySelector('.project-grid');
+  if(!sw || !grid) return;
+  var root = document.documentElement;
+  var btns = sw.querySelectorAll('button');
+
+  function current(){ return root.getAttribute('data-work-view') === 'index' ? 'index' : 'grid'; }
+  function sync(){ btns.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.view === current() ? 'true' : 'false'); }); }
+  function apply(view){
+    if(view === 'index') root.setAttribute('data-work-view', 'index'); else root.removeAttribute('data-work-view');
+    sync();
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var view = b.dataset.view;
+      if(view === current()) return;
+      try{ localStorage.setItem('workView', view); }catch(e){}
+      hidePreview();
+      if(document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        document.startViewTransition(function(){ apply(view); });
+      } else apply(view);
+    });
+  });
+  sync();
+
+  var prev = null, on = false;
+  // Index view: the project cover follows the cursor
+  if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  prev = document.createElement('div');
+  prev.className = 'index-preview'; prev.setAttribute('aria-hidden', 'true');
+  var pimg = document.createElement('img'); pimg.alt = '';
+  prev.appendChild(pimg); document.body.appendChild(prev);
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tx = 0, ty = 0, x = 0, y = 0, raf = 0;
+
+  function place(){ prev.style.transform = 'translate(' + (x + 28).toFixed(1) + 'px,' + (y - 120).toFixed(1) + 'px) rotate(-3deg)'; }
+  function frame(){
+    x += (tx - x) * (reduce ? 1 : 0.18); y += (ty - y) * (reduce ? 1 : 0.18);
+    place();
+    raf = (on && (Math.abs(tx - x) > 0.3 || Math.abs(ty - y) > 0.3)) ? requestAnimationFrame(frame) : 0;
+  }
+  function hidePreview(){ on = false; if(prev) prev.classList.remove('on'); }
+  grid.querySelectorAll('.project').forEach(function(card){
+    var img = card.querySelector('.project-cover-img');
+    if(!img) return;
+    function show(e){
+      if(current() !== 'index') return;
+      pimg.src = img.currentSrc || img.src;
+      if(!on){ x = tx = e.clientX; y = ty = e.clientY; place(); }
+      on = true; prev.classList.add('on');
+    }
+    card.addEventListener('pointerenter', show);
+    card.addEventListener('pointermove', function(e){
+      if(!on){ show(e); if(!on) return; }
+      tx = e.clientX; ty = e.clientY;
+      if(!raf) raf = requestAnimationFrame(frame);
+    });
+    card.addEventListener('pointerleave', hidePreview);
+  });
+  window.addEventListener('scroll', hidePreview, { passive: true });
+})();
