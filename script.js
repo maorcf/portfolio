@@ -100,15 +100,18 @@ if(floatingNav || backToTop){
   function wrapChars(el){
     Array.prototype.forEach.call(Array.prototype.slice.call(el.childNodes), function(node){
       if(node.nodeType === 3){
-        var frag = document.createDocumentFragment();
+        var frag = document.createDocumentFragment(), word = null;
         node.textContent.split('').forEach(function(ch){
           if(ch === ' '){
+            word = null;
             frag.appendChild(document.createTextNode(' '));
           } else {
+            // keep each word's letters together so a line never breaks mid-word
+            if(!word){ word = document.createElement('span'); word.style.whiteSpace = 'nowrap'; frag.appendChild(word); }
             var span = document.createElement('span');
             span.className = 'char';
             span.textContent = ch;
-            frag.appendChild(span);
+            word.appendChild(span);
           }
         });
         node.parentNode.replaceChild(frag, node);
@@ -469,4 +472,60 @@ if(floatingNav || backToTop){
     card.addEventListener('pointerleave', hidePreview);
   });
   window.addEventListener('scroll', hidePreview, { passive: true });
+})();
+
+// Site-wide look: Classic / Editorial (choice saved in localStorage, applied in <head> before paint)
+(function(){
+  var root = document.documentElement;
+  var FONT = 'https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&display=swap';
+  function loadFont(){
+    if(document.getElementById('editorial-font')) return;
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.id = 'editorial-font'; l.href = FONT;
+    document.head.appendChild(l);
+  }
+  loadFont(); // the switch label itself uses the serif
+
+  function makeSwitch(extraClass){
+    var sw = document.createElement('div');
+    sw.className = 'theme-switch' + (extraClass ? ' ' + extraClass : ''); sw.setAttribute('role', 'group'); sw.setAttribute('aria-label', 'Site look');
+    sw.innerHTML = '<span>Look</span><button type="button" data-theme-choice="classic">Classic</button><button type="button" data-theme-choice="editorial">Editorial</button>';
+    return sw;
+  }
+  document.body.appendChild(makeSwitch());
+  // on phones the switch lives in the side menu instead of floating over the content
+  var mnav = document.getElementById('mobileNav');
+  if(mnav) mnav.appendChild(makeSwitch('theme-switch-menu'));
+  var btns = document.querySelectorAll('.theme-switch button');
+
+  function current(){ return root.getAttribute('data-theme') === 'editorial' ? 'editorial' : 'classic'; }
+  function sync(){ btns.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.themeChoice === current() ? 'true' : 'false'); }); }
+  function refreshLayout(){
+    // the liquid hero rasterises the headline from computed styles; re-measure once the new font is in
+    window.dispatchEvent(new Event('resize'));
+    if(document.fonts && document.fonts.load){
+      document.fonts.load('500 80px "Bodoni Moda"').then(function(){ window.dispatchEvent(new Event('resize')); }, function(){});
+    }
+  }
+  function apply(theme){
+    var savedView = null;
+    try{ savedView = localStorage.getItem('workView'); }catch(e){}
+    if(theme === 'editorial'){ root.setAttribute('data-theme', 'editorial'); if(!savedView) root.setAttribute('data-work-view', 'index'); }
+    else { root.removeAttribute('data-theme'); if(!savedView) root.removeAttribute('data-work-view'); }
+    sync();
+    document.querySelectorAll('.view-switch button').forEach(function(b){
+      b.setAttribute('aria-pressed', b.dataset.view === (root.getAttribute('data-work-view') === 'index' ? 'index' : 'grid') ? 'true' : 'false');
+    });
+    refreshLayout();
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var theme = b.dataset.themeChoice;
+      if(theme === current()) return;
+      try{ localStorage.setItem('siteTheme', theme); }catch(e){}
+      if(document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        document.startViewTransition(function(){ apply(theme); });
+      } else apply(theme);
+    });
+  });
+  sync();
 })();

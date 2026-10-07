@@ -7,7 +7,7 @@ Maor Cohen Falah, UX/UI + graphic designer, recently graduated, looking for a fi
 - Hosting: Vercel (project "portfolio", team "MCF"). **Every push to `main` deploys live** within ~30s. The domain redirects to `www.maorcohenfalah.com` (308).
 - Domain bought on Namecheap, DNS → Vercel (GitHub Pages was abandoned).
 - Pages: `index.html`, `about.html`, `playground.html`, `work-chido.html`, `work-pazi.html`, `work-filmroll.html`, `work-austrip.html`, `work-fireline.html`, plus `fireline-game.html`, `playground-hand-particles.html`, and `showreel*/`. All main pages share `style.css` and `script.js`.
-- **Cache-busting (load-bearing):** after any `style.css` / `script.js` edit, bump `?v=N` on every HTML file (`sed -i '' 's/style\.css?v=OLD/style.css?v=NEW/g' *.html`). Current: `style.css?v=207`, `script.js?v=110`.
+- **Cache-busting (load-bearing):** after any `style.css` / `script.js` edit, bump `?v=N` on every HTML file (`sed -i '' 's/style\.css?v=OLD/style.css?v=NEW/g' *.html`). Current: `style.css?v=208`, `script.js?v=111`.
 - Look: cream paper `--cream:#F3EFE4`, ink outlines, neo-brutalist cards, accents violet `#5B4CE0` / lime `#D3F26A` / yellow / rose, Inter font. Hero sits in a lavender frame (`--frame-bg:#C9C2ED`).
 - Maor is preparing the portfolio for **McCann** (ad agency): lead with advertising/graphic-design work (Playground order starts with New Balance posters, Space posters, Wine label).
 
