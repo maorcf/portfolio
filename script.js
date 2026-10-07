@@ -474,21 +474,25 @@ if(floatingNav || backToTop){
   window.addEventListener('scroll', hidePreview, { passive: true });
 })();
 
-// Site-wide look: Classic / Editorial (choice saved in localStorage, applied in <head> before paint)
+// Site-wide look: Classic / Playful (choice saved in localStorage, applied in <head> before paint)
 (function(){
   var root = document.documentElement;
-  var FONT = 'https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&display=swap';
-  function loadFont(){
-    if(document.getElementById('editorial-font')) return;
-    var l = document.createElement('link'); l.rel = 'stylesheet'; l.id = 'editorial-font'; l.href = FONT;
-    document.head.appendChild(l);
+  var FONT = 'https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&display=swap';
+  if(!document.getElementById('theme-font')){
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.id = 'theme-font'; l.href = FONT;
+    document.head.appendChild(l); // the switch label itself uses the script face
   }
-  loadFont(); // the switch label itself uses the serif
+
+  // Playful shows the hero intro as torn paper word scraps
+  var lead = document.querySelector('.hero .lead');
+  if(lead && !lead.querySelector('.scrap')){
+    lead.innerHTML = lead.textContent.trim().split(/\s+/).map(function(w){ return '<span class="scrap">' + w + '</span>'; }).join(' ');
+  }
 
   function makeSwitch(extraClass){
     var sw = document.createElement('div');
     sw.className = 'theme-switch' + (extraClass ? ' ' + extraClass : ''); sw.setAttribute('role', 'group'); sw.setAttribute('aria-label', 'Site look');
-    sw.innerHTML = '<span>Look</span><button type="button" data-theme-choice="classic">Classic</button><button type="button" data-theme-choice="editorial">Editorial</button>';
+    sw.innerHTML = '<span>Look</span><button type="button" data-theme-choice="classic">Classic</button><button type="button" data-theme-choice="playful">Playful</button>';
     return sw;
   }
   document.body.appendChild(makeSwitch());
@@ -497,25 +501,13 @@ if(floatingNav || backToTop){
   if(mnav) mnav.appendChild(makeSwitch('theme-switch-menu'));
   var btns = document.querySelectorAll('.theme-switch button');
 
-  function current(){ return root.getAttribute('data-theme') === 'editorial' ? 'editorial' : 'classic'; }
+  function current(){ return root.getAttribute('data-theme') === 'playful' ? 'playful' : 'classic'; }
   function sync(){ btns.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.themeChoice === current() ? 'true' : 'false'); }); }
-  function refreshLayout(){
-    // the liquid hero rasterises the headline from computed styles; re-measure once the new font is in
-    window.dispatchEvent(new Event('resize'));
-    if(document.fonts && document.fonts.load){
-      document.fonts.load('500 80px "Bodoni Moda"').then(function(){ window.dispatchEvent(new Event('resize')); }, function(){});
-    }
-  }
   function apply(theme){
-    var savedView = null;
-    try{ savedView = localStorage.getItem('workView'); }catch(e){}
-    if(theme === 'editorial'){ root.setAttribute('data-theme', 'editorial'); if(!savedView) root.setAttribute('data-work-view', 'index'); }
-    else { root.removeAttribute('data-theme'); if(!savedView) root.removeAttribute('data-work-view'); }
+    if(theme === 'playful') root.setAttribute('data-theme', 'playful'); else root.removeAttribute('data-theme');
     sync();
-    document.querySelectorAll('.view-switch button').forEach(function(b){
-      b.setAttribute('aria-pressed', b.dataset.view === (root.getAttribute('data-work-view') === 'index' ? 'index' : 'grid') ? 'true' : 'false');
-    });
-    refreshLayout();
+    // the liquid hero rasterises the headline from computed styles; re-measure for the classic look
+    window.dispatchEvent(new Event('resize'));
   }
   btns.forEach(function(b){
     b.addEventListener('click', function(){

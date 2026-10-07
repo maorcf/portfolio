@@ -8,6 +8,7 @@
   var host = card || hero;           // the liquid lives across the whole hero card
   var lead = hero.querySelector('.lead');
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(document.documentElement.getAttribute('data-theme') === 'playful') return; // the Playful look has its own paper-cutout hero
 
   var canvas = document.createElement('canvas');
   canvas.className = 'liquid-canvas';
