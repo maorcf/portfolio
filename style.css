@@ -833,6 +833,8 @@ footer{ padding:70px 0 60px; }
 .cs-hero-fireline .cs-hero-word{ text-transform:uppercase; letter-spacing:.01em; -webkit-text-stroke:.05em #102B3B; paint-order:stroke fill; text-shadow:0 .06em 0 #102B3B; }
 .cs-hero-austrip{ --hero-bg:linear-gradient(165deg, #FFC7C7 0%, #FF9C9C 55%, #FF6F6F 120%); --hero-word:#FFFFFF; --hero-fs:clamp(70px, 9.5vw, 170px); --hero-fs-m:18vw; }
 .cs-hero-austrip .cs-hero-word{ text-shadow:0 4px 36px rgba(200,60,70,0.35); }
+.cs-hero-woom{ --hero-bg:linear-gradient(165deg, #FBE3F7 0%, #EDB4E6 55%, #D98ACF 120%); --hero-word:#451D3F; --hero-fs:clamp(80px, 11vw, 200px); --hero-fs-m:22vw; }
+.cs-hero-woom .cs-hero-word{ font-weight:800; letter-spacing:-0.04em; }
 .cs-hero-browser{
   position:absolute; right:4vw; bottom:5%; width:min(52vw, calc(var(--hh) * 0.86 * 1.3));
   background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 34px 70px -24px rgba(74,22,22,0.5);
