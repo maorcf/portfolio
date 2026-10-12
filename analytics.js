@@ -1,4 +1,4 @@
-/* Vercel Web Analytics, skipped on browsers Maor has marked as his own.
+/* Vercel Web Analytics + Microsoft Clarity, skipped on browsers Maor has marked as his own.
    Visit any page with ?notrack=1 to stop counting this browser, ?track=1 to undo. */
 (function () {
   var KEY = 'mcf-notrack';
@@ -19,4 +19,13 @@
   s.defer = true;
   s.src = '/_vercel/insights/script.js';
   document.head.appendChild(s);
+
+  // Microsoft Clarity: visit length, scroll depth, session recordings.
+  var CLARITY_ID = '';
+  if (!CLARITY_ID) return;
+  (function (c, l, a, r, i, t, y) {
+    c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+    t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+    y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+  })(window, document, 'clarity', 'script', CLARITY_ID);
 })();
