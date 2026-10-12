@@ -21,7 +21,7 @@
   document.head.appendChild(s);
 
   // Microsoft Clarity: visit length, scroll depth, session recordings.
-  var CLARITY_ID = '';
+  var CLARITY_ID = 'ywqrf2hip7';
   if (!CLARITY_ID) return;
   (function (c, l, a, r, i, t, y) {
     c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
