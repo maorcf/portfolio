@@ -866,3 +866,8 @@ footer{ padding:70px 0 60px; }
 .hero-card.liquid-on .hero h1, .hero-card.liquid-on .hero h1 *{ color:transparent; }
 .hero-card.liquid-on .hero h1 .char:hover{ transform:none; }
 .hero .hero-actions{ position:relative; z-index:6; }
+
+/* ---------- PLAYGROUND: tighter image corners ---------- */
+#playground .thumb-grid .thumb img, #playground .thumb-grid .thumb video,
+#playground .side-gallery-track img, #playground .mag-carousel-track img,
+#playground .hp-preview{ border-radius:6px; }
