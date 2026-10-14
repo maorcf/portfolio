@@ -866,3 +866,24 @@ footer{ padding:70px 0 60px; }
 .hero-card.liquid-on .hero h1, .hero-card.liquid-on .hero h1 *{ color:transparent; }
 .hero-card.liquid-on .hero h1 .char:hover{ transform:none; }
 .hero .hero-actions{ position:relative; z-index:6; }
+
+/* ---------- PLAYGROUND: big, showcase-style projects ---------- */
+.maxw-playground{ --maxw:1440px; }
+#playground .project.card{ padding:0; margin-bottom:120px; }
+#playground .project.card:last-child{ margin-bottom:0; }
+#playground .project .desc{ max-width:640px; }
+#playground .thumb-grid{ column-gap:20px; margin-top:28px; }
+#playground .thumb-grid .thumb{ margin-bottom:20px; }
+#playground .thumb-grid .thumb img, #playground .thumb-grid .thumb video{ border-radius:16px; }
+#playground .side-gallery{ margin-top:28px; }
+#playground .side-gallery-track{ gap:20px; }
+#playground .side-gallery-track img{ height:620px; border-radius:16px; }
+#playground .mag-carousel{ margin-top:28px; }
+#playground .mag-carousel-track img{ height:520px; }
+#playground .hp-preview{ margin-top:28px; border-radius:16px; }
+#fashion-festival .thumb img{ max-width:595px; }
+@media (max-width: 640px){
+  #playground .project.card{ margin-bottom:72px; }
+  #playground .side-gallery-track img{ height:320px; }
+  #playground .mag-carousel-track img{ height:280px; }
+}
