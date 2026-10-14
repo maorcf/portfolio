@@ -871,3 +871,26 @@ footer{ padding:70px 0 60px; }
 #playground .thumb-grid .thumb img, #playground .thumb-grid .thumb video,
 #playground .side-gallery-track img, #playground .mag-carousel-track img,
 #playground .hp-preview{ border-radius:6px; }
+
+/* About: pottery teaser above the fold, links down to #hobbies */
+#hobbies{ scroll-margin-top:90px; }
+.pottery-peek{
+  display:inline-flex; align-items:center; gap:14px; margin-top:22px;
+  padding:8px 18px 8px 8px; background:var(--lime); color:var(--ink); text-decoration:none;
+  border:1.5px solid var(--ink); border-radius:999px; box-shadow:3px 3px 0 var(--ink);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.pottery-peek:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--ink); }
+.pottery-peek-thumbs{ display:flex; }
+.pottery-peek-thumbs img{
+  width:44px; height:44px; border-radius:50%; object-fit:cover;
+  border:1.5px solid var(--ink); background:var(--cream);
+}
+.pottery-peek-thumbs img + img{ margin-left:-14px; }
+.pottery-peek-thumbs img:nth-child(1){ transform:rotate(-6deg); }
+.pottery-peek-thumbs img:nth-child(3){ transform:rotate(6deg); }
+.pottery-peek-text{ display:flex; flex-direction:column; font-size:14px; font-weight:600; line-height:1.2; }
+.pottery-peek-text small{ font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; opacity:.6; }
+.pottery-peek-arrow{ font-size:18px; font-weight:700; animation:pottery-bob 1.6s ease-in-out infinite; }
+@keyframes pottery-bob{ 0%,100%{ transform:translateY(-2px); } 50%{ transform:translateY(3px); } }
+@media (prefers-reduced-motion: reduce){ .pottery-peek-arrow{ animation:none; } }
