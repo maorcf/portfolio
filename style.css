@@ -875,4 +875,3 @@ footer{ padding:70px 0 60px; }
 /* About: tighter vertical rhythm so the ceramics peek in on the first screen */
 #about.about{ padding:28px 0 0; }
 #hobbies.about{ padding-top:24px; scroll-margin-top:90px; }
-.about-visual{ border:none; box-shadow:0 14px 30px -18px rgba(20,20,20,0.35); }
