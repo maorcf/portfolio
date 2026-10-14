@@ -871,3 +871,7 @@ footer{ padding:70px 0 60px; }
 #playground .thumb-grid .thumb img, #playground .thumb-grid .thumb video,
 #playground .side-gallery-track img, #playground .mag-carousel-track img,
 #playground .hp-preview{ border-radius:6px; }
+
+/* About: tighter vertical rhythm so the ceramics peek in on the first screen */
+#about.about{ padding:28px 0 0; }
+#hobbies.about{ padding-top:24px; scroll-margin-top:90px; }
