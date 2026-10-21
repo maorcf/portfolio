@@ -41,10 +41,9 @@ img,svg{ display:block; max-width:100%; }
   display:flex;
 }
 .hero-frame-outer.page-frame{ min-height:auto; background:transparent; }
-.hero-frame-outer:not(.page-frame){ position:sticky; top:-20vh; top:-20svh; z-index:0; }
+.hero-frame-outer:not(.page-frame){ position:relative; z-index:0; }
 .page-cover{
   position:relative; z-index:1; background:var(--cream);
-  border-top:1.5px solid var(--ink);
 }
 .hero-card{
   position:relative; overflow:hidden;
