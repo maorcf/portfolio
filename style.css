@@ -835,6 +835,8 @@ footer{ padding:70px 0 60px; }
 .cs-hero-austrip .cs-hero-word{ text-shadow:0 4px 36px rgba(200,60,70,0.35); }
 .cs-hero-woom{ --hero-bg:linear-gradient(165deg, #FBE3F7 0%, #EDB4E6 55%, #D98ACF 120%); --hero-word:#451D3F; --hero-fs:clamp(80px, 11vw, 200px); --hero-fs-m:22vw; }
 .cs-hero-woom .cs-hero-word{ font-weight:800; letter-spacing:-0.04em; }
+.cs-hero-mimi{ --hero-bg:linear-gradient(165deg, #D9EEF8 0%, #8FC9E8 55%, #4F9FCF 120%); --hero-word:#FFFFFF; --hero-fs:clamp(80px, 11vw, 200px); --hero-fs-m:22vw; }
+.cs-hero-mimi .cs-hero-word{ font-weight:600; letter-spacing:-0.03em; text-shadow:0 4px 36px rgba(20,70,110,0.3); }
 .cs-hero-browser{
   position:absolute; right:4vw; bottom:5%; width:min(52vw, calc(var(--hh) * 0.86 * 1.3));
   background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 34px 70px -24px rgba(74,22,22,0.5);
