@@ -124,8 +124,8 @@
       'float sp=pow(max(dot(n,Hd),0.),16.);float rimL=1.-n.z;' +
       'vec3 c=h.rgb+vec3(1.)*sp*.42*I+vec3(.55,.5,.6)*pow(rimL,2.)*.25*I;' +
       'return vec4(c,h.a);}' +
-      'vec4 scene(vec2 px){vec2 c=vec2(px.x,uSize.y-px.y)+uCardOffset;vec2 g=mod(c,22.)-11.;' +
-      'vec3 bg=vec3(.953,.937,.894);bg=mix(bg,vec3(.078),.16*(1.-smoothstep(.6,1.4,length(g))));' +
+      'vec4 scene(vec2 px){vec2 c=vec2(px.x,uSize.y-px.y)+uCardOffset;' +
+      'vec3 bg=vec3(.953,.937,.894);' +
       'vec2 tu=tuv(px);vec4 t=(tu.x>0.&&tu.x<1.&&tu.y>0.&&tu.y<1.)?texture(uText,tu):vec4(0.);' +
       'bg=mix(bg,t.rgb/max(t.a,1e-3),t.a);vec4 h=headShaded(px);' +
       'return vec4(mix(bg,h.rgb,h.a),max(t.a,h.a));}' +

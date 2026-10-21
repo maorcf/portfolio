@@ -50,8 +50,6 @@ img,svg{ display:block; max-width:100%; }
   position:relative; overflow:hidden;
   background:var(--cream);
   border-radius:22px;
-  background-image: radial-gradient(rgba(20,20,20,0.16) 1px, transparent 1px);
-  background-size:22px 22px;
   flex:1;
   display:flex; flex-direction:column;
 }
