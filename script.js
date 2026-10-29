@@ -444,23 +444,40 @@ if(floatingNav || backToTop){
   var heroTrail = document.querySelector('.hero-ethan');
   if(heroTrail && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
     var covers = ['work-chido-cover.jpg?v=2', 'work-pazi-mockup2.jpg', 'work-filmroll-mockup2.jpg', 'work-austrip-mockup2.jpg', 'work-fireline-cover.jpg', 'work-woom-cover.jpg', 'work-mimi-card.jpg'];
-    covers.forEach(function(src){ new Image().src = src; });
-    var ci = 0, lx = null, ly = null, z = 1;
+    var pool = covers.map(function(src){
+      var img = document.createElement('img');
+      img.className = 'hero-trail'; img.alt = ''; img.setAttribute('aria-hidden', 'true'); img.src = src;
+      heroTrail.appendChild(img);
+      return { el: img, timer: 0 };
+    });
+    var ci = 0, z = 1, tx = 0, ty = 0, sx = 0, sy = 0, lx = null, ly = null, inside = false, raf = 0;
+    function place(p, x, y){
+      clearTimeout(p.timer);
+      p.el.style.zIndex = z = z % 900 + 1;
+      p.el.style.setProperty('--x', x.toFixed(1) + 'px');
+      p.el.style.setProperty('--y', y.toFixed(1) + 'px');
+      p.el.classList.remove('in', 'out');
+      void p.el.offsetWidth; // restart the enter transition from its start pose
+      p.el.classList.add('in');
+      p.timer = setTimeout(function(){ p.el.classList.add('out'); }, 650);
+    }
+    function frame(){
+      raf = 0;
+      sx += (tx - sx) * 0.18; sy += (ty - sy) * 0.18;
+      if(lx === null || Math.hypot(sx - lx, sy - ly) > 70){
+        lx = sx; ly = sy;
+        place(pool[ci], sx, sy); ci = (ci + 1) % pool.length;
+      }
+      if(inside || Math.abs(tx - sx) > 0.5 || Math.abs(ty - sy) > 0.5) raf = requestAnimationFrame(frame);
+    }
     heroTrail.addEventListener('pointermove', function(e){
       if(e.pointerType !== 'mouse') return;
-      var r = heroTrail.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top;
-      if(lx !== null && Math.hypot(px - lx, py - ly) < 90) return;
-      lx = px; ly = py;
-      var img = document.createElement('img');
-      img.className = 'hero-trail'; img.alt = ''; img.setAttribute('aria-hidden', 'true');
-      img.src = covers[ci]; ci = (ci + 1) % covers.length;
-      img.style.left = px + 'px'; img.style.top = py + 'px'; img.style.zIndex = z = z % 900 + 1;
-      heroTrail.appendChild(img);
-      requestAnimationFrame(function(){ img.classList.add('in'); });
-      setTimeout(function(){ img.classList.add('out'); }, 900);
-      setTimeout(function(){ img.remove(); }, 1500);
+      var r = heroTrail.getBoundingClientRect();
+      tx = e.clientX - r.left; ty = e.clientY - r.top;
+      if(!inside){ inside = true; sx = tx; sy = ty; }
+      if(!raf) raf = requestAnimationFrame(frame);
     });
-    heroTrail.addEventListener('pointerleave', function(){ lx = ly = null; });
+    heroTrail.addEventListener('pointerleave', function(){ inside = false; lx = ly = null; });
   }
 
   // red dot that trails the mouse
