@@ -1331,9 +1331,9 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 
 /* home hero: sizes and spacing copied from the Framer template (name 100/80/60px, 300px portrait, 24px gaps) */
 .hero.hero-ethan{ padding:24px 24px 96px; gap:24px; }
-.hero .hero-name{ font-size:150px; line-height:.9; letter-spacing:-0.03em; }
+.hero .hero-name{ font-size:130px; line-height:.9; letter-spacing:-0.03em; }
 .hero-portrait{ width:100%; max-width:300px; margin-top:0; }
 .hero.hero-ethan .lead{ margin:0 auto; max-width:420px; font-size:20px; text-wrap:balance; }
 .hero.hero-ethan .hero-actions{ margin-top:0; }
-@media (max-width:1199px){ .hero.hero-ethan{ padding:16px 24px 64px; } .hero .hero-name{ font-size:120px; } .hero.hero-ethan .lead{ font-size:16px; } }
-@media (max-width:809px){ .hero .hero-name{ font-size:26vw; } }
+@media (max-width:1199px){ .hero.hero-ethan{ padding:16px 24px 64px; } .hero .hero-name{ font-size:105px; } .hero.hero-ethan .lead{ font-size:16px; } }
+@media (max-width:809px){ .hero .hero-name{ font-size:23vw; } }
