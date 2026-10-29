@@ -534,3 +534,46 @@ if(floatingNav || backToTop){
   }, { passive:true });
   document.documentElement.addEventListener('mouseleave', function(){ dot.classList.remove('on'); });
 })();
+
+// case study pages: a sticky bar with the project name and its sections, like a table of contents
+(function(){
+  var main = document.querySelector('main.cs2'), toc = main && main.querySelector('.cs2-toc'), hero = main && main.querySelector('.cs2-hero');
+  if(!toc || !hero) return;
+  document.documentElement.classList.add('cs2-page');
+  var bar = document.createElement('nav');
+  bar.className = 'cs2-bar'; bar.setAttribute('aria-label', 'Case study sections');
+  bar.innerHTML = '<div class="cs2-bar-in"><a href="index.html#work" class="cs2-bar-name"><span aria-hidden="true">←</span> ' + main.querySelector('h1').textContent + '</a><div class="cs2-bar-links"></div></div>';
+  var links = bar.querySelector('.cs2-bar-links');
+  toc.querySelectorAll('a').forEach(function(a){ links.appendChild(a.cloneNode(true)); });
+  document.body.appendChild(bar);
+  var shown = false;
+  function onScroll(){
+    var s = hero.getBoundingClientRect().bottom < 0;
+    if(s !== shown){ shown = s; bar.classList.toggle('on', s); }
+  }
+  window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
+  // lazy images above the target can load mid-scroll and push it down, so re-aim a couple of times
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('.cs2-bar-links a, .cs2-toc a');
+    if(!a) return;
+    var t = document.getElementById(a.getAttribute('href').slice(1));
+    if(!t) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior:'smooth' });
+    history.replaceState(null, '', '#' + t.id);
+    [700, 1400, 2200].forEach(function(ms){ setTimeout(function(){ if(Math.abs(t.getBoundingClientRect().top - 56) > 6) t.scrollIntoView({ behavior:'smooth' }); }, ms); });
+  });
+  // highlight the section currently on screen
+  var map = {};
+  links.querySelectorAll('a').forEach(function(a){ var t = document.getElementById(a.getAttribute('href').slice(1)); if(t) map[t.id] = a; });
+  if(!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting || !map[e.target.id]) return;
+      links.querySelectorAll('a.active').forEach(function(x){ x.classList.remove('active'); });
+      var a = map[e.target.id]; a.classList.add('active');
+      if(links.scrollWidth > links.clientWidth) links.scrollTo({ left: a.offsetLeft - 16, behavior: 'smooth' });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+})();

@@ -1253,3 +1253,21 @@ main.cs2{ --cs-tint:#E9E5FB; --cs-accent:var(--red); --band:#F6F5F1; display:blo
 @media (max-width:600px){ .cs2-compare, .cs2-compare.three{ grid-template-columns:1fr; } .cs2-shots.one{ grid-template-columns:1fr; } }
 .cs2-shots.crop img{ height:560px; object-fit:cover; object-position:top; }
 @media (max-width:600px){ .cs2-shots.crop img{ height:320px; } }
+.cs2-bar{
+  position:fixed; top:0; left:0; right:0; z-index:9000; background:rgba(255,255,255,.94);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-bottom:1px solid rgba(0,0,0,.08);
+  transform:translateY(-100%); transition:transform .45s var(--spring);
+}
+.cs2-bar.on{ transform:none; }
+.cs2-bar-in{ display:flex; align-items:center; justify-content:space-between; gap:24px; padding:14px 24px; }
+.cs2-bar-name{ flex-shrink:0; font-size:15px; font-weight:800; color:var(--ink); letter-spacing:-0.01em; }
+.cs2-bar-name span{ color:var(--muted); margin-right:4px; }
+.cs2-bar-links{ display:flex; gap:26px; overflow-x:auto; scrollbar-width:none; }
+.cs2-bar-links::-webkit-scrollbar{ display:none; }
+.cs2-bar-links a{ flex-shrink:0; font-size:14px; font-weight:500; color:#555; transition:color .2s; }
+.cs2-bar-links a:hover, .cs2-bar-links a.active{ color:var(--ink); }
+.cs2-bar-links a.active{ font-weight:600; }
+html.cs2-page .floating-nav{ display:none; }
+.cs2-band, .cs2-outcome{ scroll-margin-top:56px; }
+@media (max-width:600px){ .cs2-bar-in{ padding:12px 16px; gap:16px; } .cs2-bar-links{ gap:18px; } .cs2-bar-links a{ font-size:13px; } }
+html.cs2-page{ scroll-behavior:smooth; }
