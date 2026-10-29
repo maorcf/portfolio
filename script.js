@@ -440,6 +440,37 @@ if(floatingNav || backToTop){
     els.forEach(function(el){ if(el.classList.contains('reveal')) io.observe(el); });
   }
 
+  // work card images open up through a growing, wobbling blob (the template's "Image Blob Reveal":
+  // starts at a quarter size in the center, 3s, ease-out quart, once 50% of the image is on screen)
+  var blobThumbs = document.querySelectorAll('.project-grid .project-cover .thumb');
+  if(blobThumbs.length && window.CSS && CSS.supports('clip-path', 'path("M0 0Z")')){
+    var BLOB = [[0,-.94],[.34,-1.07],[.78,-.82],[.9,-.46],[1.08,-.1],[.88,.38],[.7,.64],[.44,1.02],[.06,.92],[-.29,.91],[-.71,.93],[-1.03,.58],[-1.02,.18],[-1.05,-.2],[-.75,-.48],[-.58,-.7],[-.4,-.96],[-.13,-.93],[0,-.94]];
+    function blobFrame(el, D){
+      var w = el.offsetWidth, h = el.offsetHeight;
+      if(D >= .999 || !w){ el.style.clipPath = ''; return; }
+      var L = Math.max(40, Math.min(w, h) * .26), cx = w / 2, cy = h / 2;
+      var z = .25, te = Math.hypot(cx, cy) / L * 1.55, B = z + (te - z) * D, V = Math.sin(D * Math.PI);
+      var sx = B * (1 + V * .06) * L, sy = B * (1 - V * .035) * L, a = (-8 + D * 13) * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a);
+      var p = BLOB.map(function(q){ var x = q[0] * sx, y = q[1] * sy; return (cx + x * ca - y * sa).toFixed(1) + ' ' + (cy + x * sa + y * ca).toFixed(1); });
+      var d = 'M ' + p[0];
+      for(var i = 1; i < p.length; i += 3) d += ' C ' + p[i] + ', ' + p[i + 1] + ', ' + p[i + 2];
+      el.style.clipPath = 'path("' + d + ' Z")';
+    }
+    var blobIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        blobIO.unobserve(en.target);
+        var el = en.target.querySelector('.thumb'), t0 = performance.now();
+        (function step(now){
+          var o = Math.min(1, (now - t0) / 3000);
+          blobFrame(el, 1 - Math.pow(1 - o, 4));
+          if(o < 1) requestAnimationFrame(step);
+        })(t0);
+      });
+    }, { threshold: .5 });
+    blobThumbs.forEach(function(el){ blobFrame(el, 0); blobIO.observe(el.parentNode); });  // observe the parent: the clip itself shrinks the visible area
+  }
+
   // moving the mouse over the hero leaves a trail of project covers (same recipe as the Framer "Cursor Image Trail":
   // a cover drops at the cursor every ~100px, springs in from half size, stays .5s, then fades out on its own)
   var heroTrail = document.querySelector('.hero-ethan');
