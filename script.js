@@ -469,10 +469,23 @@ if(floatingNav || backToTop){
       if(e.pointerType !== 'mouse') return;
       var r = heroTrail.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
       if(lx === null){ lx = x; ly = y; return; }
+      clearTimeout(idle); idle = setTimeout(fadeAll, 140);
       if(Math.hypot(x - lx, y - ly) < 95) return;
       spawn(x, y); lx = x; ly = y;
     });
-    heroTrail.addEventListener('pointerleave', function(){ lx = ly = null; });
+    // the moment the mouse stops, everything on screen fades out from wherever it is
+    var idle = 0;
+    function fadeAll(){
+      pool.forEach(function(p){
+        var anims = p.el.getAnimations();
+        if(!anims.length) return;
+        var cs = getComputedStyle(p.el), from = { transform: cs.transform, opacity: cs.opacity };
+        anims.forEach(function(a){ a.cancel(); });
+        if(+from.opacity < 0.01) return;
+        p.el.animate([from, { transform: from.transform + ' scale(.9)', opacity: 0 }], { duration: 450, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both' });
+      });
+    }
+    heroTrail.addEventListener('pointerleave', function(){ lx = ly = null; clearTimeout(idle); fadeAll(); });
   }
 
   // red dot that trails the mouse
