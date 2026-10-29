@@ -448,36 +448,31 @@ if(floatingNav || backToTop){
       var img = document.createElement('img');
       img.className = 'hero-trail'; img.alt = ''; img.setAttribute('aria-hidden', 'true'); img.src = src;
       heroTrail.appendChild(img);
-      return { el: img, timer: 0 };
+      return { el: img };
     });
-    var ci = 0, z = 1, tx = 0, ty = 0, sx = 0, sy = 0, lx = null, ly = null, inside = false, raf = 0;
-    function place(p, x, y){
-      clearTimeout(p.timer);
+    var ci = 0, z = 1, lx = null, ly = null;
+    var EASE = 'cubic-bezier(.16,1,.3,1)';
+    function pose(x, y, s){ return 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) translate(-50%,-50%) scale(' + s + ')'; }
+    function spawn(x, y){
+      var p = pool[ci]; ci = (ci + 1) % pool.length;
+      p.el.getAnimations().forEach(function(a){ a.cancel(); });
       p.el.style.zIndex = z = z % 900 + 1;
-      p.el.style.setProperty('--x', x.toFixed(1) + 'px');
-      p.el.style.setProperty('--y', y.toFixed(1) + 'px');
-      p.el.classList.remove('in', 'out');
-      void p.el.offsetWidth; // restart the enter transition from its start pose
-      p.el.classList.add('in');
-      p.timer = setTimeout(function(){ p.el.classList.add('out'); }, 650);
-    }
-    function frame(){
-      raf = 0;
-      sx += (tx - sx) * 0.18; sy += (ty - sy) * 0.18;
-      if(lx === null || Math.hypot(sx - lx, sy - ly) > 70){
-        lx = sx; ly = sy;
-        place(pool[ci], sx, sy); ci = (ci + 1) % pool.length;
-      }
-      if(inside || Math.abs(tx - sx) > 0.5 || Math.abs(ty - sy) > 0.5) raf = requestAnimationFrame(frame);
+      // glide from the previous drop point to the cursor while growing in, hold, then sink away
+      p.el.animate([
+        { transform: pose(lx, ly, .55), opacity: 0, easing: EASE },
+        { transform: pose(x, y, 1), opacity: 1, offset: .35 },
+        { transform: pose(x, y, 1), opacity: 1, offset: .62, easing: 'cubic-bezier(.55,0,.8,.2)' },
+        { transform: pose(x, y + 10, .86), opacity: 0 }
+      ], { duration: 2000, easing: 'linear', fill: 'both' });
     }
     heroTrail.addEventListener('pointermove', function(e){
       if(e.pointerType !== 'mouse') return;
-      var r = heroTrail.getBoundingClientRect();
-      tx = e.clientX - r.left; ty = e.clientY - r.top;
-      if(!inside){ inside = true; sx = tx; sy = ty; }
-      if(!raf) raf = requestAnimationFrame(frame);
+      var r = heroTrail.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      if(lx === null){ lx = x; ly = y; return; }
+      if(Math.hypot(x - lx, y - ly) < 95) return;
+      spawn(x, y); lx = x; ly = y;
     });
-    heroTrail.addEventListener('pointerleave', function(){ inside = false; lx = ly = null; });
+    heroTrail.addEventListener('pointerleave', function(){ lx = ly = null; });
   }
 
   // red dot that trails the mouse
