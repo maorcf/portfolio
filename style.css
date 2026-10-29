@@ -1369,3 +1369,11 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 .playground-page .tags{ gap:0; }
 .playground-page .tag-pill{ background:none; color:var(--muted); padding:0; border-radius:0; font-size:13px; font-weight:500; text-transform:none; letter-spacing:0; }
 .playground-page .tag-pill + .tag-pill::before{ content:"·"; margin:0 8px; }
+
+/* Playground category filter */
+.pg-filter{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 22px; margin:8px auto 8px; }
+.pg-filter button{ all:unset; cursor:pointer; font-size:14px; font-weight:500; color:var(--muted); padding:4px 0; border-bottom:1.5px solid transparent; transition:color .2s, border-color .2s; }
+.pg-filter button:hover{ color:var(--ink); }
+.pg-filter button.is-active{ color:var(--ink); border-bottom-color:var(--ink); }
+.pg-filter button:focus-visible{ outline:2px solid var(--violet); outline-offset:3px; }
+#playground .pg-hidden{ display:none !important; }
