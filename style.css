@@ -1343,3 +1343,24 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 .fact-pill{ background:none; color:var(--muted); padding:0; border-radius:0; font-size:14px; font-weight:500; gap:0; white-space:pre; }
 .fact-pill b{ font-weight:500; }
 .fact-pill:first-child::before{ content:""; width:7px; height:7px; border-radius:50%; background:#3BB85A; margin-right:7px; }
+
+/* About page: compact top so the pottery carousel shows in the first screen */
+.page-title-about{ padding:28px 24px 8px; }
+.page-title-about h1{ font-size:clamp(44px, 8vw, 84px); }
+.page-title-about p{ margin-top:10px; }
+#about.about{ padding-top:12px; padding-bottom:0; }
+#about .about-card{ grid-template-columns:260px 1fr; gap:40px; padding:24px 0; max-width:900px; margin:0 auto; }
+#about .about-card p{ margin-bottom:12px; }
+#about .about-facts{ margin-top:14px; }
+#hobbies.about{ padding-top:16px; }
+@media (max-width:760px){
+  #about .about-card{ grid-template-columns:1fr; gap:20px; }
+  #about .about-visual{ max-width:220px; }
+}
+#about .about-card{ grid-template-columns:220px 1fr; padding:16px 0; }
+#hobbies .section-head{ margin-bottom:10px; }
+#hobbies > p{ margin-bottom:0; }
+#hobbies .playground-strip{ margin-top:24px; }
+@media (max-width:760px){
+  #about .about-card{ grid-template-columns:1fr; }
+}
