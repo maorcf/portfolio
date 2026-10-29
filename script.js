@@ -84,7 +84,7 @@ if(floatingNav || backToTop){
       var pastThreshold = currentY > 200;
       var navThreshold = pageCover ? pageCover.offsetTop + 120 : 200;
       var scrollingDown = currentY > lastScrollY;
-      if(floatingNav) floatingNav.classList.toggle('visible', currentY > navThreshold && scrollingDown);
+      if(floatingNav) floatingNav.classList.toggle('visible', currentY > navThreshold && !scrollingDown);
       if(backToTop) backToTop.classList.toggle('visible', pastThreshold);
       lastScrollY = currentY;
       scrollTicking = false;
@@ -95,7 +95,7 @@ if(floatingNav || backToTop){
 (function(){
   var heroSection = document.querySelector('.hero');
   var heading = heroSection ? heroSection.querySelector('h1') : null;
-  if(!heroSection || !heading) return;
+  if(!heroSection || !heading || heroSection.classList.contains('hero-ethan')) return;
 
   function wrapChars(el){
     Array.prototype.forEach.call(Array.prototype.slice.call(el.childNodes), function(node){
@@ -258,7 +258,7 @@ if(floatingNav || backToTop){
 
 (function(){
   var card = document.querySelector('.hero-frame-outer .hero-card');
-  if(!card || !document.querySelector('.hero') || card.querySelector('.liquid-canvas')) return; // the liquid headline replaces the dot trail
+  if(!card || !document.querySelector('.hero') || document.querySelector('.hero-ethan') || card.querySelector('.liquid-canvas')) return; // the liquid headline replaces the dot trail
   if(window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -391,4 +391,222 @@ if(floatingNav || backToTop){
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     items.forEach(function(e){ io.observe(e); });
   }
+})();
+
+// Ethan theme motion: scroll reveals, page transitions, portrait flicker, footer clock
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  var clocks = document.querySelectorAll('.footer-clock');
+  if(clocks.length){
+    var fmt = new Intl.DateTimeFormat('en-US', { hour:'2-digit', minute:'2-digit', hour12:true, timeZone:'Asia/Jerusalem' });
+    var tick = function(){ var s = fmt.format(new Date()); clocks.forEach(function(c){ c.textContent = s; }); };
+    tick(); setInterval(tick, 15000);
+  }
+
+  if(reduce){ root.classList.remove('pt-enter'); return; }
+
+  // page transition: the new page opens from the center, the old one closes into it
+  try { sessionStorage.removeItem('pt'); } catch(e){}
+  if(root.classList.contains('pt-enter')) setTimeout(function(){ root.classList.remove('pt-enter'); }, 700);
+  window.addEventListener('pageshow', function(e){ if(e.persisted) root.classList.remove('pt-leave', 'pt-enter'); });
+  document.addEventListener('click', function(e){
+    if(e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if(!a || a.target === '_blank' || a.hasAttribute('download')) return;
+    var url = new URL(a.href, location.href);
+    if(url.origin !== location.origin || /\.(pdf|jpe?g|png|mp4)$/i.test(url.pathname)) return;
+    if(url.pathname === location.pathname && url.search === location.search) return; // same-page anchors scroll normally
+    e.preventDefault();
+    try { sessionStorage.setItem('pt', '1'); } catch(err){}
+    root.classList.add('pt-leave');
+    setTimeout(function(){ location.href = url.href; }, 430);
+  });
+
+  // fade-up reveals as sections scroll into view
+  var sel = '.section-head-center, #work .project, .playground-strip, .footer-card, .case-section, .case-row, .more-work-head, .more-work-card, #playground > .project, .about-card, #hobbies > *';
+  var els = Array.prototype.filter.call(document.querySelectorAll(sel), function(el){ return !el.classList.contains('cs-reveal'); });
+  if(els.length && 'IntersectionObserver' in window){
+    els.forEach(function(el){ if(el.getBoundingClientRect().top > window.innerHeight * 0.9) el.classList.add('reveal'); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        var el = en.target; io.unobserve(el);
+        el.classList.add('in');
+        setTimeout(function(){ el.classList.remove('reveal', 'in'); }, 1100); // hand transforms back to hover styles
+      });
+    }, { rootMargin:'0px 0px -12% 0px', threshold:0 });
+    els.forEach(function(el){ if(el.classList.contains('reveal')) io.observe(el); });
+  }
+
+  // work card images open up through a growing, wobbling blob (the template's "Image Blob Reveal":
+  // starts at a quarter size in the center, 3s, ease-out quart, once 50% of the image is on screen)
+  var blobThumbs = document.querySelectorAll('.project-grid .project-cover .thumb');
+  if(blobThumbs.length && window.CSS && CSS.supports('clip-path', 'path("M0 0Z")')){
+    var BLOB = [[0,-.94],[.34,-1.07],[.78,-.82],[.9,-.46],[1.08,-.1],[.88,.38],[.7,.64],[.44,1.02],[.06,.92],[-.29,.91],[-.71,.93],[-1.03,.58],[-1.02,.18],[-1.05,-.2],[-.75,-.48],[-.58,-.7],[-.4,-.96],[-.13,-.93],[0,-.94]];
+    function blobFrame(el, D){
+      var w = el.offsetWidth, h = el.offsetHeight;
+      if(D >= .999 || !w){ el.style.clipPath = ''; return; }
+      var L = Math.max(40, Math.min(w, h) * .26), cx = w / 2, cy = h / 2;
+      var z = .25, te = Math.hypot(cx, cy) / L * 1.55, B = z + (te - z) * D, V = Math.sin(D * Math.PI);
+      var sx = B * (1 + V * .06) * L, sy = B * (1 - V * .035) * L, a = (-8 + D * 13) * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a);
+      var p = BLOB.map(function(q){ var x = q[0] * sx, y = q[1] * sy; return (cx + x * ca - y * sa).toFixed(1) + ' ' + (cy + x * sa + y * ca).toFixed(1); });
+      var d = 'M ' + p[0];
+      for(var i = 1; i < p.length; i += 3) d += ' C ' + p[i] + ', ' + p[i + 1] + ', ' + p[i + 2];
+      el.style.clipPath = 'path("' + d + ' Z")';
+    }
+    var blobIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        blobIO.unobserve(en.target);
+        var el = en.target.querySelector('.thumb'), t0 = performance.now();
+        (function step(now){
+          var o = Math.min(1, (now - t0) / 3000);
+          blobFrame(el, 1 - Math.pow(1 - o, 4));
+          if(o < 1) requestAnimationFrame(step);
+        })(t0);
+      });
+    }, { threshold: .5 });
+    blobThumbs.forEach(function(el){ blobFrame(el, 0); blobIO.observe(el.parentNode); });  // observe the parent: the clip itself shrinks the visible area
+  }
+
+  // moving the mouse over the hero leaves a trail of project covers (same recipe as the Framer "Cursor Image Trail":
+  // a cover drops at the cursor every ~100px, springs in from half size, stays .5s, then fades out on its own)
+  var heroTrail = document.querySelector('.hero-ethan');
+  if(heroTrail && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+    var covers = ['work-chido-cover.jpg?v=2', 'work-pazi-mockup2.jpg', 'work-filmroll-mockup2.jpg', 'work-austrip-mockup2.jpg', 'work-fireline-cover.jpg', 'work-woom-cover.jpg', 'work-mimi-card.jpg'];
+    covers.forEach(function(src){ new Image().src = src; });
+    // overdamped springs sampled into linear() easings: in = stiffness 500 / damping 60, out = 600 / 60
+    function springEase(k, c){
+      var d = Math.sqrt(c * c - 4 * k), r1 = (c - d) / 2, r2 = (c + d) / 2, T = 4.6 / r1, pts = [];
+      for(var i = 0; i <= 40; i++){
+        var t = T * i / 40;
+        pts.push((1 - (r2 * Math.exp(-r1 * t) - r1 * Math.exp(-r2 * t)) / (r2 - r1)).toFixed(4));
+      }
+      pts[40] = '1';
+      return { ms: Math.round(T * 1000), ease: 'linear(' + pts.join(',') + ')' };
+    }
+    var hasLinear = window.CSS && CSS.supports('animation-timing-function', 'linear(0, 1)');
+    var IN = springEase(500, 60), OUT = springEase(600, 60);
+    if(!hasLinear){ IN.ease = 'cubic-bezier(.2,.8,.2,1)'; OUT.ease = 'cubic-bezier(.3,.7,.3,1)'; }
+    var ci = 0, lx = null, ly = null, GAP = 102;
+    function spawn(x, y){
+      var img = document.createElement('img');
+      img.className = 'hero-trail'; img.alt = ''; img.setAttribute('aria-hidden', 'true');
+      img.src = covers[ci]; ci = (ci + 1) % covers.length;
+      img.style.left = x + 'px'; img.style.top = y + 'px';
+      heroTrail.appendChild(img);
+      img.animate([{ opacity: 0, transform: 'translate(-50%,-50%) scale(.5)' }, { opacity: 1, transform: 'translate(-50%,-50%) scale(1)' }],
+        { duration: IN.ms, easing: IN.ease, fill: 'forwards' });
+      setTimeout(function(){
+        var cs = getComputedStyle(img);
+        img.animate([{ opacity: cs.opacity, transform: cs.transform }, { opacity: 0, transform: cs.transform }],
+          { duration: OUT.ms, easing: OUT.ease, fill: 'forwards' }).onfinish = function(){ img.remove(); };
+      }, 500);
+    }
+    heroTrail.addEventListener('mousemove', function(e){
+      var r = heroTrail.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      if(lx !== null && Math.hypot(x - lx, y - ly) <= GAP) return;
+      spawn(x, y); lx = x; ly = y;
+    });
+    heroTrail.addEventListener('mouseleave', function(){ lx = ly = null; });
+  }
+})();
+
+// case study pages: a sticky bar with the project name and its sections, like a table of contents
+(function(){
+  var main = document.querySelector('main.cs2'), toc = main && main.querySelector('.cs2-toc'), hero = main && main.querySelector('.cs2-hero');
+  if(!toc || !hero) return;
+  document.documentElement.classList.add('cs2-page');
+  var bar = document.createElement('nav');
+  bar.className = 'cs2-bar'; bar.setAttribute('aria-label', 'Case study sections');
+  bar.innerHTML = '<div class="cs2-bar-in"><a href="index.html#work" class="cs2-bar-name"><span aria-hidden="true">←</span> ' + main.querySelector('h1').textContent + '</a><div class="cs2-bar-links"></div></div>';
+  var links = bar.querySelector('.cs2-bar-links');
+  toc.querySelectorAll('a').forEach(function(a){ links.appendChild(a.cloneNode(true)); });
+  document.body.appendChild(bar);
+  var map = {};
+  links.querySelectorAll('a').forEach(function(a){ var t = document.getElementById(a.getAttribute('href').slice(1)); if(t) map[t.id] = a; });
+  // the site header stays pinned above the bar, so recruiters always have Home / Work / About / Resume
+  var head = document.querySelector('.floating-nav'), root = document.documentElement;
+  function headH(){ return head ? head.offsetHeight : 0; }
+  function offset(){ return headH() + bar.offsetHeight; }
+  function place(){ root.style.setProperty('--cs2-head', headH() + 'px'); }
+  place(); window.addEventListener('resize', place);
+  var shown = false;
+  function onScroll(){
+    var s = hero.getBoundingClientRect().bottom < offset() + 8;
+    if(s !== shown){ shown = s; bar.classList.toggle('on', s); root.classList.toggle('cs2-bar-on', s); }
+  }
+  window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
+  // jump links: animate the scroll ourselves and re-read the target every frame,
+  // so lazy images loading above it can't make the scroll land short
+  var auto = false;
+  function setActive(a){ links.querySelectorAll('a.active').forEach(function(x){ x.classList.remove('active'); }); if(a) a.classList.add('active'); }
+  // with smooth scrolling on, move through Lenis so it doesn't fight the jump (resize: lazy images change the page height)
+  function jump(y){ if(window.lenis){ window.lenis.resize(); window.lenis.scrollTo(y, { immediate:true, force:true }); } else window.scrollTo(0, y); }
+  function goTo(t){
+    var start = window.scrollY, t0 = performance.now(), D = 750;
+    auto = true;
+    (function step(now){
+      var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
+      var target = Math.max(0, window.scrollY + t.getBoundingClientRect().top - offset());
+      var y = start + (target - start) * e;
+      jump(y);
+      if(k < 1) requestAnimationFrame(step);
+      else { jump(Math.max(0, window.scrollY + t.getBoundingClientRect().top - offset())); setTimeout(function(){ auto = false; }, 120); }
+    })(t0);
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('.cs2-bar-links a, .cs2-toc a');
+    if(!a) return;
+    var t = document.getElementById(a.getAttribute('href').slice(1));
+    if(!t) return;
+    e.preventDefault();
+    setActive(map[t.id]);
+    history.replaceState(null, '', '#' + t.id);
+    goTo(t);
+  });
+  // highlight the section currently on screen
+  if(!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(auto || !e.isIntersecting || !map[e.target.id]) return;
+      var a = map[e.target.id]; setActive(a);
+      if(links.scrollWidth > links.clientWidth) links.scrollTo({ left: a.offsetLeft - 16, behavior: 'smooth' });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+})();
+
+// smooth wheel scrolling, same settings as the Framer template (Lenis, intensity 20 = 2s); touch keeps native scrolling
+(function(){
+  if(!window.Lenis || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  window.lenis = new Lenis({ smoothWheel: true, duration: 2, autoRaf: true, autoToggle: true, anchors: true, allowNestedScroll: true });
+})();
+
+// ?tune opens the design tuning panel (tune.js), only for whoever adds it to the URL
+(function(){
+  if(!/[?&]tune\b/.test(location.search)) return;
+  var s = document.createElement('script'); s.src = 'tune.js?v=1'; document.body.appendChild(s);
+})();
+
+// home portrait drifts toward the mouse, copied from the Framer template's ParallaxFloating (speed 25, smoothing 20)
+(function(){
+  var s = document.querySelector('.hero-ethan .hero-portrait');
+  if(!s || !matchMedia('(pointer: fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var SPEED = 25, C = 1 / (20 * 0.35 + 3), tx = 0, ty = 0, x = 0, y = 0;
+  addEventListener('pointermove', function(e){
+    var r = s.getBoundingClientRect();
+    var ox = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (innerWidth / 2)));
+    var oy = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (innerHeight / 2)));
+    tx = ox * SPEED; ty = oy * SPEED;
+  }, { passive:true });
+  function reset(){ tx = ty = 0; }
+  addEventListener('blur', reset); document.documentElement.addEventListener('mouseleave', reset);
+  (function loop(){
+    x += (tx - x) * C; y += (ty - y) * C;
+    s.style.left = x.toFixed(2) + 'px'; s.style.top = y.toFixed(2) + 'px';
+    requestAnimationFrame(loop);
+  })();
 })();
