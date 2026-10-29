@@ -454,7 +454,7 @@ if(floatingNav || backToTop){
     var EASE = 'cubic-bezier(.16,1,.3,1)';
     function pose(x, y, s){ return 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) translate(-50%,-50%) scale(' + s + ')'; }
     function spawn(x, y){
-      var p = pool[ci]; ci = (ci + 1) % pool.length;
+      var p = pool[ci]; ci = (ci + 1) % pool.length; p.seq = ++seq;
       p.el.getAnimations().forEach(function(a){ a.cancel(); });
       p.el.style.zIndex = z = z % 900 + 1;
       // glide from the previous drop point to the cursor while growing in, hold, then sink away
@@ -473,19 +473,22 @@ if(floatingNav || backToTop){
       if(Math.hypot(x - lx, y - ly) < 95) return;
       spawn(x, y); lx = x; ly = y;
     });
-    // the moment the mouse stops, everything on screen fades out from wherever it is
-    var idle = 0;
+    // the moment the mouse stops, the trail folds away from its far end toward the cursor, one cover at a time
+    var idle = 0, seq = 0;
     function fadeAll(){
-      pool.forEach(function(p){
-        var anims = p.el.getAnimations();
-        if(!anims.length) return;
+      var live = pool.filter(function(p){ return p.el.getAnimations().length && +getComputedStyle(p.el).opacity > 0.01; });
+      live.sort(function(a, b){ return a.seq - b.seq; });
+      live.forEach(function(p, i){
         var cs = getComputedStyle(p.el), from = { transform: cs.transform, opacity: cs.opacity };
-        anims.forEach(function(a){ a.cancel(); });
-        if(+from.opacity < 0.01) return;
-        p.el.animate([from, { transform: from.transform + ' scale(.9)', opacity: 0 }], { duration: 450, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both' });
+        p.el.getAnimations().forEach(function(a){ a.cancel(); });
+        var m = new DOMMatrix(cs.transform), dx = (lx - m.e) * 0.35, dy = (ly - m.f) * 0.35;
+        p.el.animate([
+          from,
+          { transform: 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) ' + from.transform + ' scale(.8)', opacity: 0 }
+        ], { duration: 380, delay: i * 75, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both' });
       });
     }
-    heroTrail.addEventListener('pointerleave', function(){ lx = ly = null; clearTimeout(idle); fadeAll(); });
+    heroTrail.addEventListener('pointerleave', function(){ clearTimeout(idle); if(lx !== null) fadeAll(); lx = ly = null; });
   }
 
   // red dot that trails the mouse
