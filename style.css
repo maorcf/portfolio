@@ -1364,3 +1364,8 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 @media (max-width:760px){
   #about .about-card{ grid-template-columns:1fr; }
 }
+
+/* Playground tags: quiet text, not buttons */
+.playground-page .tags{ gap:0; }
+.playground-page .tag-pill{ background:none; color:var(--muted); padding:0; border-radius:0; font-size:13px; font-weight:500; text-transform:none; letter-spacing:0; }
+.playground-page .tag-pill + .tag-pill::before{ content:"·"; margin:0 8px; }
