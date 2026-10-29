@@ -440,17 +440,27 @@ if(floatingNav || backToTop){
     els.forEach(function(el){ if(el.classList.contains('reveal')) io.observe(el); });
   }
 
-  // hero portrait flicks through three grades, like a contact sheet
-  var portrait = document.querySelector('.hero-portrait');
-  if(portrait){
-    var step = 0, visible = true;
-    if('IntersectionObserver' in window) new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }).observe(portrait);
-    setInterval(function(){
-      if(!visible || document.hidden) return;
-      step = (step + 1) % 3;
-      portrait.classList.toggle('fx-1', step === 1);
-      portrait.classList.toggle('fx-2', step === 2);
-    }, 400);
+  // moving the mouse over the hero leaves a trail of project covers
+  var heroTrail = document.querySelector('.hero-ethan');
+  if(heroTrail && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+    var covers = ['work-chido-cover.jpg?v=2', 'work-pazi-mockup2.jpg', 'work-filmroll-mockup2.jpg', 'work-austrip-mockup2.jpg', 'work-fireline-cover.jpg', 'work-woom-cover.jpg', 'work-mimi-card.jpg'];
+    covers.forEach(function(src){ new Image().src = src; });
+    var ci = 0, lx = null, ly = null, z = 1;
+    heroTrail.addEventListener('pointermove', function(e){
+      if(e.pointerType !== 'mouse') return;
+      var r = heroTrail.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top;
+      if(lx !== null && Math.hypot(px - lx, py - ly) < 90) return;
+      lx = px; ly = py;
+      var img = document.createElement('img');
+      img.className = 'hero-trail'; img.alt = ''; img.setAttribute('aria-hidden', 'true');
+      img.src = covers[ci]; ci = (ci + 1) % covers.length;
+      img.style.left = px + 'px'; img.style.top = py + 'px'; img.style.zIndex = z = z % 900 + 1;
+      heroTrail.appendChild(img);
+      requestAnimationFrame(function(){ img.classList.add('in'); });
+      setTimeout(function(){ img.classList.add('out'); }, 900);
+      setTimeout(function(){ img.remove(); }, 1500);
+    });
+    heroTrail.addEventListener('pointerleave', function(){ lx = ly = null; });
   }
 
   // red dot that trails the mouse
