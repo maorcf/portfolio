@@ -1337,3 +1337,9 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 .hero.hero-ethan .hero-actions{ margin-top:0; }
 @media (max-width:1199px){ .hero.hero-ethan{ padding:16px 24px 64px; } .hero .hero-name{ font-size:105px; } .hero.hero-ethan .lead{ font-size:16px; } }
 @media (max-width:809px){ .hero .hero-name{ font-size:23vw; } }
+
+/* About facts: quiet text labels, not buttons */
+.about-facts{ gap:18px; }
+.fact-pill{ background:none; color:var(--muted); padding:0; border-radius:0; font-size:14px; font-weight:500; gap:0; white-space:pre; }
+.fact-pill b{ font-weight:500; }
+.fact-pill:first-child::before{ content:""; width:7px; height:7px; border-radius:50%; background:#3BB85A; margin-right:7px; }
