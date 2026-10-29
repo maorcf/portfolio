@@ -1310,3 +1310,15 @@ html.cs2-page .floating-nav{ display:none; }
 @media (max-width:600px){ .cs2-clean .cs2-outcome{ padding:72px 0; } }
 .cs2-hidden{ position:absolute !important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 .cs2-clean .cs2-hero-live{ background:none; padding:0 0 40px; }
+/* clean case study hero: keep the word and the screenshot apart, with room around both */
+.cs2-clean .cs-hero{ margin-top:16px; }
+.cs2-clean .cs-hero-word{ left:6vw; font-size:min(var(--hero-fs, 9vw), 7vw); }
+.cs2-clean .cs-hero-browser{ right:6vw; bottom:9%; width:min(44vw, calc(var(--hh) * 0.72 * 1.45)); }
+.cs2-clean .cs-hero-phones{ right:6vw; bottom:9%; }
+.cs2-clean .page-title{ padding:96px 24px 40px !important; }
+@media (max-width:820px){
+  .cs2-clean .cs-hero-word{ left:0; font-size:var(--hero-fs-m, 18vw); top:20%; }
+  .cs2-clean .cs-hero{ height:560px !important; min-height:0; }
+  .cs2-clean .cs-hero-browser{ right:auto; width:84vw; bottom:10%; }
+  .cs2-clean .page-title{ padding:64px 24px 24px !important; }
+}
