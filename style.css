@@ -1270,3 +1270,33 @@ main.cs2{ --cs-tint:#E9E5FB; --cs-accent:var(--red); --band:#F6F5F1; display:blo
 html.cs2-page .floating-nav{ display:none; }
 .cs2-band, .cs2-outcome{ scroll-margin-top:56px; }
 @media (max-width:600px){ .cs2-bar-in{ padding:12px 16px; gap:16px; } .cs2-bar-links{ gap:18px; } .cs2-bar-links a{ font-size:13px; } }
+
+/* ===== cs2-clean (trial): a quieter hero and lighter sections ===== */
+.cs2-clean .cs2-hero{ background:#fff; padding-top:40px; }
+.cs2-clean .cs2-chip, .cs2-clean .cs2-by, .cs2-clean .cs2-toc{ display:none; }
+.cs2-clean .cs2-back{ font-size:13px; font-weight:500; color:var(--muted); margin-bottom:56px; }
+.cs2-clean .cs2-hero-grid{ grid-template-columns:1fr; gap:0; }
+.cs2-clean .cs2-hero-grid > div:first-child{ display:grid; grid-template-columns:1fr minmax(0, 420px); gap:48px; align-items:end; }
+.cs2-clean .cs2-hero h1{ font-size:clamp(64px, 10vw, 150px); }
+.cs2-clean .cs2-tagline{ margin:0 0 10px; font-size:17px; line-height:1.55; color:var(--muted); }
+.cs2-clean .cs2-cta{ grid-column:2; justify-self:start; margin-top:-28px; }
+.cs2-clean .cs2-hero-img{ margin-top:48px; background:var(--cs-tint); border-radius:20px; padding:clamp(20px, 5vw, 72px); }
+.cs2-clean .cs2-hero-img img{ border-radius:10px; box-shadow:0 30px 60px -30px rgba(0,0,0,.35); }
+.cs2-clean .cs2-meta{ margin-top:0; border-top:none; padding:28px 0 0; }
+.cs2-clean .cs2-meta span{ font-size:12px; letter-spacing:0; text-transform:none; font-weight:500; margin-bottom:4px; }
+.cs2-clean .cs2-meta b{ font-size:15px; font-weight:500; }
+.cs2-clean .cs2-card .lbl{ display:none; }
+.cs2-clean .cs2-card h3{ margin-top:0; }
+.cs2-clean .cs2-eyebrow{ font-size:12px; letter-spacing:.08em; color:var(--muted); }
+.cs2-clean .cs2-num{ background:none; color:var(--muted); min-width:0; padding:0; height:auto; font-size:12px; }
+.cs2-clean .cs2-num{ white-space:nowrap; display:inline; }
+.cs2-clean .cs2-num::after{ content:' /'; }
+.cs2-clean .cs2-band{ padding:120px 0; }
+.cs2-clean .cs2-band.alt{ background:#fff; border-top:1px solid rgba(0,0,0,.07); }
+.cs2-clean .cs2-lead{ color:#555; }
+.cs2-clean .cs2-card{ border-color:rgba(0,0,0,.08); }
+.cs2-clean .cs2-band.alt .cs2-card{ border-color:rgba(0,0,0,.08); }
+.cs2-clean .cs2-card.dark{ background:var(--band); color:var(--ink); border-color:transparent; }
+.cs2-clean .cs2-card.dark p{ color:#4a4a4a; }
+@media (max-width:900px){ .cs2-clean .cs2-hero-grid > div:first-child{ grid-template-columns:1fr; gap:16px; } .cs2-clean .cs2-cta{ grid-column:auto; margin-top:0; } }
+@media (max-width:600px){ .cs2-clean .cs2-band{ padding:72px 0; } .cs2-clean .cs2-back{ margin-bottom:32px; } }
