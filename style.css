@@ -891,7 +891,7 @@ footer{ padding:70px 0 60px; }
   --muted:#7A7A7A;
   --line:rgba(0,0,0,0.12);
   --thumb:#F2F2F2;
-  --red:#E80000;
+  --red:#5B4CE0;
   --green:#3CFF00;
   --violet:var(--red);
   --spring:cubic-bezier(.22,1.2,.36,1);
