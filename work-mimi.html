@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-mimi.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=246">
+<link rel="stylesheet" href="style.css?v=247">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -209,7 +209,7 @@
   </div>
 </main>
 
-<button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.lenis ? window.lenis.scrollTo(0) : window.scrollTo({top:0,behavior:'smooth'})">
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
@@ -223,7 +223,8 @@
   <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link" onclick="closeMobileNav()">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </nav>
 
-<script src="script.js?v=123"></script>
+<script src="lenis.min.js?v=1.3.4"></script>
+<script src="script.js?v=124"></script>
 
 </body>
 </html>

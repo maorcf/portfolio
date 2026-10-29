@@ -1325,3 +1325,6 @@ html.cs2-page .cs2-bar-in{ justify-content:center; padding-top:10px; padding-bot
   .cs2-clean .cs-hero-browser{ right:auto; top:auto; translate:none; width:84vw; bottom:10%; }
   .cs2-clean .page-title{ padding:64px 24px 24px !important; }
 }
+
+/* Lenis smooth scroll */
+html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}.lenis.lenis-smooth iframe{pointer-events:none}.lenis.lenis-autoToggle{transition-property:overflow;transition-duration:1ms;transition-behavior:allow-discrete}

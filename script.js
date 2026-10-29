@@ -564,6 +564,8 @@ if(floatingNav || backToTop){
   // so lazy images loading above it can't make the scroll land short
   var auto = false;
   function setActive(a){ links.querySelectorAll('a.active').forEach(function(x){ x.classList.remove('active'); }); if(a) a.classList.add('active'); }
+  // with smooth scrolling on, move through Lenis so it doesn't fight the jump (resize: lazy images change the page height)
+  function jump(y){ if(window.lenis){ window.lenis.resize(); window.lenis.scrollTo(y, { immediate:true, force:true }); } else window.scrollTo(0, y); }
   function goTo(t){
     var start = window.scrollY, t0 = performance.now(), D = 750;
     auto = true;
@@ -571,9 +573,9 @@ if(floatingNav || backToTop){
       var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
       var target = Math.max(0, window.scrollY + t.getBoundingClientRect().top - offset());
       var y = start + (target - start) * e;
-      window.scrollTo(0, y);
+      jump(y);
       if(k < 1) requestAnimationFrame(step);
-      else { window.scrollTo(0, Math.max(0, window.scrollY + t.getBoundingClientRect().top - offset())); setTimeout(function(){ auto = false; }, 120); }
+      else { jump(Math.max(0, window.scrollY + t.getBoundingClientRect().top - offset())); setTimeout(function(){ auto = false; }, 120); }
     })(t0);
   }
   document.addEventListener('click', function(e){
@@ -596,4 +598,10 @@ if(floatingNav || backToTop){
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
   Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+})();
+
+// smooth wheel scrolling, same settings as the Framer template (Lenis, intensity 20 = 2s); touch keeps native scrolling
+(function(){
+  if(!window.Lenis || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  window.lenis = new Lenis({ smoothWheel: true, duration: 2, autoRaf: true, autoToggle: true, anchors: true, allowNestedScroll: true });
 })();
