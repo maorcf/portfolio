@@ -393,7 +393,7 @@ if(floatingNav || backToTop){
   }
 })();
 
-// Ethan theme motion: scroll reveals, page transitions, cursor dot, portrait flicker, footer clock
+// Ethan theme motion: scroll reveals, page transitions, portrait flicker, footer clock
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var root = document.documentElement;
@@ -512,27 +512,6 @@ if(floatingNav || backToTop){
     });
     heroTrail.addEventListener('mouseleave', function(){ lx = ly = null; });
   }
-
-  // red dot that trails the mouse
-  if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  var dot = document.createElement('div');
-  dot.className = 'cursor-dot'; dot.setAttribute('aria-hidden', 'true');
-  document.body.appendChild(dot);
-  var mx = 0, my = 0, x = 0, y = 0, raf = 0, started = false;
-  function loop(){
-    x += (mx - x) * 0.2; y += (my - y) * 0.2;
-    dot.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
-    raf = (Math.abs(mx - x) > 0.2 || Math.abs(my - y) > 0.2) ? requestAnimationFrame(loop) : 0;
-  }
-  document.addEventListener('pointermove', function(e){
-    if(e.pointerType !== 'mouse') return;
-    mx = e.clientX + 18; my = e.clientY + 24;
-    if(!started){ x = mx; y = my; started = true; }
-    dot.classList.add('on');
-    dot.classList.toggle('big', !!(e.target.closest && e.target.closest('a, button')));
-    if(!raf) raf = requestAnimationFrame(loop);
-  }, { passive:true });
-  document.documentElement.addEventListener('mouseleave', function(){ dot.classList.remove('on'); });
 })();
 
 // case study pages: a sticky bar with the project name and its sections, like a table of contents
