@@ -440,55 +440,46 @@ if(floatingNav || backToTop){
     els.forEach(function(el){ if(el.classList.contains('reveal')) io.observe(el); });
   }
 
-  // moving the mouse over the hero leaves a trail of project covers
+  // moving the mouse over the hero leaves a trail of project covers (same recipe as the Framer "Cursor Image Trail":
+  // a cover drops at the cursor every ~100px, springs in from half size, stays .5s, then fades out on its own)
   var heroTrail = document.querySelector('.hero-ethan');
   if(heroTrail && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
     var covers = ['work-chido-cover.jpg?v=2', 'work-pazi-mockup2.jpg', 'work-filmroll-mockup2.jpg', 'work-austrip-mockup2.jpg', 'work-fireline-cover.jpg', 'work-woom-cover.jpg', 'work-mimi-card.jpg'];
-    var pool = covers.map(function(src){
-      var img = document.createElement('img');
-      img.className = 'hero-trail'; img.alt = ''; img.setAttribute('aria-hidden', 'true'); img.src = src;
-      heroTrail.appendChild(img);
-      return { el: img };
-    });
-    var ci = 0, z = 1, lx = null, ly = null;
-    var EASE = 'cubic-bezier(.16,1,.3,1)';
-    function pose(x, y, s){ return 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) translate(-50%,-50%) scale(' + s + ')'; }
-    function spawn(x, y){
-      var p = pool[ci]; ci = (ci + 1) % pool.length; p.seq = ++seq;
-      p.el.getAnimations().forEach(function(a){ a.cancel(); });
-      p.el.style.zIndex = z = z % 900 + 1;
-      // glide from the previous drop point to the cursor while growing in, hold, then sink away
-      p.el.animate([
-        { transform: pose(lx, ly, .55), opacity: 0, easing: EASE },
-        { transform: pose(x, y, 1), opacity: 1, offset: .35 },
-        { transform: pose(x, y, 1), opacity: 1, offset: .62, easing: 'cubic-bezier(.55,0,.8,.2)' },
-        { transform: pose(x, y + 10, .86), opacity: 0 }
-      ], { duration: 2000, easing: 'linear', fill: 'both' });
+    covers.forEach(function(src){ new Image().src = src; });
+    // overdamped springs sampled into linear() easings: in = stiffness 500 / damping 60, out = 600 / 60
+    function springEase(k, c){
+      var d = Math.sqrt(c * c - 4 * k), r1 = (c - d) / 2, r2 = (c + d) / 2, T = 4.6 / r1, pts = [];
+      for(var i = 0; i <= 40; i++){
+        var t = T * i / 40;
+        pts.push((1 - (r2 * Math.exp(-r1 * t) - r1 * Math.exp(-r2 * t)) / (r2 - r1)).toFixed(4));
+      }
+      pts[40] = '1';
+      return { ms: Math.round(T * 1000), ease: 'linear(' + pts.join(',') + ')' };
     }
-    heroTrail.addEventListener('pointermove', function(e){
-      if(e.pointerType !== 'mouse') return;
+    var hasLinear = window.CSS && CSS.supports('animation-timing-function', 'linear(0, 1)');
+    var IN = springEase(500, 60), OUT = springEase(600, 60);
+    if(!hasLinear){ IN.ease = 'cubic-bezier(.2,.8,.2,1)'; OUT.ease = 'cubic-bezier(.3,.7,.3,1)'; }
+    var ci = 0, lx = null, ly = null, GAP = 102;
+    function spawn(x, y){
+      var img = document.createElement('img');
+      img.className = 'hero-trail'; img.alt = ''; img.setAttribute('aria-hidden', 'true');
+      img.src = covers[ci]; ci = (ci + 1) % covers.length;
+      img.style.left = x + 'px'; img.style.top = y + 'px';
+      heroTrail.appendChild(img);
+      img.animate([{ opacity: 0, transform: 'translate(-50%,-50%) scale(.5)' }, { opacity: 1, transform: 'translate(-50%,-50%) scale(1)' }],
+        { duration: IN.ms, easing: IN.ease, fill: 'forwards' });
+      setTimeout(function(){
+        var cs = getComputedStyle(img);
+        img.animate([{ opacity: cs.opacity, transform: cs.transform }, { opacity: 0, transform: cs.transform }],
+          { duration: OUT.ms, easing: OUT.ease, fill: 'forwards' }).onfinish = function(){ img.remove(); };
+      }, 500);
+    }
+    heroTrail.addEventListener('mousemove', function(e){
       var r = heroTrail.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-      if(lx === null){ lx = x; ly = y; return; }
-      clearTimeout(idle); idle = setTimeout(fadeAll, 140);
-      if(Math.hypot(x - lx, y - ly) < 95) return;
+      if(lx !== null && Math.hypot(x - lx, y - ly) <= GAP) return;
       spawn(x, y); lx = x; ly = y;
     });
-    // the moment the mouse stops, the trail folds away from its far end toward the cursor, one cover at a time
-    var idle = 0, seq = 0;
-    function fadeAll(){
-      var live = pool.filter(function(p){ return p.el.getAnimations().length && +getComputedStyle(p.el).opacity > 0.01; });
-      live.sort(function(a, b){ return a.seq - b.seq; });
-      live.forEach(function(p, i){
-        var cs = getComputedStyle(p.el), from = { transform: cs.transform, opacity: cs.opacity };
-        p.el.getAnimations().forEach(function(a){ a.cancel(); });
-        var m = new DOMMatrix(cs.transform), dx = (lx - m.e) * 0.35, dy = (ly - m.f) * 0.35;
-        p.el.animate([
-          from,
-          { transform: 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) ' + from.transform + ' scale(.8)', opacity: 0 }
-        ], { duration: 380, delay: i * 75, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both' });
-      });
-    }
-    heroTrail.addEventListener('pointerleave', function(){ clearTimeout(idle); if(lx !== null) fadeAll(); lx = ly = null; });
+    heroTrail.addEventListener('mouseleave', function(){ lx = ly = null; });
   }
 
   // red dot that trails the mouse

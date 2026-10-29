@@ -973,8 +973,8 @@ nav.wrap{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; 
 .hero.hero-ethan{ position:relative; overflow:hidden; }
 .hero-ethan > .hero-portrait, .hero-ethan > .hero-name{ position:relative; z-index:1000; }
 .hero-ethan > .hero-trail{
-  position:absolute; left:0; top:0; width:clamp(170px, 15vw, 240px); aspect-ratio:4/3; object-fit:cover; border-radius:4px;
-  pointer-events:none; opacity:0; animation:none; backface-visibility:hidden;
+  position:absolute; width:250px; height:167px; object-fit:cover; border-radius:4px;
+  pointer-events:none; opacity:0; animation:none; transform:translate(-50%,-50%);
 }
 .hero.hero-ethan .lead{
   margin:28px auto 0; max-width:440px; font-size:clamp(16px, 1.45vw, 20px); line-height:1.4;
