@@ -1270,4 +1270,3 @@ main.cs2{ --cs-tint:#E9E5FB; --cs-accent:var(--red); --band:#F6F5F1; display:blo
 html.cs2-page .floating-nav{ display:none; }
 .cs2-band, .cs2-outcome{ scroll-margin-top:56px; }
 @media (max-width:600px){ .cs2-bar-in{ padding:12px 16px; gap:16px; } .cs2-bar-links{ gap:18px; } .cs2-bar-links a{ font-size:13px; } }
-html.cs2-page{ scroll-behavior:smooth; }

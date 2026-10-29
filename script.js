@@ -546,32 +546,46 @@ if(floatingNav || backToTop){
   var links = bar.querySelector('.cs2-bar-links');
   toc.querySelectorAll('a').forEach(function(a){ links.appendChild(a.cloneNode(true)); });
   document.body.appendChild(bar);
+  var map = {};
+  links.querySelectorAll('a').forEach(function(a){ var t = document.getElementById(a.getAttribute('href').slice(1)); if(t) map[t.id] = a; });
   var shown = false;
   function onScroll(){
-    var s = hero.getBoundingClientRect().bottom < 0;
+    var s = hero.getBoundingClientRect().bottom < 64;
     if(s !== shown){ shown = s; bar.classList.toggle('on', s); }
   }
   window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
-  // lazy images above the target can load mid-scroll and push it down, so re-aim a couple of times
+  // jump links: animate the scroll ourselves and re-read the target every frame,
+  // so lazy images loading above it can't make the scroll land short
+  var auto = false;
+  function setActive(a){ links.querySelectorAll('a.active').forEach(function(x){ x.classList.remove('active'); }); if(a) a.classList.add('active'); }
+  function goTo(t){
+    var start = window.scrollY, t0 = performance.now(), D = 750;
+    auto = true;
+    (function step(now){
+      var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
+      var target = Math.max(0, window.scrollY + t.getBoundingClientRect().top - 56);
+      var y = start + (target - start) * e;
+      window.scrollTo(0, y);
+      if(k < 1) requestAnimationFrame(step);
+      else { window.scrollTo(0, Math.max(0, window.scrollY + t.getBoundingClientRect().top - 56)); setTimeout(function(){ auto = false; }, 120); }
+    })(t0);
+  }
   document.addEventListener('click', function(e){
     var a = e.target.closest && e.target.closest('.cs2-bar-links a, .cs2-toc a');
     if(!a) return;
     var t = document.getElementById(a.getAttribute('href').slice(1));
     if(!t) return;
     e.preventDefault();
-    t.scrollIntoView({ behavior:'smooth' });
+    setActive(map[t.id]);
     history.replaceState(null, '', '#' + t.id);
-    [700, 1400, 2200].forEach(function(ms){ setTimeout(function(){ if(Math.abs(t.getBoundingClientRect().top - 56) > 6) t.scrollIntoView({ behavior:'smooth' }); }, ms); });
+    goTo(t);
   });
   // highlight the section currently on screen
-  var map = {};
-  links.querySelectorAll('a').forEach(function(a){ var t = document.getElementById(a.getAttribute('href').slice(1)); if(t) map[t.id] = a; });
   if(!('IntersectionObserver' in window)) return;
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){
-      if(!e.isIntersecting || !map[e.target.id]) return;
-      links.querySelectorAll('a.active').forEach(function(x){ x.classList.remove('active'); });
-      var a = map[e.target.id]; a.classList.add('active');
+      if(auto || !e.isIntersecting || !map[e.target.id]) return;
+      var a = map[e.target.id]; setActive(a);
       if(links.scrollWidth > links.clientWidth) links.scrollTo({ left: a.offsetLeft - 16, behavior: 'smooth' });
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
