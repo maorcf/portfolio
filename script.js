@@ -590,3 +590,23 @@ if(floatingNav || backToTop){
   if(!/[?&]tune\b/.test(location.search)) return;
   var s = document.createElement('script'); s.src = 'tune.js?v=1'; document.body.appendChild(s);
 })();
+
+// home portrait drifts toward the mouse, copied from the Framer template's ParallaxFloating (speed 25, smoothing 20)
+(function(){
+  var s = document.querySelector('.hero-ethan .hero-portrait');
+  if(!s || !matchMedia('(pointer: fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var SPEED = 25, C = 1 / (20 * 0.35 + 3), tx = 0, ty = 0, x = 0, y = 0;
+  addEventListener('pointermove', function(e){
+    var r = s.getBoundingClientRect();
+    var ox = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (innerWidth / 2)));
+    var oy = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (innerHeight / 2)));
+    tx = ox * SPEED; ty = oy * SPEED;
+  }, { passive:true });
+  function reset(){ tx = ty = 0; }
+  addEventListener('blur', reset); document.documentElement.addEventListener('mouseleave', reset);
+  (function loop(){
+    x += (tx - x) * C; y += (ty - y) * C;
+    s.style.left = x.toFixed(2) + 'px'; s.style.top = y.toFixed(2) + 'px';
+    requestAnimationFrame(loop);
+  })();
+})();
