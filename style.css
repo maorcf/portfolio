@@ -914,10 +914,11 @@ body{
 .hero-frame-outer, .hero-frame-outer.page-frame{ background:#fff; padding:0; min-height:0; display:block; }
 .hero-card{ background:#fff; background-image:none; border-radius:0; overflow:visible; display:block; }
 .page-cover{ background:#fff; border-top:none; }
-nav.wrap{ display:grid; grid-template-columns:1fr 1fr; align-items:center; padding:18px 24px; }
+nav.wrap{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:18px 24px; }
 .nav-links{ gap:28px; }
 .nav-links a, .cv-link{ font-size:14px; font-weight:600; color:var(--ink); transition:color .2s; }
 .nav-links a:hover, .cv-link:hover{ color:var(--red); }
+.nav-center{ justify-self:center; }
 .nav-right{ justify-content:flex-end; }
 .floating-nav{
   top:0; left:0; right:0; border:none; border-radius:0; background:rgba(255,255,255,0.92);
