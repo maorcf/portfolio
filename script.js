@@ -584,3 +584,9 @@ if(floatingNav || backToTop){
   if(!window.Lenis || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   window.lenis = new Lenis({ smoothWheel: true, duration: 2, autoRaf: true, autoToggle: true, anchors: true, allowNestedScroll: true });
 })();
+
+// ?tune opens the design tuning panel (tune.js), only for whoever adds it to the URL
+(function(){
+  if(!/[?&]tune\b/.test(location.search)) return;
+  var s = document.createElement('script'); s.src = 'tune.js?v=1'; document.body.appendChild(s);
+})();

@@ -26,6 +26,8 @@ Standalone ~26s reel for recruiters at `/showreel/`, NOT a homepage intro. v1 `/
 ## Open experiments (not on the site)
 - **Typographic hero redesign** (Oct 2026): explored editorial hero options locally; the last direction Maor liked was a centered Didone serif (Bodoni Moda) lowercase "maor." with an italic violet "Hi, I'm", a tilted violet "PORTFOLIO 2026" stamp with a star, "UX/UI + Graphic Designer" under it, no grain texture, lots of white space. Preview only, never applied.
 
+- **Tune panel:** any page with `?tune` loads `tune.js`, a slider panel (sizes/spacing, saved in localStorage). Maor pastes the copied values in chat; apply them as real CSS edits (at the right breakpoint) and add new sliders to `tune.js` when he asks to tweak something else.
+
 ## How Maor likes to work
 - Spend tokens sparingly; verify in proportion to risk (no screenshot loop for trivial CSS).
 - "Just check how it looks" = build a separate preview, don't touch the site. "Put it on the site" = commit to `main` and push.
