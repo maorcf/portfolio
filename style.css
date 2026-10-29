@@ -1041,8 +1041,9 @@ a:hover .card-arrow svg + svg{ transform:none; }
 .playground-strip-label{ background:rgba(0,0,0,.55); color:#fff; font-weight:700; text-transform:uppercase; letter-spacing:-0.01em; }
 
 /* ---------- PAGE TITLES (About, Playground, case studies) ---------- */
-.page-title{ padding:56px 24px 16px; max-width:720px; }
-.page-title h1{ font-size:clamp(64px, 11vw, 150px); }
+.page-title{ padding:56px 24px 16px; max-width:none; }
+.page-title p{ max-width:640px; margin-left:auto; margin-right:auto; }
+.page-title h1{ font-size:clamp(36px, 13.5vw, 150px); }
 .page-title p{ margin-top:18px; font-size:15px; font-weight:500; color:var(--muted); opacity:1; line-height:1.45; }
 .page-title > *{ opacity:0; transform:translateY(50px); animation:heroUp 1s var(--spring) forwards; }
 .page-title > :nth-child(2){ animation-delay:.12s; }
