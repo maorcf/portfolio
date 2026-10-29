@@ -1239,3 +1239,17 @@ main.cs2{ --cs-tint:#E9E5FB; --cs-accent:var(--red); --band:#F6F5F1; display:blo
   .cs2-shots, .cs2-shots.five{ grid-template-columns:1fr 1fr; gap:10px; }
   .cs2-swatches{ grid-template-columns:1fr 1fr; }
 }
+.cs2-compare{ display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:44px; align-items:start; }
+.cs2-compare.three{ grid-template-columns:repeat(3, 1fr); }
+.cs2-compare figure{ margin:0; }
+.cs2-compare figcaption{ display:inline-block; margin-bottom:10px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--cs-accent); }
+.cs2-compare img{ width:100%; height:auto; display:block; border-radius:14px; border:1px solid rgba(0,0,0,.08); background:#fff; }
+.cs2-tools{ display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
+.cs2-tools span{ font-size:13px; font-weight:600; padding:7px 14px; border-radius:999px; background:#fff; border:1px solid rgba(0,0,0,.12); }
+.cs2-cta{ display:inline-flex; align-items:center; gap:8px; margin-top:24px; background:var(--ink); color:#fff; font-size:14px; font-weight:600; padding:10px 18px; border-radius:6px; transition:background .2s; }
+.cs2-cta:hover{ background:var(--red); color:#fff; }
+.cs2-shots.two{ grid-template-columns:repeat(2, 1fr); max-width:900px; }
+.cs2-shots.one{ grid-template-columns:1fr; max-width:760px; }
+@media (max-width:600px){ .cs2-compare, .cs2-compare.three{ grid-template-columns:1fr; } .cs2-shots.one{ grid-template-columns:1fr; } }
+.cs2-shots.crop img{ height:560px; object-fit:cover; object-position:top; }
+@media (max-width:600px){ .cs2-shots.crop img{ height:320px; } }
