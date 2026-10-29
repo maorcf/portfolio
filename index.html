@@ -12,9 +12,10 @@
 <meta property="og:url" content="https://maorcohenfalah.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=220">
+<link rel="stylesheet" href="style.css?v=221">
+<script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -34,16 +35,16 @@
 
 <div class="floating-nav">
   <nav class="wrap">
-    <div class="brand">
-      <a href="index.html" class="logo-mark">M</a>
-      <a href="index.html" class="wordmark">Maor Cohen Falah</a>
-    </div>
-    <div class="nav-links">
-      <a href="index.html#work">Work</a>
-      <a href="playground.html">Playground</a>
+    <div class="nav-links nav-left">
+      <a href="index.html">Home</a>
       <a href="about.html">About</a>
     </div>
-    <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a href="mailto:maor.cohen.f@gmail.com" class="availability"><span class="availability-dot" aria-hidden="true"></span>Available for work</a>
+    <div class="nav-links nav-right">
+      <a href="index.html#work">Work</a>
+      <a href="playground.html">Playground</a>
+      <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav" onclick="openMobileNav()">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke="#141414" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
@@ -57,41 +58,30 @@
 
     <header>
       <nav class="wrap">
-        <div class="brand">
-          <a href="index.html" class="logo-mark">M</a>
-          <a href="index.html" class="wordmark">Maor Cohen Falah</a>
-        </div>
-        <div class="nav-links">
-          <a href="index.html#work">Work</a>
-          <a href="playground.html">Playground</a>
+        <div class="nav-links nav-left">
+          <a href="index.html">Home</a>
           <a href="about.html">About</a>
         </div>
-        <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="mailto:maor.cohen.f@gmail.com" class="availability"><span class="availability-dot" aria-hidden="true"></span>Available for work</a>
+        <div class="nav-links nav-right">
+          <a href="index.html#work">Work</a>
+          <a href="playground.html">Playground</a>
+          <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
         <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav" onclick="openMobileNav()">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke="#141414" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
       </nav>
     </header>
 
-    <section id="top" class="hero">
-
-      <h1>Hi, I'm <span class="accent">Maor</span><br>UX/UI <span class="icon-chip"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16M12 4v16" stroke="#141414" stroke-width="2.4" stroke-linecap="round"/></svg></span> Graphic&nbsp;Designer</h1>
-
-      <p class="lead">I turn messy problems into clean, usable products. Research, systems thinking, and pixels that hold up under pressure.</p>
-
-      <div class="hero-actions">
-        <a href="#work" class="hbtn hbtn-primary">View my work ↓</a>
+    <section id="top" class="hero hero-ethan">
+      <h1 class="hero-name">Maor</h1>
+      <div class="hero-portrait">
+        <img src="hero-portrait.jpg" alt="Maor Cohen Falah taking a photo with a film camera on the beach" width="540" height="720">
       </div>
-
-      <div class="spin-badge">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <defs><path id="circlePath" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"/></defs>
-          <circle cx="50" cy="50" r="48" fill="#D3F26A" stroke="#141414" stroke-width="1.5"/>
-          <text font-size="8.6" font-weight="700" letter-spacing="1.5" fill="#141414">
-            <textPath href="#circlePath" textLength="236" lengthAdjust="spacing">YOU’LL LOVE WORKING WITH ME • </textPath>
-          </text>
-          <path d="M42 42 L58 58 M58 42 L58 58 L42 58" stroke="#141414" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(0,0)"/>
-        </svg>
+      <p class="lead">I’m Maor Cohen Falah, a UX/UI and graphic designer turning research and systems thinking into clean, usable products and bold visual work.</p>
+      <div class="hero-actions">
+        <a href="#work" class="hbtn hbtn-primary">View my work</a>
       </div>
     </section>
 
@@ -103,7 +93,10 @@
 
   <!-- WORK -->
   <section id="work">
-    <div class="section-head"><span class="eyebrow-label">Selected work</span></div>
+    <div class="section-head section-head-center">
+      <h2 class="section-title">Selected work</h2>
+      <p>A selection of products, apps and websites, shaped through research, interaction and thoughtful details.</p>
+    </div>
 
     <div class="project-grid">
       <a href="work-chido.html" class="project card">
@@ -117,6 +110,7 @@
           <h3>Chido</h3>
           <p class="desc">A self-order kiosk for a Mexican street food restaurant: a photo-led, right to left ordering flow that takes a guest from welcome to a customized dish in a few taps.</p>
           <span class="read-link">Read case study →</span>
+          <span class="card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
       </a>
 
@@ -131,6 +125,7 @@
           <h3>Pazi</h3>
           <p class="desc">An AI guided mobile app that helps young adults figure out what to study or work in next, replacing guesswork with a personal, game like diagnostic.</p>
           <span class="read-link">Read case study →</span>
+          <span class="card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
       </a>
 
@@ -145,6 +140,7 @@
           <h3>FilmRoll</h3>
           <p class="desc">A digital disposable camera for weddings, designed and built solo end to end: guests shoot on a shared roll styled like real film, no cameras to buy or lose.</p>
           <span class="read-link">Read case study →</span>
+          <span class="card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
       </a>
 
@@ -159,6 +155,7 @@
           <h3>Austrip</h3>
           <p class="desc">A full UI/UX overhaul of the Austrip travel booking platform, focusing on usability and conversion optimization, transforming a fragmented experience into an intuitive, high-converting&nbsp;journey.</p>
           <span class="read-link">Read case study →</span>
+          <span class="card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
       </a>
 
@@ -173,6 +170,7 @@
           <h3>Fireline</h3>
           <p class="desc">My first game built with AI, made with Claude, Higgsfield and Figma in a three-hour sprint: a light, simple firefighter game where you put out every fire, rescue the people inside and manage a limited water tank.</p>
           <span class="read-link">Read case study →</span>
+          <span class="card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
       </a>
 
@@ -187,6 +185,7 @@
           <h3>Woom</h3>
           <p class="desc">A one-hour home assignment: redesigning a generic dog trainer landing page into a warm, playful Hebrew brand with a hand-drawn, sticker-like look.</p>
           <span class="read-link">Read case study →</span>
+          <span class="card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
       </a>
 
@@ -201,6 +200,7 @@
           <h3>Mimi Vintage</h3>
           <p class="desc">A live online store for a one-of-a-kind vintage boutique in Herzliya: from Instagram-only sales to a Shopify store on its own domain, with checkout, policies and search set up end to end.</p>
           <span class="read-link">Read case study →</span>
+          <span class="card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
       </a>
 
@@ -209,9 +209,10 @@
 
   <!-- PLAYGROUND TEASER -->
   <section id="playground-teaser">
-    <div class="section-head">
-      <span class="eyebrow-label">Playground</span>
-      <a href="playground.html" class="read-link">Explore the Playground →</a>
+    <div class="section-head section-head-center">
+      <h2 class="section-title">Playground</h2>
+      <p>Posters, branding, magazines and photography: the graphic design side of my work.</p>
+      <a href="playground.html" class="read-link">View all</a>
     </div>
     <div class="playground-strip">
       <div class="playground-strip-track">
@@ -251,14 +252,15 @@
 
   <footer>
     <div class="footer-card">
-      <h2>Let's talk.</h2>
+      <h2>Let’s talk</h2>
+      <p class="sub">Looking for a junior UX/UI or graphic designer? Tell me about the role and let’s see what we can create together.</p>
       <div class="social-row">
         <a href="mailto:maor.cohen.f@gmail.com" class="footer-email">maor.cohen.f@gmail.com</a>
         <a href="https://www.linkedin.com/in/maor-cohen-falah-491577361" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://www.instagram.com/maor_cohen_falah/" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
-    <p class="credit">© 2026 Maor Cohen Falah. Built with care, detail by detail.</p>
+    <div class="credit"><span>© 2026 Maor Cohen Falah</span><span class="footer-clock" aria-label="Local time in Tel Aviv"></span></div>
   </footer>
 
 </main>
@@ -267,14 +269,14 @@
 <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
 <nav class="mobile-nav" id="mobileNav" aria-hidden="true" inert>
   <button class="mobile-nav-close" aria-label="Close menu" onclick="closeMobileNav()">✕</button>
+  <a href="index.html" onclick="closeMobileNav()">Home</a>
   <a href="index.html#work" onclick="closeMobileNav()">Work</a>
   <a href="playground.html" onclick="closeMobileNav()">Playground</a>
   <a href="about.html" onclick="closeMobileNav()">About</a>
   <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link" onclick="closeMobileNav()">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </nav>
 
-<script src="hero-liquid.js?v=1"></script>
-<script src="script.js?v=110"></script>
+<script src="script.js?v=111"></script>
 
 </body>
 </html>

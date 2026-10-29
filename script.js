@@ -84,7 +84,7 @@ if(floatingNav || backToTop){
       var pastThreshold = currentY > 200;
       var navThreshold = pageCover ? pageCover.offsetTop + 120 : 200;
       var scrollingDown = currentY > lastScrollY;
-      if(floatingNav) floatingNav.classList.toggle('visible', currentY > navThreshold && scrollingDown);
+      if(floatingNav) floatingNav.classList.toggle('visible', currentY > navThreshold && !scrollingDown);
       if(backToTop) backToTop.classList.toggle('visible', pastThreshold);
       lastScrollY = currentY;
       scrollTicking = false;
@@ -95,7 +95,7 @@ if(floatingNav || backToTop){
 (function(){
   var heroSection = document.querySelector('.hero');
   var heading = heroSection ? heroSection.querySelector('h1') : null;
-  if(!heroSection || !heading) return;
+  if(!heroSection || !heading || heroSection.classList.contains('hero-ethan')) return;
 
   function wrapChars(el){
     Array.prototype.forEach.call(Array.prototype.slice.call(el.childNodes), function(node){
@@ -258,7 +258,7 @@ if(floatingNav || backToTop){
 
 (function(){
   var card = document.querySelector('.hero-frame-outer .hero-card');
-  if(!card || !document.querySelector('.hero') || card.querySelector('.liquid-canvas')) return; // the liquid headline replaces the dot trail
+  if(!card || !document.querySelector('.hero') || document.querySelector('.hero-ethan') || card.querySelector('.liquid-canvas')) return; // the liquid headline replaces the dot trail
   if(window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -391,4 +391,86 @@ if(floatingNav || backToTop){
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     items.forEach(function(e){ io.observe(e); });
   }
+})();
+
+// Ethan theme motion: scroll reveals, page transitions, cursor dot, portrait flicker, footer clock
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  var clocks = document.querySelectorAll('.footer-clock');
+  if(clocks.length){
+    var fmt = new Intl.DateTimeFormat('en-US', { hour:'2-digit', minute:'2-digit', hour12:true, timeZone:'Asia/Jerusalem' });
+    var tick = function(){ var s = fmt.format(new Date()); clocks.forEach(function(c){ c.textContent = s; }); };
+    tick(); setInterval(tick, 15000);
+  }
+
+  if(reduce){ root.classList.remove('pt-enter'); return; }
+
+  // page transition: the new page opens from the center, the old one closes into it
+  try { sessionStorage.removeItem('pt'); } catch(e){}
+  if(root.classList.contains('pt-enter')) setTimeout(function(){ root.classList.remove('pt-enter'); }, 700);
+  window.addEventListener('pageshow', function(e){ if(e.persisted) root.classList.remove('pt-leave', 'pt-enter'); });
+  document.addEventListener('click', function(e){
+    if(e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if(!a || a.target === '_blank' || a.hasAttribute('download')) return;
+    var url = new URL(a.href, location.href);
+    if(url.origin !== location.origin || /\.(pdf|jpe?g|png|mp4)$/i.test(url.pathname)) return;
+    if(url.pathname === location.pathname && url.search === location.search) return; // same-page anchors scroll normally
+    e.preventDefault();
+    try { sessionStorage.setItem('pt', '1'); } catch(err){}
+    root.classList.add('pt-leave');
+    setTimeout(function(){ location.href = url.href; }, 430);
+  });
+
+  // fade-up reveals as sections scroll into view
+  var sel = '.section-head-center, #work .project, .playground-strip, .footer-card, .case-section, .case-row, .more-work-head, .more-work-card, #playground > .project, .about-card, #hobbies > *';
+  var els = Array.prototype.filter.call(document.querySelectorAll(sel), function(el){ return !el.classList.contains('cs-reveal'); });
+  if(els.length && 'IntersectionObserver' in window){
+    els.forEach(function(el){ if(el.getBoundingClientRect().top > window.innerHeight * 0.9) el.classList.add('reveal'); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        var el = en.target; io.unobserve(el);
+        el.classList.add('in');
+        setTimeout(function(){ el.classList.remove('reveal', 'in'); }, 1100); // hand transforms back to hover styles
+      });
+    }, { rootMargin:'0px 0px -12% 0px', threshold:0 });
+    els.forEach(function(el){ if(el.classList.contains('reveal')) io.observe(el); });
+  }
+
+  // hero portrait flicks through three grades, like a contact sheet
+  var portrait = document.querySelector('.hero-portrait');
+  if(portrait){
+    var step = 0, visible = true;
+    if('IntersectionObserver' in window) new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }).observe(portrait);
+    setInterval(function(){
+      if(!visible || document.hidden) return;
+      step = (step + 1) % 3;
+      portrait.classList.toggle('fx-1', step === 1);
+      portrait.classList.toggle('fx-2', step === 2);
+    }, 400);
+  }
+
+  // red dot that trails the mouse
+  if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  var dot = document.createElement('div');
+  dot.className = 'cursor-dot'; dot.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(dot);
+  var mx = 0, my = 0, x = 0, y = 0, raf = 0, started = false;
+  function loop(){
+    x += (mx - x) * 0.2; y += (my - y) * 0.2;
+    dot.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+    raf = (Math.abs(mx - x) > 0.2 || Math.abs(my - y) > 0.2) ? requestAnimationFrame(loop) : 0;
+  }
+  document.addEventListener('pointermove', function(e){
+    if(e.pointerType !== 'mouse') return;
+    mx = e.clientX + 18; my = e.clientY + 24;
+    if(!started){ x = mx; y = my; started = true; }
+    dot.classList.add('on');
+    dot.classList.toggle('big', !!(e.target.closest && e.target.closest('a, button')));
+    if(!raf) raf = requestAnimationFrame(loop);
+  }, { passive:true });
+  document.documentElement.addEventListener('mouseleave', function(){ dot.classList.remove('on'); });
 })();

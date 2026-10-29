@@ -7,25 +7,26 @@
 <title>Woom | Maor Cohen Falah</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-woom.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=220">
+<link rel="stylesheet" href="style.css?v=221">
+<script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
 
 <div class="floating-nav">
   <nav class="wrap">
-    <div class="brand">
-      <a href="index.html" class="logo-mark">M</a>
-      <a href="index.html" class="wordmark">Maor Cohen Falah</a>
-    </div>
-    <div class="nav-links">
-      <a href="index.html#work">Work</a>
-      <a href="playground.html">Playground</a>
+    <div class="nav-links nav-left">
+      <a href="index.html">Home</a>
       <a href="about.html">About</a>
     </div>
-    <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a href="mailto:maor.cohen.f@gmail.com" class="availability"><span class="availability-dot" aria-hidden="true"></span>Available for work</a>
+    <div class="nav-links nav-right">
+      <a href="index.html#work">Work</a>
+      <a href="playground.html">Playground</a>
+      <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav" onclick="openMobileNav()">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke="#141414" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
@@ -37,16 +38,16 @@
 
     <header>
       <nav class="wrap">
-        <div class="brand">
-          <a href="index.html" class="logo-mark">M</a>
-          <a href="index.html" class="wordmark">Maor Cohen Falah</a>
-        </div>
-        <div class="nav-links">
-          <a href="index.html#work">Work</a>
-          <a href="playground.html">Playground</a>
+        <div class="nav-links nav-left">
+          <a href="index.html">Home</a>
           <a href="about.html">About</a>
         </div>
-        <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="mailto:maor.cohen.f@gmail.com" class="availability"><span class="availability-dot" aria-hidden="true"></span>Available for work</a>
+        <div class="nav-links nav-right">
+          <a href="index.html#work">Work</a>
+          <a href="playground.html">Playground</a>
+          <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
         <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav" onclick="openMobileNav()">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke="#141414" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
@@ -181,14 +182,15 @@
 
   <footer>
     <div class="footer-card">
-      <h2>Let's talk.</h2>
+      <h2>Let’s talk</h2>
+      <p class="sub">Looking for a junior UX/UI or graphic designer? Tell me about the role and let’s see what we can create together.</p>
       <div class="social-row">
         <a href="mailto:maor.cohen.f@gmail.com" class="footer-email">maor.cohen.f@gmail.com</a>
         <a href="https://www.linkedin.com/in/maor-cohen-falah-491577361" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://www.instagram.com/maor_cohen_falah/" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
-    <p class="credit">© 2026 Maor Cohen Falah. Built with care, detail by detail.</p>
+    <div class="credit"><span>© 2026 Maor Cohen Falah</span><span class="footer-clock" aria-label="Local time in Tel Aviv"></span></div>
   </footer>
 
 </main>
@@ -200,13 +202,14 @@
 <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
 <nav class="mobile-nav" id="mobileNav" aria-hidden="true" inert>
   <button class="mobile-nav-close" aria-label="Close menu" onclick="closeMobileNav()">✕</button>
+  <a href="index.html" onclick="closeMobileNav()">Home</a>
   <a href="index.html#work" onclick="closeMobileNav()">Work</a>
   <a href="playground.html" onclick="closeMobileNav()">Playground</a>
   <a href="about.html" onclick="closeMobileNav()">About</a>
   <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link" onclick="closeMobileNav()">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </nav>
 
-<script src="script.js?v=110"></script>
+<script src="script.js?v=111"></script>
 
 </body>
 </html>
