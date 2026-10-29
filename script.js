@@ -548,10 +548,16 @@ if(floatingNav || backToTop){
   document.body.appendChild(bar);
   var map = {};
   links.querySelectorAll('a').forEach(function(a){ var t = document.getElementById(a.getAttribute('href').slice(1)); if(t) map[t.id] = a; });
+  // the site header stays pinned above the bar, so recruiters always have Home / Work / About / Resume
+  var head = document.querySelector('.floating-nav'), root = document.documentElement;
+  function headH(){ return head ? head.offsetHeight : 0; }
+  function offset(){ return headH() + bar.offsetHeight; }
+  function place(){ root.style.setProperty('--cs2-head', headH() + 'px'); }
+  place(); window.addEventListener('resize', place);
   var shown = false;
   function onScroll(){
-    var s = hero.getBoundingClientRect().bottom < 64;
-    if(s !== shown){ shown = s; bar.classList.toggle('on', s); }
+    var s = hero.getBoundingClientRect().bottom < offset() + 8;
+    if(s !== shown){ shown = s; bar.classList.toggle('on', s); root.classList.toggle('cs2-bar-on', s); }
   }
   window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
   // jump links: animate the scroll ourselves and re-read the target every frame,
@@ -563,11 +569,11 @@ if(floatingNav || backToTop){
     auto = true;
     (function step(now){
       var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
-      var target = Math.max(0, window.scrollY + t.getBoundingClientRect().top - 56);
+      var target = Math.max(0, window.scrollY + t.getBoundingClientRect().top - offset());
       var y = start + (target - start) * e;
       window.scrollTo(0, y);
       if(k < 1) requestAnimationFrame(step);
-      else { window.scrollTo(0, Math.max(0, window.scrollY + t.getBoundingClientRect().top - 56)); setTimeout(function(){ auto = false; }, 120); }
+      else { window.scrollTo(0, Math.max(0, window.scrollY + t.getBoundingClientRect().top - offset())); setTimeout(function(){ auto = false; }, 120); }
     })(t0);
   }
   document.addEventListener('click', function(e){
