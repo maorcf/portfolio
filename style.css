@@ -1381,7 +1381,7 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   font-size:clamp(28px, 3.1vw, 46px); font-weight:600; line-height:1.12; letter-spacing:-0.03em; text-wrap:pretty;
 }
 .hero.hero-ethan .lead-strong{ color:var(--ink); }
-.hero.hero-ethan .hero-funfact{ position:absolute; top:40px; right:24px; margin:0; text-align:right; font-size:16px; font-weight:500; color:var(--muted); letter-spacing:-0.01em; }
+.hero.hero-ethan .hero-funfact{ position:absolute; top:96px; right:24px; margin:0; text-align:right; font-size:16px; font-weight:500; color:var(--muted); letter-spacing:-0.01em; }
 .hero.hero-ethan .hero-funfact b{ color:var(--ink); font-weight:600; }
 .hero.hero-ethan .hero-actions{ position:absolute; left:0; right:0; bottom:12vh; margin:0; justify-content:center; }
 .hero.hero-ethan .hbtn{ font-size:15px; padding:11px 20px; }
@@ -1390,5 +1390,5 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   .hero.hero-ethan .hero-eyebrow{ font-size:11px; margin-bottom:20px; }
   .hero.hero-ethan .lead{ font-size:clamp(26px, 7.4vw, 34px); }
   .hero.hero-ethan .hero-actions{ bottom:14svh; }
-  .hero.hero-ethan .hero-funfact{ top:24px; right:16px; font-size:14px; }
+  .hero.hero-ethan .hero-funfact{ top:60px; right:16px; font-size:14px; }
 }
