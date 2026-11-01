@@ -1381,11 +1381,11 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   font-size:clamp(28px, 3.1vw, 46px); font-weight:600; line-height:1.12; letter-spacing:-0.03em; text-wrap:pretty;
 }
 .hero.hero-ethan .lead-strong{ color:var(--ink); }
-.hero.hero-ethan .hero-actions{ margin-top:40px; justify-content:flex-start; }
+.hero.hero-ethan .hero-actions{ margin-top:88px; align-self:stretch; justify-content:center; }
 .hero.hero-ethan .hbtn{ font-size:15px; padding:11px 20px; }
 @media (max-width:809px){
   .hero.hero-ethan{ min-height:calc(100svh - 64px); padding:32px 16px 72px; }
   .hero.hero-ethan .hero-eyebrow{ font-size:11px; margin-bottom:20px; }
   .hero.hero-ethan .lead{ font-size:clamp(26px, 7.4vw, 34px); }
-  .hero.hero-ethan .hero-actions{ margin-top:32px; }
+  .hero.hero-ethan .hero-actions{ margin-top:56px; }
 }
