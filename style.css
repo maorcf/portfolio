@@ -1371,7 +1371,7 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 .playground-page .tag-pill + .tag-pill::before{ content:"·"; margin:0 8px; }
 
 /* home hero without name/photo: left-aligned typographic statement built from the intro line */
-.hero.hero-ethan{ min-height:calc(100svh - 72px); justify-content:center; align-items:flex-start; text-align:left; gap:0; padding:48px 24px 96px; }
+.hero.hero-ethan{ min-height:calc(100svh - 72px); justify-content:center; align-items:flex-start; text-align:left; gap:0; padding:24px 24px 22vh; }
 .hero.hero-ethan .hero-eyebrow{
   margin:0 0 28px; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
 }
@@ -1384,7 +1384,7 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 .hero.hero-ethan .hero-actions{ position:absolute; left:0; right:0; bottom:12vh; margin:0; justify-content:center; }
 .hero.hero-ethan .hbtn{ font-size:15px; padding:11px 20px; }
 @media (max-width:809px){
-  .hero.hero-ethan{ min-height:calc(100svh - 64px); padding:32px 16px 72px; }
+  .hero.hero-ethan{ min-height:calc(100svh - 64px); padding:16px 16px 26svh; }
   .hero.hero-ethan .hero-eyebrow{ font-size:11px; margin-bottom:20px; }
   .hero.hero-ethan .lead{ font-size:clamp(26px, 7.4vw, 34px); }
   .hero.hero-ethan .hero-actions{ bottom:14svh; }
