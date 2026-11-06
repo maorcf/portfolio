@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Puff Up | Maor Cohen Falah</title>
+<meta name="description" content="Puff Up: an interactive hero experiment by Maor Cohen Falah. An inflatable tulip you inflate and squeeze with your hand through the webcam, or by pressing and holding.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Inter:wght@600&display=swap">
+<style>
+/* The hero is designed on a 1728 × 899 frame. --u is one design pixel, so the
+   composition scales with the window and keeps the Figma proportions. */
+:root{
+  --u: calc(100vw / 1728);
+  --ink:#000; --paper:#fff; --muted:#6b6b6b;
+  --nav:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --anybody:"Anybody",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ---------- Header (88:14) ---------- */
+.header{position:relative;z-index:5;height:57px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:0 24px;font:600 14px/21px var(--nav)}
+.header a{color:var(--ink);text-decoration:none}
+.header a:hover{opacity:.6}
+.header a:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:2px}
+.nav{display:flex;gap:28px}
+.resume{justify-self:end;display:inline-flex;align-items:center;gap:4px}
+.resume img{width:13px;height:13px;display:block}
+
+/* ---------- Hero composition (88:10) ---------- */
+.hero{position:relative;height:calc(899 * var(--u) - 57px);min-height:520px}
+.hero > *{position:absolute}
+
+.puff{left:calc(75 * var(--u));top:calc(40 * var(--u));width:calc(1578 * var(--u));height:auto;
+  transform-origin:50% 85%;will-change:transform;user-select:none;-webkit-user-drag:none;pointer-events:none}
+
+.tulip{left:calc(50% - 9 * var(--u));top:calc(200 * var(--u));width:calc(442 * var(--u));height:calc(614 * var(--u));
+  transform:translateX(-50%);cursor:grab;touch-action:none;z-index:2}
+.tulip.pressing{cursor:grabbing}
+.tulip canvas{width:100%;height:100%;display:block;will-change:transform}
+
+.label{margin:0;font:400 10px/normal var(--anybody);letter-spacing:.5px;font-variation-settings:"wdth" 100}
+.code{margin:0;font:300 max(6px, calc(8 * var(--u)))/normal var(--anybody);letter-spacing:.4px;
+  font-variation-settings:"wdth" 100;white-space:pre-wrap;word-break:break-word}
+
+.code-label{left:calc(75 * var(--u));top:calc(452 * var(--u))}
+.code-left{left:calc(75 * var(--u));top:calc(474 * var(--u));width:calc(454 * var(--u))}
+.design-label{right:calc(151 * var(--u));top:calc(495 * var(--u));text-align:right}
+.code-right{right:calc(151 * var(--u));top:calc(517 * var(--u));width:calc(478 * var(--u));text-align:right}
+
+/* ---------- Hand control (not in the frame: small, out of the way) ---------- */
+.control{position:fixed;z-index:10;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.cam-btn{display:inline-flex;align-items:center;gap:8px;font:600 12px/1 var(--nav);color:var(--ink);background:var(--paper);
+  border:1px solid var(--ink);border-radius:999px;padding:9px 14px;cursor:pointer}
+.cam-btn:hover{background:var(--ink);color:var(--paper)}
+.cam-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.cam-btn .dot{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.35}
+.cam-btn[data-s="loading"] .dot{opacity:1;animation:blink 1s infinite}
+.cam-btn[data-s="live"]{cursor:default}
+.cam-btn[data-s="live"] .dot{background:#22a55b;opacity:1}
+.cam-btn[data-s="error"] .dot{background:#d33;opacity:1}
+@keyframes blink{50%{opacity:.2}}
+.preview{position:relative;width:132px;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:#000}
+.preview video,.preview canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.preview video{opacity:.7}
+
+/* ---------- Narrow screens: stack the composition ---------- */
+@media (max-width:820px){
+  .header{grid-template-columns:auto 1fr;gap:16px;padding:0 16px}
+  .nav{justify-self:end;gap:18px}
+  .resume{display:none}
+  .hero{height:auto;min-height:0;display:flex;flex-direction:column;align-items:center;gap:20px;
+    padding:12px max(16px,env(safe-area-inset-left,0px)) 96px max(16px,env(safe-area-inset-right,0px))}
+  .hero > *{position:static}
+  .puff{width:100%;order:1}
+  .tulip{order:2;transform:none;width:min(70vw,320px);height:auto;aspect-ratio:442/614;margin-top:-18vw}
+  .code-label,.design-label{order:3;align-self:flex-start;text-align:left}
+  .code-left,.code-right{order:4;align-self:stretch;width:auto;text-align:left;font-size:7px}
+  .design-label{order:5}.code-right{order:6}
+}
+@media (prefers-reduced-motion:reduce){.cam-btn[data-s="loading"] .dot{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="index.html" class="home">Home</a>
+  <nav class="nav" aria-label="Main">
+    <a href="index.html#work">Work</a>
+    <a href="playground.html">Playground</a>
+    <a href="about.html">About</a>
+  </nav>
+  <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="resume">Resume <img src="puff-up-arrow.svg?v=1" width="13" height="13" alt=""></a>
+</header>
+
+<main class="hero">
+  <img class="puff" id="puff" src="puff-up-title.svg?v=1" width="1578" height="383" alt="Puff up">
+
+  <div class="tulip" id="tulip" role="img" aria-label="Inflatable tulip. Open your hand to inflate it, make a fist to squeeze it, or press and hold.">
+    <canvas id="tc"></canvas>
+  </div>
+
+  <p class="label code-label">THE CODE</p>
+<pre class="code code-left">import { useRef } from "react";
+import InflatableTulip from "./InflatableTulip";
+import sprite from "./assets/tulip-sprite.webp";
+
+export default function App() {
+  const word = useRef&lt;HTMLHeadingElement&gt;(null);
+  const psi = useRef&lt;HTMLSpanElement&gt;(null);
+  const hint = useRef&lt;HTMLParagraphElement&gt;(null);
+
+  // p: 0 = fist (deflated) … 1 = open hand (inflated). Runs every frame,
+  // so we update styles directly instead of React state (keeps it smooth).
+  const onPressure = (p: number) =&gt; {
+    const w = word.current;
+    if (w) {
+      w.style.fontVariationSettings = `"wght" ${200 + p * 700}, "wdth" ${55 + p * 95}`;
+      w.style.letterSpacing = `${-0.07 + p * 0.03}em`;
+      w.style.transform = `scale(${0.92 + p * 0.08}, ${0.8 + p * 0.2})`;
+    }
+    if (psi.current) psi.current.textContent = (p * 2.5).toFixed(2);
+    if (hint.current) hint.current.textContent = p &gt; 0.5 ? "Squeeze to deflate" : "Open to inflate";
+  };
+
+  return (
+    &lt;main className="screen"&gt;
+      &lt;h1 ref={word} className="word"&gt;INFLATE&lt;/h1&gt;
+
+      &lt;div className="tulip"&gt;
+        &lt;InflatableTulip sprite={sprite} height="70vh" smoothTime={0.7} onPressureChange={onPressure} /&gt;
+      &lt;/div&gt;
+
+      &lt;p ref={hint} className="hint"&gt;Open to inflate&lt;/p&gt;
+      &lt;div className="gauge"&gt;&lt;span ref={psi}&gt;2.50&lt;/span&gt; psi&lt;/div&gt;
+    &lt;/main&gt;
+  );
+}</pre>
+
+  <p class="label design-label">THE DESIGN</p>
+<pre class="code code-right">@import url('https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&amp;family=Figtree:wght@400;600&amp;display=swap');
+
+.screen { position: relative; height: 100vh; overflow: hidden;
+  display: grid; place-items: center; background: #dfe4ec; font-family: Figtree, sans-serif; }
+
+.word { position: absolute; margin: 0; font-family: Anybody, sans-serif;
+  font-size: clamp(90px, 22vw, 360px); line-height: .8; color: #c87a34; opacity: .9;
+  transform-origin: 50% 60%; will-change: transform; user-select: none; }
+
+.tulip { position: relative; z-index: 1; }
+.hint  { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  margin: 0; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: #5c6577; }
+.gauge { position: absolute; top: 32px; right: 32px; font: 600 28px/1 Figtree; color: #1d2433; }</pre>
+</main>
+
+<div class="control">
+  <div class="preview" id="preview" hidden>
+    <video id="video" playsinline muted></video>
+    <canvas id="overlay"></canvas>
+  </div>
+  <button class="cam-btn" id="camBtn" type="button" data-s="off"><span class="dot"></span><span id="camText">Control with your hand</span></button>
+</div>
+
+<script>
+(() => {
+  // ---------------- settings ----------------
+  const SMOOTH_TIME   = 0.7;    // seconds to settle: higher = slower, calmer
+  const SHOW_PREVIEW  = true;   // small camera window with the hand skeleton
+  const PUFF_REACTS   = false;  // "Puff up" lettering squashes with the tulip
+  const FIST = 1.0, OPEN = 1.75; // hand openness calibration (fingertip/palm ratio)
+
+  // sprite: 48 morph frames, 8 × 6 grid of 442 × 616, frame 0 = inflated
+  const FW = 442, FH = 616, COLS = 8, N = 48;
+
+  const $ = id => document.getElementById(id);
+  const tc = $('tc'), g = tc.getContext('2d'), tulip = $('tulip'), puff = $('puff');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sprite = new Image(); sprite.src = 'puff-up-sprite.webp?v=1';
+
+  let target = 1, v = 1, vel = 0, last = performance.now(), handSeen = false, pressing = false;
+
+  function size() {
+    const r = tc.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
+    tc.width = Math.max(1, Math.round(r.width * d)); tc.height = Math.max(1, Math.round(r.height * d));
+  }
+  new ResizeObserver(size).observe(tc); size();
+
+  // critically damped spring: smooth, no overshoot, same speed at any frame rate
+  function damp(cur, tgt, dt) {
+    const omega = 2 / SMOOTH_TIME, x = omega * dt;
+    const e = 1 / (1 + x + 0.48 * x * x + 0.235 * x * x * x);
+    const change = cur - tgt, temp = (vel + omega * change) * dt;
+    vel = (vel - omega * temp) * e;
+    return tgt + (change + temp) * e;
+  }
+
+  function draw(p) {
+    if (!sprite.complete || !sprite.naturalWidth) return;
+    const f = (1 - p) * (N - 1), a = Math.floor(f), b = Math.min(N - 1, a + 1), t = f - a;
+    g.clearRect(0, 0, tc.width, tc.height);
+    const blit = (i, al) => { g.globalAlpha = al;
+      g.drawImage(sprite, (i % COLS) * FW, Math.floor(i / COLS) * FH, FW, FH, 0, 0, tc.width, tc.height); };
+    blit(a, 1); if (t > 0.01) blit(b, t); g.globalAlpha = 1;
+  }
+
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    v = reduce ? target : damp(v, target, dt);
+    const p = Math.max(0, Math.min(1, v));
+    draw(p);
+    const float = reduce ? 0 : Math.sin(now / 1600) * 4;
+    const sway = reduce ? 0 : Math.sin(now / 2300) * 0.7;
+    tc.style.transform = `translateY(${float}px) rotate(${sway}deg)`;
+    if (PUFF_REACTS) puff.style.transform = `scale(${0.97 + p * 0.03}, ${0.88 + p * 0.12})`;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // ---------------- press & hold fallback ----------------
+  const down = () => { pressing = true; tulip.classList.add('pressing'); if (!handSeen) target = 0; };
+  const up = () => { pressing = false; tulip.classList.remove('pressing'); if (!handSeen) target = 1; };
+  tulip.addEventListener('pointerdown', down);
+  addEventListener('pointerup', up); addEventListener('pointercancel', up);
+
+  // ---------------- hand tracking ----------------
+  const btn = $('camBtn'), txt = $('camText'), video = $('video'), overlay = $('overlay'), octx = overlay.getContext('2d');
+  const setBtn = (s, t) => { btn.dataset.s = s; txt.textContent = t; };
+  const BONES = [[0,1],[1,2],[2,3],[3,4],[0,5],[5,6],[6,7],[7,8],[5,9],[9,10],[10,11],[11,12],[9,13],[13,14],[14,15],[15,16],[13,17],[0,17],[17,18],[18,19],[19,20]];
+  const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y, (a.z || 0) - (b.z || 0));
+  const openness = lm => {
+    const palm = dist(lm[0], lm[9]) || 1e-6;
+    const avg = [8, 12, 16, 20].reduce((s, i) => s + dist(lm[i], lm[0]) / palm, 0) / 4;
+    return Math.max(0, Math.min(1, (avg - FIST) / (OPEN - FIST)));
+  };
+
+  function drawHand(lm) {
+    if (!SHOW_PREVIEW) return;
+    const d = devicePixelRatio || 1, w = overlay.width = overlay.clientWidth * d, h = overlay.height = overlay.clientHeight * d;
+    octx.clearRect(0, 0, w, h); if (!lm) return;
+    const s = Math.max(w / video.videoWidth, h / video.videoHeight);
+    const ox = (w - video.videoWidth * s) / 2, oy = (h - video.videoHeight * s) / 2;
+    const P = q => [ox + q.x * video.videoWidth * s, oy + q.y * video.videoHeight * s];
+    octx.lineWidth = 1.5 * d; octx.strokeStyle = 'rgba(255,255,255,.9)'; octx.beginPath();
+    for (const [a, b] of BONES) { octx.moveTo(...P(lm[a])); octx.lineTo(...P(lm[b])); }
+    octx.stroke(); octx.fillStyle = '#e39250';
+    for (const q of lm) { const [x, y] = P(q); octx.beginPath(); octx.arc(x, y, 2.5 * d, 0, 7); octx.fill(); }
+  }
+
+  let started = false;
+  async function start() {
+    if (started) return; started = true;
+    setBtn('loading', 'Loading hand tracking…');
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480, facingMode: 'user' }, audio: false });
+      video.srcObject = stream; await video.play();
+      const V = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14';
+      const { FilesetResolver, HandLandmarker } = await import(V + '/vision_bundle.mjs');
+      const files = await FilesetResolver.forVisionTasks(V + '/wasm');
+      const opts = delegate => ({
+        baseOptions: { modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task', delegate },
+        runningMode: 'VIDEO', numHands: 1, minHandDetectionConfidence: 0.5, minTrackingConfidence: 0.5 });
+      let lmk; try { lmk = await HandLandmarker.createFromOptions(files, opts('GPU')); }
+      catch { lmk = await HandLandmarker.createFromOptions(files, opts('CPU')); }
+
+      $('preview').hidden = !SHOW_PREVIEW;
+      setBtn('live', 'Show your hand');
+      let lastT = -1, smooth = 1, lastHand = performance.now();
+      const loop = () => {
+        if (video.readyState >= 2 && video.currentTime !== lastT) {
+          lastT = video.currentTime;
+          const lm = lmk.detectForVideo(video, performance.now()).landmarks?.[0];
+          drawHand(lm);
+          if (lm) {
+            const now = performance.now(), dt = Math.min(0.1, (now - lastHand) / 1000); lastHand = now;
+            const o = openness(lm), k = 1 - Math.exp(-dt / 0.12);
+            if (Math.abs(o - smooth) > 0.02) smooth += (o - smooth) * k;
+            handSeen = true; target = smooth;
+            setBtn('live', smooth < 0.35 ? 'Squeezing' : smooth > 0.7 ? 'Inflated' : 'Letting go…');
+          } else if (handSeen) {
+            handSeen = false; target = pressing ? 0 : 1; setBtn('live', 'Show your hand');
+          }
+        }
+        requestAnimationFrame(loop);
+      };
+      loop();
+    } catch (e) {
+      console.error(e); started = false;
+      const denied = e && (e.name === 'NotAllowedError' || e.name === 'SecurityError');
+      setBtn('error', denied ? 'Camera blocked · allow it and retry' : 'Hand tracking unavailable · retry');
+    }
+  }
+  btn.addEventListener('click', start);
+  start(); // ask for the camera right away, no click needed
+})();
+</script>
+<script src="/analytics.js?v=2" defer></script>
+</body>
+</html>
