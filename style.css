@@ -1391,3 +1391,41 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   .hero.hero-ethan .hero-actions{ bottom:14svh; }
   .hero.hero-ethan .hero-funfact{ top:60px; right:16px; font-size:14px; }
 }
+
+/* ===== cs3: story-style case study (narrow text column + tinted image panels) ===== */
+main.cs3{ background:#fff; color:#2b2b2b; padding-bottom:40px; }
+.cs3-banner{ width:100%; height:clamp(200px, 26vw, 400px); overflow:hidden; background:var(--cs3-tint,#EEF1F6); }
+.cs3-banner img{ width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+.cs3-body{ padding:0 24px; }
+.cs3-text{ max-width:680px; margin:0 auto; padding:56px 0 0; font-size:18px; line-height:1.6; }
+.cs3-text p{ margin:0 0 18px; }
+.cs3-text a{ text-decoration:underline; }
+.cs3-text h1{ font-size:clamp(32px, 4vw, 46px); line-height:1.15; font-weight:700; letter-spacing:-.02em; color:var(--ink); margin:0 0 28px; }
+.cs3-text h2{ font-size:26px; line-height:1.25; font-weight:600; letter-spacing:-.01em; color:var(--ink); margin:0 0 14px; }
+.cs3-text h3.cs3-sub{ font-size:22px; font-weight:600; color:var(--ink); margin:36px 0 18px; }
+.cs3-text h4{ font-size:18px; font-weight:600; color:var(--ink); margin:22px 0 6px; }
+.cs3-text h4 + p{ margin-bottom:8px; }
+.cs3-text ul{ margin:0 0 18px; padding-left:22px; }
+.cs3-text li{ margin:4px 0; }
+.cs3-text strong{ color:var(--ink); font-weight:600; }
+.cs3-intro{ padding-top:64px; }
+.cs3-back{ display:inline-block; font-size:13px; font-weight:500; color:var(--muted) !important; text-decoration:none !important; margin-bottom:32px; }
+.cs3-back:hover{ color:var(--ink) !important; }
+.cs3-text ul.cs3-meta{ list-style:none; padding:22px 0 0; margin:30px 0 0; border-top:1px solid #e6e6e6; display:flex; flex-wrap:wrap; gap:14px 48px; font-size:15px; }
+.cs3-meta li{ margin:0; }
+.cs3-meta span{ display:block; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+.cs3-panel{ max-width:1080px; margin:72px auto 0; padding:clamp(20px, 5.5vw, 72px); background:var(--cs3-tint,#EEF1F6); border-radius:32px; }
+.cs3-panel img{ display:block; width:100%; height:auto; border-radius:10px; box-shadow:0 18px 50px rgba(20,30,50,.14), 0 2px 6px rgba(20,30,50,.06); }
+.cs3-pair{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px, 3vw, 40px); align-items:start; }
+.cs3-pair figcaption{ font-size:13px; font-weight:500; color:var(--muted); margin-top:14px; text-align:center; }
+.cs3-swatches{ display:flex; flex-wrap:wrap; gap:10px 22px; margin:6px 0 4px; font-size:15px; }
+.cs3-swatches div{ display:flex; align-items:center; gap:8px; }
+.cs3-swatches i{ width:14px; height:14px; border-radius:50%; display:inline-block; }
+main.cs3 .cs2-after{ padding-top:96px; }
+@media (max-width:700px){
+  .cs3-body{ padding:0 16px; }
+  .cs3-text{ font-size:16px; padding-top:44px; }
+  .cs3-text h2{ font-size:22px; }
+  .cs3-panel{ margin-top:48px; border-radius:20px; }
+  .cs3-pair{ grid-template-columns:1fr; }
+}

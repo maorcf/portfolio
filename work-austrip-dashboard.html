@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-austrip-dashboard.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=268">
+<link rel="stylesheet" href="style.css?v=269">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -59,113 +59,118 @@
   </div>
 </div>
 
-<main class="cs2 cs2-clean" style="--cs-tint:#DCEBF2; --cs-accent:#1F6E8C;">
-  <section class="cs2-hero cs2-hero-live" aria-label="Austrip Dashboard">
-    <h1 class="cs2-hidden">Austrip Dashboard</h1>
-    <nav class="cs2-toc cs2-hidden" aria-label="Sections">
-        <a href="#overview">Overview</a><a href="#problem">Problem</a><a href="#design">Design</a><a href="#home">Overview screen</a><a href="#inbox">Inbox</a><a href="#editor">Tour editor</a><a href="#calendar">Calendar</a><a href="#outcome">Outcome</a>
-      </nav>
-    <div class="wrap maxw-wide">
-      <div class="cs-hero cs-hero-austrip" id="csHero" aria-label="Austrip Dashboard" style="--hero-fs:clamp(48px, 6.4vw, 116px); --hero-fs-m:13vw;">
-        <a href="index.html#work" class="cs-back">← Back to Work</a>
-        <div class="cs-hero-word" aria-hidden="true">Dashboard</div>
-        <div class="cs-hero-browser cs-hero-shot"><img src="work-austrip-dash-hero.webp" alt="Austrip Dashboard overview: stat cards, a bookings by month chart, upcoming tours and open requests"></div>
-      </div>
-      <div class="page-title" style="padding-top:56px;">
-        <p>An admin dashboard for the Austrip team: every request from the site, bookings, taxis and tour content in one place, designed in Figma and built in code.</p>
-      </div>
-    </div>
-  </section>
+<main class="cs3" style="--cs3-tint:#EAF0F6;">
+  <div class="cs3-banner"><img src="work-austrip-dash-banner.jpg" alt="The Austrip Dashboard overview screen between the inbox and the calendar"></div>
 
-  <section class="cs2-band" id="overview">
-    <div class="cs2-in">
-      <div class="cs2-eyebrow"><span class="cs2-num">00</span>Overview</div>
-      <h2>The other side of the booking site</h2>
-      <p class="cs2-lead">Austrip is an Israeli tour operator in Vienna. After I redesigned and rebuilt their site (see the <a href="work-austrip.html" style="text-decoration:underline;">Austrip case study</a>), I looked at the people who answer it. Bookings live in Checkfront, the site lives in WordPress, and only an outside developer can change a price or a photo. I designed and built one dashboard that brings all of it together, with the goal of replacing Checkfront.</p>
-    </div>
-  </section>
+  <article class="cs3-body">
+    <header class="cs3-text cs3-intro">
+      <a href="index.html#work" class="cs3-back">← Back to Work</a>
+      <h1>One Place for Every Request: Designing an Admin Dashboard for a Tour Operator in Vienna</h1>
+      <p>Austrip is an Israeli tour operator in Vienna. After I redesigned and rebuilt their booking site (see the <a href="work-austrip.html">Austrip case study</a>), I started thinking about the other side of it: the people who answer every booking, every hotel quote and every taxi order.</p>
+      <p>I found a small team juggling three tools. Bookings live in Checkfront, the site lives in WordPress, and changing a price or a photo means waiting for an outside developer. I decided to design one dashboard that brings all of it together.</p>
+      <ul class="cs3-meta">
+        <li><span>Role</span>UX/UI design, built in code</li>
+        <li><span>Tools</span>Figma, Claude</li>
+        <li><span>Platform</span>Desktop web app, Hebrew (RTL)</li>
+      </ul>
+    </header>
 
-  <section class="cs2-band alt" id="problem">
-    <div class="cs2-in">
-      <div class="cs2-eyebrow"><span class="cs2-num">01</span>Problem</div>
-      <h2>Three tools and a developer for every change</h2>
-      <div class="cs2-cards">
-        <div class="cs2-card"><span class="lbl">Problem</span><h3>Scattered requests</h3><p>Tour bookings, hotel quotes, taxi orders and contact forms arrive in different places. Nothing shows what still needs an answer.</p></div>
-        <div class="cs2-card"><span class="lbl">Solution</span><h3>One dashboard</h3><p>Every form on the site lands in one inbox. A request becomes a booking in one click, and bookings and taxi rides share one calendar.</p></div>
-        <div class="cs2-card"><span class="lbl">Impact</span><h3>The team owns the site</h3><p>Prices, photos, schedules and tour texts can be edited by the team itself. "Save &amp; publish" updates the live tour page, no developer needed.</p></div>
-      </div>
-    </div>
-  </section>
+    <figure class="cs3-panel"><img src="work-austrip-dash-home.jpg" alt="Dashboard overview with five stat cards, a monthly bookings chart, upcoming tours, open requests and recent activity"></figure>
 
-  <section class="cs2-band" id="design">
-    <div class="cs2-in">
-      <div class="cs2-eyebrow"><span class="cs2-num">02</span>Design</div>
+    <section class="cs3-text">
+      <h2>A calmer way to run tours</h2>
+      <p>I designed and built an admin dashboard for the Austrip team, with the long term goal of replacing Checkfront altogether.</p>
+      <p>The main goals were quite simple:</p>
+      <ul>
+        <li>One inbox for every form on the site</li>
+        <li>Turning a request into a booking in one click</li>
+        <li>Tours and taxi rides on one calendar</li>
+        <li>Letting the team edit the site without a developer</li>
+      </ul>
+    </section>
+
+    <section class="cs3-text">
+      <h2>Where everything starts to break</h2>
+      <p>There wasn't one single pain point. Requests came in from four different forms and landed in different places, so nobody could see what still needed an answer. Bookings and taxis were tracked apart from each other, and every small content change on the site turned into a ticket for someone outside the team.</p>
+      <h3 class="cs3-sub">Main problems</h3>
+      <h4>Scattered requests</h4>
+      <p>Tour bookings, hotel quotes, taxi orders and contact forms arrive in different places.</p>
+      <h4>No clear status</h4>
+      <p>Nothing shows which request is new, which is being handled and which is already approved.</p>
+      <h4>A developer for every change</h4>
+      <p>Prices, photos, schedules and tour texts can only be changed from the outside.</p>
+    </section>
+
+    <section class="cs3-text">
       <h2>Quiet by design</h2>
-      <p class="cs2-lead">A dashboard is used for hours every day, so it should stay calm. I designed nine screens in Figma first, then built them in code with Claude. White surfaces separated by soft shadows, a subtle warm gradient in the background, the Heebo typeface for Hebrew, one neutral icon color, and color only where it carries meaning: the status of a request.</p>
-      <div class="cs2-swatches">
-        <div><i style="background:#5E4DB2"></i><span>New · purple</span></div>
-        <div><i style="background:#0055CC"></i><span>In progress · blue</span></div>
-        <div><i style="background:#216E4E"></i><span>Approved · green</span></div>
-        <div><i style="background:#AE2E24"></i><span>Cancelled · red</span></div>
+      <p>A dashboard is used for hours every day, so it should stay calm. I designed nine screens in Figma first, then built them in code with Claude.</p>
+      <p>White surfaces separated by soft shadows, a subtle warm gradient in the background, the Heebo typeface for Hebrew and one neutral icon color. Color shows up only where it carries meaning, the status of a request:</p>
+      <div class="cs3-swatches">
+        <div><i style="background:#5E4DB2"></i>New</div>
+        <div><i style="background:#0055CC"></i>In progress</div>
+        <div><i style="background:#216E4E"></i>Approved</div>
+        <div><i style="background:#AE2E24"></i>Cancelled</div>
       </div>
-      <div class="cs2-compare">
-        <figure><figcaption>Figma</figcaption><img src="work-austrip-dash-figma.jpg" alt="The overview screen as designed in Figma" loading="lazy"></figure>
-        <figure><figcaption>Built</figcaption><img src="work-austrip-dash-home.jpg" alt="The same overview screen built in code" loading="lazy"></figure>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="cs2-band alt" id="home">
-    <div class="cs2-in">
-      <div class="cs2-eyebrow"><span class="cs2-num">03</span>Overview screen</div>
-      <h2>What needs attention today</h2>
-      <p class="cs2-lead">The first screen answers two questions: what do I need to handle now, and how is the month going. Five small stat cards sit on top, with the icon in one neutral color on the same row as the title. Below them are bookings by month, the upcoming tours, open requests filtered by type, and a feed of recent activity. Every screen starts empty and fills only with real data.</p>
-      <figure class="cs2-figure"><img src="work-austrip-dash-home.jpg" alt="Dashboard overview with five stat cards, a monthly bookings chart, upcoming tours, open requests and recent activity" loading="lazy"></figure>
-    </div>
-  </section>
+    <figure class="cs3-panel cs3-pair">
+      <div><img src="work-austrip-dash-figma.jpg" alt="The overview screen as designed in Figma" loading="lazy"><figcaption>Designed in Figma</figcaption></div>
+      <div><img src="work-austrip-dash-home.jpg" alt="The same overview screen built in code" loading="lazy"><figcaption>Built in code</figcaption></div>
+    </figure>
 
-  <section class="cs2-band" id="inbox">
-    <div class="cs2-in">
-      <div class="cs2-eyebrow"><span class="cs2-num">04</span>Inbox</div>
+    <section class="cs3-text">
+      <h2>Starting the day with clarity</h2>
+      <p>The first screen answers two questions: what do I need to handle now, and how is the month going.</p>
+      <h4>Stat cards</h4>
+      <p>Five small cards on top, with the icon in one neutral color on the same row as the title.</p>
+      <h4>Bookings by month</h4>
+      <p>A simple chart where the current month stands out in black.</p>
+      <h4>Upcoming tours and open requests</h4>
+      <p>What is coming up next, and what is still waiting for an answer, filtered by type.</p>
+      <h4>Recent activity</h4>
+      <p>A short feed of what changed, so nobody has to ask.</p>
+      <p>Every screen starts empty and fills only with real data, so the empty states had to look finished too.</p>
+    </section>
+
+    <section class="cs3-text">
       <h2>Every request in one list</h2>
-      <p class="cs2-lead">Every form on the site, from a tour booking to a hotel quote or a taxi from the airport, arrives here. Segmented tabs filter by type, and the request opens next to the list: the details on top, the customer's own message in its own box, and the next step as one button, "Convert to booking" or WhatsApp.</p>
-      <figure class="cs2-figure"><img src="work-austrip-dash-inbox.jpg" alt="Inbox with a hotel quote request open beside the list" loading="lazy"></figure>
-    </div>
-  </section>
+      <p>Every form on the site, from a tour booking to a hotel quote or a taxi from the airport, arrives in one inbox. Segmented tabs filter by type, and a request opens right next to the list: the details on top, the customer's own message in its own box, and the next step as one button, "Convert to booking" or WhatsApp.</p>
+    </section>
 
-  <section class="cs2-band alt" id="editor">
-    <div class="cs2-in">
-      <div class="cs2-eyebrow"><span class="cs2-num">05</span>Tour editor</div>
+    <figure class="cs3-panel"><img src="work-austrip-dash-inbox.jpg" alt="Inbox with a hotel quote request open beside the list" loading="lazy"></figure>
+
+    <section class="cs3-text">
       <h2>One page, no tabs</h2>
-      <p class="cs2-lead">Editing a tour is a single scrolling page that follows the tour page itself: details, schedule, highlights, what's included and not included, gallery and "Good to know". Photos and the publish status sit on the side. On the tours list, one switch shows or hides a tour on the site.</p>
-      <div class="cs2-shots two">
-        <figure><img src="work-austrip-dash-tour-edit.jpg" alt="Tour editor with photos and publish status on the side" loading="lazy"><figcaption>Tour editor</figcaption></figure>
-        <figure><img src="work-austrip-dash-tours.jpg" alt="Tours list with show on site switches and next departure" loading="lazy"><figcaption>Tours list with category filter</figcaption></figure>
-      </div>
-    </div>
-  </section>
+      <p>Editing a tour is a single scrolling page that follows the tour page itself: details, schedule, highlights, what's included, gallery and "Good to know". Photos and the publish status sit on the side, and "Save &amp; publish" updates the live tour page.</p>
+    </section>
 
-  <section class="cs2-band" id="calendar">
-    <div class="cs2-in">
-      <div class="cs2-eyebrow"><span class="cs2-num">06</span>Calendar</div>
+    <figure class="cs3-panel"><img src="work-austrip-dash-tour-edit.jpg" alt="Tour editor with photos and publish status on the side" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <p>On the tours list, a category filter narrows things down and one switch shows or hides a tour on the site.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-tours.jpg" alt="Tours list with show on site switches and next departure" loading="lazy"></figure>
+
+    <section class="cs3-text">
       <h2>Tours and taxis at a glance</h2>
-      <p class="cs2-lead">The month view puts tours in solid black and taxi rides in an outline, so the two read apart without extra colors. Clicking a day opens everything planned for it, and a new booking can be added from there.</p>
-      <figure class="cs2-figure"><img src="work-austrip-dash-calendar.jpg" alt="Calendar month view with tours in black and taxi rides outlined" loading="lazy"></figure>
-    </div>
-  </section>
+      <p>The month view puts tours in solid black and taxi rides in an outline, so the two read apart without adding more colors. Clicking a day opens everything planned for it, and a new booking can be added from there.</p>
+    </section>
 
-  <section class="cs2-outcome" id="outcome">
-    <div class="cs2-in">
-      <div class="cs2-eyebrow"><span class="cs2-num" style="background:#9FD3E6;color:#141414;">07</span>Outcome</div>
-      <h2>Designing for the people behind the site</h2>
-      <div class="cs2-cards">
-        <div class="cs2-card"><h3>Two audiences, one product</h3><p>A booking site serves travelers, and the team that answers them. Designing the dashboard changed how I shaped every form on the site: each one now sends exactly what the team needs to reply.</p></div>
-        <div class="cs2-card"><h3>Calm beats colorful</h3><p>Early versions used tinted cards and colored tags. Taking color away and keeping it only for status made the important things stand out on their own.</p></div>
-        <div class="cs2-card"><h3>Empty is a real state</h3><p>Without demo data, every screen had to explain itself when it was empty and still look finished. Designing those states made the dashboard honest from day one.</p></div>
-      </div>
-      <p class="cs2-thanks">Thanks for reading!</p>
-    </div>
-  </section>
+    <figure class="cs3-panel"><img src="work-austrip-dash-calendar.jpg" alt="Calendar month view with tours in black and taxi rides outlined" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <h2>What I learned</h2>
+      <p><strong>Two audiences, one product.</strong> A booking site serves travelers, and also the team that answers them. Designing the dashboard changed how I shaped every form on the site: each one now sends exactly what the team needs to reply.</p>
+      <p><strong>Calm beats colorful.</strong> Early versions used tinted cards and colored tags. Taking color away and keeping it only for status made the important things stand out on their own.</p>
+      <p><strong>Empty is a real state.</strong> Without demo data, every screen had to explain itself when it was empty and still look finished.</p>
+    </section>
+
+    <section class="cs3-text">
+      <h2>Where design actually helps</h2>
+      <p>This project was about the people behind the site. When the team can see everything in one place and change the site on their own, they get time back for what they actually do: taking care of travelers.</p>
+    </section>
+  </article>
 
   <div class="wrap maxw-wide cs2-after">
 
