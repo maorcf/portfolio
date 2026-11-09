@@ -1429,3 +1429,6 @@ main.cs3 .cs2-after{ padding-top:96px; }
   .cs3-panel{ margin-top:48px; border-radius:20px; }
   .cs3-pair{ grid-template-columns:1fr; }
 }
+.cs3-text blockquote{ margin:6px 0 18px; padding:18px 22px; border-left:3px solid var(--ink); background:#F6F7F9; border-radius:0 12px 12px 0; font-size:20px; line-height:1.45; font-weight:600; color:var(--ink); }
+.cs3-panel > figcaption{ font-size:13px; font-weight:500; color:var(--muted); margin-top:16px; text-align:center; }
+.cs3-panel + .cs3-panel{ margin-top:32px; }

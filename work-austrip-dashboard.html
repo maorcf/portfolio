@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-austrip-dashboard.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=269">
+<link rel="stylesheet" href="style.css?v=270">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -60,7 +60,7 @@
 </div>
 
 <main class="cs3" style="--cs3-tint:#EAF0F6;">
-  <div class="cs3-banner"><img src="work-austrip-dash-banner.jpg" alt="The Austrip Dashboard overview screen between the inbox and the calendar"></div>
+  <div class="cs3-banner"><img src="work-austrip-dash-banner-hq.jpg" alt="The Austrip Dashboard overview screen between the inbox and the calendar"></div>
 
   <article class="cs3-body">
     <header class="cs3-text cs3-intro">
@@ -71,11 +71,11 @@
       <ul class="cs3-meta">
         <li><span>Role</span>UX/UI design, built in code</li>
         <li><span>Tools</span>Figma, Claude</li>
-        <li><span>Platform</span>Desktop web app, Hebrew (RTL)</li>
+        <li><span>Platform</span>Web + mobile, Hebrew (RTL)</li>
       </ul>
     </header>
 
-    <figure class="cs3-panel"><img src="work-austrip-dash-home.jpg" alt="Dashboard overview with five stat cards, a monthly bookings chart, upcoming tours, open requests and recent activity"></figure>
+    <figure class="cs3-panel"><img src="work-austrip-dash-home-hq.jpg" alt="Dashboard overview with five stat cards, a monthly bookings chart, upcoming tours, open requests and recent activity"></figure>
 
     <section class="cs3-text">
       <h2>A calmer way to run tours</h2>
@@ -90,32 +90,82 @@
     </section>
 
     <section class="cs3-text">
-      <h2>Where everything starts to break</h2>
-      <p>There wasn't one single pain point. Requests came in from four different forms and landed in different places, so nobody could see what still needed an answer. Bookings and taxis were tracked apart from each other, and every small content change on the site turned into a ticket for someone outside the team.</p>
-      <h3 class="cs3-sub">Main problems</h3>
-      <h4>Scattered requests</h4>
-      <p>Tour bookings, hotel quotes, taxi orders and contact forms arrive in different places.</p>
-      <h4>No clear status</h4>
-      <p>Nothing shows which request is new, which is being handled and which is already approved.</p>
-      <h4>A developer for every change</h4>
-      <p>Prices, photos, schedules and tour texts can only be changed from the outside.</p>
+      <h2>Before drawing anything</h2>
+      <p>I started by writing down what the problem is, who we are building for, and what has to happen for the dashboard to succeed.</p>
+      <p><strong>The problem:</strong> every request from the site, a tour booking, a hotel quote, a taxi or a service form, lands in email. There is no single place to see what is new, what is in progress and what is closed.</p>
+      <p><strong>The persona:</strong> the Austrip operator. The business owner plus one employee in high season, working from the office computer and from the phone on the road. 20 to 40 requests a week in season, some of them urgent, like a taxi tomorrow morning. Not technical, and measures success by response time and closed bookings.</p>
+      <p>Then I sorted pains, needs and ideas on sticky notes. Requests get lost in email, nobody knows who already answered a customer, and a price update needs a developer. That led to one question that guided the whole project:</p>
+      <blockquote>How might we help the owner know, within 10 seconds, what needs attention today?</blockquote>
     </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-p-research.jpg" alt="Figma board with the problem, the goal, the How Might We question, the persona and sticky notes for pains, needs and ideas" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <h2>What already exists</h2>
+      <p>I looked at what the team uses today and what the market offers. Checkfront and Bokun handle bookings and availability well, but they are built for bigger companies, in English, and look nothing like the site. FareHarbor has a clear calendar but a lot of screens. Excel or Monday are flexible and cheap, but every update is manual and not connected to the site. And WordPress manages content, but knows nothing about bookings or requests.</p>
+      <p>That gave me a clear position: <strong>as simple as a spreadsheet, connected to the site, in Hebrew and RTL, and built around requests, not only bookings.</strong></p>
+      <p>Next I mapped the customer journey from finding the site to leaving a review, side by side with what the owner does at each step. Each frustrating moment turned into an answer the dashboard should give: an automatic "we got your request" email, requests waiting over an hour rising to the top, a quote that becomes an "approve and pay" link, and a "taxis tomorrow" card on the home screen.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-p-journey.jpg" alt="Competitor comparison on sticky notes and a customer journey map with what the customer does, what the owner does, what is frustrating and what the dashboard solves" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <h2>Everything the system needs to do</h2>
+      <p>I broke the product into twelve modules, from the overview and the inbox to tours, bookings, customers, the calendar, reviews, site content, English translation and settings. The color of each note marks its priority: yellow is a must for the first version, green is phase two, and pink is an idea for the future.</p>
+      <p>This is what kept the scope honest. The first version focuses on requests, bookings, tours and site content, and leaves things like auto replies and payment links for later.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-p-modules.jpg" alt="Twelve modules of features on sticky notes, colored by priority: MVP, phase two and future ideas" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <h2>Mapping the structure</h2>
+      <p>With the modules in place I drew the sitemap: what lives in the dashboard and how you get to each part. Then I followed one request from the moment a customer sends a form until the booking is closed.</p>
+      <p>The flow taught me something simple: the most common actions, calling the customer and changing the status, should be buttons inside the request itself, not somewhere in the menu.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-p-flow.jpg" alt="Sitemap of the dashboard and a user flow for handling a new request from form to booking" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <h2>Structure before color</h2>
+      <p>The sketches are black and white on purpose, so the only thing to judge is structure and priority. I tried two directions for the overview:</p>
+      <h4>Direction A: numbers first</h4>
+      <p>Four KPI cards on top, with "needs attention" and a chart below. It shows the state of the business, but the action only starts in the bottom half.</p>
+      <h4>Direction B: requests first</h4>
+      <p>The waiting requests are the first thing you see, and the numbers move to the side. I chose this one because it answers the How Might We question directly.</p>
+      <p>I also sketched the bookings list, a single request in a side panel, and the tour editor.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-p-lofi.jpg" alt="Black and white low fidelity sketches: two overview directions, the bookings list, a request side panel and the tour editor" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <h2>A small design system</h2>
+      <p>Before the final screens I built a small system in Figma: colors as variables, Heebo text styles, a 4px spacing scale, icons, and components with Auto Layout and variants. Every final screen is built only from these pieces.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-p-system.jpg" alt="Design system in Figma: color variables, Heebo type scale, spacing, icons and components" loading="lazy"></figure>
 
     <section class="cs3-text">
       <h2>Quiet by design</h2>
-      <p>A dashboard is used for hours every day, so it should stay calm. I designed nine screens in Figma first, then built them in code with Claude.</p>
-      <p>White surfaces separated by soft shadows, a subtle warm gradient in the background, the Heebo typeface for Hebrew and one neutral icon color. Color shows up only where it carries meaning, the status of a request:</p>
+      <p>A dashboard is used for hours every day, so it should stay calm. White surfaces separated by soft shadows, a subtle warm gradient in the background and one neutral icon color. Color shows up only where it carries meaning, the status of a request:</p>
       <div class="cs3-swatches">
         <div><i style="background:#5E4DB2"></i>New</div>
         <div><i style="background:#0055CC"></i>In progress</div>
         <div><i style="background:#216E4E"></i>Approved</div>
         <div><i style="background:#AE2E24"></i>Cancelled</div>
       </div>
+      <h3 class="cs3-sub">What changed along the way</h3>
+      <ul>
+        <li>The "numbers first" overview was replaced with "requests first", straight from the sketches.</li>
+        <li>Charts, upcoming tours and recent activity were added back at the owner's request.</li>
+        <li>Requests got their own screen, separate from tour bookings.</li>
+        <li>Early versions used tinted cards and colored tags. I took the color away and kept it only for status.</li>
+      </ul>
+      <p>I designed the screens in Figma first, then built them in code with Claude.</p>
     </section>
 
     <figure class="cs3-panel cs3-pair">
       <div><img src="work-austrip-dash-figma.jpg" alt="The overview screen as designed in Figma" loading="lazy"><figcaption>Designed in Figma</figcaption></div>
-      <div><img src="work-austrip-dash-home.jpg" alt="The same overview screen built in code" loading="lazy"><figcaption>Built in code</figcaption></div>
+      <div><img src="work-austrip-dash-home-hq.jpg" alt="The same overview screen built in code" loading="lazy"><figcaption>Built in code</figcaption></div>
     </figure>
 
     <section class="cs3-text">
@@ -129,7 +179,6 @@
       <p>What is coming up next, and what is still waiting for an answer, filtered by type.</p>
       <h4>Recent activity</h4>
       <p>A short feed of what changed, so nobody has to ask.</p>
-      <p>Every screen starts empty and fills only with real data, so the empty states had to look finished too.</p>
     </section>
 
     <section class="cs3-text">
@@ -137,39 +186,84 @@
       <p>Every form on the site, from a tour booking to a hotel quote or a taxi from the airport, arrives in one inbox. Segmented tabs filter by type, and a request opens right next to the list: the details on top, the customer's own message in its own box, and the next step as one button, "Convert to booking" or WhatsApp.</p>
     </section>
 
-    <figure class="cs3-panel"><img src="work-austrip-dash-inbox.jpg" alt="Inbox with a hotel quote request open beside the list" loading="lazy"></figure>
+    <figure class="cs3-panel"><img src="work-austrip-dash-inbox-hq.jpg" alt="Inbox with a hotel quote request open beside the list" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <h2>Bookings without leaving the list</h2>
+      <p>Bookings are a table with status tabs and a count on each one. A new booking, or the details of an existing one, opens in a side panel, so the list stays in view.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-bookings-hq.jpg" alt="Bookings table with status tabs, tour, date, participants and amount" loading="lazy"></figure>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-booking-open-hq.jpg" alt="New booking side panel open over the bookings list" loading="lazy"></figure>
 
     <section class="cs3-text">
       <h2>One page, no tabs</h2>
       <p>Editing a tour is a single scrolling page that follows the tour page itself: details, schedule, highlights, what's included, gallery and "Good to know". Photos and the publish status sit on the side, and "Save &amp; publish" updates the live tour page.</p>
     </section>
 
-    <figure class="cs3-panel"><img src="work-austrip-dash-tour-edit.jpg" alt="Tour editor with photos and publish status on the side" loading="lazy"></figure>
+    <figure class="cs3-panel"><img src="work-austrip-dash-tour-edit-hq.jpg" alt="Tour editor with photos and publish status on the side" loading="lazy"></figure>
 
     <section class="cs3-text">
       <p>On the tours list, a category filter narrows things down and one switch shows or hides a tour on the site.</p>
     </section>
 
-    <figure class="cs3-panel"><img src="work-austrip-dash-tours.jpg" alt="Tours list with show on site switches and next departure" loading="lazy"></figure>
+    <figure class="cs3-panel"><img src="work-austrip-dash-tours-hq.jpg" alt="Tours list with show on site switches and next departure" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <h2>Hotels and taxis</h2>
+      <p>The rest of what the site sells has its own screens. Hotels are cards with their photo, stars and open quote requests. Taxi rides are a short list with route, time, passengers and price.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-hotels-hq.jpg" alt="Hotels screen with hotel cards, stars and requests" loading="lazy"></figure>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-taxis-hq.jpg" alt="Taxi rides list with route, time and price" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <h2>The team owns the site</h2>
+      <p>This was the biggest pain from the research: every change went through a developer. In "Site content" the team picks a page and edits its texts and images next to a live preview of the real site.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-pages-hq.jpg" alt="Site content editor with a live preview of the Austrip homepage" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <h2>A small CRM</h2>
+      <p>Every customer who booked or asked for something is saved with their phone, email, bookings and total. Tabs split new and returning customers, search works by name or phone, and the list exports to CSV.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-customers-hq.jpg" alt="Customers list with tabs, search and booking history" loading="lazy"></figure>
 
     <section class="cs3-text">
       <h2>Tours and taxis at a glance</h2>
       <p>The month view puts tours in solid black and taxi rides in an outline, so the two read apart without adding more colors. Clicking a day opens everything planned for it, and a new booking can be added from there.</p>
     </section>
 
-    <figure class="cs3-panel"><img src="work-austrip-dash-calendar.jpg" alt="Calendar month view with tours in black and taxi rides outlined" loading="lazy"></figure>
+    <figure class="cs3-panel"><img src="work-austrip-dash-calendar-hq.jpg" alt="Calendar month view with tours in black and taxi rides outlined" loading="lazy"></figure>
+
+    <section class="cs3-text">
+      <h2>Empty, loading, error, and on the road</h2>
+      <p>A finished product also needs the in-between moments. I designed what you see when there is no data yet, while something loads or fails, a "saved" toast with undo, and a confirmation before anything that can't be undone. Plus a login screen, and two mobile screens for the owner on the road: the overview and a single request with a WhatsApp button.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-p-states.jpg" alt="Empty state, skeleton loading, error, saved toast, confirmation dialog, login screen and two mobile screens" loading="lazy"></figure>
 
     <section class="cs3-text">
       <h2>What I learned</h2>
       <p><strong>Two audiences, one product.</strong> A booking site serves travelers, and also the team that answers them. Designing the dashboard changed how I shaped every form on the site: each one now sends exactly what the team needs to reply.</p>
-      <p><strong>Calm beats colorful.</strong> Early versions used tinted cards and colored tags. Taking color away and keeping it only for status made the important things stand out on their own.</p>
+      <p><strong>Calm beats colorful.</strong> Taking color away and keeping it only for status made the important things stand out on their own.</p>
       <p><strong>Empty is a real state.</strong> Without demo data, every screen had to explain itself when it was empty and still look finished.</p>
+    </section>
+
+    <section class="cs3-text">
+      <h2>What's next</h2>
+      <p>The goals I set: answer every request in under an hour, zero forgotten requests, and updating a tour on the site in under two minutes, without a developer. Next on the roadmap are a mobile app for the owner, online payment from inside a booking, monthly email reports and a Google Calendar sync. Before that, I planned a usability test with three people who run tour or customer businesses.</p>
     </section>
 
     <section class="cs3-text">
       <h2>Where design actually helps</h2>
       <p>This project was about the people behind the site. When the team can see everything in one place and change the site on their own, they get time back for what they actually do: taking care of travelers.</p>
     </section>
+
   </article>
 
   <div class="wrap maxw-wide cs2-after">
