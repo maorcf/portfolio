@@ -579,12 +579,6 @@ if(floatingNav || backToTop){
   Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
 })();
 
-// smooth wheel scrolling: lerp glides continuously (a fixed duration eased out and paused after every wheel tick); touch keeps native scrolling
-(function(){
-  if(!window.Lenis || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  window.lenis = new Lenis({ smoothWheel: true, lerp: 0.09, wheelMultiplier: 1, autoRaf: true, autoToggle: true, anchors: true, allowNestedScroll: true });
-})();
-
 // ?tune opens the design tuning panel (tune.js), only for whoever adds it to the URL
 (function(){
   if(!/[?&]tune\b/.test(location.search)) return;
