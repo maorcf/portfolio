@@ -579,12 +579,6 @@ if(floatingNav || backToTop){
   Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
 })();
 
-// smooth wheel scrolling, same settings as the Framer template (Lenis, intensity 20 = 2s); touch keeps native scrolling
-(function(){
-  if(!window.Lenis || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  window.lenis = new Lenis({ smoothWheel: true, duration: 2, autoRaf: true, autoToggle: true, anchors: true, allowNestedScroll: true });
-})();
-
 // ?tune opens the design tuning panel (tune.js), only for whoever adds it to the URL
 (function(){
   if(!/[?&]tune\b/.test(location.search)) return;
