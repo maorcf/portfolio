@@ -475,7 +475,7 @@ if(floatingNav || backToTop){
   // a cover drops at the cursor every ~100px, springs in from half size, stays .5s, then fades out on its own)
   var heroTrail = document.querySelector('.hero-ethan');
   if(heroTrail && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
-    var covers = ['work-chido-cover.jpg?v=2', 'work-pazi-mockup2.jpg', 'work-filmroll-mockup2.jpg', 'work-austrip-mockup2.jpg', 'work-fireline-cover.jpg', 'work-woom-cover.jpg', 'work-mimi-card.jpg'];
+    var covers = ['work-chido-cover.jpg?v=2', 'work-pazi-mockup2.jpg', 'work-filmroll-mockup2.jpg', 'work-austrip-mockup2.jpg', 'work-fireline-cover.jpg', 'work-mimi-card.jpg'];
     covers.forEach(function(src){ new Image().src = src; });
     // overdamped springs sampled into linear() easings: in = stiffness 500 / damping 60, out = 600 / 60
     function springEase(k, c){
