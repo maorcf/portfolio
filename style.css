@@ -395,6 +395,9 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .process-shots img{ aspect-ratio:auto; object-fit:unset; }
 .inspo-grid-2{ grid-template-columns:repeat(2, 1fr); max-width:min(604px, calc(66.667% - 8px)); }
 @media (max-width: 640px){ .inspo-grid-2{ max-width:min(604px, calc(66.667% - 2px)); } }
+.inspo-grid-4{ grid-template-columns:repeat(4, 1fr); gap:20px; max-width:1000px; }
+.inspo-grid-4 img{ height:auto; aspect-ratio:393/852; object-fit:cover; object-position:top; border:1.5px solid #D6D3CC; }
+@media (max-width: 640px){ .inspo-grid-4{ grid-template-columns:1fr 1fr; gap:10px; } }
 @media (max-width: 640px){
   .wireframe-grid{ grid-template-columns:1fr; max-width:360px; margin-left:auto; margin-right:auto; }
 }
