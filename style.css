@@ -395,9 +395,9 @@ a.project:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink)
 .process-shots img{ aspect-ratio:auto; object-fit:unset; }
 .inspo-grid-2{ grid-template-columns:repeat(2, 1fr); max-width:min(604px, calc(66.667% - 8px)); }
 @media (max-width: 640px){ .inspo-grid-2{ max-width:min(604px, calc(66.667% - 2px)); } }
-.redesign-shots{ grid-template-columns:repeat(2, 1fr); gap:24px; max-width:560px; }
+.redesign-shots{ grid-template-columns:repeat(2, 1fr); gap:24px; max-width:min(604px, calc(66.667% - 8px)); margin-top:24px; }
 .redesign-shots img{ height:auto; aspect-ratio:393/852; object-fit:cover; object-position:top; border:1.5px solid #D6D3CC; }
-@media (max-width: 640px){ .redesign-shots{ gap:10px; } }
+@media (max-width: 640px){ .redesign-shots{ gap:6px; max-width:min(604px, calc(66.667% - 2px)); margin-top:12px; } }
 @media (max-width: 640px){
   .wireframe-grid{ grid-template-columns:1fr; max-width:360px; margin-left:auto; margin-right:auto; }
 }
