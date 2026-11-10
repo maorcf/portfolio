@@ -1391,3 +1391,8 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   .hero.hero-ethan .hero-actions{ bottom:14svh; }
   .hero.hero-ethan .hero-funfact{ top:60px; right:16px; font-size:14px; }
 }
+
+/* Restored icon case-study layout: let tag pills wrap on phones */
+@media (max-width: 640px){
+  .project-detail .tags{ flex-wrap:wrap; gap:6px; }
+}
