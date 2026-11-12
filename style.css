@@ -1394,3 +1394,46 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 @media (max-width: 640px){
   .project-detail .tags{ flex-wrap:wrap; gap:6px; }
 }
+
+/* ===== cs3: Austrip Dashboard story layout (banner + narrow column + tinted screen panels), icon typography ===== */
+main.cs3{ background:#fff; padding-bottom:40px; }
+.cs3-banner{ width:100%; height:clamp(200px, 26vw, 400px); overflow:hidden; background:var(--cs3-tint,#EEF1F6); }
+.cs3-banner img{ width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+.cs3-body{ padding:0 24px; }
+.cs3-text{ max-width:720px; margin:0 auto; padding-top:64px; }
+.cs3-text.case-section{ margin-bottom:0; }
+.cs3-text.case-section h2{ margin-bottom:18px; }
+.cs3-text.case-section p{ max-width:none; }
+.cs3-text.case-section p + p{ margin-top:16px; }
+.cs3-text .case-list{ max-width:none; margin-top:14px; }
+.cs3-text .case-list li{ margin-bottom:8px; }
+.cs3-text .case-subhead{ margin:26px 0 6px; }
+.cs3-text .case-subhead + p{ margin-top:0; }
+.cs3-text a{ text-decoration:underline; }
+.cs3-intro{ padding-top:56px; }
+.cs3-intro h2{ font-size:clamp(26px, 3vw, 34px); line-height:1.2; }
+.cs3-back{ display:inline-block; font-size:13px; font-weight:600; color:var(--muted); text-decoration:none !important; margin-bottom:28px; }
+.cs3-back:hover{ color:var(--red); }
+.cs3-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+.cs3-rows{ padding-top:48px; }
+.cs3-rows .case-row{ margin-bottom:32px; }
+.cs3-roles{ font-size:14px; color:#6E6E6E; border-top:1.5px solid var(--line); padding-top:22px; margin:8px 0 0; }
+.cs3-roles b{ color:var(--ink); font-weight:600; margin-left:10px; }
+.cs3-roles b:first-child{ margin-left:0; }
+.cs3-text blockquote{ margin:18px 0 0; padding:16px 20px; border-left:3px solid var(--ink); background:#F5F5F5; border-radius:0 8px 8px 0; font-size:17px; line-height:1.5; font-weight:600; color:var(--ink); }
+.cs3-panel{ max-width:1080px; margin:64px auto 0; padding:clamp(20px, 5.5vw, 72px); background:var(--cs3-tint,#EEF1F6); border-radius:32px; }
+.cs3-panel + .cs3-panel{ margin-top:32px; }
+.cs3-panel img{ display:block; width:100%; height:auto; border-radius:10px; box-shadow:0 18px 50px rgba(20,30,50,.14), 0 2px 6px rgba(20,30,50,.06); }
+.cs3-pair{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px, 3vw, 40px); align-items:start; }
+.cs3-panel figcaption{ font-size:13px; font-weight:500; color:var(--muted); margin-top:14px; text-align:center; }
+.cs3-swatches{ display:flex; flex-wrap:wrap; gap:10px 22px; margin:16px 0 4px; font-size:14px; color:#6E6E6E; }
+.cs3-swatches div{ display:flex; align-items:center; gap:8px; }
+.cs3-swatches i{ width:14px; height:14px; border-radius:50%; display:inline-block; border:1.5px solid #141414; }
+main.cs3 .cs2-after{ padding-top:96px; }
+@media (max-width:700px){
+  .cs3-body{ padding:0 16px; }
+  .cs3-text{ padding-top:44px; }
+  .cs3-panel{ margin-top:40px; border-radius:20px; }
+  .cs3-pair{ grid-template-columns:1fr; }
+  .cs3-rows .case-row{ flex-direction:column; gap:10px; }
+}
