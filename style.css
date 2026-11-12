@@ -1442,3 +1442,17 @@ main.cs3 .cs2-after{ padding-top:96px; }
 .mimi-page .case-compare img, .mimi-page .process-shots img{
   box-shadow:0 1px 3px rgba(20,20,20,0.06), 0 10px 30px -10px rgba(20,20,20,0.16);
 }
+
+/* cs3 extras for the Austrip site page */
+.cs3-trio{ display:grid; grid-template-columns:repeat(3, 1fr); gap:clamp(12px, 2.4vw, 32px); align-items:start; }
+.cs3-tall{ max-height:760px; overflow-y:auto; border-radius:10px; box-shadow:0 18px 50px rgba(20,30,50,.14), 0 2px 6px rgba(20,30,50,.06); background:#fff; }
+.cs3-tall img{ box-shadow:none; border-radius:0; }
+.cs3-trio .cs3-tall{ max-height:560px; }
+.cs3-narrow{ max-width:860px; }
+.cs3-phones{ max-width:960px; }
+.cs3-phones img{ border-radius:18px; }
+@media (max-width:700px){
+  .cs3-trio{ grid-template-columns:1fr; }
+  .cs3-phones{ grid-template-columns:repeat(3, 1fr); gap:10px; }
+  .cs3-tall{ max-height:520px; }
+}
