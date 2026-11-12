@@ -1394,3 +1394,8 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 @media (max-width: 640px){
   .project-detail .tags{ flex-wrap:wrap; gap:6px; }
 }
+
+/* Mimi Vintage: white store screens need a soft shadow to separate from the white page */
+.mimi-page .case-compare img, .mimi-page .process-shots img{
+  box-shadow:0 1px 3px rgba(20,20,20,0.06), 0 10px 30px -10px rgba(20,20,20,0.16);
+}
