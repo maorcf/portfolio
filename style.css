@@ -1480,3 +1480,25 @@ main.cs3 .cs2-after{ padding-top:96px; }
 .cs3-live{ margin-top:24px !important; }
 .cs3-text .cs3-live a{ text-decoration:none; }
 body:has(.has-cs3-open){ overflow-x:clip; }
+
+/* Uniform body on the icon-layout case studies: one 720px text column + tinted screen panels (matches the Austrip pages) */
+.has-cs3-open .project-detail{ padding:0 0 72px; }
+.has-cs3-open .project-detail > :not(.case-section):not(.inspo-grid):not(.case-compare-breakout):not(figure),
+.has-cs3-open .case-section > :not(.inspo-grid):not(.case-compare-breakout):not(figure):not(.thumb-tall){ max-width:720px; margin-left:auto; margin-right:auto; }
+.has-cs3-open .case-section{ margin-bottom:0; padding-top:64px; }
+.has-cs3-open .case-section p{ max-width:720px; }
+.has-cs3-open .case-divider{ display:none; }
+.has-cs3-open .project-detail > .case-subhead{ margin-top:48px; }
+.has-cs3-open .inspo-grid,
+.has-cs3-open .project-detail > figure,
+.has-cs3-open .case-section > figure,
+.has-cs3-open .thumb-tall,
+.has-cs3-open .case-compare-breakout{ box-sizing:border-box; width:auto !important; max-width:1080px !important; margin:40px auto 0 !important; padding:clamp(20px, 4.5vw, 56px); background:var(--cs3-tint) !important; border-radius:32px; }
+.has-cs3-open .inspo-grid + .inspo-grid{ margin-top:24px !important; }
+.has-cs3-open .inspo-grid-2{ grid-template-columns:repeat(3, 1fr); }
+.has-cs3-open .thumb-tall{ aspect-ratio:auto; }
+.has-cs3-open .case-compare-breakout + .project-detail{ padding-top:0; }
+@media (max-width: 900px){
+  .has-cs3-open .inspo-grid, .has-cs3-open .project-detail > figure, .has-cs3-open .case-section > figure, .has-cs3-open .thumb-tall, .has-cs3-open .case-compare-breakout{ border-radius:20px; padding:16px; }
+  .has-cs3-open .case-section{ padding-top:44px; }
+}
