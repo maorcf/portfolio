@@ -66,7 +66,7 @@
     <header class="cs3-text cs3-intro case-section">
       <a href="index.html#work" class="cs3-back">← Back to Work</a>
       <div class="tags cs3-tags"><span class="tag-pill">Dashboard Design</span><span class="tag-pill">UX/UI Design</span><span class="tag-pill">Built in code</span></div>
-      <h2>One Dashboard for Every Tour Request</h2>
+      <h2 data-toc="Overview">One Dashboard for Every Tour Request</h2>
       <p>Austrip is an Israeli company running tours across Austria and its neighbors. After I redesigned and rebuilt their booking site (see the <a href="work-austrip.html">Austrip case study</a>), I started thinking about the other side of it: the people who answer every booking, every hotel quote and every taxi order.</p>
       <p>I found a small team juggling three tools. Bookings live in Checkfront, the site lives in WordPress, and changing a price or a photo means waiting for an outside developer. I decided to design one dashboard that brings all of it together.</p>
     </header>
@@ -102,7 +102,7 @@
     </section>
 
     <section class="cs3-text case-section">
-      <h2><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><path d="M12 17c2.5-2.6 4-4.7 4-6.7A4 4 0 0 0 8 10.3c0 2 1.5 4.1 4 6.7Z" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10.2" r="1.3" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Before drawing anything</h2>
+      <h2 data-toc="Research"><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><path d="M12 17c2.5-2.6 4-4.7 4-6.7A4 4 0 0 0 8 10.3c0 2 1.5 4.1 4 6.7Z" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10.2" r="1.3" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Before drawing anything</h2>
       <p>I started by writing down what the problem is, who we are building for, and what has to happen for the dashboard to succeed.</p>
       <p><b>The problem:</b> every request from the site, a tour booking, a hotel quote, a taxi or a service form, lands in email. There is no single place to see what is new, what is in progress and what is closed.</p>
       <p><b>The persona:</b> the Austrip operator. The business owner plus one employee in high season, working from the office computer and from the phone on the road. 20 to 40 requests a week in season, some of them urgent, like a taxi tomorrow morning. Not technical, and measures success by response time and closed bookings.</p>
@@ -122,7 +122,7 @@
     <figure class="cs3-panel"><img src="work-austrip-dash-p-journey.jpg" alt="Competitor comparison on sticky notes and a customer journey map with what the customer does, what the owner does, what is frustrating and what the dashboard solves" loading="lazy"></figure>
 
     <section class="cs3-text case-section">
-      <h2><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><rect x="7" y="7" width="4" height="4" rx="1" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="13" y="7" width="4" height="4" rx="1" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="13" width="4" height="4" rx="1" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="13" y="13" width="4" height="4" rx="1" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Everything the system needs to do</h2>
+      <h2 data-toc="Process"><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><rect x="7" y="7" width="4" height="4" rx="1" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="13" y="7" width="4" height="4" rx="1" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="13" width="4" height="4" rx="1" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="13" y="13" width="4" height="4" rx="1" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Everything the system needs to do</h2>
       <p>I broke the product into twelve modules, from the overview and the inbox to tours, bookings, customers, the calendar, reviews, site content, English translation and settings. The color of each note marks its priority: yellow is a must for the first version, green is phase two, and pink is an idea for the future.</p>
       <p>This is what kept the scope honest. The first version focuses on requests, bookings, tours and site content, and leaves things like auto replies and payment links for later.</p>
     </section>
@@ -181,7 +181,7 @@
     </figure>
 
     <section class="cs3-text case-section">
-      <h2><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><circle cx="12" cy="12" r="2.6" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.8v1.2M12 16v1.2M17.2 12H16M8 12H6.8M15.7 8.3l-.8.8M9.1 14.9l-.8.8M15.7 15.7l-.8-.8M9.1 9.1l-.8-.8" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Starting the day with clarity</h2>
+      <h2 data-toc="Key Screens"><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><circle cx="12" cy="12" r="2.6" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.8v1.2M12 16v1.2M17.2 12H16M8 12H6.8M15.7 8.3l-.8.8M9.1 14.9l-.8.8M15.7 15.7l-.8-.8M9.1 9.1l-.8-.8" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Starting the day with clarity</h2>
       <p>The first screen answers two questions: what do I need to handle now, and how is the month going.</p>
       <h3 class="case-subhead">Stat cards</h3>
       <p>Five small cards on top, with the icon in one neutral color on the same row as the title.</p>
@@ -260,7 +260,7 @@
     <figure class="cs3-panel"><img src="work-austrip-dash-p-states.jpg" alt="Empty state, skeleton loading, error, saved toast, confirmation dialog, login screen and two mobile screens" loading="lazy"></figure>
 
     <section class="cs3-text case-section">
-      <h2><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><path d="M12 9c-1-1-2.5-1.5-4.5-1.3v7.6c2-.2 3.5.3 4.5 1.3 1-1 2.5-1.5 4.5-1.3V7.7C14.5 7.5 13 8 12 9Z" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 9v7.6" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> What I learned</h2>
+      <h2 data-toc="Impact"><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><path d="M12 9c-1-1-2.5-1.5-4.5-1.3v7.6c2-.2 3.5.3 4.5 1.3 1-1 2.5-1.5 4.5-1.3V7.7C14.5 7.5 13 8 12 9Z" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 9v7.6" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> What I learned</h2>
       <p><b>Two audiences, one product.</b> A booking site serves travelers, and also the team that answers them. Designing the dashboard changed how I shaped every form on the site: each one now sends exactly what the team needs to reply.</p>
       <p><b>Calm beats colorful.</b> Taking color away and keeping it only for status made the important things stand out on their own.</p>
       <p><b>Empty is a real state.</b> Without demo data, every screen had to explain itself when it was empty and still look finished.</p>
@@ -340,7 +340,7 @@
   <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link" onclick="closeMobileNav()">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </nav>
 
-<script src="script.js?v=135"></script>
+<script src="script.js?v=136"></script>
 
 </body>
 </html>

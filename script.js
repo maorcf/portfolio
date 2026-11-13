@@ -613,8 +613,10 @@ if(floatingNav || backToTop){
   var nav = document.createElement('nav');
   nav.className = 'cs-toc'; nav.setAttribute('aria-label', 'On this page');
   var html = '<div class="cs-toc-title">On this page</div><ol>';
+  var grouped = hs.filter(function(h){ return h.hasAttribute('data-toc'); });
+  if (grouped.length >= 2) hs = grouped;
   hs.forEach(function(h, i){
-    var label = i === 0 ? 'Overview' : h.textContent.replace(/\s+/g, ' ').trim();
+    var label = h.getAttribute('data-toc') || (i === 0 ? 'Overview' : h.textContent.replace(/\s+/g, ' ').trim());
     var id = h.id || ('s-' + label.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''));
     while (used[id]) id += '-2'; used[id] = 1; h.id = id;
     html += '<li><a href="#' + id + '">' + label.replace(/</g, '&lt;') + '</a></li>';
