@@ -637,7 +637,7 @@ if(floatingNav || backToTop){
     var y = window.innerHeight * 0.35, cur = 0;
     hs.forEach(function(h, i){ if (h.getBoundingClientRect().top < y) cur = i; });
     links.forEach(function(a, i){ a.classList.toggle('on', i === cur); });
-    var h0 = hs[0].getBoundingClientRect().top, mid = (window.innerHeight - nav.offsetHeight) / 2;
+    var h0 = hs[0].getBoundingClientRect().top, mid = 120;
     nav.style.top = Math.max(mid, h0) + 'px';
     var start = h0 < window.innerHeight - 120;
     var done = end && end.getBoundingClientRect().top < window.innerHeight * 0.6;
