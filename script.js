@@ -604,3 +604,44 @@ if(floatingNav || backToTop){
     requestAnimationFrame(loop);
   })();
 })();
+
+/* Case studies: "On this page" side nav with scroll-spy (desktop only) */
+(function(){
+  var hs = [].slice.call(document.querySelectorAll('main .case-section > h2, main .cs3-text > h2')).filter(function(h){ return !h.closest('.more-work-head'); });
+  if (hs.length < 3) return;
+  var used = {};
+  var nav = document.createElement('nav');
+  nav.className = 'cs-toc'; nav.setAttribute('aria-label', 'On this page');
+  var html = '<div class="cs-toc-title">On this page</div><ol>';
+  hs.forEach(function(h, i){
+    var label = i === 0 ? 'Overview' : h.textContent.replace(/\s+/g, ' ').trim();
+    var id = h.id || ('s-' + label.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''));
+    while (used[id]) id += '-2'; used[id] = 1; h.id = id;
+    html += '<li><a href="#' + id + '">' + label.replace(/</g, '&lt;') + '</a></li>';
+  });
+  nav.innerHTML = html + '</ol>';
+  document.body.appendChild(nav);
+  document.body.classList.add('has-toc');
+  var links = [].slice.call(nav.querySelectorAll('a'));
+  var place = function(){
+    var w = nav.offsetWidth, cl = hs[0].getBoundingClientRect().left;
+    [].forEach.call(document.querySelectorAll('main .cs3-panel, main .case-compare'), function(el){ var l = el.getBoundingClientRect().left; if (el.offsetWidth < window.innerWidth - 40) cl = Math.min(cl, l); });
+    var left = cl - w - 40;
+    nav.classList.toggle('fits', left >= 16 && window.innerWidth >= 1200);
+    nav.style.left = Math.max(16, left) + 'px';
+  };
+  var end = document.querySelector('.more-work-head') || document.querySelector('footer');
+  var spy = function(){
+    var y = window.innerHeight * 0.35, cur = 0;
+    hs.forEach(function(h, i){ if (h.getBoundingClientRect().top < y) cur = i; });
+    links.forEach(function(a, i){ a.classList.toggle('on', i === cur); });
+    var start = hs[0].getBoundingClientRect().top < window.innerHeight * 0.8;
+    var done = end && end.getBoundingClientRect().top < window.innerHeight * 0.6;
+    nav.classList.toggle('show', start && !done);
+  };
+  links.forEach(function(a, i){ a.addEventListener('click', function(e){ e.preventDefault(); var t = hs[i].getBoundingClientRect().top + window.scrollY - 110; window.scrollTo({ top: t, behavior: 'smooth' }); history.replaceState(null, '', '#' + hs[i].id); }); });
+  place(); spy();
+  window.addEventListener('resize', function(){ place(); spy(); });
+  window.addEventListener('load', function(){ place(); spy(); });
+  window.addEventListener('scroll', spy, { passive: true });
+})();
