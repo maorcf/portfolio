@@ -1471,3 +1471,12 @@ main.cs3 .cs2-after{ padding-top:96px; }
   .has-toc .cs3-panel{ max-width:min(1080px, calc(100vw - 520px)); }
   .has-toc .case-compare{ max-width:min(1400px, calc(100vw - 520px)); }
 }
+
+/* cs3 opening (banner + intro column) on the icon-layout case studies */
+.has-cs3-open .cs3-open{ width:100vw; margin-left:calc(50% - 50vw); }
+.has-cs3-open .cs3-banner{ border-radius:0; }
+.has-cs3-open .cs3-open + .project-detail{ padding-top:40px; }
+.has-cs3-open .cs3-open + .case-compare-breakout{ margin-top:40px; }
+.cs3-live{ margin-top:24px !important; }
+.cs3-text .cs3-live a{ text-decoration:none; }
+body:has(.has-cs3-open){ overflow-x:clip; }
