@@ -1524,3 +1524,16 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .pg-cat + .pg-cat{ margin-top:56px; }
   .pg-cat-title{ margin-bottom:14px; }
 }
+
+/* ---------- CALMER HEADINGS (site-wide, Nov 2026) ---------- */
+.section-title, .page-title h1, .footer-card h2, .more-work-head h2, .pg-project .pg-intro h1{
+  font-weight:600; text-transform:none; letter-spacing:-0.025em; line-height:1.08;
+}
+.page-title h1{ font-size:clamp(40px, 5.6vw, 76px); }
+.section-head .section-title{ font-size:clamp(32px, 3.8vw, 52px); font-weight:600; letter-spacing:-0.025em; line-height:1.08; }
+.footer-card h2{ font-size:clamp(34px, 4.4vw, 60px); }
+.more-work-head h2{ font-size:clamp(28px, 3vw, 40px); }
+.pg-project .pg-intro h1{ font-size:clamp(32px, 3.8vw, 48px); margin-bottom:18px; }
+.pg-cat-title{ font-size:clamp(22px, 2.2vw, 28px); font-weight:600; letter-spacing:-0.015em; }
+.project-grid .project h3, #playground .pg-grid .project h3{ font-weight:600; text-transform:none; letter-spacing:-0.01em; }
+.mobile-nav a{ font-weight:600; text-transform:none; letter-spacing:-0.02em; }
