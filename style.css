@@ -1581,3 +1581,9 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pg-hang path{ fill:none; stroke:var(--violet); stroke-width:5; filter:url(#pgRopePencil); stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; }
 .pg-title-word{ transform-origin:50% -1.45em; }
 @media (max-width:720px){ .pg-hang path{ stroke-width:3.2; } }
+
+/* ===== Footer: "Creative" + spinning black star (replaces the clock, Nov 16) ===== */
+.footer-creative{ display:inline-flex; align-items:center; gap:.45em; }
+.footer-star{ width:1em; height:1em; fill:#000; animation:footerStarSpin 6s linear infinite; }
+@keyframes footerStarSpin{ to{ transform:rotate(360deg); } }
+@media (prefers-reduced-motion:reduce){ .footer-star{ animation:none; } }
