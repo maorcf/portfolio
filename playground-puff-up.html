@@ -85,6 +85,20 @@ body{-webkit-font-smoothing:antialiased;overflow-x:hidden}
   .design-label{order:5}.code-right{order:6}
 }
 @media (prefers-reduced-motion:reduce){.cam-btn[data-s="loading"] .dot{animation:none}}
+/* ---------- How-to popup ---------- */
+.howto{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.35);
+  transition:opacity .3s, visibility 0s linear 0s}
+.howto[hidden]{display:grid;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s, visibility 0s linear .3s}
+.howto-card{width:min(400px,100%);background:var(--paper);border:1.5px solid var(--ink);border-radius:18px;padding:26px 24px 22px;
+  font:400 15px/1.5 var(--nav);color:var(--ink)}
+.howto-card h2{margin:0 0 14px;font:700 22px/1.2 var(--nav)}
+.howto-card ol{margin:0 0 20px;padding:0;list-style:none;display:grid;gap:12px}
+.howto-card li{display:grid;grid-template-columns:30px 1fr;align-items:start;gap:10px}
+.howto-card li span{font-size:22px;line-height:1.1}
+.howto-btns{display:flex;gap:10px;flex-wrap:wrap}
+.howto-btns button{font:600 13px/1 var(--nav);border:1px solid var(--ink);border-radius:999px;padding:11px 18px;cursor:pointer;background:var(--paper);color:var(--ink)}
+.howto-btns .primary{background:#5B4CE0;border-color:#5B4CE0;color:#fff}
+.howto-btns button:hover{opacity:.85}
 </style>
 </head>
 <body>
@@ -297,6 +311,31 @@ export default function App() {
   }
   btn.addEventListener('click', start);
   start(); // ask for the camera right away, no click needed
+})();
+</script>
+
+<div class="howto" id="howto" role="dialog" aria-modal="true" aria-labelledby="howtoTitle">
+  <div class="howto-card">
+    <h2 id="howtoTitle">How to play</h2>
+    <ol>
+      <li><span aria-hidden="true">📷</span><div>Turn on your camera and hold one hand up in front of it.</div></li>
+      <li><span aria-hidden="true">🖐️</span><div><b>Open your hand</b> to inflate the tulip.</div></li>
+      <li><span aria-hidden="true">✊</span><div><b>Make a fist</b> to squeeze the air out.</div></li>
+      <li><span aria-hidden="true">👆</span><div>No camera? <b>Press and hold</b> the tulip instead.</div></li>
+    </ol>
+    <div class="howto-btns">
+      <button type="button" class="primary" id="howtoCam">Turn on camera</button>
+      <button type="button" id="howtoClose">Just press and hold</button>
+    </div>
+  </div>
+</div>
+<script>
+(() => {
+  const d = document.getElementById('howto'), close = () => { d.hidden = true; };
+  document.getElementById('howtoClose').onclick = close;
+  document.getElementById('howtoCam').onclick = () => { close(); document.getElementById('camBtn').click(); };
+  d.addEventListener('click', e => { if (e.target === d) close(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 })();
 </script>
 <script src="/analytics.js?v=2" defer></script>
