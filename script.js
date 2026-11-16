@@ -233,6 +233,13 @@ if(floatingNav || backToTop){
     });
   });
 
+  document.querySelectorAll('.pg-gallery').forEach(function(gallery){
+    var imgs = Array.prototype.slice.call(gallery.querySelectorAll('img'));
+    imgs.forEach(function(img){
+      img.addEventListener('click', function(){ openLightbox(img, imgs); });
+    });
+  });
+
   document.querySelectorAll('.side-gallery').forEach(function(gallery){
     var imgs = Array.prototype.slice.call(gallery.querySelectorAll('img'));
     imgs.forEach(function(img){
@@ -425,7 +432,7 @@ if(floatingNav || backToTop){
   });
 
   // fade-up reveals as sections scroll into view
-  var sel = '.section-head-center, #work .project, .playground-strip, .footer-card, .case-section, .case-row, .more-work-head, .more-work-card, #playground > .project, .about-card, #hobbies > *';
+  var sel = '.section-head-center, #work .project, .playground-strip, .footer-card, .case-section, .case-row, .more-work-head, .more-work-card, #playground > .project, .about-card, #hobbies > *, .pg-grid > .project, .pg-fig';
   var els = Array.prototype.filter.call(document.querySelectorAll(sel), function(el){ return !el.classList.contains('cs-reveal'); });
   if(els.length && 'IntersectionObserver' in window){
     els.forEach(function(el){ if(el.getBoundingClientRect().top > window.innerHeight * 0.9) el.classList.add('reveal'); });
