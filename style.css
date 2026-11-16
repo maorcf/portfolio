@@ -1573,3 +1573,10 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pg-title{ padding-top:96px; }
 @media (max-width:720px){ .pg-title{ padding-top:84px; } }
 .pg-title-word svg.pg-rig-back{ z-index:-1; }
+/* hanging ropes threaded through the P and d bowls */
+.pg-title-word svg.pg-hang{ left:0; top:-1.25em; width:100%; height:calc(100% + 1.25em); fill:none; overflow:visible; z-index:2;
+  -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 40%); mask-image:linear-gradient(to bottom, transparent 0, #000 40%); }
+.pg-title-word svg.pg-hang-back{ z-index:0; }
+.pg-txt{ position:relative; z-index:1; }
+.pg-hang path{ fill:none; stroke:var(--violet); stroke-width:4.6; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; }
+.pg-title-word{ transform-origin:50% -1.25em; }
