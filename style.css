@@ -1555,3 +1555,20 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .pg-title-squiggle path{ animation:none; stroke-dashoffset:0; }
 }
 .pg-title{ padding-bottom:28px; }
+
+/* ---------- PLAYGROUND TITLE: hanging swing ---------- */
+.pg-title h1{ perspective:800px; }
+.pg-title-word{ transform-origin:50% -.95em; animation:pgSwing 3.8s ease-in-out infinite; }
+.pg-title-word svg.pg-title-rig{ left:-.16em; right:-.16em; width:auto; top:-.95em; height:1.38em; fill:none; overflow:visible; z-index:1;
+  -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 55%); mask-image:linear-gradient(to bottom, transparent 0, #000 55%); }
+.pg-title-rig path{ fill:none; stroke:var(--violet); stroke-linecap:round; vector-effect:non-scaling-stroke; }
+.pg-rope{ stroke-width:3; opacity:.85; }
+.pg-bar{ stroke-width:5; opacity:.92; }
+.pg-bar-b{ stroke-width:2.2; opacity:.45; }
+@keyframes pgSwing{
+  0%,100%{ transform:rotateX(16deg) rotate(-1.4deg); }
+  50%{ transform:rotateX(-16deg) rotate(1.4deg); }
+}
+@media (prefers-reduced-motion:reduce){ .pg-title-word{ animation:none; } }
+.pg-title{ padding-top:96px; }
+@media (max-width:720px){ .pg-title{ padding-top:84px; } }
