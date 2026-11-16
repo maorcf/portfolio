@@ -233,6 +233,13 @@ if(floatingNav || backToTop){
     });
   });
 
+  document.querySelectorAll('.pg-gallery').forEach(function(gallery){
+    var imgs = Array.prototype.slice.call(gallery.querySelectorAll('img'));
+    imgs.forEach(function(img){
+      img.addEventListener('click', function(){ openLightbox(img, imgs); });
+    });
+  });
+
   document.querySelectorAll('.side-gallery').forEach(function(gallery){
     var imgs = Array.prototype.slice.call(gallery.querySelectorAll('img'));
     imgs.forEach(function(img){
@@ -425,7 +432,7 @@ if(floatingNav || backToTop){
   });
 
   // fade-up reveals as sections scroll into view
-  var sel = '.section-head-center, #work .project, .playground-strip, .footer-card, .case-section, .case-row, .more-work-head, .more-work-card, #playground > .project, .about-card, #hobbies > *';
+  var sel = '.section-head-center, #work .project, .playground-strip, .footer-card, .case-section, .case-row, .more-work-head, .more-work-card, #playground > .project, .about-card, #hobbies > *, .pg-grid > .project, .pg-fig';
   var els = Array.prototype.filter.call(document.querySelectorAll(sel), function(el){ return !el.classList.contains('cs-reveal'); });
   if(els.length && 'IntersectionObserver' in window){
     els.forEach(function(el){ if(el.getBoundingClientRect().top > window.innerHeight * 0.9) el.classList.add('reveal'); });
@@ -475,7 +482,7 @@ if(floatingNav || backToTop){
   // a cover drops at the cursor every ~100px, springs in from half size, stays .5s, then fades out on its own)
   var heroTrail = document.querySelector('.hero-ethan');
   if(heroTrail && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
-    var covers = ['work-chido-cover.jpg?v=2', 'work-pazi-mockup2.jpg', 'work-filmroll-mockup2.jpg', 'work-austrip-card.jpg', 'work-austrip-dash-card.jpg', 'work-fireline-cover.jpg', 'work-mimi-card.jpg'];
+    var covers = ['work-chido-cover.jpg?v=2', 'work-pazi-mockup2.jpg', 'work-filmroll-mockup2.jpg', 'work-austrip-card-v2.jpg', 'work-austrip-dash-card-v2.jpg', 'work-fireline-cover.jpg', 'work-mimi-card.jpg'];
     covers.forEach(function(src){ new Image().src = src; });
     // overdamped springs sampled into linear() easings: in = stiffness 500 / damping 60, out = 600 / 60
     function springEase(k, c){
