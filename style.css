@@ -1513,7 +1513,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pg-cats{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 28px; margin:-8px auto 64px; }
 .pg-cats a{ font-size:17px; font-weight:500; color:var(--muted); text-decoration:none; transition:color .2s; }
 .pg-cats a sup{ font-size:10px; font-weight:600; margin-left:2px; vertical-align:super; }
-.pg-cats a:hover{ color:var(--ink); text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1.5px; }
+.pg-cats a:hover{ color:var(--ink); text-decoration:none; }
 .pg-cat{ scroll-margin-top:90px; }
 .pg-cat + .pg-cat{ margin-top:80px; }
 .pg-cat-title{ font-size:clamp(24px, 2.6vw, 34px); font-weight:800; letter-spacing:-0.02em; line-height:1.1; margin:0 0 20px; }
