@@ -1536,7 +1536,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pg-project .pg-intro h1{ font-size:clamp(32px, 3.8vw, 48px); margin-bottom:18px; }
 .pg-cat-title{ font-size:clamp(22px, 2.2vw, 28px); font-weight:600; letter-spacing:-0.015em; }
 .project-grid .project h3, #playground .pg-grid .project h3{ font-weight:600; text-transform:none; letter-spacing:-0.01em; }
-.mobile-nav{ gap:12px; }
+.mobile-nav{ gap:26px; padding:120px 36px 36px; }
 .mobile-nav a, .mobile-nav .cv-link{ font-size:22px; font-weight:400; text-transform:uppercase; letter-spacing:0; line-height:1.2; }
 
 /* ---------- PLAYGROUND TITLE: violet doodles ---------- */
