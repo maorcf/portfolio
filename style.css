@@ -1588,3 +1588,14 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .footer-star{ width:1em; height:1em; fill:#000; animation:footerStarSpin 6s linear infinite; }
 @keyframes footerStarSpin{ to{ transform:rotate(360deg); } }
 @media (prefers-reduced-motion:reduce){ .footer-star{ animation:none; } }
+
+/* ===== Mobile: pinned header with name + menu (Nov 22) ===== */
+.nav-brand{ display:none; }
+@media (max-width:720px){
+  html{ scroll-padding-top:64px; }
+  body{ padding-top:54px; }
+  header > nav.wrap{ display:none; }
+  .floating-nav{ transform:none; opacity:1; pointer-events:auto; border-bottom:1px solid rgba(0,0,0,.08); }
+  .floating-nav nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding:14px 18px; }
+  .nav-brand{ display:block; font-size:15px; font-weight:800; letter-spacing:-0.01em; color:var(--ink); }
+}
