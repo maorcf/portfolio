@@ -50,17 +50,20 @@
     items.push(el);
   });
 
-  function maxShown(){ var w = root.offsetWidth, S = size(), open = playing === active ? S * 0.55 : 0; return Math.max(1, Math.floor((w - S * 1.7 - open) / (S * 0.34))); }
   function size(){ return items[0].offsetWidth || 160; }
+  /* records shown on each side of the front one, so the fan fits the width */
+  function perSide(open){ var S = size(); return Math.max(1, Math.floor((root.offsetWidth / 2 - S * 0.9 - open) / (S * 0.34)) + 1); }
 
   function layout(){
-    var S = size(), step = S * 0.34, open = playing === active ? S * 0.55 : 0;
+    var S = size(), step = S * 0.34, open = playing === active ? S * 0.55 : 0, shift = -open / 2;
+    var nR = perSide(open), nL = perSide(0);
     items.forEach(function(el, i){
       var d = i - active, x, ry, z, op = 1;
       if(d === 0){ x = 0; ry = 0; z = 50; }
-      else if(d < 0){ x = -S * 0.25 + d * 12; ry = 20; z = 40 + d; op = 0; }
-      else { x = S * 0.86 + open + (d - 1) * step; ry = -38; z = 40 - d; op = d > maxShown() ? 0 : 1; }
-      el.style.transform = 'translateX(' + x + 'px) rotateY(' + ry + 'deg)';
+      else if(d < 0){ x = -(S * 0.9 + (-d - 1) * step); ry = 42; z = 40 + d; op = -d > nL ? 0 : 1; }
+      else { x = S * 0.9 + open + (d - 1) * step; ry = -42; z = 40 - d; op = d > nR ? 0 : 1; }
+      x += shift;
+      el.style.transform = 'translateX(' + x + 'px) translateZ(' + (d ? -S * 0.45 : 0) + 'px) rotateY(' + ry + 'deg)';
       el.style.zIndex = z;
       el.style.opacity = op;
       el.style.pointerEvents = op ? '' : 'none';
