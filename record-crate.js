@@ -6,10 +6,10 @@
      color          - sleeve color when there is no cover */
 (function(){
   var SONGS = [
-    { title:'Low', artist:'Lenny Kravitz', cover:'https://i.scdn.co/image/ab67616d0000b2738931c3b826502240726251a7', spotify:'3zcccQe4KhGXRqRBUwGU3G', color:'#2a2a2a' },
     { title:'Song title', artist:'Artist', color:'#D3F26A' },
     { title:'Song title', artist:'Artist', color:'#F4C93B' },
     { title:'Song title', artist:'Artist', color:'#F2977B' },
+    { title:'Low', artist:'Lenny Kravitz', cover:'https://i.scdn.co/image/ab67616d0000b2738931c3b826502240726251a7', spotify:'3zcccQe4KhGXRqRBUwGU3G', color:'#2a2a2a' },
     { title:'Song title', artist:'Artist', color:'#141414' },
     { title:'Song title', artist:'Artist', color:'#C9C2ED' },
     { title:'Song title', artist:'Artist', color:'#3C8A5A' },
@@ -21,7 +21,7 @@
   var stage = root.querySelector('.rc-stage');
   var now = root.querySelector('.rc-now');
   var player = root.querySelector('.rc-player');
-  var active = 0, playing = -1, items = [];
+  var active = Math.floor((SONGS.length - 1) / 2), playing = -1, items = [];
 
   function isDark(hex){
     var h = hex.replace('#',''); if(h.length !== 6) return false;
