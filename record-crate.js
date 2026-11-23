@@ -11,7 +11,7 @@
     { title:'Last Train to London', artist:'Rikas', cover:'https://i.scdn.co/image/ab67616d0000b2731a61a0637f0d90538a950303', spotify:'5fewYZz1bCsj72vjSwSxzq', color:'#2a2a2a' },
     { title:'Low', artist:'Lenny Kravitz', cover:'https://i.scdn.co/image/ab67616d0000b2738931c3b826502240726251a7', spotify:'3zcccQe4KhGXRqRBUwGU3G', color:'#2a2a2a' },
     { title:'Crazy', artist:'Seal', cover:'https://i.scdn.co/image/ab67616d0000b273d214956335b4cfab9e302c81', spotify:'2KP6bTmxOSEVMXAnbapkpa', color:'#2a2a2a' },
-    { title:'Song title', artist:'Artist', color:'#C9C2ED' },
+    { title:'World, Hold On', artist:'Bob Sinclar', cover:'https://i.scdn.co/image/ab67616d0000b273d6952b61578ec91b5a9dae1e', spotify:'4pk5rRwrqu5eRruS5KYz1t', color:'#2a2a2a' },
     { title:'Song title', artist:'Artist', color:'#3C8A5A' },
     { title:'Song title', artist:'Artist', color:'#E8E2D0' }
   ];
