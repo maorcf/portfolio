@@ -59,11 +59,10 @@
   }
 
   /* far wall with the way out to the full Playground page */
-  var end = document.createElement('a');
-  end.href = 'playground.html';
+  var end = document.createElement('div');
   end.className = 'pgc-end';
   end.style.transform = 'translate3d(0,0,' + (-DEPTH - GAP * 0.4) + 'px)';
-  end.innerHTML = '<span class="pgc-end-title">That’s the hallway.</span><span class="pgc-end-cta">&larr; Back to the grid</span>';
+  end.innerHTML = '<span class="pgc-end-title">That’s the hallway.</span><a class="pgc-end-cta" href="playground.html">&larr; Back to the grid</a>';
   world.appendChild(end);
 
   /* the works (alternating sides, restarting at each category) and the category signs */
