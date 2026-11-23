@@ -12,6 +12,8 @@
     .filter(function(a){ return a.getAttribute('aria-hidden') !== 'true'; });
   if(links.length < 4) return;
 
+  // ?ring=inside brings back the inward-curving version
+  var INSIDE = /[?&]ring=inside/.test(location.search);
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var canHover = window.matchMedia('(hover: hover)').matches;
 
@@ -21,7 +23,7 @@
     return { el: a, img: img, ratio: 0.75, theta: 0, w: 0 };
   });
 
-  var H = 0, R = 0, P = 1100, F = 385, angle = 0;
+  var H = 0, R = 0, P = 1100, F = 385, L = 800, HALF = 700, angle = 0;
 
   function readRatio(it){
     if(it.img && it.img.naturalWidth) it.ratio = it.img.naturalWidth / it.img.naturalHeight;
@@ -41,10 +43,19 @@
       it.el.style.marginTop = (-H / 2) + 'px';
       total += it.w + gap;
     });
-    // viewer stands inside the ring: front cards sit back, cards at the screen edges curve toward you
     R = total / (2 * Math.PI);
-    P = vw < 640 ? 800 : 1400;
-    F = P * 0.3;
+    if(INSIDE){
+      // viewer stands inside the ring: front cards sit back, cards at the screen edges curve toward you
+      P = vw < 640 ? 800 : 1400;
+      F = P * 0.3;
+    } else {
+      // viewer outside the ring: the center card is biggest, the sides turn away and shrink
+      // flat cover-flow: the center card is biggest, cards shrink and turn away toward the screen sides
+      P = vw < 640 ? 800 : 1400;
+      F = 0;
+      L = vw < 640 ? 260 : 820;
+      HALF = vw / 2;
+    }
     track.style.perspective = P + 'px';
     // place each card at the middle of its slice, slices sized by card width
     var acc = 0;
@@ -58,20 +69,42 @@
   }
 
   function render(){
+    if(!INSIDE) return renderFlow();
     var zc = R - F;
     for(var i = 0; i < items.length; i++){
       var it = items[i];
       var t = Math.atan2(Math.sin(it.theta + angle), Math.cos(it.theta + angle));
       var s = Math.sin(t), c = Math.cos(t);
-      var z = zc - R * c;
-      var on = c > 0.05 && z < P - 30;
+      var z = INSIDE ? zc - R * c : (R * c - R) * 0.75;
+      var on = INSIDE ? (c > 0.05 && z < P - 30) : c > 0.02;
       if(!on){
         if(it.on !== false){ it.el.style.visibility = 'hidden'; it.el.tabIndex = -1; it.on = false; }
         continue;
       }
       if(it.on !== true){ it.el.style.visibility = ''; it.el.tabIndex = 0; it.on = true; }
-      it.el.style.transform = 'translate3d(' + (R * s).toFixed(1) + 'px,0,' + z.toFixed(1) + 'px) rotateY(' + (-t * 180 / Math.PI).toFixed(2) + 'deg)';
+      it.el.style.transform = 'translate3d(' + (R * s * (INSIDE ? 1 : 1.06)).toFixed(1) + 'px,0,' + z.toFixed(1) + 'px) rotateY(' + ((INSIDE ? -t : t) * 180 / Math.PI).toFixed(2) + 'deg)';
       it.el.style.zIndex = String(Math.round(1000 + z));
+    }
+  }
+
+  function renderFlow(){
+    var C = 2 * Math.PI * R;           // ring length in px
+    for(var i = 0; i < items.length; i++){
+      var it = items[i];
+      var t = Math.atan2(Math.sin(it.theta + angle), Math.cos(it.theta + angle));
+      var u = t * R;                   // signed distance from the center, along the ring
+      var a = Math.abs(u), sg = u < 0 ? -1 : 1;
+      var k = 1 / (1 + a / L);         // size falls off away from the center
+      var x = sg * L * Math.log(1 + a / L);  // packed so neighbours touch as they shrink
+      var on = x * sg - it.w * k / 2 < HALF + 40 && a < C * 0.45;
+      if(!on){
+        if(it.on !== false){ it.el.style.visibility = 'hidden'; it.el.tabIndex = -1; it.on = false; }
+        continue;
+      }
+      if(it.on !== true){ it.el.style.visibility = ''; it.el.tabIndex = 0; it.on = true; }
+      var ry = -sg * Math.min(a / L * 28, 40);
+      it.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0) scale(' + k.toFixed(4) + ') rotateY(' + ry.toFixed(2) + 'deg)';
+      it.el.style.zIndex = String(Math.round(1000 - a / 10));
     }
   }
 
