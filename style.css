@@ -1757,3 +1757,12 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pgc-sign-no{ font:700 40px/1 Inter, sans-serif; letter-spacing:.08em; color:#5B4CE0; }
 .pgc-sign-name{ font:800 170px/0.95 Inter, sans-serif; letter-spacing:-0.045em; }
 @media (max-width:809px){ .pgc-sign-name{ font-size:96px; } }
+
+/* Mobile: fun fact sits under the headline instead of above it */
+@media (max-width:809px){
+  .hero.hero-ethan{ padding-top:72px; }
+  .hero.hero-ethan .lead{ order:1; }
+  .hero.hero-ethan .hero-funfact{ order:2; position:static; margin:16px 0 0; text-align:left; font-size:15px; }
+  .hero.hero-ethan .record-crate{ order:3; }
+  .hero.hero-ethan .hero-actions{ order:4; }
+}
