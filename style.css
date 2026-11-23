@@ -1710,3 +1710,52 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .hero.hero-ethan .record-crate{ margin-top:150px; }
 .hero.hero-ethan .hero-actions{ margin-top:110px; }
 @media (max-width:809px){ .hero.hero-ethan .record-crate{ margin-top:66px; } .hero.hero-ethan .hero-actions{ margin-top:78px; } }
+
+/* Homepage Playground corridor (playground-corridor.js): pinned 3D hallway, works hang from the ceiling.
+   World units are 1.5x screen px (then scaled down) so the hanging images rasterize sharp up close. */
+#playground-teaser.has-corridor .playground-strip{ display:none; }
+.pgc{ position:relative; height:var(--pgc-h, 500vh); width:100vw; margin-left:calc(50% - 50vw); }
+.pgc-sticky{ position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; background:#E9E3D2; }
+.pgc-sticky > .section-head{ position:absolute; z-index:3; top:clamp(72px, 11vh, 120px); left:0; right:0; margin:0 auto; padding:0 16px; transition:opacity .5s, transform .5s; }
+.pgc.is-walking .pgc-sticky > .section-head{ opacity:0; transform:translateY(-16px); pointer-events:none; }
+.pgc-view{ position:absolute; left:50%; top:50%; width:2250px; height:1350px; margin:-675px 0 0 -1125px; perspective:930px; perspective-origin:50% 50%; transform:scale(var(--pgc-scale, .6)); }
+.pgc-world{ position:absolute; left:50%; top:50%; width:0; height:0; transform-style:preserve-3d; }
+.pgc-world > *{ position:absolute; backface-visibility:hidden; }
+.pgc-plane{ left:-421px; top:-675px; width:842px; height:1350px; }
+.pgc-l{ background:
+  linear-gradient(90deg, rgba(26,26,26,.16) 0 3px, transparent 3px),
+  linear-gradient(180deg, #F3EFE4 0 74%, #5B4CE0 74% 75.2%, #E4DDCB 75.2%); }
+.pgc-r{ background:
+  linear-gradient(90deg, transparent calc(100% - 3px), rgba(26,26,26,.16) calc(100% - 3px)),
+  linear-gradient(180deg, #F3EFE4 0 74%, #5B4CE0 74% 75.2%, #E4DDCB 75.2%); }
+.pgc-f, .pgc-c{ left:-1126px; top:-421px; width:2252px; height:842px; }
+.pgc-f{ background:
+  linear-gradient(90deg, transparent 49.7%, #D3F26A 49.7% 50.3%, transparent 50.3%),
+  repeating-linear-gradient(90deg, #D9D1BC 0 222px, #CFC6AF 222px 225px); }
+.pgc-c{ background:
+  linear-gradient(90deg, transparent 38%, #FFFDF6 38% 62%, transparent 62%),
+  #ECE6D6; }
+.pgc-c::after{ content:""; position:absolute; inset:0; border-top:3px solid rgba(26,26,26,.12); }
+.pgc-work{ left:-255px; top:0; width:510px; text-decoration:none; color:#1a1a1a; transition:opacity .2s; }
+.pgc-swing{ display:block; position:relative; transform-origin:50% 0; animation:pgc-swing 5.5s ease-in-out infinite alternate; }
+@keyframes pgc-swing{ from{ transform:rotate(-1.4deg); } to{ transform:rotate(1.4deg); } }
+.pgc-string{ position:absolute; top:0; width:3px; background:#1a1a1a; }
+.pgc-string-l{ left:22%; } .pgc-string-r{ right:22%; }
+.pgc-frame{ display:block; position:relative; padding:18px; background:#fff; border:3px solid #1a1a1a; border-radius:9px; }
+.pgc-frame img{ display:block; width:100%; aspect-ratio:1.4; object-fit:cover; border-radius:3px; }
+.pgc-label{ display:inline-block; margin-top:18px; padding:9px 18px; background:#1a1a1a; color:#fff; font:700 22px/1.1 Inter, sans-serif; text-transform:uppercase; letter-spacing:-0.01em; border-radius:999px; }
+.pgc-work:hover .pgc-frame{ border-color:#5B4CE0; }
+.pgc-work:hover .pgc-label{ background:#5B4CE0; }
+.pgc-end{ left:-840px; top:-495px; width:1680px; height:990px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:42px; background:#C9C2ED; border:4px solid #1a1a1a; text-decoration:none; color:#1a1a1a; }
+.pgc-end-title{ font:800 144px/1 Inter, sans-serif; letter-spacing:-0.04em; }
+.pgc-end-cta{ font:700 51px/1 Inter, sans-serif; padding:33px 60px; background:#5B4CE0; color:#fff; border:4px solid #1a1a1a; border-radius:999px; }
+.pgc-end:hover .pgc-end-cta{ background:#1a1a1a; }
+.pgc-hud{ position:absolute; z-index:3; left:16px; right:16px; bottom:22px; display:flex; justify-content:space-between; font:700 13px/1 Inter, sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#1a1a1a; pointer-events:none; }
+.pgc-hint{ transition:opacity .4s; }
+.pgc.is-walking .pgc-hint{ opacity:0; }
+@media (max-width:809px){
+  .pgc-view{ perspective:780px; }
+  .pgc-work{ width:420px; left:-210px; }
+  .pgc-label{ font-size:26px; }
+  .pgc-end-title{ font-size:110px; }
+}
