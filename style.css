@@ -1418,9 +1418,9 @@ main.cs3{ background:#fff; padding-bottom:40px; }
 .cs3-back{ display:inline-block; font-size:13px; font-weight:600; color:var(--muted); text-decoration:none !important; margin-bottom:28px; }
 .cs3-back:hover{ color:var(--red); }
 .cs3-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
-.cs3-tags{ gap:0; }
-.cs3-tags .tag-pill{ background:none; color:var(--muted); padding:0; border-radius:0; font-size:12px; font-weight:600; letter-spacing:.06em; }
-.cs3-tags .tag-pill + .tag-pill::before{ content:"·"; margin:0 10px; }
+.cs3-tags, main.has-cs3-open .tags:not(:has(.tag-pill[style])){ gap:0; }
+.cs3-tags .tag-pill, main.has-cs3-open .tags:not(:has(.tag-pill[style])) .tag-pill{ background:none; color:var(--muted); padding:0; border-radius:0; font-size:12px; font-weight:600; letter-spacing:.06em; }
+.cs3-tags .tag-pill + .tag-pill::before, main.has-cs3-open .tags:not(:has(.tag-pill[style])) .tag-pill + .tag-pill::before{ content:"·"; margin:0 10px; }
 .cs3-rows{ padding-top:48px; }
 .cs3-rows .case-row{ margin-bottom:32px; }
 .cs3-roles{ font-size:14px; color:#6E6E6E; border-top:1.5px solid var(--line); padding-top:22px; margin:8px 0 0; }

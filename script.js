@@ -634,7 +634,8 @@ if(floatingNav || backToTop){
   document.body.classList.add('has-toc');
   var links = [].slice.call(nav.querySelectorAll('a'));
   var place = function(){
-    var w = nav.offsetWidth, cl = hs[0].getBoundingClientRect().left;
+    var w = nav.offsetWidth, cl = Infinity;
+    hs.forEach(function(h){ cl = Math.min(cl, h.getBoundingClientRect().left); });
     [].forEach.call(document.querySelectorAll('main .cs3-panel, main .case-compare'), function(el){ var l = el.getBoundingClientRect().left; if (el.offsetWidth < window.innerWidth - 40) cl = Math.min(cl, l); });
     var left = cl - w - 40;
     nav.classList.toggle('fits', left >= 16 && window.innerWidth >= 1200);
