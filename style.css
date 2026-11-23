@@ -1672,6 +1672,8 @@ body:has(.has-cs3-open){ overflow-x:clip; }
     repeating-radial-gradient(circle, #151515 0 1px, #0b0b0b 1px 2.5px);
   box-shadow:inset 0 0 0 1px #000, 0 4px 10px rgba(0,0,0,.25); }
 .rc-vinyl::after{ background:radial-gradient(circle, transparent 33%, rgba(255,255,255,.05) 34%, transparent 36%, transparent 96%, rgba(255,255,255,.12) 97%, transparent 99%); }
-.hero.hero-ethan{ padding-top:14vh; padding-bottom:4vh; }
-.hero.hero-ethan .hero-actions{ bottom:6vh; }
-@media (max-width:809px){ .hero.hero-ethan{ padding-top:12svh; padding-bottom:10svh; } .hero.hero-ethan .hero-actions{ bottom:8svh; } }
+.hero.hero-ethan{ padding-top:32vh; padding-bottom:0; justify-content:flex-start; }
+.hero.hero-ethan .record-crate{ margin-top:60px; }
+.hero.hero-ethan .hero-actions{ position:relative; bottom:auto; left:auto; right:auto; align-self:center; margin-top:44px; }
+.hero.hero-ethan{ padding-bottom:5vh; }
+@media (max-width:809px){ .hero.hero-ethan{ padding-top:26svh; padding-bottom:0; } .hero.hero-ethan .record-crate{ margin-top:56px; } .hero.hero-ethan .hero-actions{ margin-top:36px; } .hero.hero-ethan{ padding-bottom:5svh; } }
