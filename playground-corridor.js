@@ -19,6 +19,9 @@
     slots.push({ a:a, cat:cat });
   });
   var N = slots.length;
+  /* with category signs, leave one empty slot at the start so the first sign doesn't sit behind the intro text */
+  var LEAD = slots.length > links.length ? 1 : 0;
+  N += LEAD;
   var DEPTH = (N + 1) * GAP;     /* corridor length */
   var W = 2250, H = 1350;         /* corridor cross-section */
 
@@ -63,7 +66,7 @@
   /* the works (alternating sides, restarting at each category) and the category signs */
   var catNo = 0, sideIx = 0;
   var works = slots.map(function(sl, i){
-    var z = -(i + 1) * GAP;
+    var z = -(i + 1 + LEAD) * GAP;
     var el;
     if(!sl.a){
       catNo++; sideIx = 0;
@@ -134,6 +137,8 @@
     works.forEach(function(w, i){
       var d = w.z + cam;                       /* distance: negative = ahead */
       var op = d > 270 ? 0 : d > -90 ? Math.max(0, 1 - (d + 90) / 360) : Math.max(0.05, Math.min(1, 1 + (d + 900) / 3900));
+      /* signs only show when you get close, so far-off names don't pile up behind the works */
+      if(w.sign) op = d < -GAP * 1.9 ? 0 : Math.min(op, Math.min(1, (d + GAP * 1.9) / (GAP * 0.7)));
       op = Math.round(op * 50) / 50;
       if(w.op === op) return;
       w.op = op;
