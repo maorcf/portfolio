@@ -91,14 +91,11 @@
                      '<span class="pgc-label">' + (label ? label.textContent : '') + '</span>' +
                    '</span>';
     world.appendChild(el);
-    /* a soft shadow on the floor under it, and a faint mirror image in the polished floor */
+    /* a soft shadow on the floor under it */
     var shadow = document.createElement('div');
     shadow.className = 'pgc-shadow';
-    var refl = document.createElement('div');
-    refl.className = 'pgc-refl';
-    refl.innerHTML = '<img src="' + img.getAttribute('src') + '" alt="" draggable="false" decoding="async">';
-    world.insertBefore(shadow, el); world.insertBefore(refl, el);
-    return { el:el, z:z, side:side, lift:lift, extra:[shadow, refl] };
+    world.insertBefore(shadow, el);
+    return { el:el, z:z, side:side, lift:lift, extra:[shadow] };
   });
   var signs = works.filter(function(w){ return w.sign; });
 
@@ -114,11 +111,9 @@
     works.forEach(function(w){
       if(w.sign){ w.el.style.transform = 'translate3d(0,' + (-H/2 + 270) + 'px,' + w.z + 'px)'; return; }
       var x = w.side * xOff, rot = 'rotateY(' + (-w.side * (vw < 810 ? 8 : 14)) + 'deg)';
-      var top = -250 + w.lift, ih = (vw < 810 ? 420 : 510) / 1.4;
+      var top = -250 + w.lift;
       w.el.style.transform = 'translate3d(' + x + 'px,' + top + 'px,' + w.z + 'px) ' + rot;
       w.extra[0].style.transform = 'translate3d(' + x + 'px,' + (H/2 - 3) + 'px,' + w.z + 'px) rotateX(90deg)';
-      /* mirrored about the floor plane: the image's bottom edge maps to the reflection's top edge */
-      w.extra[1].style.transform = 'translate3d(' + x + 'px,' + (H - top - ih) + 'px,' + w.z + 'px) ' + rot + ' scaleY(-1)';
     });
     /* the room: four planes meeting at the vanishing point (screen centre); corridor corners run from there
        towards the corners of the W x H cross-section at the camera plane, scaled to the screen */
