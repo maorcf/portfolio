@@ -72,7 +72,7 @@
       catNo++; sideIx = 0;
       el = document.createElement('div');
       el.className = 'pgc-sign';
-      el.innerHTML = '<span class="pgc-sign-no">' + String(catNo).padStart(2, '0') + '</span><span class="pgc-sign-name">' + sl.cat + '</span>';
+      el.innerHTML = '<span class="pgc-sign-name">' + sl.cat + '</span>';
       world.appendChild(el);
       return { el:el, z:z, side:0, lift:0, sign:sl.cat };
     }
