@@ -10,7 +10,7 @@
     { title:'Song title', artist:'Artist', color:'#F4C93B' },
     { title:'Song title', artist:'Artist', color:'#F2977B' },
     { title:'Low', artist:'Lenny Kravitz', cover:'https://i.scdn.co/image/ab67616d0000b2738931c3b826502240726251a7', spotify:'3zcccQe4KhGXRqRBUwGU3G', color:'#2a2a2a' },
-    { title:'Song title', artist:'Artist', color:'#141414' },
+    { title:'Crazy', artist:'Seal', cover:'https://i.scdn.co/image/ab67616d0000b273d214956335b4cfab9e302c81', spotify:'2KP6bTmxOSEVMXAnbapkpa', color:'#2a2a2a' },
     { title:'Song title', artist:'Artist', color:'#C9C2ED' },
     { title:'Song title', artist:'Artist', color:'#3C8A5A' },
     { title:'Song title', artist:'Artist', color:'#E8E2D0' }
