@@ -1762,7 +1762,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 @media (max-width:809px){
   .hero.hero-ethan{ padding-top:72px; }
   .hero.hero-ethan .lead{ order:1; }
-  .hero.hero-ethan .hero-funfact{ order:2; position:static; margin:16px 0 0; text-align:left; font-size:15px; }
+  .hero.hero-ethan .hero-funfact{ order:2; position:static; align-self:stretch; margin:16px 0 0; text-align:right; font-size:15px; }
   .hero.hero-ethan .record-crate{ order:3; }
   .hero.hero-ethan .hero-actions{ order:4; }
 }
