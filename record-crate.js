@@ -6,7 +6,7 @@
      color          - sleeve color when there is no cover */
 (function(){
   var SONGS = [
-    { title:'Song title', artist:'Artist', color:'#5B4CE0' },
+    { title:'Low', artist:'Lenny Kravitz', cover:'https://i.scdn.co/image/ab67616d0000b2738931c3b826502240726251a7', spotify:'3zcccQe4KhGXRqRBUwGU3G', color:'#2a2a2a' },
     { title:'Song title', artist:'Artist', color:'#D3F26A' },
     { title:'Song title', artist:'Artist', color:'#F4C93B' },
     { title:'Song title', artist:'Artist', color:'#F2977B' },
