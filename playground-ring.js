@@ -31,7 +31,7 @@
 
   function layout(){
     var vw = window.innerWidth;
-    H = vw < 640 ? 160 : 280;
+    H = vw < 640 ? 190 : 340;
     var gap = vw < 640 ? 8 : 12;
     var total = 0;
     items.forEach(function(it){
@@ -53,8 +53,8 @@
       // outside of a cylinder: center card biggest, sides bend away
       P = vw < 640 ? 800 : 1400;
       F = 0;
-      RC = vw < 640 ? 330 : 1100;
-      P = vw < 640 ? 1100 : 2600;
+      RC = vw < 640 ? 390 : 1340;
+      P = vw < 640 ? 1300 : 3160;
     }
     track.style.perspective = P + 'px';
     // place each card at the middle of its slice, slices sized by card width
