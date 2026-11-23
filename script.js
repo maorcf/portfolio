@@ -513,6 +513,7 @@ if(floatingNav || backToTop){
       }, 500);
     }
     heroTrail.addEventListener('mousemove', function(e){
+      if(e.target.closest && e.target.closest('.record-crate')){ lx = ly = null; return; } // no cover trail over the record crate
       var r = heroTrail.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
       if(lx !== null && Math.hypot(x - lx, y - ly) <= GAP) return;
       spawn(x, y); lx = x; ly = y;
