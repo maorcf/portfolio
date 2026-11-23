@@ -57,7 +57,7 @@
   end.href = 'playground.html';
   end.className = 'pgc-end';
   end.style.transform = 'translate3d(0,0,' + (-DEPTH - GAP * 0.4) + 'px)';
-  end.innerHTML = '<span class="pgc-end-title">That’s the hallway.</span><span class="pgc-end-cta">See the whole Playground &rarr;</span>';
+  end.innerHTML = '<span class="pgc-end-title">That’s the hallway.</span><span class="pgc-end-cta">&larr; Back to the grid</span>';
   world.appendChild(end);
 
   /* the works (alternating sides, restarting at each category) and the category signs */
