@@ -1427,7 +1427,7 @@ main.cs3{ background:#fff; padding-bottom:40px; }
 .cs3-roles b{ color:var(--ink); font-weight:600; margin-left:10px; }
 .cs3-roles b:first-child{ margin-left:0; }
 .cs3-text blockquote{ margin:18px 0 0; padding:16px 20px; border-left:3px solid var(--ink); background:#F5F5F5; border-radius:0 8px 8px 0; font-size:17px; line-height:1.5; font-weight:600; color:var(--ink); }
-.cs3-panel{ max-width:1080px; margin:64px auto 0; padding:clamp(20px, 5.5vw, 72px); background:var(--cs3-tint,#EEF1F6); border-radius:32px; }
+.cs3-panel{ max-width:1080px; margin:64px auto 0; padding:0; background:none; }
 .cs3-panel + .cs3-panel{ margin-top:32px; }
 .cs3-panel img{ display:block; width:100%; height:auto; border-radius:10px; box-shadow:0 18px 50px rgba(20,30,50,.14), 0 2px 6px rgba(20,30,50,.06); }
 .cs3-pair{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px, 3vw, 40px); align-items:start; }
