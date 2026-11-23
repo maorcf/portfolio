@@ -23,7 +23,7 @@
     return { el: a, img: img, ratio: 0.75, theta: 0, w: 0 };
   });
 
-  var H = 0, R = 0, P = 1100, F = 385, L = 800, HALF = 700, angle = 0;
+  var H = 0, R = 0, P = 1100, F = 385, RC = 1200, angle = 0;
 
   function readRatio(it){
     if(it.img && it.img.naturalWidth) it.ratio = it.img.naturalWidth / it.img.naturalHeight;
@@ -50,11 +50,11 @@
       F = P * 0.3;
     } else {
       // viewer outside the ring: the center card is biggest, the sides turn away and shrink
-      // flat cover-flow: the center card is biggest, cards shrink and turn away toward the screen sides
+      // outside of a cylinder: center card biggest, sides bend away
       P = vw < 640 ? 800 : 1400;
       F = 0;
-      L = vw < 640 ? 260 : 820;
-      HALF = vw / 2;
+      RC = vw < 640 ? 300 : 1000;
+      P = vw < 640 ? 800 : 1800;
     }
     track.style.perspective = P + 'px';
     // place each card at the middle of its slice, slices sized by card width
@@ -88,23 +88,22 @@
   }
 
   function renderFlow(){
-    var C = 2 * Math.PI * R;           // ring length in px
+    // outside of a cylinder: the center card is closest and biggest,
+    // the row bends away and shrinks toward the screen sides
     for(var i = 0; i < items.length; i++){
       var it = items[i];
       var t = Math.atan2(Math.sin(it.theta + angle), Math.cos(it.theta + angle));
-      var u = t * R;                   // signed distance from the center, along the ring
-      var a = Math.abs(u), sg = u < 0 ? -1 : 1;
-      var k = 1 / (1 + a / L);         // size falls off away from the center
-      var x = sg * L * Math.log(1 + a / L);  // packed so neighbours touch as they shrink
-      var on = x * sg - it.w * k / 2 < HALF + 40 && a < C * 0.45;
+      var u = t * R;                   // signed distance from the center along the row
+      var tc = u / RC;                 // angle on the (tighter) visible cylinder
+      var on = Math.abs(tc) < 1.5;
       if(!on){
         if(it.on !== false){ it.el.style.visibility = 'hidden'; it.el.tabIndex = -1; it.on = false; }
         continue;
       }
       if(it.on !== true){ it.el.style.visibility = ''; it.el.tabIndex = 0; it.on = true; }
-      var ry = -sg * Math.min(a / L * 28, 40);
-      it.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0) scale(' + k.toFixed(4) + ') rotateY(' + ry.toFixed(2) + 'deg)';
-      it.el.style.zIndex = String(Math.round(1000 - a / 10));
+      var z = RC * (Math.cos(tc) - 1);
+      it.el.style.transform = 'translate3d(' + (RC * Math.sin(tc)).toFixed(1) + 'px,0,' + z.toFixed(1) + 'px) rotateY(' + (tc * 180 / Math.PI).toFixed(2) + 'deg)';
+      it.el.style.zIndex = String(Math.round(1000 + z));
     }
   }
 
