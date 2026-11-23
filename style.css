@@ -1672,11 +1672,20 @@ body:has(.has-cs3-open){ overflow-x:clip; }
     repeating-radial-gradient(circle, #151515 0 1px, #0b0b0b 1px 2.5px);
   box-shadow:inset 0 0 0 1px #000, 0 4px 10px rgba(0,0,0,.25); }
 .rc-vinyl::after{ background:radial-gradient(circle, transparent 33%, rgba(255,255,255,.05) 34%, transparent 36%, transparent 96%, rgba(255,255,255,.12) 97%, transparent 99%); }
-.hero.hero-ethan{ padding-top:32vh; padding-bottom:0; justify-content:flex-start; }
-.hero.hero-ethan .record-crate{ margin-top:60px; }
-.hero.hero-ethan .hero-actions{ position:relative; bottom:auto; left:auto; right:auto; align-self:center; margin-top:44px; }
-.hero.hero-ethan{ padding-bottom:5vh; }
-@media (max-width:809px){ .hero.hero-ethan{ padding-top:26svh; padding-bottom:0; } .hero.hero-ethan .record-crate{ margin-top:56px; } .hero.hero-ethan .hero-actions{ margin-top:36px; } .hero.hero-ethan{ padding-bottom:5svh; } }
-/* lift only the intro line; the record crate keeps its place */
-.hero.hero-ethan .lead{ position:relative; top:calc(96px - 32vh); }
-@media (max-width:809px){ .hero.hero-ethan .lead{ top:calc(112px - 26svh); } }
+/* Hero layout per Figma "Portfolio – Hero" (node 144:380): line + fun fact on one row with ~7vw side margins,
+   "Music i like" + record crate centered below, violet "View my work" under it */
+.hero.hero-ethan{ justify-content:flex-start; padding:96px 6.9vw 6vh; }
+.hero.hero-ethan .hero-funfact{ right:6.9vw; }
+.hero.hero-ethan .lead{ max-width:min(880px, 56vw); }
+.hero.hero-ethan .record-crate{ margin-top:110px; }
+.rc-kicker{ margin:0 0 22px; font-size:16px; font-weight:500; color:var(--muted); letter-spacing:-0.01em; }
+.hero.hero-ethan .hero-actions{ position:relative; bottom:auto; left:auto; right:auto; align-self:center; margin-top:120px; }
+.hero.hero-ethan .hbtn-primary{ background:var(--violet); color:#fff; border-color:var(--violet); }
+@media (max-width:809px){
+  .hero.hero-ethan{ padding:112px 16px 6svh; }
+  .hero.hero-ethan .hero-funfact{ right:16px; }
+  .hero.hero-ethan .lead{ max-width:none; }
+  .hero.hero-ethan .record-crate{ margin-top:64px; }
+  .rc-kicker{ font-size:14px; margin-bottom:16px; }
+  .hero.hero-ethan .hero-actions{ margin-top:64px; }
+}
