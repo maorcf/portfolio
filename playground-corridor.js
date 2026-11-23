@@ -145,7 +145,7 @@
   }
   function frame(){
     raf = 0;
-    target = progress() * (DEPTH - GAP * 0.7);
+    target = progress() * (DEPTH - GAP * 0.6);
     cam += (target - cam) * 0.2;
     if(Math.abs(target - cam) < 0.5) cam = target;
     world.style.transform = 'translate3d(0,0,' + cam.toFixed(1) + 'px)';
@@ -156,7 +156,7 @@
     });
     works.forEach(function(w, i){
       var d = w.z + cam;                       /* distance: negative = ahead */
-      var op = d > 270 ? 0 : d > -90 ? Math.max(0, 1 - (d + 90) / 360) : Math.max(0.05, Math.min(1, 1 + (d + 900) / 3900));
+      var op = d > 240 ? 0 : d > -90 ? Math.max(0, 1 - (d + 90) / 330) : Math.max(0.05, Math.min(1, 1 + (d + 900) / 3900));
       /* signs only show when you get close, so far-off names don't pile up behind the works */
       if(w.sign) op = d < -GAP * 1.9 ? 0 : Math.min(op, Math.min(1, (d + GAP * 1.9) / (GAP * 0.7)));
       op = Math.round(op * 50) / 50;
@@ -180,6 +180,6 @@
   window.addEventListener('scroll', kick, { passive:true });
   window.addEventListener('resize', function(){ measure(); kick(); });
   measure();
-  cam = target = progress() * (DEPTH - GAP * 0.7);
+  cam = target = progress() * (DEPTH - GAP * 0.6);
   frame();
 })();
