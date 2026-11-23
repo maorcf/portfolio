@@ -1732,7 +1732,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pgc-swing{ display:block; position:relative; }
 .pgc-frame{ display:block; position:relative; }
 .pgc-frame img{ display:block; width:100%; aspect-ratio:1.4; object-fit:cover; border-radius:6px; }
-.pgc-label{ display:inline-block; margin-top:16px; color:#1a1a1a; font:700 24px/1.1 Inter, sans-serif; text-transform:uppercase; letter-spacing:-0.01em; }
+.pgc-label{ display:inline-block; margin-top:16px; color:#1a1a1a; font:700 32px/1.1 Inter, sans-serif; text-transform:uppercase; letter-spacing:-0.01em; }
 .pgc-work:hover .pgc-label{ color:#5B4CE0; }
 .pgc-end{ left:-1125px; top:-675px; width:2250px; height:1350px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:42px; background:#FBFBF9; text-decoration:none; color:#1a1a1a; }
 .pgc-end-title{ font:800 144px/1 Inter, sans-serif; letter-spacing:-0.04em; }
@@ -1744,6 +1744,12 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 @media (max-width:809px){
   .pgc-view{ perspective:780px; }
   .pgc-work{ width:420px; left:-210px; }
-  .pgc-label{ font-size:26px; }
+  .pgc-label{ font-size:34px; }
   .pgc-end-title{ font-size:110px; }
 }
+
+/* Playground page: button into the 3D hallway (playground-hallway.html) */
+.pg-hallway-row{ display:flex; justify-content:center; margin:0 0 28px; }
+.pg-hallway-btn{ display:inline-flex; align-items:center; gap:10px; padding:14px 24px; background:#1a1a1a; color:#fff; font:700 16px/1 Inter, sans-serif; text-decoration:none; border-radius:10px; transition:background .2s; }
+.pg-hallway-btn:hover{ background:#5B4CE0; }
+.hallway-page #playground-teaser{ margin-top:0; }
