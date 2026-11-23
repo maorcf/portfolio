@@ -1689,3 +1689,20 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .rc-kicker{ font-size:14px; margin-bottom:16px; }
   .hero.hero-ethan .hero-actions{ margin-top:64px; }
 }
+/* smaller record crate, no shelf strip */
+.record-crate{ --rc:112px; --rt:6px; max-width:760px; }
+.rc-stage::before{ display:none; }
+.rc-stage::after{ top:calc(100% - 4px); height:18px; background:radial-gradient(ellipse at 50% 0, rgba(0,0,0,.12), transparent 70%); }
+.rc-kicker{ font-size:14px; margin-bottom:16px; }
+.rc-head{ margin-bottom:10px; gap:10px; }
+.rc-title{ font-size:11px; }
+.rc-nav button{ width:26px; height:26px; font-size:12px; }
+.rc-art-title{ font-size:13px; }
+.rc-art-artist{ font-size:10px; }
+.rc-art-no{ font-size:9px; }
+.rc-now{ margin-top:20px; font-size:13px; }
+@media (max-width:809px){
+  .record-crate{ --rc:92px; --rt:5px; }
+  .rc-kicker{ font-size:13px; }
+  .rc-art-title{ font-size:11px; }
+}
