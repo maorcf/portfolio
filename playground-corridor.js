@@ -26,22 +26,23 @@
   var world = wrap.querySelector('.pgc-world');
   var count = wrap.querySelector('.pgc-count');
 
-  /* walls, floor and ceiling in GAP-long segments, so pieces behind the camera can be hidden */
-  var segs = [];
+  /* The corridor itself is straight and uniform, so its walls look the same from any depth: they are a
+     static 2D drawing (.pgc-room, drawn in measure()). Only light panels on the ceiling and joints on the
+     floor move in 3D, which is what gives the feeling of walking. Few, small layers keep it smooth. */
+  var room = document.createElement('div');
+  room.className = 'pgc-room';
+  wrap.querySelector('.pgc-sticky').insertBefore(room, wrap.querySelector('.pgc-view'));
+  var rungs = [];
   for(var k = 0; k <= N + 1; k++){
     var z = -k * GAP;
-    ['l','r','f','c'].forEach(function(side){
-      var p = document.createElement('div');
-      p.className = 'pgc-plane pgc-' + side;
-      var t;
-      if(side === 'l') t = 'translate3d(' + (-W/2) + 'px,0,' + (z - GAP/2) + 'px) rotateY(90deg)';
-      if(side === 'r') t = 'translate3d(' + (W/2) + 'px,0,' + (z - GAP/2) + 'px) rotateY(-90deg)';
-      if(side === 'f') t = 'translate3d(0,' + (H/2) + 'px,' + (z - GAP/2) + 'px) rotateX(90deg)';
-      if(side === 'c') t = 'translate3d(0,' + (-H/2) + 'px,' + (z - GAP/2) + 'px) rotateX(-90deg)';
-      p.style.transform = t;
-      world.appendChild(p);
-      segs.push({ el:p, z:z });
-    });
+    var lamp = document.createElement('div');
+    lamp.className = 'pgc-lamp';
+    lamp.style.transform = 'translate3d(0,' + (-H/2 + 1) + 'px,' + (z - GAP/2) + 'px) rotateX(-90deg)';
+    var seam = document.createElement('div');
+    seam.className = 'pgc-seam';
+    seam.style.transform = 'translate3d(0,' + (H/2 - 1) + 'px,' + z + 'px) rotateX(90deg)';
+    world.appendChild(lamp); world.appendChild(seam);
+    rungs.push({ el:lamp, z:z - GAP/2 }, { el:seam, z:z });
   }
 
   /* far wall with the way out to the full Playground page */
@@ -64,14 +65,14 @@
     el.className = 'pgc-work';
     el.innerHTML = '<span class="pgc-swing" style="padding-top:' + drop + 'px;animation-delay:' + (-i * 0.7) + 's">' +
                      '<span class="pgc-string pgc-string-l" style="height:' + drop + 'px"></span><span class="pgc-string pgc-string-r" style="height:' + drop + 'px"></span>' +
-                     '<span class="pgc-frame"><img src="' + img.getAttribute('src') + '" alt="' + (img.getAttribute('alt') || '') + '" draggable="false"></span>' +
+                     '<span class="pgc-frame"><img src="' + img.getAttribute('src') + '" alt="' + (img.getAttribute('alt') || '') + '" draggable="false" decoding="async"></span>' +
                      '<span class="pgc-label">' + (label ? label.textContent : '') + '</span>' +
                    '</span>';
     world.appendChild(el);
     return { el:el, z:z, side:side };
   });
 
-  var vw = 0, vh = 0, mx = 0, my = 0, cx = 0, cy = 0, target = 0, cam = 0, raf = 0;
+  var vw = 0, vh = 0, target = 0, cam = 0, raf = 0;
   function measure(){
     vw = window.innerWidth; vh = window.innerHeight;
     /* section height = one screen + the walk; ~0.55 screen of scroll per work */
@@ -83,6 +84,18 @@
     works.forEach(function(w){
       w.el.style.transform = 'translate3d(' + (w.side * xOff) + 'px,' + (-H/2) + 'px,' + w.z + 'px) rotateY(' + (-w.side * (vw < 810 ? 8 : 14)) + 'deg)';
     });
+    /* the room: four planes meeting at the vanishing point (screen centre); corridor corners run from there
+       towards the corners of the W x H cross-section at the camera plane, scaled to the screen */
+    var cx = vw / 2, cy = vh / 2, hx = W / 2 * s * 3, hy = H / 2 * s * 3;
+    function P(x, y){ return (cx + x).toFixed(1) + ',' + (cy + y).toFixed(1); }
+    room.innerHTML = '<svg width="' + vw + '" height="' + vh + '" viewBox="0 0 ' + vw + ' ' + vh + '" aria-hidden="true">' +
+      '<defs><radialGradient id="pgcFog" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000" stop-opacity=".07"/><stop offset=".35" stop-color="#000" stop-opacity=".02"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>' +
+      '<polygon class="pgc-c" points="' + P(0,0) + ' ' + P(-hx,-hy) + ' ' + P(hx,-hy) + '"/>' +
+      '<polygon class="pgc-f" points="' + P(0,0) + ' ' + P(-hx,hy) + ' ' + P(hx,hy) + '"/>' +
+      '<polygon class="pgc-w" points="' + P(0,0) + ' ' + P(-hx,-hy) + ' ' + P(-hx,hy) + '"/>' +
+      '<polygon class="pgc-w" points="' + P(0,0) + ' ' + P(hx,-hy) + ' ' + P(hx,hy) + '"/>' +
+      '<rect x="' + (cx - vw) + '" y="' + (cy - vw) + '" width="' + (vw * 2) + '" height="' + (vw * 2) + '" fill="url(#pgcFog)"/>' +
+      '</svg>';
   }
   function progress(){
     var r = wrap.getBoundingClientRect();
@@ -92,31 +105,32 @@
   function frame(){
     raf = 0;
     target = progress() * (DEPTH - GAP * 0.7);
-    cam += (target - cam) * 0.12;
-    cx += (mx - cx) * 0.06; cy += (my - cy) * 0.06;
-    world.style.transform = 'translateZ(' + cam + 'px) rotateY(' + (cx * 3) + 'deg) rotateX(' + (-cy * 2) + 'deg)';
-    segs.forEach(function(s){
-      var d = s.z + cam;                       /* > 0 means behind the camera */
-      s.el.style.visibility = d > GAP * 1.02 ? 'hidden' : '';
+    cam += (target - cam) * 0.2;
+    if(Math.abs(target - cam) < 0.5) cam = target;
+    world.style.transform = 'translate3d(0,0,' + cam.toFixed(1) + 'px)';
+    rungs.forEach(function(r){
+      var d = r.z + cam;                       /* > 0 means behind the camera */
+      var hide = d > GAP * 0.55;
+      if(r.hidden !== hide){ r.hidden = hide; r.el.style.visibility = hide ? 'hidden' : ''; }
     });
     works.forEach(function(w, i){
       var d = w.z + cam;                       /* distance: negative = ahead */
       var op = d > 270 ? 0 : d > -90 ? Math.max(0, 1 - (d + 90) / 360) : Math.max(0.05, Math.min(1, 1 + (d + 900) / 3900));
+      op = Math.round(op * 50) / 50;
+      if(w.op === op) return;
+      w.op = op;
       w.el.style.opacity = op;
       w.el.style.visibility = op < 0.02 ? 'hidden' : '';
       w.el.style.pointerEvents = op > 0.4 ? '' : 'none';
     });
-    count.textContent = String(Math.min(N, Math.max(1, Math.round(cam / GAP)))).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
+    var c = String(Math.min(N, Math.max(1, Math.round(cam / GAP)))).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
+    if(count.textContent !== c) count.textContent = c;
     wrap.classList.toggle('is-walking', cam > 60);
-    if(Math.abs(target - cam) > 0.5 || Math.abs(mx - cx) > 0.002 || Math.abs(my - cy) > 0.002) raf = requestAnimationFrame(frame);
+    if(cam !== target) raf = requestAnimationFrame(frame);
   }
   function kick(){ if(!raf) raf = requestAnimationFrame(frame); }
   window.addEventListener('scroll', kick, { passive:true });
   window.addEventListener('resize', function(){ measure(); kick(); });
-  wrap.addEventListener('pointermove', function(e){
-    if(e.pointerType !== 'mouse') return;
-    mx = e.clientX / vw - 0.5; my = e.clientY / vh - 0.5; kick();
-  });
   measure();
   cam = target = progress() * (DEPTH - GAP * 0.7);
   frame();
