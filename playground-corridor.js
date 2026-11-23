@@ -1,5 +1,5 @@
 /* Homepage Playground as a 3D corridor: the section pins to the screen and scrolling walks the camera
-   down a hallway where the works hang from the ceiling on strings. Works are read from the existing
+   down a hallway where the works float at eye level. Works are read from the existing
    carousel (.playground-strip-track, the real set only), so new Playground items show up here too.
    Reduced motion or no 3D support keeps the plain carousel. */
 (function(){
@@ -59,17 +59,16 @@
     var label = a.querySelector('.playground-strip-label');
     var side = i % 2 ? 1 : -1;
     var z = -(i + 1) * GAP;
-    var drop = 180 + (i * 53 % 135);          /* string length, varied */
+    var lift = (i * 53 % 90) - 45;          /* small height variation so they don't line up */          /* string length, varied */
     var el = document.createElement('a');
     el.href = a.getAttribute('href');
     el.className = 'pgc-work';
-    el.innerHTML = '<span class="pgc-swing" style="padding-top:' + drop + 'px;animation-delay:' + (-i * 0.7) + 's">' +
-                     '<span class="pgc-string pgc-string-l" style="height:' + drop + 'px"></span><span class="pgc-string pgc-string-r" style="height:' + drop + 'px"></span>' +
+    el.innerHTML = '<span class="pgc-swing">' +
                      '<span class="pgc-frame"><img src="' + img.getAttribute('src') + '" alt="' + (img.getAttribute('alt') || '') + '" draggable="false" decoding="async"></span>' +
                      '<span class="pgc-label">' + (label ? label.textContent : '') + '</span>' +
                    '</span>';
     world.appendChild(el);
-    return { el:el, z:z, side:side };
+    return { el:el, z:z, side:side, lift:lift };
   });
 
   var vw = 0, vh = 0, target = 0, cam = 0, raf = 0;
@@ -82,7 +81,7 @@
     wrap.style.setProperty('--pgc-scale', s);
     var xOff = Math.min(W * 0.2, (vw / s) * (vw < 810 ? 0.24 : 0.36));
     works.forEach(function(w){
-      w.el.style.transform = 'translate3d(' + (w.side * xOff) + 'px,' + (-H/2) + 'px,' + w.z + 'px) rotateY(' + (-w.side * (vw < 810 ? 8 : 14)) + 'deg)';
+      w.el.style.transform = 'translate3d(' + (w.side * xOff) + 'px,' + (-250 + w.lift) + 'px,' + w.z + 'px) rotateY(' + (-w.side * (vw < 810 ? 8 : 14)) + 'deg)';
     });
     /* the room: four planes meeting at the vanishing point (screen centre); corridor corners run from there
        towards the corners of the W x H cross-section at the camera plane, scaled to the screen */

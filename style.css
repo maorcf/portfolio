@@ -1711,7 +1711,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .hero.hero-ethan .hero-actions{ margin-top:110px; }
 @media (max-width:809px){ .hero.hero-ethan .record-crate{ margin-top:66px; } .hero.hero-ethan .hero-actions{ margin-top:78px; } }
 
-/* Homepage Playground corridor (playground-corridor.js): pinned 3D hallway, works hang from the ceiling.
+/* Homepage Playground corridor (playground-corridor.js): pinned 3D hallway, works float at eye level.
    World units are 1.5x screen px (then scaled down) so the hanging images rasterize sharp up close. */
 #playground-teaser.has-corridor .playground-strip{ display:none; }
 .pgc{ position:relative; height:var(--pgc-h, 500vh); width:100vw; margin-left:calc(50% - 50vw); }
@@ -1730,8 +1730,6 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pgc-seam{ left:-1125px; top:-2px; width:2250px; height:4px; background:#E2E2DE; }
 .pgc-work{ left:-255px; top:0; width:510px; text-decoration:none; color:#1a1a1a; transition:opacity .2s; }
 .pgc-swing{ display:block; position:relative; }
-.pgc-string{ position:absolute; top:0; width:3px; background:#1a1a1a; }
-.pgc-string-l{ left:22%; } .pgc-string-r{ right:22%; }
 .pgc-frame{ display:block; position:relative; padding:18px; background:#fff; border:3px solid #1a1a1a; border-radius:9px; }
 .pgc-frame img{ display:block; width:100%; aspect-ratio:1.4; object-fit:cover; border-radius:3px; }
 .pgc-label{ display:inline-block; margin-top:18px; padding:9px 18px; background:#1a1a1a; color:#fff; font:700 22px/1.1 Inter, sans-serif; text-transform:uppercase; letter-spacing:-0.01em; border-radius:999px; }
