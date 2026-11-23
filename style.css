@@ -1710,3 +1710,50 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .hero.hero-ethan .record-crate{ margin-top:150px; }
 .hero.hero-ethan .hero-actions{ margin-top:110px; }
 @media (max-width:809px){ .hero.hero-ethan .record-crate{ margin-top:66px; } .hero.hero-ethan .hero-actions{ margin-top:78px; } }
+
+/* Homepage Playground corridor (playground-corridor.js): pinned 3D hallway, works float at eye level.
+   World units are 1.5x screen px (then scaled down) so the hanging images rasterize sharp up close. */
+#playground-teaser.has-corridor .playground-strip{ display:none; }
+.pgc{ position:relative; height:var(--pgc-h, 500vh); width:100vw; margin-left:calc(50% - 50vw); }
+.pgc-sticky{ position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; background:#fff; contain:strict; }
+.pgc-room{ position:absolute; inset:0; }
+.pgc-room svg{ display:block; }
+.pgc-room .pgc-w{ fill:#fff; stroke:#E6E6E3; stroke-width:1.5; }
+.pgc-room .pgc-c{ fill:#F7F7F5; stroke:#E6E6E3; stroke-width:1.5; }
+.pgc-room .pgc-f{ fill:#EFEFEC; stroke:#E6E6E3; stroke-width:1.5; }
+.pgc-sticky > .section-head{ position:absolute; z-index:3; top:clamp(72px, 11vh, 120px); left:0; right:0; margin:0 auto; padding:0 16px; transition:opacity .5s, transform .5s; }
+.pgc.is-walking .pgc-sticky > .section-head{ opacity:0; transform:translateY(-16px); pointer-events:none; }
+.pgc-view{ position:absolute; left:50%; top:50%; width:2250px; height:1350px; margin:-675px 0 0 -1125px; perspective:930px; perspective-origin:50% 50%; transform:scale(var(--pgc-scale, .6)); }
+.pgc-world{ position:absolute; left:50%; top:50%; width:0; height:0; transform-style:preserve-3d; }
+.pgc-world > *{ position:absolute; }
+.pgc-lamp{ left:-338px; top:-90px; width:676px; height:180px; background:#fff; border:3px solid #E3E3E0; border-radius:6px; }
+.pgc-seam{ left:-1125px; top:-2px; width:2250px; height:4px; background:#E2E2DE; }
+.pgc-work{ left:-255px; top:0; width:510px; text-decoration:none; color:#1a1a1a; transition:opacity .2s; }
+.pgc-swing{ display:block; position:relative; }
+.pgc-frame{ display:block; position:relative; }
+.pgc-frame img{ display:block; width:100%; aspect-ratio:1.4; object-fit:cover; border-radius:6px; }
+.pgc-label{ display:inline-block; margin-top:16px; color:#1a1a1a; font:700 32px/1.1 Inter, sans-serif; text-transform:uppercase; letter-spacing:-0.01em; }
+.pgc-work:hover .pgc-label{ color:#5B4CE0; }
+.pgc-end{ left:-1125px; top:-675px; width:2250px; height:1350px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:42px; background:#FBFBF9; text-decoration:none; color:#1a1a1a; }
+.pgc-end-title{ font:800 144px/1 Inter, sans-serif; letter-spacing:-0.04em; }
+.pgc-end-cta{ font:700 51px/1 Inter, sans-serif; padding:33px 60px; background:#5B4CE0; color:#fff; border:4px solid #1a1a1a; border-radius:999px; }
+.pgc-end:hover .pgc-end-cta{ background:#1a1a1a; }
+.pgc-hud{ position:absolute; z-index:3; left:16px; right:16px; bottom:22px; display:flex; justify-content:space-between; font:700 13px/1 Inter, sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#1a1a1a; pointer-events:none; }
+.pgc-hint{ transition:opacity .4s; }
+.pgc.is-walking .pgc-hint{ opacity:0; }
+@media (max-width:809px){
+  .pgc-view{ perspective:780px; }
+  .pgc-work{ width:420px; left:-210px; }
+  .pgc-label{ font-size:34px; }
+  .pgc-end-title{ font-size:110px; }
+}
+
+/* Playground page: button into the 3D hallway (playground-hallway.html) */
+.pg-hallway-row{ display:flex; justify-content:center; margin:0 0 28px; }
+.pg-hallway-btn{ display:inline-flex; align-items:center; gap:10px; padding:14px 24px; background:#1a1a1a; color:#fff; font:700 16px/1 Inter, sans-serif; text-decoration:none; border-radius:10px; transition:background .2s; }
+.pg-hallway-btn:hover{ background:#5B4CE0; }
+.hallway-page #playground-teaser{ margin-top:0; }
+.pgc-sign{ left:-800px; top:0; width:1600px; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; color:#1a1a1a; pointer-events:none; }
+.pgc-sign-no{ font:700 40px/1 Inter, sans-serif; letter-spacing:.08em; color:#5B4CE0; }
+.pgc-sign-name{ font:800 170px/0.95 Inter, sans-serif; letter-spacing:-0.045em; }
+@media (max-width:809px){ .pgc-sign-name{ font-size:96px; } }
