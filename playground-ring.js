@@ -41,9 +41,9 @@
       it.el.style.marginTop = (-H / 2) + 'px';
       total += it.w + gap;
     });
-    R = total / (2 * Math.PI);
+    R = Math.max(total / (2 * Math.PI), vw * (vw < 640 ? 1.0 : 0.7));
     // keep the ring from getting wider than the screen allows, so it reads as a ring
-    var maxR = vw < 640 ? vw * 0.78 : Math.max(vw * 0.6, 560);
+    var maxR = vw < 640 ? vw * 1.15 : Math.max(vw * 0.82, 640);
     if(R > maxR) R = maxR;
     TILT = vw < 640 ? 40 : 95;
     // place each card at the middle of its slice, slices sized by card width
