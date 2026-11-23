@@ -80,19 +80,57 @@
 
   function go(i){
     active = Math.max(0, Math.min(SONGS.length - 1, i));
+    if(playing > -1 && playing !== active){ playing = -1; stop(); }
     layout();
   }
 
-  function toggle(i){
-    if(playing === i){ playing = -1; player.innerHTML = ''; player.hidden = true; }
-    else {
-      playing = i;
-      var s = SONGS[i];
-      if(s.spotify){
-        player.innerHTML = '<iframe src="https://open.spotify.com/embed/track/' + s.spotify + '?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media" loading="lazy" title="' + s.title + '"></iframe>';
-        player.hidden = false;
-      } else { player.innerHTML = ''; player.hidden = true; }
+  /* Spotify iFrame API: clicking the record starts the song itself; the player stays hidden
+     and is only shown if the browser blocks autoplay, so the visitor can press play there. */
+  var api = null, ctrl = null, ctrlReady = false, wantPlay = false, startedAt = 0, revealT = 0;
+  function loadApi(){
+    if(window.__rcApiLoading) return;
+    window.__rcApiLoading = true;
+    var prev = window.onSpotifyIframeApiReady;
+    window.onSpotifyIframeApiReady = function(IFrameAPI){ api = IFrameAPI; if(prev) prev(IFrameAPI); if(playing > -1) start(playing); };
+    var sc = document.createElement('script'); sc.src = 'https://open.spotify.com/embed/iframe-api/v1'; sc.async = true;
+    document.head.appendChild(sc);
+  }
+  /* warm the API up as soon as the visitor gets near the crate */
+  root.addEventListener('pointerenter', loadApi, { once:true });
+  root.addEventListener('focusin', loadApi, { once:true });
+
+  function reveal(){ player.classList.remove('is-quiet'); }
+  function start(i){
+    var s = SONGS[i]; if(!s.spotify) return;
+    var uri = 'spotify:track:' + s.spotify;
+    wantPlay = true; startedAt = Date.now();
+    player.hidden = false; player.classList.add('is-quiet');
+    clearTimeout(revealT);
+    revealT = setTimeout(function(){ if(wantPlay) reveal(); }, 3000);
+    if(!api){ loadApi(); return; }
+    if(!ctrl){
+      var host = document.createElement('div'); player.innerHTML = ''; player.appendChild(host);
+      api.createController(host, { uri:uri, width:'100%', height:80, theme:'dark' }, function(c){
+        ctrl = c;
+        c.addListener('ready', function(){ ctrlReady = true; if(wantPlay) c.play(); });
+        c.addListener('playback_update', function(e){
+          if(e && e.data && !e.data.isPaused && e.data.position >= 0 && wantPlay){ wantPlay = false; clearTimeout(revealT); }
+        });
+      });
+    } else {
+      ctrl.loadUri(uri);
+      setTimeout(function(){ if(wantPlay) ctrl.play(); }, 400);
     }
+  }
+  function stop(){
+    wantPlay = false; clearTimeout(revealT);
+    if(ctrl) try{ ctrl.pause(); }catch(e){}
+    player.hidden = true; player.classList.add('is-quiet');
+  }
+
+  function toggle(i){
+    if(playing === i){ playing = -1; stop(); }
+    else { playing = i; start(i); }
     layout();
   }
 

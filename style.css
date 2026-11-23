@@ -1647,6 +1647,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .rc-now span{ color:var(--muted); font-weight:500; }
 .rc-player{ margin:10px auto 0; max-width:360px; }
 .rc-player iframe{ display:block; border-radius:12px; }
+.rc-player.is-quiet{ position:absolute; left:-9999px; top:0; width:300px; height:80px; opacity:0; pointer-events:none; margin:0; }
 @media (max-width:809px){
   .record-crate{ --rc:118px; --rt:6px; margin-top:28px; }
   .rc-stage{ margin:0 -16px; }
