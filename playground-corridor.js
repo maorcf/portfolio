@@ -10,8 +10,15 @@
   var links = [].slice.call(sec.querySelectorAll('.playground-strip-track > a:not([aria-hidden])'));
   if(!links.length) return;
 
-  var GAP = 840;                 /* depth between two hanging works */
-  var N = links.length;
+  var GAP = 840;                 /* depth between two slots (a work or a category sign) */
+  /* links may carry data-cat: a sign with the category name is placed before each new category */
+  var slots = [], lastCat = null;
+  links.forEach(function(a){
+    var cat = a.getAttribute('data-cat');
+    if(cat && cat !== lastCat){ slots.push({ cat:cat }); lastCat = cat; }
+    slots.push({ a:a, cat:cat });
+  });
+  var N = slots.length;
   var DEPTH = (N + 1) * GAP;     /* corridor length */
   var W = 2250, H = 1350;         /* corridor cross-section */
 
@@ -53,14 +60,24 @@
   end.innerHTML = '<span class="pgc-end-title">That’s the hallway.</span><span class="pgc-end-cta">See the whole Playground &rarr;</span>';
   world.appendChild(end);
 
-  /* the hanging works */
-  var works = links.map(function(a, i){
-    var img = a.querySelector('img');
-    var label = a.querySelector('.playground-strip-label');
-    var side = i % 2 ? 1 : -1;
+  /* the works (alternating sides, restarting at each category) and the category signs */
+  var catNo = 0, sideIx = 0;
+  var works = slots.map(function(sl, i){
     var z = -(i + 1) * GAP;
-    var lift = (i * 53 % 90) - 45;          /* small height variation so they don't line up */          /* string length, varied */
-    var el = document.createElement('a');
+    var el;
+    if(!sl.a){
+      catNo++; sideIx = 0;
+      el = document.createElement('div');
+      el.className = 'pgc-sign';
+      el.innerHTML = '<span class="pgc-sign-no">' + String(catNo).padStart(2, '0') + '</span><span class="pgc-sign-name">' + sl.cat + '</span>';
+      world.appendChild(el);
+      return { el:el, z:z, side:0, lift:0, sign:sl.cat };
+    }
+    var a = sl.a, img = a.querySelector('img');
+    var label = a.querySelector('.playground-strip-label');
+    var side = sideIx++ % 2 ? 1 : -1;
+    var lift = (i * 53 % 90) - 45;          /* small height variation so they don't line up */
+    el = document.createElement('a');
     el.href = a.getAttribute('href');
     el.className = 'pgc-work';
     el.innerHTML = '<span class="pgc-swing">' +
@@ -70,17 +87,19 @@
     world.appendChild(el);
     return { el:el, z:z, side:side, lift:lift };
   });
+  var signs = works.filter(function(w){ return w.sign; });
 
   var vw = 0, vh = 0, target = 0, cam = 0, raf = 0;
   function measure(){
     vw = window.innerWidth; vh = window.innerHeight;
     /* section height = one screen + the walk; ~0.55 screen of scroll per work */
-    sec.style.setProperty('--pgc-h', (vh + N * vh * 0.55) + 'px');
+    sec.style.setProperty('--pgc-h', (vh + N * vh * 0.45) + 'px');
     /* fill the screen; on narrow screens hang the works closer to the middle so both rows stay in view */
     var s = Math.max(vw / W, vh / H) * 1.02;
     wrap.style.setProperty('--pgc-scale', s);
     var xOff = Math.min(W * 0.2, (vw / s) * (vw < 810 ? 0.24 : 0.36));
     works.forEach(function(w){
+      if(w.sign){ w.el.style.transform = 'translate3d(0,' + (-H/2 + 140) + 'px,' + w.z + 'px)'; return; }
       w.el.style.transform = 'translate3d(' + (w.side * xOff) + 'px,' + (-250 + w.lift) + 'px,' + w.z + 'px) rotateY(' + (-w.side * (vw < 810 ? 8 : 14)) + 'deg)';
     });
     /* the room: four planes meeting at the vanishing point (screen centre); corridor corners run from there
@@ -122,7 +141,11 @@
       w.el.style.visibility = op < 0.02 ? 'hidden' : '';
       w.el.style.pointerEvents = op > 0.4 ? '' : 'none';
     });
-    var c = String(Math.min(N, Math.max(1, Math.round(cam / GAP)))).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
+    var c;
+    if(signs.length){
+      c = signs[0].sign;
+      signs.forEach(function(sg){ if(sg.z + cam > -GAP * 0.5) c = sg.sign; });
+    } else c = String(Math.min(N, Math.max(1, Math.round(cam / GAP)))).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
     if(count.textContent !== c) count.textContent = c;
     wrap.classList.toggle('is-walking', cam > 60);
     if(cam !== target) raf = requestAnimationFrame(frame);

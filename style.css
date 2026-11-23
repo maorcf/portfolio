@@ -1753,3 +1753,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pg-hallway-btn{ display:inline-flex; align-items:center; gap:10px; padding:14px 24px; background:#1a1a1a; color:#fff; font:700 16px/1 Inter, sans-serif; text-decoration:none; border-radius:10px; transition:background .2s; }
 .pg-hallway-btn:hover{ background:#5B4CE0; }
 .hallway-page #playground-teaser{ margin-top:0; }
+.pgc-sign{ left:-800px; top:0; width:1600px; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; color:#1a1a1a; pointer-events:none; }
+.pgc-sign-no{ font:700 40px/1 Inter, sans-serif; letter-spacing:.08em; color:#5B4CE0; }
+.pgc-sign-name{ font:800 170px/0.95 Inter, sans-serif; letter-spacing:-0.045em; }
+@media (max-width:809px){ .pgc-sign-name{ font-size:96px; } }
