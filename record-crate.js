@@ -56,8 +56,8 @@
   });
 
   function size(){ return items[0].offsetWidth || 160; }
-  /* records shown on each side of the front one, so the fan fits the width */
-  function perSide(open){ var S = size(); return Math.max(1, Math.floor((root.offsetWidth / 2 - S * 0.9 - open) / (S * 0.34)) + 1); }
+  /* records shown on each side of the front one, so the whole fan (incl. the last sleeve's width) fits the width */
+  function perSide(open){ var S = size(); return Math.max(1, Math.floor((root.offsetWidth / 2 - S * 1.25 - open) / (S * 0.34)) + 1); }
 
   function layout(){
     var S = size(), step = S * 0.34, open = playing === active ? S * 0.55 : 0, shift = -open / 2;
