@@ -1707,6 +1707,6 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .rc-art-title{ font-size:11px; }
 }
 /* record crate sits lower, closer to the button */
-.hero.hero-ethan .record-crate{ margin-top:160px; }
-.hero.hero-ethan .hero-actions{ margin-top:100px; }
-@media (max-width:809px){ .hero.hero-ethan .record-crate{ margin-top:76px; } .hero.hero-ethan .hero-actions{ margin-top:68px; } }
+.hero.hero-ethan .record-crate{ margin-top:150px; }
+.hero.hero-ethan .hero-actions{ margin-top:110px; }
+@media (max-width:809px){ .hero.hero-ethan .record-crate{ margin-top:66px; } .hero.hero-ethan .hero-actions{ margin-top:78px; } }
