@@ -1678,5 +1678,5 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .hero.hero-ethan{ padding-bottom:5vh; }
 @media (max-width:809px){ .hero.hero-ethan{ padding-top:26svh; padding-bottom:0; } .hero.hero-ethan .record-crate{ margin-top:56px; } .hero.hero-ethan .hero-actions{ margin-top:36px; } .hero.hero-ethan{ padding-bottom:5svh; } }
 /* lift only the intro line; the record crate keeps its place */
-.hero.hero-ethan .lead{ position:relative; top:-14vh; }
-@media (max-width:809px){ .hero.hero-ethan .lead{ top:-9svh; } }
+.hero.hero-ethan .lead{ position:relative; top:calc(96px - 32vh); }
+@media (max-width:809px){ .hero.hero-ethan .lead{ top:calc(112px - 26svh); } }
