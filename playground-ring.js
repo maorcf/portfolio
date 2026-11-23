@@ -29,8 +29,8 @@
 
   function layout(){
     var vw = window.innerWidth;
-    H = vw < 640 ? 125 : 230;
-    var gap = vw < 640 ? 14 : 22;
+    H = vw < 640 ? 165 : 310;
+    var gap = vw < 640 ? 8 : 12;
     var total = 0;
     items.forEach(function(it){
       readRatio(it);
@@ -41,9 +41,9 @@
       it.el.style.marginTop = (-H / 2) + 'px';
       total += it.w + gap;
     });
-    R = Math.max(total / (2 * Math.PI), vw * (vw < 640 ? 1.0 : 0.7));
+    R = Math.max(total / (2 * Math.PI), vw * (vw < 640 ? 0.8 : 0.6));
     // keep the ring from getting wider than the screen allows, so it reads as a ring
-    var maxR = vw < 640 ? vw * 1.15 : Math.max(vw * 0.82, 640);
+    var maxR = vw < 640 ? vw * 1.35 : Math.max(vw * 0.82, 640);
     if(R > maxR) R = maxR;
     TILT = vw < 640 ? 40 : 95;
     // place each card at the middle of its slice, slices sized by card width
