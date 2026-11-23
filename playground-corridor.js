@@ -102,7 +102,7 @@
     wrap.style.setProperty('--pgc-scale', s);
     var xOff = Math.min(W * 0.2, (vw / s) * (vw < 810 ? 0.24 : 0.36));
     works.forEach(function(w){
-      if(w.sign){ w.el.style.transform = 'translate3d(0,' + (-H/2 + 140) + 'px,' + w.z + 'px)'; return; }
+      if(w.sign){ w.el.style.transform = 'translate3d(0,' + (-H/2 + 270) + 'px,' + w.z + 'px)'; return; }
       w.el.style.transform = 'translate3d(' + (w.side * xOff) + 'px,' + (-250 + w.lift) + 'px,' + w.z + 'px) rotateY(' + (-w.side * (vw < 810 ? 8 : 14)) + 'deg)';
     });
     /* the room: four planes meeting at the vanishing point (screen centre); corridor corners run from there
