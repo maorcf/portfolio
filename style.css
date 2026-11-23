@@ -1706,3 +1706,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .rc-kicker{ font-size:13px; }
   .rc-art-title{ font-size:11px; }
 }
+/* record crate sits lower, closer to the button */
+.hero.hero-ethan .record-crate{ margin-top:180px; }
+.hero.hero-ethan .hero-actions{ margin-top:80px; }
+@media (max-width:809px){ .hero.hero-ethan .record-crate{ margin-top:96px; } .hero.hero-ethan .hero-actions{ margin-top:48px; } }
