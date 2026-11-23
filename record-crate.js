@@ -13,7 +13,7 @@
     { title:'Crazy', artist:'Seal', cover:'https://i.scdn.co/image/ab67616d0000b273d214956335b4cfab9e302c81', spotify:'2KP6bTmxOSEVMXAnbapkpa', color:'#2a2a2a' },
     { title:'World, Hold On', artist:'Bob Sinclar', cover:'https://i.scdn.co/image/ab67616d0000b273d6952b61578ec91b5a9dae1e', spotify:'4pk5rRwrqu5eRruS5KYz1t', color:'#2a2a2a' },
     { title:'12 to 12', artist:'sombr', cover:'https://i.scdn.co/image/ab67616d0000b2734229702de91cb3d3a4383302', spotify:'05od2qm2MTSKCHxy1GBp5W', color:'#2a2a2a' },
-    { title:'Song title', artist:'Artist', color:'#E8E2D0' }
+    { title:'Para Mamá', artist:'Kiko Navarro', cover:'https://i.scdn.co/image/ab67616d0000b273a756219a54ba5eaed276ea0f', spotify:'2hm0axVX4XFOiUSVe5t3oX', color:'#2a2a2a' }
   ];
 
   var root = document.querySelector('.record-crate');
