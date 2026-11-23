@@ -1741,8 +1741,8 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pgc-work:hover .pgc-label{ color:#5B4CE0; }
 .pgc-end{ left:-1125px; top:-675px; width:2250px; height:1350px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:42px; background:#FBFBF9; text-decoration:none; color:#1a1a1a; }
 .pgc-end-title{ font:800 144px/1 Inter, sans-serif; letter-spacing:-0.04em; }
-.pgc-end-cta{ font:700 51px/1 Inter, sans-serif; padding:33px 60px; background:#5B4CE0; color:#fff; border:4px solid #1a1a1a; border-radius:999px; }
-.pgc-end:hover .pgc-end-cta{ background:#1a1a1a; }
+.pgc-end-cta{ font:700 51px/1 Inter, sans-serif; text-decoration:none; padding:33px 60px; background:#5B4CE0; color:#fff; border:4px solid #1a1a1a; border-radius:999px; }
+.pgc-end-cta:hover{ background:#1a1a1a; }
 .pgc-hud{ position:absolute; z-index:3; left:16px; right:16px; bottom:22px; display:flex; justify-content:space-between; font:700 13px/1 Inter, sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#1a1a1a; pointer-events:none; }
 .pgc-hint{ transition:opacity .4s; }
 .pgc.is-walking .pgc-hint{ opacity:0; }
@@ -1757,7 +1757,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pg-hallway-row{ display:flex; justify-content:center; margin:0 0 28px; }
 .pg-hallway-btn{ display:inline-flex; align-items:center; gap:8px; padding:9px 17px; background:#5B4CE0; color:#fff; border:1.5px solid #5B4CE0; font:700 14px/1 Inter, sans-serif; text-decoration:none; border-radius:8px; transition:background .2s, color .2s; }
 .pg-hallway-btn:hover{ background:var(--ink); border-color:var(--ink); color:#fff; }
-.hallway-page #playground-teaser{ margin-top:0; }
+.hallway-page #playground-teaser{ margin-top:0; padding-bottom:0; }
 .pgc-sign{ left:-800px; top:0; width:1600px; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; color:#1a1a1a; pointer-events:none; }
 .pgc-sign-no{ font:700 40px/1 Inter, sans-serif; letter-spacing:.08em; color:#5B4CE0; }
 .pgc-sign-name{ font:800 170px/0.95 Inter, sans-serif; letter-spacing:-0.045em; }
@@ -1771,3 +1771,12 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .hero.hero-ethan .record-crate{ order:3; }
   .hero.hero-ethan .hero-actions{ order:4; }
 }
+/* hallway realism: floor light pools, shadows, baseboards, corner shading */
+.pgc-pool{ left:-700px; top:-420px; width:1400px; height:840px; background:radial-gradient(closest-side, rgba(255,255,255,.85), rgba(255,255,255,0)); pointer-events:none; }
+.pgc-shadow{ left:-260px; top:-150px; width:520px; height:300px; background:radial-gradient(closest-side, rgba(20,20,30,.13), rgba(20,20,30,0)); pointer-events:none; }
+.pgc-lamp{ background:linear-gradient(#fff, #FDFDFB); box-shadow:0 0 0 18px rgba(255,255,255,.7), 0 0 60px 40px rgba(255,255,255,.55); }
+.pgc-room .pgc-bb{ fill:#F5F5F2; stroke:#E3E3E0; stroke-width:1.5; }
+.pgc-room .pgc-ao polyline{ fill:none; stroke:rgba(30,30,40,.07); stroke-width:26; stroke-linejoin:round; }
+.pgc-room .pgc-tex{ opacity:.28; }
+.pgc-room .pgc-mottle{ opacity:.35; }
+.pgc-room .pgc-joint{ stroke:#D8D8D2; stroke-width:1.3; }
