@@ -34,13 +34,16 @@
     el.type = 'button';
     el.className = 'rc-record';
     el.setAttribute('aria-label', s.title + ' by ' + s.artist);
+    var edge = s.edge || s.color || '#1d1d1d';
     var sleeve = s.cover
       ? '<img src="' + s.cover + '" alt="" draggable="false">'
       : '<span class="rc-art' + (isDark(s.color || '#5B4CE0') ? ' is-dark' : '') + '" style="background:' + (s.color || '#5B4CE0') + '">' +
           '<span class="rc-art-no">' + String(i + 1).padStart(2, '0') + '</span>' +
           '<span class="rc-art-title">' + s.title + '</span><span class="rc-art-artist">' + s.artist + '</span></span>';
     el.innerHTML = '<span class="rc-vinyl" aria-hidden="true"><span class="rc-label" style="background:' + (s.color || '#5B4CE0') + '"></span></span>' +
-                   '<span class="rc-sleeve">' + sleeve + '</span>';
+                   '<span class="rc-sleeve">' + sleeve + '</span>' +
+                   '<span class="rc-side rc-side-r" style="background-color:' + edge + '"></span><span class="rc-side rc-side-l" style="background-color:' + edge + '"></span>' +
+                   '<span class="rc-side rc-side-t" style="background-color:' + edge + '"></span><span class="rc-back" style="background-color:' + edge + '"></span>';
     el.addEventListener('click', function(){
       if(dragged) return;
       if(i !== active){ go(i); return; }
@@ -60,8 +63,8 @@
     items.forEach(function(el, i){
       var d = i - active, x, ry, z, op = 1;
       if(d === 0){ x = 0; ry = 0; z = 50; }
-      else if(d < 0){ x = -(S * 0.9 + (-d - 1) * step); ry = 42; z = 40 + d; op = -d > nL ? 0 : 1; }
-      else { x = S * 0.9 + open + (d - 1) * step; ry = -42; z = 40 - d; op = d > nR ? 0 : 1; }
+      else if(d < 0){ x = -(S * 0.9 + (-d - 1) * step); ry = 52; z = 40 + d; op = -d > nL ? 0 : 1; }
+      else { x = S * 0.9 + open + (d - 1) * step; ry = -52; z = 40 - d; op = d > nR ? 0 : 1; }
       x += shift;
       el.style.transform = 'translateX(' + x + 'px) translateZ(' + (d ? -S * 0.45 : 0) + 'px) rotateY(' + ry + 'deg)';
       el.style.zIndex = z;

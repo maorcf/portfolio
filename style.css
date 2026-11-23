@@ -1601,16 +1601,25 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 }
 
 /* Home hero record crate: flip through sleeves, click to spin the vinyl */
-.record-crate{ --rc:150px; width:100%; max-width:1000px; margin:40px auto 0; align-self:center; text-align:center; position:relative; z-index:6; }
+.record-crate{ --rc:150px; --rt:8px; width:100%; max-width:1000px; margin:40px auto 0; align-self:center; text-align:center; position:relative; z-index:6; }
 .rc-head{ display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:14px; }
 .rc-title{ font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
 .rc-nav{ display:flex; gap:6px; }
 .rc-nav button{ width:30px; height:30px; border:1.5px solid var(--ink); border-radius:50%; background:transparent; color:var(--ink); font:600 14px/1 'Inter',sans-serif; cursor:pointer; transition:background .2s, color .2s; }
 .rc-nav button:hover{ background:var(--ink); color:#fff; }
-.rc-stage{ position:relative; height:var(--rc); perspective:900px; touch-action:pan-y; user-select:none; -webkit-user-select:none; }
+.rc-stage{ position:relative; height:var(--rc); perspective:1100px; perspective-origin:50% -40%; touch-action:pan-y; user-select:none; -webkit-user-select:none; }
 .rc-record{ position:absolute; left:calc(50% - var(--rc) / 2); top:0; width:var(--rc); height:var(--rc); padding:0; border:0; background:none; cursor:pointer;
   transform-style:preserve-3d; transform-origin:center; transition:transform .55s cubic-bezier(.22,1,.36,1), opacity .4s; }
-.rc-sleeve{ position:absolute; inset:0; display:block; border:1.5px solid var(--ink); background:#fff; overflow:hidden; }
+.rc-sleeve{ position:absolute; inset:0; display:block; background:#fff; overflow:hidden; transform:translateZ(calc(var(--rt) / 2)); box-shadow:inset 0 0 0 1px rgba(0,0,0,.18); }
+.rc-sleeve::after{ content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(115deg, rgba(255,255,255,.38) 0%, rgba(255,255,255,.08) 28%, transparent 45%, transparent 70%, rgba(0,0,0,.12) 100%); }
+.rc-back{ position:absolute; inset:0; transform:rotateY(180deg) translateZ(calc(var(--rt) / 2)); background-image:linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)); }
+.rc-side{ position:absolute; background-image:linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.28)); }
+.rc-side-r, .rc-side-l{ top:0; width:var(--rt); height:100%; }
+.rc-side-r{ left:calc(100% - var(--rt) / 2); transform:rotateY(90deg); }
+.rc-side-l{ left:calc(var(--rt) / -2); transform:rotateY(-90deg); }
+.rc-side-t{ left:0; width:100%; height:var(--rt); top:calc(var(--rt) / -2); transform:rotateX(90deg); background-image:linear-gradient(rgba(255,255,255,.18), rgba(255,255,255,.18)); }
+.rc-stage::after{ content:""; position:absolute; left:10%; right:10%; bottom:-26px; height:30px; pointer-events:none;
+  background:radial-gradient(ellipse at center, rgba(0,0,0,.16), transparent 70%); }
 .rc-sleeve img{ width:100%; height:100%; object-fit:cover; display:block; }
 .rc-art{ position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:12px; text-align:left; color:var(--ink); }
 .rc-art.is-dark{ color:#fff; }
@@ -1631,13 +1640,13 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .rc-record.is-playing .rc-vinyl::before{ content:""; position:absolute; inset:0; border-radius:50%; background:conic-gradient(from 0deg, transparent 0 20%, rgba(255,255,255,.07) 25%, transparent 30% 70%, rgba(255,255,255,.07) 75%, transparent 80%); animation:rc-spin 1.8s linear infinite; }
 .rc-record:focus-visible{ outline:2px solid var(--violet); outline-offset:4px; }
 @keyframes rc-spin{ to{ transform:rotate(360deg); } }
-.rc-now{ margin:14px 0 0; min-height:1.4em; font-size:15px; font-weight:600; letter-spacing:-0.01em; color:var(--ink); }
+.rc-now{ margin:30px 0 0; min-height:1.4em; font-size:15px; font-weight:600; letter-spacing:-0.01em; color:var(--ink); }
 .rc-now b{ font-weight:600; color:var(--violet); margin-right:4px; }
 .rc-now span{ color:var(--muted); font-weight:500; }
 .rc-player{ margin:10px auto 0; max-width:360px; }
 .rc-player iframe{ display:block; border-radius:12px; }
 @media (max-width:809px){
-  .record-crate{ --rc:118px; margin-top:28px; }
+  .record-crate{ --rc:118px; --rt:6px; margin-top:28px; }
   .rc-stage{ margin:0 -16px; }
   .rc-title{ font-size:11px; }
   .rc-art-title{ font-size:14px; }
