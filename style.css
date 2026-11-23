@@ -1647,5 +1647,3 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .rc-record, .rc-vinyl{ transition:none; }
   .rc-record.is-playing .rc-vinyl .rc-label, .rc-record.is-playing .rc-vinyl::before{ animation:none; }
 }
-.hero.hero-ethan{ align-items:center; text-align:center; }
-.hero.hero-ethan .lead{ margin:0 auto; }
