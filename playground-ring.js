@@ -21,7 +21,7 @@
     return { el: a, img: img, ratio: 0.75, theta: 0, w: 0 };
   });
 
-  var H = 0, R = 0, TILT = 0, angle = 0;
+  var H = 0, R = 0, P = 1100, F = 385, angle = 0;
 
   function readRatio(it){
     if(it.img && it.img.naturalWidth) it.ratio = it.img.naturalWidth / it.img.naturalHeight;
@@ -29,7 +29,7 @@
 
   function layout(){
     var vw = window.innerWidth;
-    H = vw < 640 ? 165 : 310;
+    H = vw < 640 ? 190 : 360;
     var gap = vw < 640 ? 8 : 12;
     var total = 0;
     items.forEach(function(it){
@@ -41,11 +41,11 @@
       it.el.style.marginTop = (-H / 2) + 'px';
       total += it.w + gap;
     });
-    R = Math.max(total / (2 * Math.PI), vw * (vw < 640 ? 0.8 : 0.6));
-    // keep the ring from getting wider than the screen allows, so it reads as a ring
-    var maxR = vw < 640 ? vw * 1.35 : Math.max(vw * 0.82, 640);
-    if(R > maxR) R = maxR;
-    TILT = vw < 640 ? 40 : 95;
+    // viewer stands inside the ring: front cards sit back, cards at the screen edges curve toward you
+    R = total / (2 * Math.PI);
+    P = vw < 640 ? 800 : 1400;
+    F = P * 0.3;
+    track.style.perspective = P + 'px';
     // place each card at the middle of its slice, slices sized by card width
     var acc = 0;
     items.forEach(function(it){
@@ -58,24 +58,25 @@
   }
 
   function render(){
+    var zc = R - F;
     for(var i = 0; i < items.length; i++){
       var it = items[i];
-      var t = it.theta + angle;
+      var t = Math.atan2(Math.sin(it.theta + angle), Math.cos(it.theta + angle));
       var s = Math.sin(t), c = Math.cos(t);
-      var x = R * s;
-      var z = R * c - R;          // front card sits at z = 0 (natural size)
-      var y = TILT * c;           // camera a little above: back of the ring sits higher
-      var ry = -s * 18;           // slight turn toward the edges, never mirrored
-      var depth = (c + 1) / 2;    // 1 front, 0 back
-      it.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,' + z.toFixed(1) + 'px) rotateY(' + ry.toFixed(2) + 'deg)';
-      it.el.style.opacity = (depth > 0.5 ? 1 : 0.15 + 1.7 * depth).toFixed(3);
-      it.el.style.zIndex = String(Math.round(depth * 1000));
-      it.el.tabIndex = depth > 0.55 ? 0 : -1;
+      var z = zc - R * c;
+      var on = c > 0.05 && z < P - 30;
+      if(!on){
+        if(it.on !== false){ it.el.style.visibility = 'hidden'; it.el.tabIndex = -1; it.on = false; }
+        continue;
+      }
+      if(it.on !== true){ it.el.style.visibility = ''; it.el.tabIndex = 0; it.on = true; }
+      it.el.style.transform = 'translate3d(' + (R * s).toFixed(1) + 'px,0,' + z.toFixed(1) + 'px) rotateY(' + (-t * 180 / Math.PI).toFixed(2) + 'deg)';
+      it.el.style.zIndex = String(Math.round(1000 + z));
     }
   }
 
   // motion
-  var BASE = reduce ? 0 : -0.07;   // rad per second (one turn ≈ 90s)
+  var BASE = reduce ? 0 : -0.06;   // rad per second (one turn ≈ 105s)
   var speed = BASE, target = BASE, vel = 0;
   var hovering = false, dragging = false, visible = true, last = 0, raf = 0;
 
