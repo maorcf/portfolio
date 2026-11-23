@@ -1780,3 +1780,26 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pgc-room .pgc-tex{ opacity:.28; }
 .pgc-room .pgc-mottle{ opacity:.35; }
 .pgc-room .pgc-joint{ stroke:#D8D8D2; stroke-width:1.3; }
+
+/* ---------- PLAYGROUND STRIP AS A 3D RING (playground-ring.js, homepage) ---------- */
+.playground-strip.is-ring{
+  height:calc(var(--ring-h, 230px) + 220px);
+  perspective:1300px; perspective-origin:50% 30%;
+  cursor:grab; touch-action:pan-y; user-select:none; -webkit-user-select:none;
+}
+.playground-strip.is-ring.is-dragging{ cursor:grabbing; }
+.playground-strip.is-ring .playground-strip-track{
+  animation:none; width:100%; height:100%; display:block;
+  position:relative; transform-style:preserve-3d;
+}
+.playground-strip.is-ring .playground-strip-track > a{
+  position:absolute; left:50%; top:50%;
+}
+.playground-strip.is-ring .playground-strip-track > a[aria-hidden="true"]{ display:none; }
+.playground-strip.is-ring .playground-strip-track img{
+  width:100%; height:100%; object-fit:cover; -webkit-user-drag:none;
+}
+@media (max-width: 640px){
+  .playground-strip.is-ring{ height:calc(var(--ring-h, 125px) + 110px); perspective:800px; }
+  .playground-strip.is-ring .playground-strip-track img{ height:100%; }
+}
