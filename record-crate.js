@@ -2,18 +2,20 @@
    To add a song, add a line to SONGS:
      title, artist  - shown on the sleeve label and under the crate
      cover          - square image path (e.g. 'records/song.jpg'); without one a colored sleeve is drawn
-     spotify        - Spotify track id (the part after /track/ in a share link); plays in a small player
+     spotify        - Spotify track id (the part after /track/ in a share link)
+     preview        - id of Spotify's 30s preview (p.scdn.co/mp3-preview/<id>, found in the track's embed page);
+                      clicking the front record plays it with no visible player
      color          - sleeve color when there is no cover */
 (function(){
   var SONGS = [
-    { title:'Lose Your Soul', artist:'Omri Smadar, Jenia Tarsol', cover:'https://i.scdn.co/image/ab67616d0000b2737e8535138939b7341c22f680', spotify:'1hKwtFzTyIQfuLEb6Rtm0H', color:'#2a2a2a' },
-    { title:'More Than A Woman', artist:'Bee Gees, SG Lewis', cover:'https://i.scdn.co/image/ab67616d0000b273bd8e2af160f4664d666c4132', spotify:'0L3XCv9i9IHs8cJEVhsJ3J', color:'#2a2a2a' },
-    { title:'Last Train to London', artist:'Rikas', cover:'https://i.scdn.co/image/ab67616d0000b2731a61a0637f0d90538a950303', spotify:'5fewYZz1bCsj72vjSwSxzq', color:'#2a2a2a' },
-    { title:'Low', artist:'Lenny Kravitz', cover:'https://i.scdn.co/image/ab67616d0000b2738931c3b826502240726251a7', spotify:'3zcccQe4KhGXRqRBUwGU3G', color:'#2a2a2a' },
-    { title:'Crazy', artist:'Seal', cover:'https://i.scdn.co/image/ab67616d0000b273d214956335b4cfab9e302c81', spotify:'2KP6bTmxOSEVMXAnbapkpa', color:'#2a2a2a' },
-    { title:'World, Hold On', artist:'Bob Sinclar', cover:'https://i.scdn.co/image/ab67616d0000b273d6952b61578ec91b5a9dae1e', spotify:'4pk5rRwrqu5eRruS5KYz1t', color:'#2a2a2a' },
-    { title:'12 to 12', artist:'sombr', cover:'https://i.scdn.co/image/ab67616d0000b2734229702de91cb3d3a4383302', spotify:'05od2qm2MTSKCHxy1GBp5W', color:'#2a2a2a' },
-    { title:'Para Mamá', artist:'Kiko Navarro', cover:'https://i.scdn.co/image/ab67616d0000b273a756219a54ba5eaed276ea0f', spotify:'2hm0axVX4XFOiUSVe5t3oX', color:'#2a2a2a' }
+    { title:'Lose Your Soul', artist:'Omri Smadar, Jenia Tarsol', cover:'https://i.scdn.co/image/ab67616d0000b2737e8535138939b7341c22f680', spotify:'1hKwtFzTyIQfuLEb6Rtm0H', preview:'b03f1230492e17069a613ae0a5eff173de8e3bc1', color:'#2a2a2a' },
+    { title:'More Than A Woman', artist:'Bee Gees, SG Lewis', cover:'https://i.scdn.co/image/ab67616d0000b273bd8e2af160f4664d666c4132', spotify:'0L3XCv9i9IHs8cJEVhsJ3J', preview:'8f290229b4967f20a350caf07c648ce5da12ec0d', color:'#2a2a2a' },
+    { title:'Last Train to London', artist:'Rikas', cover:'https://i.scdn.co/image/ab67616d0000b2731a61a0637f0d90538a950303', spotify:'5fewYZz1bCsj72vjSwSxzq', preview:'13492c3a6cfa808bfd293d9f9f9be08fc9005183', color:'#2a2a2a' },
+    { title:'Low', artist:'Lenny Kravitz', cover:'https://i.scdn.co/image/ab67616d0000b2738931c3b826502240726251a7', spotify:'3zcccQe4KhGXRqRBUwGU3G', preview:'702439a848a6b2358e2bf07a73c73935dbf45c8a', color:'#2a2a2a' },
+    { title:'Crazy', artist:'Seal', cover:'https://i.scdn.co/image/ab67616d0000b273d214956335b4cfab9e302c81', spotify:'2KP6bTmxOSEVMXAnbapkpa', preview:'b42ee913caac81a7f14306247344263a77554672', color:'#2a2a2a' },
+    { title:'World, Hold On', artist:'Bob Sinclar', cover:'https://i.scdn.co/image/ab67616d0000b273d6952b61578ec91b5a9dae1e', spotify:'4pk5rRwrqu5eRruS5KYz1t', preview:'158ea53cc36946492f3733c27f55a8a7969fc00a', color:'#2a2a2a' },
+    { title:'12 to 12', artist:'sombr', cover:'https://i.scdn.co/image/ab67616d0000b2734229702de91cb3d3a4383302', spotify:'05od2qm2MTSKCHxy1GBp5W', preview:'b040208d12b26c75ddb944cd21ce79cbf5c32a5d', color:'#2a2a2a' },
+    { title:'Para Mamá', artist:'Kiko Navarro', cover:'https://i.scdn.co/image/ab67616d0000b273a756219a54ba5eaed276ea0f', spotify:'2hm0axVX4XFOiUSVe5t3oX', preview:'bab90a86e28ebc305cf827873b03073f6d4b563f', color:'#2a2a2a' }
   ];
 
   var root = document.querySelector('.record-crate');
@@ -84,49 +86,15 @@
     layout();
   }
 
-  /* Spotify iFrame API: clicking the record starts the song itself; the player stays hidden
-     and is only shown if the browser blocks autoplay, so the visitor can press play there. */
-  var api = null, ctrl = null, ctrlReady = false, wantPlay = false, startedAt = 0, revealT = 0;
-  function loadApi(){
-    if(window.__rcApiLoading) return;
-    window.__rcApiLoading = true;
-    var prev = window.onSpotifyIframeApiReady;
-    window.onSpotifyIframeApiReady = function(IFrameAPI){ api = IFrameAPI; if(prev) prev(IFrameAPI); if(playing > -1) start(playing); };
-    var sc = document.createElement('script'); sc.src = 'https://open.spotify.com/embed/iframe-api/v1'; sc.async = true;
-    document.head.appendChild(sc);
-  }
-  /* warm the API up as soon as the visitor gets near the crate */
-  root.addEventListener('pointerenter', loadApi, { once:true });
-  root.addEventListener('focusin', loadApi, { once:true });
-
-  function reveal(){ player.classList.remove('is-quiet'); }
+  /* 30-second preview played straight from Spotify's CDN with a plain audio element: no player UI, no sign-in */
+  var audio = new Audio(); audio.preload = 'none';
+  audio.addEventListener('ended', function(){ if(playing > -1){ playing = -1; layout(); } });
   function start(i){
-    var s = SONGS[i]; if(!s.spotify) return;
-    var uri = 'spotify:track:' + s.spotify;
-    wantPlay = true; startedAt = Date.now();
-    player.hidden = false; player.classList.add('is-quiet');
-    clearTimeout(revealT);
-    revealT = setTimeout(function(){ if(wantPlay) reveal(); }, 3000);
-    if(!api){ loadApi(); return; }
-    if(!ctrl){
-      var host = document.createElement('div'); player.innerHTML = ''; player.appendChild(host);
-      api.createController(host, { uri:uri, width:'100%', height:80, theme:'dark' }, function(c){
-        ctrl = c;
-        c.addListener('ready', function(){ ctrlReady = true; if(wantPlay) c.play(); });
-        c.addListener('playback_update', function(e){
-          if(e && e.data && !e.data.isPaused && e.data.position >= 0 && wantPlay){ wantPlay = false; clearTimeout(revealT); }
-        });
-      });
-    } else {
-      ctrl.loadUri(uri);
-      setTimeout(function(){ if(wantPlay) ctrl.play(); }, 400);
-    }
+    var s = SONGS[i]; if(!s.preview) return;
+    audio.src = 'https://p.scdn.co/mp3-preview/' + s.preview;
+    var pr = audio.play(); if(pr && pr.catch) pr.catch(function(){});
   }
-  function stop(){
-    wantPlay = false; clearTimeout(revealT);
-    if(ctrl) try{ ctrl.pause(); }catch(e){}
-    player.hidden = true; player.classList.add('is-quiet');
-  }
+  function stop(){ audio.pause(); }
 
   function toggle(i){
     if(playing === i){ playing = -1; stop(); }
