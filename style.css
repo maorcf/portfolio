@@ -1777,3 +1777,6 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .pgc-lamp{ background:linear-gradient(#fff, #FDFDFB); box-shadow:0 0 0 18px rgba(255,255,255,.7), 0 0 60px 40px rgba(255,255,255,.55); }
 .pgc-room .pgc-bb{ fill:#F5F5F2; stroke:#E3E3E0; stroke-width:1.5; }
 .pgc-room .pgc-ao polyline{ fill:none; stroke:rgba(30,30,40,.07); stroke-width:26; stroke-linejoin:round; }
+.pgc-room .pgc-tex{ opacity:.28; }
+.pgc-room .pgc-mottle{ opacity:.35; }
+.pgc-room .pgc-joint{ stroke:#D8D8D2; stroke-width:1.3; }
