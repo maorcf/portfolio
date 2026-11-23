@@ -53,8 +53,8 @@
       // outside of a cylinder: center card biggest, sides bend away
       P = vw < 640 ? 800 : 1400;
       F = 0;
-      RC = vw < 640 ? 300 : 1000;
-      P = vw < 640 ? 800 : 1800;
+      RC = vw < 640 ? 420 : 1400;
+      P = vw < 640 ? 1300 : 3000;
     }
     track.style.perspective = P + 'px';
     // place each card at the middle of its slice, slices sized by card width
