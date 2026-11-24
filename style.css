@@ -1882,3 +1882,5 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .rc-play:hover .rc-play-ico{ transform:none; background:var(--ink); }
 .rc-now .rc-play:hover .rc-play-ico{ color:#fff; }
 .rc-play-ico svg{ width:7px; height:9px; }
+/* phones: no glow around the ceiling lamps (a blurred shadow on every moving 3D layer is too heavy for iOS) */
+@media (max-width:809px), (pointer:coarse){ .pgc-lamp{ box-shadow:none; } }
