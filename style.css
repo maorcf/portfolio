@@ -1884,3 +1884,41 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .rc-play-ico svg{ width:7px; height:9px; }
 /* phones: no glow around the ceiling lamps (a blurred shadow on every moving 3D layer is too heavy for iOS) */
 @media (max-width:809px), (pointer:coarse){ .pgc-lamp{ box-shadow:none; } }
+
+/* Work cards: a short intro under the title (what it is / problem / what I did), so a recruiter gets each project in seconds */
+.project-grid .project .card-what{ grid-column:1 / 3; grid-row:3; margin:10px 0 0; font-size:15px; font-weight:500; line-height:1.4; color:var(--ink); }
+.project-grid .project .card-brief{ grid-column:1 / 3; grid-row:4; margin:10px 0 0; display:grid; gap:6px; }
+.card-brief > div{ display:grid; grid-template-columns:92px 1fr; column-gap:10px; align-items:baseline; }
+.card-brief dt{ display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); white-space:nowrap; }
+.card-brief dt::before{ content:""; width:9px; height:9px; flex:none; border-radius:50%; border:1.2px solid var(--ink); background:#F2977B; transform:translateY(-.5px); }
+.card-brief > div + div dt::before{ background:#D3F26A; }
+.card-brief dd{ margin:0; font-size:14px; line-height:1.45; color:var(--muted); }
+@media (max-width:809px){
+  .card-brief > div{ grid-template-columns:1fr; row-gap:2px; }
+  .project-grid .project .card-what{ font-size:14.5px; }
+}
+
+/* Home hero without the record crate (moved to About, Nov 2026): headline top-left, fun fact bottom-right, arrow + button centered */
+@media (min-width:810px){
+  .hero.hero-ethan .hero-funfact{ left:auto; right:6.9vw; text-align:right; }
+}
+
+/* About: "On my turntable" record crate (record-crate.js), horizontal row */
+#music.about{ padding-top:16px; scroll-margin-top:90px; }
+#music .section-head{ margin-bottom:6px; }
+#music .music-note{ margin:0; color:var(--muted); font-size:15px; }
+#music .record-crate{ --rc:140px; --rt:7px; max-width:none; margin:36px auto 0; }
+#music .rc-title{ font-size:11px; }
+#music .rc-now{ margin-top:26px; font-size:14px; }
+@media (max-width:809px){
+  #music .record-crate{ --rc:104px; margin-top:28px; }
+  #music .rc-stage{ margin:0 -16px; }
+}
+@media (min-width:810px){
+  .hero.hero-ethan .lead{ margin-top:auto; }
+  .hero.hero-ethan .hero-sub{ margin-bottom:6vh; }
+}
+@media (max-width:809px){
+  .hero.hero-ethan .lead{ margin-top:auto; }
+  .hero.hero-ethan .hero-actions{ margin-bottom:auto; }
+}
