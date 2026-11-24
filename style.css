@@ -1876,3 +1876,9 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .rc-now .rc-play-ico{ color:#fff; }
 .rc-now .rc-play-txt{ color:var(--ink); }
 .rc-now .rc-play-txt span{ color:var(--muted); font-weight:500; }
+/* play button: quiet ink outline like the ↑↓ buttons, not violet */
+.rc-play-ico{ width:22px; height:22px; box-sizing:border-box; background:transparent; border:1.5px solid var(--ink); }
+.rc-now .rc-play-ico{ color:var(--ink); }
+.rc-play:hover .rc-play-ico{ transform:none; background:var(--ink); }
+.rc-now .rc-play:hover .rc-play-ico{ color:#fff; }
+.rc-play-ico svg{ width:7px; height:9px; }
