@@ -1858,9 +1858,6 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 @keyframes heroScrollNudge{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(5px); } }
 @media (prefers-reduced-motion:reduce){ .hero-scroll svg{ animation:none; } }
 .hero.hero-ethan > .hero-scroll + .hero-actions{ margin-top:14px; }
-@media (min-width:810px){
-  .hero.hero-ethan .hero-funfact, .hero.hero-ethan .record-crate.rc-vertical{ bottom:calc(6vh + 128px); }
-}
 @media (max-width:809px){
   .hero.hero-ethan > .hero-scroll{ order:4; margin-top:56px; }
   .hero.hero-ethan > .hero-scroll + .hero-actions{ order:5; margin-top:14px; }
