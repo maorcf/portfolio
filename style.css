@@ -1862,3 +1862,8 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .hero.hero-ethan > .hero-scroll{ order:4; margin-top:56px; }
   .hero.hero-ethan > .hero-scroll + .hero-actions{ order:5; margin-top:26px; }
 }
+/* desktop: arrow sits on the bottom grid line, between the fun fact and the now-playing text */
+@media (min-width:810px){
+  .hero.hero-ethan > .hero-scroll{ position:absolute; left:50%; width:12px; margin:0 0 0 -6px; bottom:calc(6vh + 99px); }
+  .hero.hero-ethan > .hero-scroll + .hero-actions{ margin-top:auto; }
+}
