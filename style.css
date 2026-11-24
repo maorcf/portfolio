@@ -1804,3 +1804,32 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .playground-strip.is-ring{ height:calc(var(--ring-h, 190px) * 1.1); }
   .playground-strip.is-ring .playground-strip-track img{ height:100%; }
 }
+
+/* Record crate stands vertically on the right side of the hero (records stacked top to bottom).
+   Desktop: a column pinned to the right under the fun fact. Mobile: a row, labels left, stack right. */
+.record-crate.rc-vertical .rc-side-b{ left:0; width:100%; height:var(--rt); top:calc(100% - var(--rt) / 2); transform:rotateX(-90deg); background-image:linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)); }
+.record-crate:not(.rc-vertical) .rc-side-b{ display:none; }
+.rc-vertical .rc-stage{ perspective:1000px; perspective-origin:50% 50%; touch-action:none; }
+.rc-vertical .rc-stage::after{ display:none; }
+.rc-vertical .rc-record{ top:calc(50% - var(--rc) / 2); }
+.rc-vertical .rc-record.is-active:not(.is-playing):hover .rc-vinyl{ transform:translateX(-12%); }
+.rc-vertical .rc-record.is-playing .rc-vinyl{ transform:translateX(-58%); }
+@media (min-width:810px){
+  .hero.hero-ethan .record-crate.rc-vertical{ --rc:136px; position:absolute; z-index:6; right:6.9vw; top:210px; bottom:4vh; width:300px; max-width:none; margin:0; align-self:stretch;
+    display:flex; flex-direction:column; text-align:right; }
+  .rc-vertical .rc-kicker{ margin-bottom:10px; }
+  .rc-vertical .rc-head{ justify-content:flex-end; }
+  .rc-vertical .rc-stage{ flex:1; min-height:300px; }
+  .rc-vertical .rc-record{ left:auto; right:30px; }
+  .rc-vertical .rc-now{ margin-top:14px; }
+  .hero.hero-ethan .hero-actions{ margin-top:auto; }
+}
+@media (max-width:809px){
+  .hero.hero-ethan .record-crate.rc-vertical{ --rc:96px; display:grid; grid-template-columns:1fr 150px; grid-template-rows:auto auto 1fr; column-gap:12px; align-items:start; text-align:left; margin-top:48px; }
+  .rc-vertical .rc-kicker{ grid-column:1; grid-row:1; margin:0 0 8px; }
+  .rc-vertical .rc-head{ grid-column:1; grid-row:2; flex-direction:column; align-items:flex-start; gap:10px; margin:0; }
+  .rc-vertical .rc-now{ grid-column:1; grid-row:3; align-self:center; margin:0; line-height:1.4; }
+  .rc-vertical .rc-stage{ grid-column:2; grid-row:1 / 4; height:330px; margin:0; }
+  .rc-vertical .rc-record{ left:auto; right:8px; }
+  .rc-vertical .rc-player{ grid-column:1 / 3; }
+}
