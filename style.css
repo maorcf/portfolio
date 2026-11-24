@@ -1842,3 +1842,6 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 @media (max-width:809px){
   .hero.hero-ethan .hero-funfact{ text-align:left; }
 }
+/* records flush right with the text: right edge on the stage edge, perspective from that edge so the far records don't drift inward */
+.rc-vertical .rc-stage{ perspective-origin:100% 50%; }
+.rc-vertical .rc-record{ right:0; }
