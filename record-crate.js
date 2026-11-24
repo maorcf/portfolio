@@ -82,7 +82,7 @@
   }
 
   function layout(){
-    if(vertical){ layoutV(); var sv = SONGS[active]; now.innerHTML = (playing === active ? '<b>Now spinning</b> ' : '') + sv.title + ' <span>· ' + sv.artist + '</span>'; return; }
+    if(vertical){ layoutV(); renderNow(); return; }
     var S = size(), step = S * 0.34, open = playing === active ? S * 0.55 : 0, shift = -open / 2;
     var nR = perSide(open), nL = perSide(0);
     items.forEach(function(el, i){
@@ -100,8 +100,19 @@
       el.tabIndex = d === 0 ? 0 : -1;
     });
     var s = SONGS[active];
-    now.innerHTML = (playing === active ? '<b>Now spinning</b> ' : '') + s.title + ' <span>· ' + s.artist + '</span>';
+    renderNow();
   }
+
+  /* the line under the crate: a play/pause icon + song, clickable, so it's clear the records play */
+  var ICON_PLAY = '<svg viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0h3.5v12H0zM6.5 0H10v12H6.5z" fill="currentColor"/></svg>';
+  function renderNow(){
+    var s = SONGS[active], on = playing === active;
+    now.innerHTML = '<button type="button" class="rc-play" aria-label="' + (on ? 'Pause ' : 'Play ') + s.title + '">' +
+      '<span class="rc-play-ico">' + (on ? ICON_PAUSE : ICON_PLAY) + '</span>' +
+      '<span class="rc-play-txt">' + (on ? '<b>Now spinning</b> ' : '') + s.title + ' <span>· ' + s.artist + '</span></span></button>';
+  }
+  now.addEventListener('click', function(e){ if(e.target.closest('.rc-play')) toggle(active); });
 
   function go(i){
     active = Math.max(0, Math.min(SONGS.length - 1, i));

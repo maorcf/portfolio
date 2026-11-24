@@ -1867,3 +1867,12 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .hero.hero-ethan > .hero-scroll{ position:absolute; left:50%; width:12px; margin:0 0 0 -6px; bottom:calc(6vh + 99px); }
   .hero.hero-ethan > .hero-scroll + .hero-actions{ margin-top:auto; }
 }
+/* play/pause button in the now-playing line under the record crate */
+.rc-play{ display:inline-flex; align-items:center; gap:8px; padding:0; border:0; background:none; font:inherit; color:inherit; cursor:pointer; text-align:inherit; }
+.rc-play-ico{ display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; flex:none; border-radius:50%; background:var(--violet); color:#fff; transition:transform .2s; }
+.rc-play-ico svg{ margin-left:1px; }
+.rc-play:hover .rc-play-ico{ transform:scale(1.1); }
+.rc-play:focus-visible{ outline:2px solid var(--violet); outline-offset:4px; border-radius:4px; }
+.rc-now .rc-play-ico{ color:#fff; }
+.rc-now .rc-play-txt{ color:var(--ink); }
+.rc-now .rc-play-txt span{ color:var(--muted); font-weight:500; }
