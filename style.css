@@ -1857,8 +1857,8 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .hero-scroll svg{ animation:heroScrollNudge 1.6s ease-in-out infinite; }
 @keyframes heroScrollNudge{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(5px); } }
 @media (prefers-reduced-motion:reduce){ .hero-scroll svg{ animation:none; } }
-.hero.hero-ethan > .hero-scroll + .hero-actions{ margin-top:14px; }
+.hero.hero-ethan > .hero-scroll + .hero-actions{ margin-top:26px; }
 @media (max-width:809px){
   .hero.hero-ethan > .hero-scroll{ order:4; margin-top:56px; }
-  .hero.hero-ethan > .hero-scroll + .hero-actions{ order:5; margin-top:14px; }
+  .hero.hero-ethan > .hero-scroll + .hero-actions{ order:5; margin-top:26px; }
 }
