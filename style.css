@@ -1850,3 +1850,20 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 /* line under the headline */
 .hero.hero-ethan .hero-sub{ margin:18px 0 0; font-size:20px; font-weight:500; line-height:1.35; letter-spacing:-0.01em; color:var(--muted); text-align:left; }
 @media (max-width:809px){ .hero.hero-ethan .hero-sub{ order:1; margin-top:12px; font-size:16px; } }
+
+/* scroll-down hint at the bottom of the home hero */
+.hero.hero-ethan > .hero-scroll{ position:absolute; left:50%; bottom:14px; margin-left:-30px; width:60px; display:flex; flex-direction:column; align-items:center; gap:6px; color:var(--muted); text-decoration:none; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; z-index:5;
+  transition:opacity .4s, visibility 0s linear 0s; }
+.hero.hero-ethan > .hero-scroll:hover{ color:var(--ink); }
+.hero-scroll svg{ animation:heroScrollNudge 1.6s ease-in-out infinite; }
+.hero.hero-ethan > .hero-scroll.is-gone{ opacity:0; visibility:hidden; transition:opacity .4s, visibility 0s linear .4s; }
+@keyframes heroScrollNudge{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(5px); } }
+@media (prefers-reduced-motion:reduce){ .hero-scroll svg{ animation:none; } }
+/* room for the scroll hint under the button (desktop): everything in the bottom row moves up with it */
+@media (min-width:810px){
+  .hero.hero-ethan{ padding-bottom:calc(6vh + 40px); }
+  .hero.hero-ethan .hero-funfact{ bottom:calc(6vh + 136px); }
+  .hero.hero-ethan .record-crate.rc-vertical{ bottom:calc(6vh + 136px); }
+  .hero.hero-ethan > .hero-scroll{ bottom:18px; }
+}
+@media (max-width:809px){ .hero.hero-ethan{ padding-bottom:calc(6svh + 36px); } }
