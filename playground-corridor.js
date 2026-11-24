@@ -5,11 +5,15 @@
 (function(){
   var sec = document.getElementById('playground-teaser');
   if(!sec) return;
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  /* the hallway page is opened on purpose to walk through, so it runs even with reduced motion (it only moves while you scroll) */
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches && !sec.classList.contains('hallway-section')) return;
   if(!(window.CSS && CSS.supports('transform-style', 'preserve-3d'))) return;
   var links = [].slice.call(sec.querySelectorAll('.playground-strip-track > a:not([aria-hidden])'));
   if(!links.length) return;
 
+  /* phones (iOS Safari above all) run out of memory with dozens of big 3D layers, so there: no floor light pools,
+     and only the stretch of corridor near the camera is rendered at all (see FAR) */
+  var SMALL = window.matchMedia('(max-width:809px), (pointer:coarse)').matches;
   var GAP = 840;                 /* depth between two slots (a work or a category sign) */
   /* links may carry data-cat: a sign with the category name is placed before each new category */
   var slots = [], lastCat = null;
@@ -51,11 +55,15 @@
     var seam = document.createElement('div');
     seam.className = 'pgc-seam';
     seam.style.transform = 'translate3d(0,' + (H/2 - 1) + 'px,' + z + 'px) rotateX(90deg)';
-    var pool = document.createElement('div');
-    pool.className = 'pgc-pool';
-    pool.style.transform = 'translate3d(0,' + (H/2 - 2) + 'px,' + (z - GAP/2) + 'px) rotateX(90deg)';
-    world.appendChild(pool); world.appendChild(lamp); world.appendChild(seam);
-    rungs.push({ el:lamp, z:z - GAP/2 }, { el:seam, z:z }, { el:pool, z:z - GAP/2 });
+    if(!SMALL){
+      var pool = document.createElement('div');
+      pool.className = 'pgc-pool';
+      pool.style.transform = 'translate3d(0,' + (H/2 - 2) + 'px,' + (z - GAP/2) + 'px) rotateX(90deg)';
+      world.appendChild(pool);
+      rungs.push({ el:pool, z:z - GAP/2 });
+    }
+    world.appendChild(lamp); world.appendChild(seam);
+    rungs.push({ el:lamp, z:z - GAP/2 }, { el:seam, z:z });
   }
 
   /* far wall with the way out to the full Playground page */
@@ -96,11 +104,17 @@
     world.insertBefore(shadow, el);
     return { el:el, z:z, side:side, lift:lift, extra:[shadow] };
   });
+  var endItem = { el:end, z:-DEPTH - GAP * 0.4 };
+  var FAR = GAP * (SMALL ? 7 : 14);   /* anything further ahead than this is taken out of rendering */
+  function cull(o, off){ if(o.off !== off){ o.off = off; o.el.style.display = off ? 'none' : ''; if(o.extra) o.extra.forEach(function(x){ x.style.display = off ? 'none' : ''; }); } }
   var signs = works.filter(function(w){ return w.sign; });
 
   var vw = 0, vh = 0, target = 0, cam = 0, raf = 0;
+  var sticky = wrap.querySelector('.pgc-sticky');
   function measure(){
-    vw = window.innerWidth; vh = window.innerHeight;
+    /* use the sticky box's height (100svh), not innerHeight: on phones innerHeight changes every time the
+       address bar slides in or out, which used to resize the whole walk and make the scroll jump */
+    vw = window.innerWidth; vh = sticky.clientHeight || window.innerHeight;
     /* section height = one screen + the walk; ~0.55 screen of scroll per work */
     sec.style.setProperty('--pgc-h', (vh + N * vh * 0.45) + 'px');
     /* fill the screen; on narrow screens hang the works closer to the middle so both rows stay in view */
@@ -152,9 +166,12 @@
       var d = r.z + cam;                       /* > 0 means behind the camera */
       var hide = d > GAP * 0.55;
       if(r.hidden !== hide){ r.hidden = hide; r.el.style.visibility = hide ? 'hidden' : ''; }
+      cull(r, d < -FAR || d > GAP);
     });
+    cull(endItem, endItem.z + cam < -FAR);
     works.forEach(function(w, i){
       var d = w.z + cam;                       /* distance: negative = ahead */
+      cull(w, d < -FAR || d > GAP);
       var op = d > 240 ? 0 : d > -90 ? Math.max(0, 1 - (d + 90) / 330) : Math.max(0.05, Math.min(1, 1 + (d + 900) / 3900));
       /* signs only show when you get close, so far-off names don't pile up behind the works */
       if(w.sign) op = d < -GAP * 1.9 ? 0 : Math.min(op, Math.min(1, (d + GAP * 1.9) / (GAP * 0.7)));
@@ -177,7 +194,13 @@
   }
   function kick(){ if(!raf) raf = requestAnimationFrame(frame); }
   window.addEventListener('scroll', kick, { passive:true });
-  window.addEventListener('resize', function(){ measure(); kick(); });
+  /* ignore height-only resizes (the phone address bar); re-measure when the width really changes */
+  var lastW = window.innerWidth, lastH = window.innerHeight;
+  window.addEventListener('resize', function(){
+    var w = window.innerWidth, h = window.innerHeight;
+    if(w === lastW && SMALL && Math.abs(h - lastH) < 160) return;
+    lastW = w; lastH = h; measure(); kick();
+  });
   measure();
   cam = target = progress() * (DEPTH - GAP * 0.6);
   frame();
