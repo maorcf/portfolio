@@ -1835,8 +1835,8 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 }
 /* Hero grid: headline top-left / record crate top-right, fun fact bottom-left / button center / now-playing bottom-right */
 @media (min-width:810px){
-  .hero.hero-ethan .hero-funfact{ top:auto; right:auto; left:6.9vw; bottom:calc(6vh + 12px); text-align:left; }
-  .hero.hero-ethan .record-crate.rc-vertical{ top:100px; bottom:calc(6vh + 12px); }
+  .hero.hero-ethan .hero-funfact{ top:auto; right:auto; left:6.9vw; bottom:calc(6vh + 96px); text-align:left; }
+  .hero.hero-ethan .record-crate.rc-vertical{ top:100px; bottom:calc(6vh + 96px); }
   .rc-vertical .rc-now{ margin:14px 0 0; line-height:1.2; }
 }
 @media (max-width:809px){
