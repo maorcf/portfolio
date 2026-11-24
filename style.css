@@ -1847,3 +1847,6 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .rc-vertical .rc-record{ right:0; }
 /* desktop: arrows before the title, so the title ends flush right under "Music I like" */
 @media (min-width:810px){ .rc-vertical .rc-head{ flex-direction:row-reverse; justify-content:flex-start; } }
+/* line under the headline */
+.hero.hero-ethan .hero-sub{ margin:18px 0 0; font-size:20px; font-weight:500; line-height:1.35; letter-spacing:-0.01em; color:var(--muted); text-align:left; }
+@media (max-width:809px){ .hero.hero-ethan .hero-sub{ order:1; margin-top:12px; font-size:16px; } }
