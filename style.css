@@ -1845,3 +1845,5 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 /* records flush right with the text: right edge on the stage edge, perspective from that edge so the far records don't drift inward */
 .rc-vertical .rc-stage{ perspective-origin:100% 50%; }
 .rc-vertical .rc-record{ right:0; }
+/* desktop: arrows before the title, so the title ends flush right under "Music I like" */
+@media (min-width:810px){ .rc-vertical .rc-head{ flex-direction:row-reverse; justify-content:flex-start; } }
