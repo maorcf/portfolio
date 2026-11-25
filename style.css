@@ -2065,3 +2065,17 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .ab-shot{ margin-top:20px; height:300px; overflow:hidden; border-radius:10px; border:1.5px solid #D6D3CC; background:#F5F5F5; }
 .ab-shot img{ max-width:none; width:100%; height:100%; object-fit:cover; object-position:top center; margin:0; border:0; border-radius:0; }
 @media (max-width:809px){ .ab-shot{ height:220px; } }
+/* Austrip: more air between sections */
+main.cs3-airy .cs3-text{ padding-top:104px; }
+main.cs3-airy .cs3-intro{ padding-top:56px; }
+main.cs3-airy .cs3-rows{ padding-top:48px; }
+main.cs3-airy .cs3-panel{ margin-top:80px; }
+main.cs3-airy .cs3-panel + .cs3-panel{ margin-top:40px; }
+main.cs3-airy .cs-kit{ padding-top:136px; }
+@media (max-width:809px){
+  main.cs3-airy .cs3-text{ padding-top:72px; }
+  main.cs3-airy .cs3-intro{ padding-top:44px; }
+  main.cs3-airy .cs3-rows{ padding-top:40px; }
+  main.cs3-airy .cs3-panel{ margin-top:56px; }
+  main.cs3-airy .cs-kit{ padding-top:96px; }
+}
