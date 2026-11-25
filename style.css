@@ -1945,7 +1945,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .kc{ padding:0 clamp(20px,3vw,40px); display:flex; flex-direction:column; }
 .kc:first-child{ padding-left:0; } .kc:last-child{ padding-right:0; }
 .kc-label{ text-align:center; font-size:20px; font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin:0; }
-.kc-plot{ height:260px; display:flex; align-items:flex-end; justify-content:center; gap:18px; margin-top:48px; border-bottom:1.5px solid var(--line); }
+.kc-plot{ height:260px; display:flex; align-items:flex-end; justify-content:center; gap:18px; margin-top:48px; }
 .kc-bar{ width:38%; max-width:96px; height:var(--h); border-radius:14px 14px 0 0; position:relative; background:#E9E5DE; }
 .kc-bar.is-new{ background:linear-gradient(180deg,#5B4CE0,#A99BFF); }
 .kc-bar em{ position:absolute; bottom:100%; left:-20px; right:-20px; text-align:center; padding-bottom:10px; font-style:normal; font-weight:800; letter-spacing:-0.03em; line-height:1; }
