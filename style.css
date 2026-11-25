@@ -2087,20 +2087,3 @@ main.cs3-airy .cs-kit{ padding-top:136px; }
 .kc-grid.kc-anim .kc:nth-child(3) .kc-bar{ transition-delay:.24s; }
 .kc-grid.kc-anim .kc:nth-child(3) .kc-bar.is-new{ transition-delay:.39s; }
 .kc-grid.kc-anim.is-in .kc-bar{ height:var(--h); }
-
-/* KPI bars as soft rounded 3D pills (Nov 25): cylinder shading + gloss highlight + floor shadow */
-.kc-plot{ gap:26px; margin-top:76px; position:relative; }
-.kc-bar{ width:64px; max-width:none; border-radius:999px; position:relative;
-  background:linear-gradient(90deg,#D9D4CA 0%,#F3F0EA 38%,#E6E1D8 70%,#CFC9BE 100%);
-  box-shadow:inset 0 -6px 12px rgba(0,0,0,.05); }
-.kc-bar.is-new{ background:linear-gradient(90deg,#4B3CCF 0%,#8B7CFF 36%,#6E5EF0 68%,#4334BE 100%);
-  box-shadow:inset 0 -10px 20px rgba(30,15,120,.25), 0 18px 30px -12px rgba(91,76,224,.45); }
-.kc-bar::before{ content:""; position:absolute; top:10px; left:22%; width:16%; bottom:16px; border-radius:999px;
-  background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0)); pointer-events:none; }
-.kc-bar.is-new::before{ background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0)); }
-.kc-plot::after{ content:""; position:absolute; left:50%; bottom:-10px; width:220px; height:22px; margin-left:-110px;
-  background:radial-gradient(closest-side,rgba(40,30,90,.14),rgba(40,30,90,0)); pointer-events:none; z-index:-1; }
-.kc-bar em{ padding-bottom:12px; }
-.kc-axis{ gap:26px; margin-top:20px; }
-.kc-axis span{ width:64px; max-width:none; }
-@media (max-width:720px){ .kc-bar{ width:56px; } .kc-axis span{ width:56px; } }
