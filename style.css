@@ -2178,3 +2178,15 @@ main.cs3-airy .cs3-panel figcaption{ font-size:12px; font-weight:600; letter-spa
 .persona-dots i{ width:8px; height:8px; border-radius:50%; background:#D6D2C8; transition:background .2s, width .2s; }
 .persona-dots i.on{ background:var(--ink); width:22px; border-radius:99px; }
 .persona-track .chip-b{ left:16px; }
+/* Persona row: neighbours peek at the sides, faded (Nov 25) */
+.persona-scroller{ --pw:min(1000px, calc(100vw - 200px)); width:100vw; position:relative; left:50%; transform:translateX(-50%); }
+.persona-track{ padding-inline:calc((100vw - var(--pw)) / 2); gap:56px; scroll-snap-type:x mandatory;
+  -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); mask-image:linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); }
+.persona-slide{ flex:0 0 var(--pw); scroll-snap-align:center; opacity:.28; transition:opacity .45s ease; }
+.persona-slide.is-active{ opacity:1; }
+.persona-slide:not(.is-active){ cursor:pointer; }
+@media (max-width:809px){
+  .persona-scroller{ --pw:calc(100vw - 80px); }
+  .persona-track{ gap:16px; -webkit-mask-image:none; mask-image:none; }
+  .persona-slide{ opacity:.4; }
+}

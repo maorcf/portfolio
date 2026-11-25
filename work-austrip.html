@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-austrip.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=404">
+<link rel="stylesheet" href="style.css?v=406">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -404,15 +404,18 @@ var io=new IntersectionObserver(function(es){ if(!es[0].isIntersecting) return; 
 },{threshold:.4}); io.observe(ns[0].closest('.abx-grid'));})();
 </script>
 <script>
-(function(){var g=document.querySelector('.abx-grid'); if(!g||!('IntersectionObserver' in window)) return;
-new IntersectionObserver(function(es){ document.body.classList.toggle('toc-off', es[0].isIntersecting); }).observe(g);})();
+(function(){if(!('IntersectionObserver' in window)) return; var on=new Set();
+var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting?on.add(e.target):on.delete(e.target); }); document.body.classList.toggle('toc-off', on.size>0); });
+document.querySelectorAll('.abx-grid, .persona-track').forEach(function(g){ io.observe(g); });})();
 </script>
 <script>
 (function(){var t=document.querySelector('.persona-track'); if(!t) return;
 var s=t.querySelectorAll('.persona-slide'), d=document.querySelectorAll('.persona-dots i');
 function cur(){var c=t.scrollLeft+t.clientWidth/2,best=0;s.forEach(function(e,i){if(Math.abs(e.offsetLeft+e.offsetWidth/2-c)<Math.abs(s[best].offsetLeft+s[best].offsetWidth/2-c))best=i;});return best;}
 document.querySelectorAll('.persona-arrow').forEach(function(b){b.addEventListener('click',function(){var i=Math.max(0,Math.min(s.length-1,cur()+ +b.dataset.dir));t.scrollTo({left:s[i].offsetLeft-s[0].offsetLeft,behavior:'smooth'});});});
-t.addEventListener('scroll',function(){var i=cur();d.forEach(function(x,j){x.classList.toggle('on',i===j);});},{passive:true});
+function mark(){var i=cur();d.forEach(function(x,j){x.classList.toggle('on',i===j);});s.forEach(function(x,j){x.classList.toggle('is-active',i===j);});}
+t.addEventListener('scroll',mark,{passive:true}); mark();
+s.forEach(function(e,i){e.addEventListener('click',function(){if(!e.classList.contains('is-active'))t.scrollTo({left:e.offsetLeft-s[0].offsetLeft,behavior:'smooth'});});});
 })();
 </script>
 </body>
