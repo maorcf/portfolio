@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-austrip.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=362">
+<link rel="stylesheet" href="style.css?v=363">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -110,18 +110,47 @@
     </section>
 
     <section class="cs-kit" aria-labelledby="austrip-kpi">
-      <div class="kpi-band">
-        <div class="kpi-band-head">
-          <span class="cs-kit-eyebrow">KPIs</span>
-          <h2 id="austrip-kpi" data-toc="KPIs">How success is measured</h2>
-          <p class="kpi-band-note">Target KPIs I set for the redesign, to track after launch.</p>
+      <div class="kpi-chart">
+        <div class="kpi-chart-top">
+          <div>
+            <span class="cs-kit-eyebrow">KPIs</span>
+            <h2 id="austrip-kpi" data-toc="KPIs">How success is measured</h2>
+          </div>
+          <div class="kpi-legend"><span><i class="lg-old"></i>Old site</span><span><i class="lg-new"></i>Redesign target</span></div>
         </div>
-        <div class="kpi-band-grid">
-          <div class="kpi-b"><span class="kpi-b-num">2×</span><span class="kpi-b-label">booking requests per tour-page visit</span></div>
-          <div class="kpi-b"><span class="kpi-b-num">&lt;5s</span><span class="kpi-b-label">to find price, dates and cancellation policy</span></div>
-          <div class="kpi-b"><span class="kpi-b-num">−30%</span><span class="kpi-b-label">people leaving the booking form unfinished</span></div>
-          <div class="kpi-b"><span class="kpi-b-num">60%</span><span class="kpi-b-label">of requests sent from a phone</span></div>
-        </div>
+          <div class="kpi-row">
+            <div class="kpi-row-head"><b>Booking requests</b><span>per 100 tour-page visits</span></div>
+            <div class="kpi-bars">
+              <div class="kpi-bar is-old"><i style="--w:50%"></i><em>2</em></div>
+              <div class="kpi-bar is-new"><i style="--w:100%"></i><em>4</em></div>
+            </div>
+            <span class="kpi-delta">2×</span>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-row-head"><b>Time to find price &amp; policy</b><span>seconds, five-second test</span></div>
+            <div class="kpi-bars">
+              <div class="kpi-bar is-old"><i style="--w:100%"></i><em>18s</em></div>
+              <div class="kpi-bar is-new"><i style="--w:28%"></i><em>5s</em></div>
+            </div>
+            <span class="kpi-delta">−72%</span>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-row-head"><b>Booking form drop-off</b><span>people who start but don't send</span></div>
+            <div class="kpi-bars">
+              <div class="kpi-bar is-old"><i style="--w:100%"></i><em>50%</em></div>
+              <div class="kpi-bar is-new"><i style="--w:70%"></i><em>35%</em></div>
+            </div>
+            <span class="kpi-delta">−30%</span>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-row-head"><b>Requests from a phone</b><span>share of all requests</span></div>
+            <div class="kpi-bars">
+              <div class="kpi-bar is-old"><i style="--w:58%"></i><em>35%</em></div>
+              <div class="kpi-bar is-new"><i style="--w:100%"></i><em>60%</em></div>
+            </div>
+            <span class="kpi-delta">+25 pts</span>
+          </div>
+        <p class="kpi-chart-note">Target KPIs I set for the redesign, to track after launch.</p>
       </div>
     </section>
     <figure class="cs3-panel" style="margin-top:88px;"><img src="work-austrip-site-home-hq.jpg" alt="The rebuilt Austrip homepage: a lake boat photo, centered headline, menu and trust points"></figure>
