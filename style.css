@@ -2190,3 +2190,4 @@ main.cs3-airy .cs3-panel figcaption{ font-size:12px; font-weight:600; letter-spa
   .persona-track{ gap:16px; -webkit-mask-image:none; mask-image:none; }
   .persona-slide{ opacity:.4; }
 }
+.persona-nav{ margin-top:28px; }
