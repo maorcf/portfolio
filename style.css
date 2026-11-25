@@ -2237,3 +2237,6 @@ main.cs3-airy .sb-before{ padding-bottom:0; }
   box-shadow:0 4px 14px rgba(20,20,20,.22); transition:transform .2s ease; }
 .bx-compare:hover .bx-handle::after{ transform:translate(-50%,-50%) scale(1.08); }
 .bx-tag{ background:rgba(255,255,255,.82); color:#141414; -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); font-size:12px; font-weight:600; letter-spacing:.02em; padding:7px 12px; box-shadow:0 2px 8px rgba(20,20,20,.12); }
+/* Austrip before/after video */
+.bx-video{ padding:0; border-radius:24px; overflow:hidden; background:#fff; }
+.bx-video video{ display:block; width:100%; height:auto; }
