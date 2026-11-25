@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-austrip.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=420">
+<link rel="stylesheet" href="style.css?v=421">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -275,10 +275,14 @@
       <p>From a wall of banners and links to one photo, one message, and tours grouped by category.</p>
     </section>
 
-    <figure class="cs3-panel cs3-pair">
-      <div><div class="cs3-tall"><img src="work-austrip-before.jpg" alt="Austrip homepage before the redesign" loading="lazy"></div><figcaption>Before</figcaption></div>
-      <div><div class="cs3-tall"><img src="work-austrip-site-home-full-hq.jpg" alt="The rebuilt Austrip homepage, full page: tours by category, gallery and footer" loading="lazy"></div><figcaption>After</figcaption></div>
+    <figure class="cs3-panel bx-compare" style="--pos:50%">
+      <img src="work-austrip-site-home-full-hq.jpg" alt="The rebuilt Austrip homepage" class="bx-after" loading="lazy">
+      <div class="bx-before"><img src="work-austrip-before.jpg" alt="Austrip homepage before the redesign" loading="lazy"></div>
+      <span class="bx-tag bx-tag-l">Before</span><span class="bx-tag bx-tag-r">After</span>
+      <span class="bx-handle" aria-hidden="true"></span>
+      <input type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after">
     </figure>
+    <p class="bx-hint">Drag to compare</p>
 
     <section class="cs3-text case-section">
       <h2><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><path d="M12 7.5l5 2.6-5 2.6-5-2.6 5-2.6Z" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 13.4l5 2.6 5-2.6" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> The price and one action, up front</h2>
@@ -437,6 +441,10 @@ function mark(){var i=cur();d.forEach(function(x,j){x.classList.toggle('on',i===
 t.addEventListener('scroll',mark,{passive:true}); mark();
 s.forEach(function(e,i){e.addEventListener('click',function(){if(!e.classList.contains('is-active'))t.scrollTo({left:e.offsetLeft-s[0].offsetLeft,behavior:'smooth'});});});
 })();
+</script>
+<script>
+(function(){var f=document.querySelector('.bx-compare'); if(!f) return; var r=f.querySelector('input');
+r.addEventListener('input',function(){f.style.setProperty('--pos',r.value+'%');});})();
 </script>
 </body>
 </html>

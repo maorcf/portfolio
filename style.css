@@ -2217,35 +2217,7 @@ main.cs3-airy .sb-after{ padding-top:56px; }
 main.cs3-airy .cs3-panel.sticky-board{ margin-top:20px; }
 main.cs3-airy .sb-before{ padding-bottom:0; }
 
-/* ===== Austrip v2 "stand out" version (work-austrip-v2.html, Nov 25) ===== */
-main.cs-bold{ --serif:"Bodoni Moda", Georgia, serif; }
-.bx-hero{ position:relative; width:min(1320px, calc(100vw - 32px)); margin:8px auto 0; background:#141414; color:#F3EFE4; border-radius:32px; padding:clamp(28px,5vw,72px) clamp(24px,6vw,96px) 0; overflow:hidden; }
-.bx-back{ display:inline-block; font-size:14px; color:rgba(243,239,228,.6); text-decoration:none; margin-bottom:clamp(32px,5vw,64px); }
-.bx-back:hover{ color:#F3EFE4; }
-.bx-kicker{ margin:0 0 18px; font-size:15px; color:rgba(243,239,228,.6); }
-.bx-title{ margin:0; font-family:var(--serif); font-weight:500; font-size:clamp(44px,8vw,120px); line-height:.98; letter-spacing:-0.02em; max-width:14ch; }
-.bx-title em{ font-style:italic; font-weight:400; color:rgba(243,239,228,.55); }
-.bx-sub{ margin:clamp(24px,3vw,36px) 0 0; max-width:560px; font-size:clamp(16px,1.5vw,19px); line-height:1.55; color:rgba(243,239,228,.75); }
-.bx-shot{ margin:clamp(40px,6vw,80px) auto 0; width:min(1000px,100%); border-radius:20px 20px 0 0; overflow:hidden; box-shadow:0 -20px 60px -20px rgba(0,0,0,.6); transform:translateY(0); }
-.bx-shot img{ display:block; width:100%; }
-
-main.cs-bold .cs3-body{ padding-top:0; }
-.bx-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(16px,3vw,40px); width:min(1120px, calc(100vw - 48px)); position:relative; left:50%; transform:translateX(-50%); margin:clamp(56px,7vw,96px) 0 clamp(40px,5vw,64px); }
-.bx-stats div{ border-top:2px solid #141414; padding-top:16px; }
-.bx-stats b{ display:block; font-family:var(--serif); font-weight:500; font-size:clamp(48px,6vw,88px); line-height:1; letter-spacing:-0.02em; }
-.bx-stats span{ display:block; margin-top:10px; font-size:15px; line-height:1.4; color:#55524C; max-width:22ch; }
-
-/* serif display voice on section titles */
-main.cs-bold .kc-head h2{ font-family:var(--serif); font-weight:500; letter-spacing:-0.02em; font-size:clamp(40px,4.6vw,60px); }
-main.cs-bold .cs3-text.case-section h2{ font-family:var(--serif); font-weight:500; letter-spacing:-0.01em; font-size:clamp(28px,2.8vw,36px); }
-main.cs-bold .cs3-text.case-section h2 .h2-icon{ display:none; }
-main.cs-bold .persona-info .persona-name{ font-family:var(--serif); font-weight:500; letter-spacing:-0.02em; font-size:clamp(36px,4vw,52px); }
-main.cs-bold .abx-result{ font-family:var(--serif); font-weight:500; font-size:clamp(32px,3.6vw,48px); letter-spacing:-0.02em; }
-main.cs-bold .abx-num{ font-family:var(--serif); font-weight:500; }
-
-.bx-quote{ margin:clamp(96px,10vw,140px) auto 0; max-width:900px; padding:0 24px; text-align:center; font-family:var(--serif); font-weight:500; font-size:clamp(32px,4.4vw,60px); line-height:1.08; letter-spacing:-0.02em; color:#141414; border:0; background:none; }
-.bx-quote em{ font-style:italic; font-weight:400; color:#8C877D; }
-
+/* Austrip: before/after drag slider (Nov 25, kept from the v2 experiment) */
 /* before / after drag slider */
 .bx-compare{ position:relative; overflow:hidden; border-radius:24px; aspect-ratio:16/11; background:#fff; box-shadow:0 2px 6px rgba(20,20,20,.06), 0 24px 48px -16px rgba(20,20,20,.22); padding:0; }
 .bx-compare img{ display:block; width:100%; height:100%; object-fit:cover; object-position:top; margin:0; border-radius:0; }
@@ -2254,18 +2226,8 @@ main.cs-bold .abx-num{ font-family:var(--serif); font-weight:500; }
 .bx-handle{ position:absolute; top:0; bottom:0; left:var(--pos); width:2px; background:#141414; transform:translateX(-1px); pointer-events:none; }
 .bx-handle::after{ content:"↔"; position:absolute; top:50%; left:50%; width:48px; height:48px; transform:translate(-50%,-50%); border-radius:50%; background:#141414; color:#fff; display:grid; place-items:center; font-size:20px; }
 .bx-compare input{ position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:ew-resize; margin:0; }
-.bx-tag{ position:absolute; top:16px; font-size:13px; font-weight:600; background:rgba(20,20,20,.75); color:#fff; padding:6px 12px; border-radius:99px; pointer-events:none; }
+.bx-tag{ position:absolute; bottom:16px; font-size:13px; font-weight:600; background:rgba(20,20,20,.75); color:#fff; padding:6px 12px; border-radius:99px; pointer-events:none; }
 .bx-tag-l{ left:16px; } .bx-tag-r{ right:16px; }
 .bx-hint{ text-align:center; font-size:14px; color:#8C877D; margin:14px 0 0; }
 
-.bx-end{ margin:clamp(96px,10vw,140px) 0 0; width:min(1120px, calc(100vw - 48px)); position:relative; left:50%; transform:translateX(-50%); background:#141414; color:#F3EFE4; border-radius:32px; padding:clamp(40px,6vw,88px); display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:32px; }
-.bx-end-line{ margin:0; max-width:16ch; font-family:var(--serif); font-weight:500; font-size:clamp(34px,4.6vw,64px); line-height:1.04; letter-spacing:-0.02em; }
-.bx-end-line em{ font-style:italic; font-weight:400; color:rgba(243,239,228,.55); }
-.bx-end-btn{ display:inline-flex; align-items:center; gap:8px; background:#F3EFE4; color:#141414; text-decoration:none; font-weight:600; font-size:17px; padding:16px 28px; border-radius:99px; transition:transform .2s; }
-.bx-end-btn:hover{ transform:translateY(-2px); }
-
-@media (max-width:809px){
-  .bx-stats{ grid-template-columns:1fr 1fr; row-gap:32px; }
-  .bx-compare{ aspect-ratio:3/4; }
-}
-@media (min-width:1200px){ body.has-toc .bx-end{ width:min(1120px, calc(100vw - 480px)); } }
+@media (max-width:809px){ .bx-compare{ aspect-ratio:3/4; } }
