@@ -2088,18 +2088,19 @@ main.cs3-airy .cs-kit{ padding-top:136px; }
 .kc-grid.kc-anim .kc:nth-child(3) .kc-bar.is-new{ transition-delay:.39s; }
 .kc-grid.kc-anim.is-in .kc-bar{ height:var(--h); }
 
-/* KPI bars as 3D blocks (Nov 25): front = the bar itself, ::after = right side, ::before = top */
-.kc{ perspective:1100px; }
-.kc-plot{ transform-style:preserve-3d; transform:rotateX(var(--kx,-16deg)) rotateY(var(--ky,0deg)); transition:transform .6s cubic-bezier(.2,.8,.2,1); position:relative; gap:26px; margin-top:76px; }
-.kc-plot::before{ content:""; position:absolute; left:50%; bottom:0; width:250px; height:120px; margin-left:-125px; transform-origin:50% 100%; transform:rotateX(90deg) translateY(50%); background:radial-gradient(closest-side,rgba(40,30,90,.16),rgba(40,30,90,0)); pointer-events:none; }
-.kc-bar{ --d:44px; width:64px; max-width:none; border-radius:0; transform-style:preserve-3d; transform:translateZ(calc(var(--d) / 2)); }
-.kc-bar::before, .kc-bar::after{ content:""; position:absolute; pointer-events:none; }
-.kc-bar::after{ top:0; left:100%; width:var(--d); height:100%; transform-origin:0 50%; transform:rotateY(90deg); background:#D3CDC1; }
-.kc-bar::before{ left:0; bottom:100%; width:100%; height:var(--d); transform-origin:50% 100%; transform:rotateX(90deg); background:#F6F3EC; }
-.kc-bar.is-new{ background:linear-gradient(180deg,#6A5BF0,#A99BFF); }
-.kc-bar.is-new::after{ background:linear-gradient(180deg,#3F31B8,#7363E8); }
-.kc-bar.is-new::before{ background:#C9C0FF; }
-.kc-bar em{ transform:translateZ(1px); padding-bottom:calc(var(--d) * .55 + 8px); }
-.kc-axis{ gap:26px; }
+/* KPI bars as soft rounded 3D pills (Nov 25): cylinder shading + gloss highlight + floor shadow */
+.kc-plot{ gap:26px; margin-top:76px; position:relative; }
+.kc-bar{ width:64px; max-width:none; border-radius:999px; position:relative;
+  background:linear-gradient(90deg,#D9D4CA 0%,#F3F0EA 38%,#E6E1D8 70%,#CFC9BE 100%);
+  box-shadow:inset 0 -6px 12px rgba(0,0,0,.05); }
+.kc-bar.is-new{ background:linear-gradient(90deg,#4B3CCF 0%,#8B7CFF 36%,#6E5EF0 68%,#4334BE 100%);
+  box-shadow:inset 0 -10px 20px rgba(30,15,120,.25), 0 18px 30px -12px rgba(91,76,224,.45); }
+.kc-bar::before{ content:""; position:absolute; top:10px; left:22%; width:16%; bottom:16px; border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0)); pointer-events:none; }
+.kc-bar.is-new::before{ background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0)); }
+.kc-plot::after{ content:""; position:absolute; left:50%; bottom:-10px; width:220px; height:22px; margin-left:-110px;
+  background:radial-gradient(closest-side,rgba(40,30,90,.14),rgba(40,30,90,0)); pointer-events:none; z-index:-1; }
+.kc-bar em{ padding-bottom:12px; }
+.kc-axis{ gap:26px; margin-top:20px; }
 .kc-axis span{ width:64px; max-width:none; }
-@media (max-width:720px){ .kc-bar{ width:56px; --d:38px; } .kc-axis span{ width:56px; } }
+@media (max-width:720px){ .kc-bar{ width:56px; } .kc-axis span{ width:56px; } }
