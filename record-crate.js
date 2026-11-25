@@ -1,4 +1,4 @@
-/* Record crate in the home hero: flip through sleeves, click one to pull the vinyl out and spin it.
+/* Record crate on the About page (was in the home hero until Nov 2026): flip through sleeves, click one to pull the vinyl out and spin it.
    To add a song, add a line to SONGS:
      title, artist  - shown on the sleeve label and under the crate
      cover          - square image path (e.g. 'records/song.jpg'); without one a colored sleeve is drawn

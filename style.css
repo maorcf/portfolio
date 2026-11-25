@@ -1885,6 +1885,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 /* phones: no glow around the ceiling lamps (a blurred shadow on every moving 3D layer is too heavy for iOS) */
 @media (max-width:809px), (pointer:coarse){ .pgc-lamp{ box-shadow:none; } }
 
+<script src="record-crate.js?v=17"></script>
 /* ===== Case study "30-second" blocks: personas, KPIs, A/B test (Nov 2026, after Ziv's review) ===== */
 .cs-kit{ max-width:1000px; margin:0 auto; padding:88px 0 0; }
 .cs-kit-head{ max-width:720px; margin:0 auto 32px; }
@@ -2240,3 +2241,33 @@ main.cs3-airy .sb-before{ padding-bottom:0; }
 /* Austrip before/after video */
 .bx-video{ padding:0; border-radius:24px; overflow:hidden; background:#fff; }
 .bx-video video{ display:block; width:100%; height:auto; }
+
+/* Work cards: a short intro under the title (what the project is), so a recruiter gets each project in seconds */
+.project-grid .project .card-what{ grid-column:1 / 3; grid-row:3; margin:10px 0 0; font-size:15px; font-weight:500; line-height:1.4; color:var(--ink); }
+@media (max-width:809px){
+    .project-grid .project .card-what{ font-size:14.5px; }
+}
+
+/* Home hero without the record crate (moved to About, Nov 2026): headline top-left, fun fact bottom-right, arrow + button centered */
+@media (min-width:810px){
+  .hero.hero-ethan .hero-funfact{ left:auto; right:6.9vw; text-align:right; }
+}
+
+/* About: "On my turntable" record crate (record-crate.js), horizontal row */
+#music.about{ padding-top:16px; scroll-margin-top:90px; }
+#music .section-head{ margin-bottom:6px; }
+#music .music-note{ margin:0; color:var(--muted); font-size:15px; }
+#music .record-crate{ --rc:140px; --rt:7px; max-width:none; margin:36px auto 0; }
+#music .rc-title{ font-size:11px; }
+#music .rc-now{ margin-top:26px; font-size:14px; }
+@media (max-width:809px){
+  #music .record-crate{ --rc:104px; margin-top:28px; }
+  #music .rc-stage{ margin:0 -16px; }
+}
+@media (min-width:810px){
+  .hero.hero-ethan .lead{ margin-top:auto; }
+  .hero.hero-ethan .hero-sub{ margin-bottom:6vh; }
+}
+@media (max-width:809px){
+  .hero.hero-ethan .lead{ margin-top:auto; }
+  .hero.hero-ethan .hero-actions{ margin-bottom:auto; }
