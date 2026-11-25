@@ -2122,3 +2122,7 @@ body.toc-off .cs-toc.fits.show{ opacity:0; visibility:hidden; pointer-events:non
 /* B's screen framed as the winner with a soft ring (Nov 25) */
 .abx.is-b .abx-shot{ box-shadow:0 0 36px 2px rgba(91,76,224,.16), 0 24px 48px -16px rgba(20,20,20,.18); }
 .abx-result b{ background:none; padding:0; }
+/* Make the winner pop: A goes quiet (gray, faded), B stays full color (Nov 25) */
+.abx:not(.is-b) .abx-shot{ box-shadow:0 2px 6px rgba(20,20,20,.04), 0 16px 32px -16px rgba(20,20,20,.12); }
+.abx:not(.is-b) .abx-shot img{ filter:grayscale(1); opacity:.8; }
+.abx:not(.is-b) .abx-what{ color:#8C877D; }
