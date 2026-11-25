@@ -2143,7 +2143,7 @@ main.cs3-airy .cs3-roles{ font-size:13px; margin-top:16px; }
 main.cs3-airy .kc-head{ margin-bottom:48px; }
 main.cs3-airy .kc-head h2{ font-size:clamp(40px,5.2vw,64px); line-height:1; letter-spacing:-0.04em; }
 main.cs3-airy .kc-head p{ font-size:clamp(16px,1.4vw,18px); margin-top:12px; }
-main.cs3-airy .persona-info .persona-name{ font-size:clamp(36px,4.4vw,56px); letter-spacing:-0.035em; }
+main.cs3-airy .persona-info .persona-name{ font-size:clamp(30px,3.4vw,42px); letter-spacing:-0.035em; }
 main.cs3-airy .persona-role{ font-size:17px; line-height:1.55; }
 main.cs3-airy .persona-info .persona-quote{ font-size:clamp(20px,2vw,24px); line-height:1.35; }
 main.cs3-airy .persona-lines li{ font-size:16px; line-height:1.5; }
