@@ -1920,6 +1920,14 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .persona dt{ font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-top:12px; }
 .persona dd{ margin:2px 0 0; }
 .persona dd.persona-fix{ font-weight:600; }
+.kpi-band{ background:var(--violet); color:#fff; border-radius:28px; padding:clamp(32px,5vw,64px); display:grid; grid-template-columns:minmax(0,4fr) minmax(0,7fr); gap:clamp(32px,5vw,64px); align-items:start; }
+.kpi-band .cs-kit-eyebrow{ color:var(--lime); }
+.kpi-band h2{ font-size:clamp(30px,3.4vw,44px); line-height:1.05; font-weight:800; letter-spacing:-0.03em; margin:0; color:#fff; }
+.kpi-band-note{ font-size:14px; line-height:1.5; color:rgba(255,255,255,.72); margin:18px 0 0; max-width:280px; }
+.kpi-band-grid{ display:grid; grid-template-columns:1fr 1fr; gap:36px 32px; }
+.kpi-b-num{ display:block; font-size:clamp(52px,6.4vw,88px); font-weight:800; line-height:.9; letter-spacing:-0.045em; color:var(--lime); }
+.kpi-b-label{ display:block; font-size:16px; font-weight:500; line-height:1.35; margin-top:12px; max-width:240px; }
+@media (max-width:809px){ .kpi-band{ grid-template-columns:1fr; border-radius:22px; } .kpi-band-grid{ gap:28px 18px; } .kpi-b-label{ font-size:14px; } }
 .kpi-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; }
 .kpi{ border-top:3px solid var(--ink); padding-top:16px; }
 .kpi-num{ display:block; font-size:clamp(40px, 5vw, 60px); font-weight:800; line-height:1; letter-spacing:-0.03em; color:var(--violet); }
