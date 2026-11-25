@@ -2194,3 +2194,5 @@ main.cs3-airy .cs3-panel figcaption{ font-size:12px; font-weight:600; letter-spa
 .persona-track{ -webkit-mask-image:none; mask-image:none; }
 .persona-slide{ opacity:.15; }
 .persona-slide.is-active{ opacity:1; }
+/* B screenshot card gets a soft violet stroke (Nov 25) */
+.abx.is-b .abx-shot{ outline:1.5px solid rgba(91,76,224,.45); outline-offset:0; }
