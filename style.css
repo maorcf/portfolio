@@ -1937,6 +1937,9 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .cmp-headrow{ grid-template-columns:72px 24px 1fr; }
 }
 .kpi-head .kpi-legend{ margin-top:16px; }
+.kc-head{ text-align:center; margin-bottom:56px; }
+.kc-head h2{ font-size:clamp(48px,7vw,88px); line-height:.95; font-weight:800; letter-spacing:-0.045em; }
+.kc-head p{ font-size:clamp(16px,1.6vw,19px); color:var(--muted); margin:14px 0 0; }
 .kc-grid{ max-width:1000px; margin:12px auto 0; display:grid; grid-template-columns:repeat(3,1fr); }
 .kc{ padding:0 clamp(20px,3vw,40px); display:flex; flex-direction:column; }
 .kc:first-child{ padding-left:0; } .kc:last-child{ padding-right:0; }
