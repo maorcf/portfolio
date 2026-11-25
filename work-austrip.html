@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-austrip.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=413">
+<link rel="stylesheet" href="style.css?v=414">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -400,11 +400,6 @@ var io=new IntersectionObserver(function(es){ if(!es[0].isIntersecting) return; 
     ns.forEach(function(n){ n.textContent=(n.dataset.v*k).toFixed(1)+'%'; });
     if(p<1) requestAnimationFrame(tick); })(t0);
 },{threshold:.4}); io.observe(ns[0].closest('.abx-grid'));})();
-</script>
-<script>
-(function(){if(!('IntersectionObserver' in window)) return; var on=new Set();
-var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting?on.add(e.target):on.delete(e.target); }); document.body.classList.toggle('toc-off', on.size>0); });
-document.querySelectorAll('.abx-grid, .persona-track').forEach(function(g){ io.observe(g); });})();
 </script>
 <script>
 (function(){var t=document.querySelector('.persona-track'); if(!t) return;
