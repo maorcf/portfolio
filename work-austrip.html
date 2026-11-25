@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-austrip.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=377">
+<link rel="stylesheet" href="style.css?v=378">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -320,5 +320,25 @@
 
 <script src="script.js?v=142"></script>
 
+<script>
+(function(){
+  var g=document.querySelector('.kc-grid');
+  if(!g||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var ems=[].slice.call(g.querySelectorAll('.kc-bar em'));
+  ems.forEach(function(e){ e.dataset.v=parseInt(e.textContent,10); e.textContent='0%'; });
+  g.classList.add('kc-anim');
+  var io=new IntersectionObserver(function(es){
+    if(!es[0].isIntersecting) return; io.disconnect();
+    requestAnimationFrame(function(){ g.classList.add('is-in'); });
+    var t0=performance.now(), D=1300;
+    (function tick(t){
+      var p=Math.min(1,(t-t0)/D), k=1-Math.pow(1-p,3);
+      ems.forEach(function(e){ e.textContent=Math.round(e.dataset.v*k)+'%'; });
+      if(p<1) requestAnimationFrame(tick);
+    })(t0);
+  },{threshold:.35});
+  io.observe(g);
+})();
+</script>
 </body>
 </html>

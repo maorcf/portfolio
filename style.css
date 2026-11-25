@@ -2079,3 +2079,11 @@ main.cs3-airy .cs-kit{ padding-top:136px; }
   main.cs3-airy .cs3-panel{ margin-top:56px; }
   main.cs3-airy .cs-kit{ padding-top:96px; }
 }
+/* KPI bars grow + numbers count up when scrolled into view (JS adds .kc-anim, then .is-in) */
+.kc-grid.kc-anim .kc-bar{ height:0; transition:height 1.2s cubic-bezier(.2,.8,.2,1); }
+.kc-grid.kc-anim .kc-bar.is-new{ transition-delay:.15s; }
+.kc-grid.kc-anim .kc:nth-child(2) .kc-bar{ transition-delay:.12s; }
+.kc-grid.kc-anim .kc:nth-child(2) .kc-bar.is-new{ transition-delay:.27s; }
+.kc-grid.kc-anim .kc:nth-child(3) .kc-bar{ transition-delay:.24s; }
+.kc-grid.kc-anim .kc:nth-child(3) .kc-bar.is-new{ transition-delay:.39s; }
+.kc-grid.kc-anim.is-in .kc-bar{ height:var(--h); }
