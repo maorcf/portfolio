@@ -2204,3 +2204,15 @@ main.cs3-airy .kc-head h2{ font-size:clamp(30px,3.4vw,42px); line-height:1.05; l
 /* Side TOC stays visible everywhere: wide blocks keep clear of it, and it sits on white over faded personas (Nov 25) */
 @media (min-width:1200px){ body.has-toc main.cs3-airy .abx-grid{ width:min(1360px, calc(100vw - 480px)); } }
 .cs-toc{ background:#fff; padding:10px 14px 10px 0; }
+/* Austrip: sticky-notes thinking board (Nov 25) */
+.sticky-board{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(16px,2vw,28px); background:#F5F3EF; border-radius:28px; padding:clamp(24px,3vw,40px); }
+.sb-col{ display:flex; flex-direction:column; gap:16px; }
+.sb-head{ margin:0 0 4px; font-size:14px; font-weight:700; letter-spacing:-0.01em; color:var(--ink); }
+.sb-note{ margin:0; padding:18px 16px 22px; min-height:104px; font-size:16px; font-weight:600; line-height:1.35; color:#1E1D22; border-radius:4px;
+  transform:rotate(var(--r,0deg)); box-shadow:0 1px 2px rgba(20,20,20,.08), 0 10px 18px -10px rgba(20,20,20,.25); transition:transform .25s ease; }
+.sb-note:hover{ transform:rotate(0deg) translateY(-3px); }
+.n-y{ background:#FFE68C; } .n-p{ background:#FFCAD4; } .n-v{ background:#DCD5FF; } .n-b{ background:#CFE5FF; }
+main.cs3-airy .sb-after{ padding-top:56px; }
+@media (max-width:809px){ .sticky-board{ grid-template-columns:1fr 1fr; } .sb-note{ font-size:15px; min-height:88px; } }
+main.cs3-airy .cs3-panel.sticky-board{ margin-top:20px; }
+main.cs3-airy .sb-before{ padding-bottom:0; }
