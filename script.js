@@ -615,7 +615,7 @@ if(floatingNav || backToTop){
 
 /* Case studies: "On this page" side nav with scroll-spy (desktop only) */
 (function(){
-  var hs = [].slice.call(document.querySelectorAll('main .case-section > h2, main .cs3-text > h2')).filter(function(h){ return !h.closest('.more-work-head'); });
+  var hs = [].slice.call(document.querySelectorAll('main .case-section > h2, main .cs3-text > h2, main .cs-kit-head > h2')).filter(function(h){ return !h.closest('.more-work-head'); });
   if (hs.length < 3) return;
   var used = {};
   var nav = document.createElement('nav');
