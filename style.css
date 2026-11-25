@@ -2111,3 +2111,5 @@ body.toc-off .cs-toc.fits.show{ opacity:0; visibility:hidden; pointer-events:non
 .abx-shot{ height:auto; aspect-ratio:3/2; }
 .abx-shot img{ object-position:center; }
 @media (max-width:720px){ .abx-shot{ height:auto; } }
+.abx-shot{ border:0; box-shadow:0 2px 6px rgba(20,20,20,.06), 0 24px 48px -16px rgba(20,20,20,.22); }
+.abx-win{ background:var(--ink); }
