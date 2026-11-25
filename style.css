@@ -2204,6 +2204,8 @@ main.cs3-airy .cs3-intro.case-section h2{ font-size:clamp(40px,5vw,60px); line-h
 main.cs3-airy .kc-head h2{ font-size:clamp(30px,3.4vw,42px); line-height:1.05; letter-spacing:-0.035em; }
 /* Side TOC stays visible everywhere: wide blocks keep clear of it, and it sits on white over faded personas (Nov 25) */
 @media (min-width:1200px){ body.has-toc main.cs3-airy .abx-grid{ width:min(1360px, calc(100vw - 480px)); } }
+/* A/B grid is centered with left:50% + translateX(-50%), so it must start at the column edge (auto margins shifted it right) (Nov 25) */
+.abx-grid{ margin-left:0; margin-right:0; }
 .cs-toc{ background:#fff; padding:10px 14px 10px 0; }
 /* Austrip: sticky-notes thinking board (Nov 25) */
 .sticky-board{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(16px,2vw,28px); background:#F5F3EF; border-radius:28px; padding:clamp(24px,3vw,40px); }
