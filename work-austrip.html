@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-austrip.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=384">
+<link rel="stylesheet" href="style.css?v=385">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -205,20 +205,24 @@
     <section class="cs-kit" aria-labelledby="austrip-ab">
       <div class="cs-kit-head kc-head">
         <h2 id="austrip-ab" data-toc="A/B Testing">A/B Testing</h2>
-        <p>Does a sticky booking card get more bookings?</p>
+        <p>Which tour page gets more people to book?</p>
       </div>
-      <p class="ab-hyp"><b>Hypothesis:</b> if the price and a single "Book now" stay visible while people read the tour, more visitors will start a booking.</p>
-      <div class="ab-grid">
-        <div class="ab-card"><span class="ab-tag"><span class="ab-letter">A</span>Control</span><h3>Old tour page</h3><p>Price buried in the text, and a long booking form repeated twice.</p><div class="ab-shot"><img src="work-austrip-tour-before.jpg" alt="Old Austrip tour page with the booking form at the bottom" loading="lazy"></div></div>
-        <div class="ab-card is-winner"><span class="ab-pick">Chosen</span><span class="ab-tag"><span class="ab-letter">B</span>Variant</span><h3>Sticky booking card</h3><p>Price, dates and "Book now" pinned beside the content.</p><div class="ab-shot"><img src="work-austrip-site-tour-hq.jpg" alt="New Austrip tour page with the booking card beside the title" loading="lazy"></div></div>
+      <div class="abx-grid">
+        <figure class="abx">
+          <div class="abx-top"><span class="abx-letter">A</span><div><h3>Old page</h3><p>Price hidden in the text</p></div></div>
+          <div class="abx-shot"><img src="work-austrip-tour-before.jpg" alt="Old Austrip tour page with the booking form at the bottom" loading="lazy"></div>
+        </figure>
+        <figure class="abx is-b">
+          <div class="abx-top"><span class="abx-letter">B</span><div><h3>Sticky booking card</h3><p>Price and “Book now” always in view</p></div></div>
+          <div class="abx-shot"><img src="work-austrip-site-tour-hq.jpg" alt="New Austrip tour page with the booking card beside the title" loading="lazy"></div>
+        </figure>
       </div>
-      <dl class="ab-meta">
-        <div><dt>Main metric</dt><dd>% of visitors who tap "Book now"</dd></div>
-        <div><dt>Guardrail</dt><dd>Form drop-off must not rise</dd></div>
-        <div><dt>Setup</dt><dd>50/50 traffic split on the 17 tour pages, two weeks</dd></div>
-        <div><dt>Decision</dt><dd>Keep B if bookings started rise by 15% or more</dd></div>
-      </dl>
-      <p class="cs-kit-note" style="max-width:720px;margin-left:auto;margin-right:auto;">Test plan for after launch. B was chosen as the design direction.</p>
+      <div class="abx-plan">
+        <div><span>We measure</span><b>Taps on “Book now”</b></div>
+        <div><span>Traffic</span><b>50 / 50</b></div>
+        <div><span>Runs for</span><b>2 weeks</b></div>
+      </div>
+      <p class="cs-kit-note kpi-foot">Planned for after launch. B is the direction I designed.</p>
     </section>
 
     <section class="cs3-text case-section">
