@@ -1947,10 +1947,10 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .kc-label{ text-align:center; font-size:20px; font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin:0; }
 .kc-plot{ height:260px; display:flex; align-items:flex-end; justify-content:center; gap:18px; margin-top:48px; border-bottom:1.5px solid var(--line); }
 .kc-bar{ width:38%; max-width:96px; height:var(--h); border-radius:14px 14px 0 0; position:relative; background:#E9E5DE; }
-.kc-bar.is-new{ background:linear-gradient(180deg,#FF5A5F,#FFA285); }
+.kc-bar.is-new{ background:linear-gradient(180deg,#5B4CE0,#A99BFF); }
 .kc-bar em{ position:absolute; bottom:100%; left:-20px; right:-20px; text-align:center; padding-bottom:10px; font-style:normal; font-weight:800; letter-spacing:-0.03em; line-height:1; }
 .kc-bar.is-old em{ font-size:22px; color:#A9A59C; }
-.kc-bar.is-new em{ font-size:clamp(32px,3.4vw,42px); color:#FF5A5F; }
+.kc-bar.is-new em{ font-size:clamp(32px,3.4vw,42px); color:#5B4CE0; }
 .kc-axis{ display:flex; justify-content:center; gap:18px; margin-top:12px; }
 .kc-axis span{ width:38%; max-width:96px; text-align:center; font-size:12px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); white-space:nowrap; }
 @media (max-width:809px){
