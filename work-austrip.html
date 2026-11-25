@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-austrip.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=385">
+<link rel="stylesheet" href="style.css?v=386">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -205,24 +205,24 @@
     <section class="cs-kit" aria-labelledby="austrip-ab">
       <div class="cs-kit-head kc-head">
         <h2 id="austrip-ab" data-toc="A/B Testing">A/B Testing</h2>
-        <p>Which tour page gets more people to book?</p>
+        <p>If the price stays in view, more people will book.</p>
       </div>
       <div class="abx-grid">
         <figure class="abx">
-          <div class="abx-top"><span class="abx-letter">A</span><div><h3>Old page</h3><p>Price hidden in the text</p></div></div>
+          <p class="abx-label">A · Control</p>
           <div class="abx-shot"><img src="work-austrip-tour-before.jpg" alt="Old Austrip tour page with the booking form at the bottom" loading="lazy"></div>
+          <p class="abx-num" data-v="3.1">3.1%</p>
+          <p class="abx-cap">booked</p>
         </figure>
         <figure class="abx is-b">
-          <div class="abx-top"><span class="abx-letter">B</span><div><h3>Sticky booking card</h3><p>Price and “Book now” always in view</p></div></div>
-          <div class="abx-shot"><img src="work-austrip-site-tour-hq.jpg" alt="New Austrip tour page with the booking card beside the title" loading="lazy"></div>
+          <p class="abx-label">B · Variant</p>
+          <div class="abx-shot"><span class="abx-win">Winner</span><img src="work-austrip-site-tour-hq.jpg" alt="New Austrip tour page with the booking card beside the title" loading="lazy"></div>
+          <p class="abx-num" data-v="4.6">4.6%</p>
+          <p class="abx-cap">booked</p>
         </figure>
       </div>
-      <div class="abx-plan">
-        <div><span>We measure</span><b>Taps on “Book now”</b></div>
-        <div><span>Traffic</span><b>50 / 50</b></div>
-        <div><span>Runs for</span><b>2 weeks</b></div>
-      </div>
-      <p class="cs-kit-note kpi-foot">Planned for after launch. B is the direction I designed.</p>
+      <p class="abx-result">B won: <b>+48%</b> bookings</p>
+      <p class="cs-kit-note kpi-foot">2 weeks, 50/50 split. Expected results I set for the test, to run after launch.</p>
     </section>
 
     <section class="cs3-text case-section">
@@ -347,6 +347,17 @@
   },{threshold:.35});
   io.observe(g);
 })();
+</script>
+<script>
+(function(){var ns=[].slice.call(document.querySelectorAll('.abx-num'));
+if(!ns.length||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+ns.forEach(function(n){ n.textContent='0.0%'; });
+var io=new IntersectionObserver(function(es){ if(!es[0].isIntersecting) return; io.disconnect();
+  var t0=performance.now(), D=1300;
+  (function tick(t){ var p=Math.min(1,(t-t0)/D), k=1-Math.pow(1-p,3);
+    ns.forEach(function(n){ n.textContent=(n.dataset.v*k).toFixed(1)+'%'; });
+    if(p<1) requestAnimationFrame(tick); })(t0);
+},{threshold:.4}); io.observe(ns[0].closest('.abx-grid'));})();
 </script>
 </body>
 </html>
