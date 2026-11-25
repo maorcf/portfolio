@@ -1937,6 +1937,19 @@ body:has(.has-cs3-open){ overflow-x:clip; }
   .cmp-headrow{ grid-template-columns:72px 24px 1fr; }
 }
 .kpi-head .kpi-legend{ margin-top:16px; }
+.krow-grid{ max-width:960px; margin:8px auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(24px,4vw,48px); }
+.krings{ display:flex; justify-content:center; gap:14px; }
+.krings figure{ margin:0; text-align:center; flex:1; max-width:130px; }
+.kring{ position:relative; }
+.kring svg{ display:block; width:100%; height:auto; }
+.kring line{ stroke:#E4E1DA; stroke-width:7; stroke-linecap:butt; }
+.kring.is-old line.on{ stroke:#A9A59C; }
+.kring.is-new line.on{ stroke:var(--ink); }
+.kring b{ position:absolute; inset:0; display:grid; place-items:center; font-size:clamp(18px,2vw,22px); font-weight:700; letter-spacing:-0.02em; }
+.kring.is-old b{ color:#8A867D; }
+.krings figcaption{ font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:10px; }
+.krow-label{ font-size:15px; line-height:1.45; text-align:center; margin:18px auto 0; max-width:260px; color:#3A3A3A; }
+@media (max-width:809px){ .krow-grid{ grid-template-columns:1fr; gap:40px; } .krings figure{ max-width:120px; } }
 .kpi-cols{ max-width:720px; margin:8px auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(24px,5vw,56px); }
 .kpi-col{ display:flex; flex-direction:column; }
 .kpi-col-label{ font-size:14px; font-weight:600; line-height:1.35; min-height:2.7em; color:var(--ink); }
