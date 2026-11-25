@@ -2199,3 +2199,6 @@ main.cs3-airy .cs3-panel figcaption{ font-size:12px; font-weight:600; letter-spa
 /* Section titles (User Research / KPIs / A/B) aligned left with the text column (Nov 25) */
 main.cs3-airy .kc-head{ text-align:left; max-width:760px; margin-left:auto; margin-right:auto; }
 main.cs3-airy .kc-head ~ .kpi-foot, main.cs3-airy .abx-result{ text-align:left; max-width:760px; margin-left:auto; margin-right:auto; }
+/* Heading hierarchy: page title > key-section titles > deep-dive titles (Nov 25) */
+main.cs3-airy .cs3-intro.case-section h2{ font-size:clamp(40px,5vw,60px); line-height:1.04; letter-spacing:-0.04em; margin-bottom:22px; }
+main.cs3-airy .kc-head h2{ font-size:clamp(30px,3.4vw,42px); line-height:1.05; letter-spacing:-0.035em; }
