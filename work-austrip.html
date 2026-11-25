@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-austrip.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=402">
+<link rel="stylesheet" href="style.css?v=404">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -92,47 +92,64 @@
         <h2 id="austrip-users" data-toc="User Research">User Research</h2>
         <p>Who I designed for, and what got in their way</p>
       </div>
-      <div class="persona-hero">
-        <div class="persona-photo">
-          <img src="work-austrip-persona.jpg" alt="Michal, the Austrip persona, smiling by an alpine lake with her phone in hand" loading="lazy">
-          <span class="persona-chip chip-a">Books on her phone</span>
-          <span class="persona-chip chip-b">Lost on cluttered sites</span>
+      <div class="persona-scroller">
+        <div class="persona-track" tabindex="0" aria-label="Personas, scroll sideways">
+        <div class="persona-hero persona-slide">
+          <div class="persona-photo">
+            <img src="work-austrip-persona.jpg" alt="Michal, the Austrip persona, smiling by an alpine lake with her phone in hand" loading="lazy">
+            <span class="persona-chip chip-a">Books on her phone</span>
+            <span class="persona-chip chip-b">Lost on cluttered sites</span>
+          </div>
+          <div class="persona-info">
+            <h3 class="persona-name">Michal, 34</h3>
+            <p class="persona-role">Marketing manager from Tel Aviv. Plans one trip abroad a year, mostly from her phone, in the evening.</p>
+            <blockquote class="persona-quote">“Everything was all over the place. I couldn't tell where to click, and the site looked too old to trust.”</blockquote>
+            <ul class="persona-lines">
+              <li><b>Wants</b><span>A stress-free trip, booked in minutes, not hours</span></li>
+              <li><b>Can't stand</b><span>Messy pages with no clear order, and a site that looks outdated</span></li>
+              <li><b>So I designed</b><span>A clean, modern site where every page has one clear order</span></li>
+            </ul>
+          </div>
         </div>
-        <div class="persona-info">
-          <h3 class="persona-name">Michal, 34</h3>
-          <p class="persona-role">Marketing manager from Tel Aviv. Plans one trip abroad a year, mostly from her phone, in the evening.</p>
-          <blockquote class="persona-quote">“Everything was all over the place. I couldn't tell where to click, and the site looked too old to trust.”</blockquote>
-          <ul class="persona-lines">
-            <li><b>Wants</b><span>A stress-free trip, booked in minutes, not hours</span></li>
-            <li><b>Can't stand</b><span>Messy pages with no clear order, and a site that looks outdated</span></li>
-            <li><b>So I designed</b><span>A clean, modern site where every page has one clear order</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="persona-more">
-        <div class="persona-mini">
-          <img src="work-austrip-persona-2.jpg" alt="Yael, a mother of three, on a mountain path in Austria with her phone" loading="lazy">
-          <div>
+        <div class="persona-hero persona-slide">
+          <div class="persona-photo">
+            <img src="work-austrip-persona-2.jpg" alt="Yael, a mother of three, on a mountain path in Austria with her phone" loading="lazy">
+            <span class="persona-chip chip-a">Plans months ahead</span>
+            <span class="persona-chip chip-b">Needs the full price</span>
+          </div>
+          <div class="persona-info">
             <h3 class="persona-name">Yael, 41</h3>
             <p class="persona-role">Mom of three from Modi'in. Plans the family's summer trip months ahead.</p>
             <blockquote class="persona-quote">“I need to see the whole plan and the full price for five people before I commit.”</blockquote>
             <ul class="persona-lines">
+              <li><b>Wants</b><span>One trip that works for the whole family, with no surprises</span></li>
               <li><b>Can't stand</b><span>Hidden costs and tours that don't say if they suit kids</span></li>
               <li><b>So I designed</b><span>The price up front and a clear day-by-day plan on every tour</span></li>
             </ul>
           </div>
         </div>
-        <div class="persona-mini">
-          <img src="work-austrip-persona-3.jpg" alt="Omer, a young traveler, on a street in an Austrian alpine town with his phone" loading="lazy">
-          <div>
+        <div class="persona-hero persona-slide">
+          <div class="persona-photo">
+            <img src="work-austrip-persona-3.jpg" alt="Omer, a young traveler, on a street in an Austrian alpine town with his phone" loading="lazy">
+            <span class="persona-chip chip-a">Decides in minutes</span>
+            <span class="persona-chip chip-b">On a budget</span>
+          </div>
+          <div class="persona-info">
             <h3 class="persona-name">Omer, 24</h3>
             <p class="persona-role">Just finished the army, traveling with friends on a budget. Decides fast, on his phone.</p>
             <blockquote class="persona-quote">“If I can't find a tour and send a request in two minutes, I'm gone.”</blockquote>
             <ul class="persona-lines">
+              <li><b>Wants</b><span>Find a fun tour that fits his budget, fast</span></li>
               <li><b>Can't stand</b><span>Long forms and endless scrolling to find the right tour</span></li>
               <li><b>So I designed</b><span>Tours sorted by category and a short request form that works on the phone</span></li>
             </ul>
           </div>
+        </div>
+        </div>
+        <div class="persona-nav">
+          <button type="button" class="persona-arrow" data-dir="-1" aria-label="Previous persona">←</button>
+          <span class="persona-dots"><i class="on"></i><i></i><i></i></span>
+          <button type="button" class="persona-arrow" data-dir="1" aria-label="Next persona">→</button>
         </div>
       </div>
     </section>
@@ -389,6 +406,14 @@ var io=new IntersectionObserver(function(es){ if(!es[0].isIntersecting) return; 
 <script>
 (function(){var g=document.querySelector('.abx-grid'); if(!g||!('IntersectionObserver' in window)) return;
 new IntersectionObserver(function(es){ document.body.classList.toggle('toc-off', es[0].isIntersecting); }).observe(g);})();
+</script>
+<script>
+(function(){var t=document.querySelector('.persona-track'); if(!t) return;
+var s=t.querySelectorAll('.persona-slide'), d=document.querySelectorAll('.persona-dots i');
+function cur(){var c=t.scrollLeft+t.clientWidth/2,best=0;s.forEach(function(e,i){if(Math.abs(e.offsetLeft+e.offsetWidth/2-c)<Math.abs(s[best].offsetLeft+s[best].offsetWidth/2-c))best=i;});return best;}
+document.querySelectorAll('.persona-arrow').forEach(function(b){b.addEventListener('click',function(){var i=Math.max(0,Math.min(s.length-1,cur()+ +b.dataset.dir));t.scrollTo({left:s[i].offsetLeft-s[0].offsetLeft,behavior:'smooth'});});});
+t.addEventListener('scroll',function(){var i=cur();d.forEach(function(x,j){x.classList.toggle('on',i===j);});},{passive:true});
+})();
 </script>
 </body>
 </html>
