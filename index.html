@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=424">
+<link rel="stylesheet" href="style.css?v=425">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script type="application/ld+json">
 {
@@ -81,6 +81,18 @@
       <h1 class="cs2-hidden">Maor Cohen Falah</h1>
       <p class="lead"><span class="lead-strong">I’m Maor Cohen Falah, a UX/UI and graphic designer.</span></p>
       <p class="hero-sub">Turning ideas into digital experiences</p>
+      <div class="record-crate rc-vertical" aria-label="Songs I love">
+        <div class="rc-head">
+          <span class="rc-title">On my turntable</span>
+          <span class="rc-nav">
+            <button type="button" class="rc-prev" aria-label="Previous record">&uarr;</button>
+            <button type="button" class="rc-next" aria-label="Next record">&darr;</button>
+          </span>
+        </div>
+        <div class="rc-stage"></div>
+        <p class="rc-now" aria-live="polite"></p>
+        <div class="rc-player" hidden></div>
+      </div>
       <p class="hero-funfact"><b>Fun fact:</b> I’m a ceramicist.</p>
       <a href="#work" class="hero-scroll" aria-label="Scroll down"><svg viewBox="0 0 12 18" width="12" height="18" fill="none" aria-hidden="true"><path d="M6 1v15M1.5 11.5 6 16l4.5-4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <div class="hero-actions">
@@ -280,6 +292,7 @@
 </nav>
 
 <script src="playground-ring.js?v=11"></script>
+<script src="record-crate.js?v=18"></script>
 <script src="script.js?v=143"></script>
 
 </body>
