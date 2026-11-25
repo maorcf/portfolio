@@ -2113,3 +2113,9 @@ body.toc-off .cs-toc.fits.show{ opacity:0; visibility:hidden; pointer-events:non
 @media (max-width:720px){ .abx-shot{ height:auto; } }
 .abx-shot{ border:0; box-shadow:0 2px 6px rgba(20,20,20,.06), 0 24px 48px -16px rgba(20,20,20,.22); }
 .abx-win{ background:var(--ink); }
+/* A/B a bit smaller (Nov 25) */
+.abx-grid{ width:min(1120px, calc(100vw - 48px)); gap:clamp(20px,2.5vw,36px); }
+.abx-what{ font-size:clamp(17px,1.5vw,19px); }
+.abx-num{ font-size:clamp(34px,4vw,52px); margin-top:22px; }
+.abx-result{ font-size:clamp(24px,2.8vw,34px); margin-top:52px; }
+@media (max-width:720px){ .abx-grid{ width:calc(100vw - 24px); } }
