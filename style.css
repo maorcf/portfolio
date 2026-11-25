@@ -2120,5 +2120,5 @@ body.toc-off .cs-toc.fits.show{ opacity:0; visibility:hidden; pointer-events:non
 .abx-result{ font-size:clamp(24px,2.8vw,34px); margin-top:52px; }
 @media (max-width:720px){ .abx-grid{ width:calc(100vw - 24px); } }
 /* B's screen framed as the winner with a soft ring (Nov 25) */
-.abx.is-b .abx-shot{ box-shadow:0 0 56px 10px rgba(169,155,255,.42), 0 24px 48px -16px rgba(20,20,20,.18); }
+.abx.is-b .abx-shot{ box-shadow:0 0 36px 2px rgba(91,76,224,.16), 0 24px 48px -16px rgba(20,20,20,.18); }
 .abx-result b{ background:none; padding:0; }
