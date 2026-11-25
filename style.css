@@ -1941,7 +1941,7 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 .kc{ padding:0 clamp(20px,3vw,40px); display:flex; flex-direction:column; }
 .kc + .kc{ border-left:1.5px solid var(--line); }
 .kc:first-child{ padding-left:0; } .kc:last-child{ padding-right:0; }
-.kc-label{ font-size:17px; font-weight:600; line-height:1.35; margin:0; min-height:2.7em; }
+.kc-label{ font-size:20px; font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin:0; }
 .kc-plot{ height:260px; display:flex; align-items:flex-end; justify-content:center; gap:18px; margin-top:48px; border-bottom:1.5px solid var(--line); }
 .kc-bar{ width:38%; max-width:96px; height:var(--h); border-radius:14px 14px 0 0; position:relative; background:#E9E5DE; }
 .kc-bar.is-new{ background:linear-gradient(180deg,#FF5A5F,#FFA285); }
