@@ -2129,3 +2129,39 @@ body.toc-off .cs-toc.fits.show{ opacity:0; visibility:hidden; pointer-events:non
 /* No inner scrolling in tall screenshots (Nov 25): crop to the top with a soft fade instead */
 .cs3-tall{ overflow:hidden; position:relative; }
 .cs3-tall::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:120px; background:linear-gradient(180deg,rgba(255,255,255,0),#fff); pointer-events:none; }
+
+/* ===== Austrip template typography pass (Nov 25) =====
+   Scale: page title 48 · big section titles 64 · section titles 30 · lead 19 · body 17 · labels 12 caps */
+main.cs3-airy .cs3-text{ max-width:760px; }
+main.cs3-airy .cs3-intro h2{ font-size:clamp(34px,4.2vw,48px); line-height:1.08; font-weight:800; letter-spacing:-0.035em; margin-bottom:20px; }
+main.cs3-airy .cs3-intro p{ font-size:clamp(17px,1.5vw,19px); line-height:1.6; color:#55524C; }
+main.cs3-airy .case-row-label{ font-size:16px; font-weight:700; }
+main.cs3-airy .case-row p{ font-size:17px; line-height:1.6; color:#55524C; }
+main.cs3-airy .cs3-rows .case-row{ margin-bottom:24px; }
+main.cs3-airy .cs3-roles{ font-size:13px; margin-top:16px; }
+/* big kit sections (User Research / KPIs / A/B) */
+main.cs3-airy .kc-head{ margin-bottom:48px; }
+main.cs3-airy .kc-head h2{ font-size:clamp(40px,5.2vw,64px); line-height:1; letter-spacing:-0.04em; }
+main.cs3-airy .kc-head p{ font-size:clamp(16px,1.4vw,18px); margin-top:12px; }
+main.cs3-airy .persona-info .persona-name{ font-size:clamp(36px,4.4vw,56px); letter-spacing:-0.035em; }
+main.cs3-airy .persona-role{ font-size:17px; line-height:1.55; }
+main.cs3-airy .persona-info .persona-quote{ font-size:clamp(20px,2vw,24px); line-height:1.35; }
+main.cs3-airy .persona-lines li{ font-size:16px; line-height:1.5; }
+main.cs3-airy .kc-label{ font-size:18px; }
+main.cs3-airy .abx-what{ font-size:18px; }
+main.cs3-airy .abx-num{ font-size:clamp(34px,3.6vw,48px); }
+main.cs3-airy .abx-result{ font-size:clamp(24px,2.6vw,32px); letter-spacing:-0.025em; }
+main.cs3-airy .cs-kit-note{ font-size:13px; color:#8C877D; }
+/* deep-dive sections */
+main.cs3-airy .cs3-text.case-section{ padding-top:120px; }
+main.cs3-airy .cs3-text.case-section h2{ font-size:clamp(24px,2.4vw,30px); font-weight:800; letter-spacing:-0.025em; line-height:1.15; margin-bottom:16px; gap:12px; }
+main.cs3-airy .cs3-text.case-section p, main.cs3-airy .cs3-text .case-list{ font-size:17px; line-height:1.65; color:#55524C; }
+main.cs3-airy .cs3-text .case-list li{ margin-bottom:10px; }
+main.cs3-airy .cs3-text .case-subhead{ font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin:40px 0 0; }
+main.cs3-airy .cs3-panel{ margin-top:56px; }
+main.cs3-airy .cs3-panel figcaption{ font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-top:16px; }
+@media (max-width:720px){
+  main.cs3-airy .cs3-text.case-section{ padding-top:80px; }
+  main.cs3-airy .cs3-panel{ margin-top:36px; }
+  main.cs3-airy .case-row p, main.cs3-airy .cs3-text.case-section p, main.cs3-airy .cs3-text .case-list{ font-size:16px; }
+}
