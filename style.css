@@ -2090,7 +2090,7 @@ main.cs3-airy .cs-kit{ padding-top:136px; }
 
 /* KPI bars as 3D blocks (Nov 25): front = the bar itself, ::after = right side, ::before = top */
 .kc{ perspective:1100px; }
-.kc-plot{ transform-style:preserve-3d; transform:rotateX(var(--kx,-20deg)) rotateY(var(--ky,-32deg)); transition:transform .6s cubic-bezier(.2,.8,.2,1); position:relative; gap:26px; margin-top:76px; }
+.kc-plot{ transform-style:preserve-3d; transform:rotateX(var(--kx,-16deg)) rotateY(var(--ky,0deg)); transition:transform .6s cubic-bezier(.2,.8,.2,1); position:relative; gap:26px; margin-top:76px; }
 .kc-plot::before{ content:""; position:absolute; left:50%; bottom:0; width:250px; height:120px; margin-left:-125px; transform-origin:50% 100%; transform:rotateX(90deg) translateY(50%); background:radial-gradient(closest-side,rgba(40,30,90,.16),rgba(40,30,90,0)); pointer-events:none; }
 .kc-bar{ --d:44px; width:64px; max-width:none; border-radius:0; transform-style:preserve-3d; transform:translateZ(calc(var(--d) / 2)); }
 .kc-bar::before, .kc-bar::after{ content:""; position:absolute; pointer-events:none; }
