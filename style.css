@@ -2268,3 +2268,4 @@ main.cs-bold .abx-num{ font-family:var(--serif); font-weight:500; }
   .bx-stats{ grid-template-columns:1fr 1fr; row-gap:32px; }
   .bx-compare{ aspect-ratio:3/4; }
 }
+@media (min-width:1200px){ body.has-toc .bx-end{ width:min(1120px, calc(100vw - 480px)); } }
