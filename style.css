@@ -2196,3 +2196,6 @@ main.cs3-airy .cs3-panel figcaption{ font-size:12px; font-weight:600; letter-spa
 .persona-slide.is-active{ opacity:1; }
 /* B screenshot card gets a soft violet stroke (Nov 25) */
 .abx.is-b .abx-shot{ outline:1.5px solid #141414; outline-offset:0; box-shadow:0 0 36px 2px rgba(20,20,20,.10), 0 24px 48px -16px rgba(20,20,20,.22); }
+/* Section titles (User Research / KPIs / A/B) aligned left with the text column (Nov 25) */
+main.cs3-airy .kc-head{ text-align:left; max-width:760px; margin-left:auto; margin-right:auto; }
+main.cs3-airy .kc-head ~ .kpi-foot, main.cs3-airy .abx-result{ text-align:left; max-width:760px; margin-left:auto; margin-right:auto; }
