@@ -1885,17 +1885,10 @@ body:has(.has-cs3-open){ overflow-x:clip; }
 /* phones: no glow around the ceiling lamps (a blurred shadow on every moving 3D layer is too heavy for iOS) */
 @media (max-width:809px), (pointer:coarse){ .pgc-lamp{ box-shadow:none; } }
 
-/* Work cards: a short intro under the title (what it is / problem / what I did), so a recruiter gets each project in seconds */
+/* Work cards: a short intro under the title (what the project is), so a recruiter gets each project in seconds */
 .project-grid .project .card-what{ grid-column:1 / 3; grid-row:3; margin:10px 0 0; font-size:15px; font-weight:500; line-height:1.4; color:var(--ink); }
-.project-grid .project .card-brief{ grid-column:1 / 3; grid-row:4; margin:10px 0 0; display:grid; gap:6px; }
-.card-brief > div{ display:grid; grid-template-columns:92px 1fr; column-gap:10px; align-items:baseline; }
-.card-brief dt{ display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); white-space:nowrap; }
-.card-brief dt::before{ content:""; width:9px; height:9px; flex:none; border-radius:50%; border:1.2px solid var(--ink); background:#F2977B; transform:translateY(-.5px); }
-.card-brief > div + div dt::before{ background:#D3F26A; }
-.card-brief dd{ margin:0; font-size:14px; line-height:1.45; color:var(--muted); }
 @media (max-width:809px){
-  .card-brief > div{ grid-template-columns:1fr; row-gap:2px; }
-  .project-grid .project .card-what{ font-size:14.5px; }
+    .project-grid .project .card-what{ font-size:14.5px; }
 }
 
 /* Home hero without the record crate (moved to About, Nov 2026): headline top-left, fun fact bottom-right, arrow + button centered */
