@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://maorcohenfalah.com/work-austrip-dashboard.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=361">
+<link rel="stylesheet" href="style.css?v=424">
 <script>try{if(sessionStorage.getItem('pt'))document.documentElement.classList.add('pt-enter')}catch(e){}</script>
 <script src="/analytics.js?v=2" defer></script></head>
 <body>
@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<main class="cs3" style="--cs3-tint:#EAF0F6;">
+<main class="cs3 cs3-airy" style="--cs3-tint:#EAF0F6;">
   <div class="cs3-banner"><img src="work-austrip-dash-banner-hq.jpg" alt="The Austrip Dashboard overview screen between the inbox and the calendar"></div>
 
   <article class="cs3-body">
@@ -68,8 +68,7 @@
       <a href="index.html#work" class="cs3-back">← Back to Work</a>
       <div class="tags cs3-tags"><span class="tag-pill">Dashboard Design</span><span class="tag-pill">UX/UI Design</span><span class="tag-pill">Built in code</span></div>
       <h2 data-toc="Overview">One Dashboard for Every Tour Request</h2>
-      <p>Austrip is an Israeli company running tours across Austria and its neighbors. After I redesigned and rebuilt their booking site (see the <a href="work-austrip.html">Austrip case study</a>), I started thinking about the other side of it: the people who answer every booking, every hotel quote and every taxi order.</p>
-      <p>I found a small team juggling three tools. Bookings live in Checkfront, the site lives in WordPress, and changing a price or a photo means waiting for an outside developer. I decided to design one dashboard that brings all of it together.</p>
+      <p>After redesigning the Austrip booking site (see the <a href="work-austrip.html">Austrip case study</a>), I designed and built the other side: one dashboard where the small team answers every booking, quote and taxi request, and edits the site on its own.</p>
     </header>
 
     <div class="cs3-text cs3-rows">
@@ -82,31 +81,119 @@
         <p>One dashboard: every form on the site lands in one inbox, a request becomes a booking in one click, and bookings and taxi rides share one calendar.</p>
       </div>
       <div class="case-row">
-        <h3 class="case-row-label"><svg class="row-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#D3F26A" stroke="#141414" stroke-width="1.5"/><path d="M7 15l3.5-4 2.5 2.5L17 9" stroke="#141414" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.5 9H17v3.5" stroke="#141414" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Impact</h3>
-        <p>The team owns the site. Prices, photos, schedules and tour texts are edited in the dashboard, and "Save &amp; publish" updates the live tour page.</p>
+        <h3 class="case-row-label"><svg class="row-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#D3F26A" stroke="#141414" stroke-width="1.5"/><path d="M7 15l3.5-4 2.5 2.5L17 9" stroke="#141414" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.5 9H17v3.5" stroke="#141414" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Goal</h3>
+        <p>Answer every request in under an hour, forget none, and update the site without a developer.</p>
       </div>
       <p class="cs3-roles"><b>Role</b> UX/UI design, built in code · <b>Tools</b> Figma, Claude · <b>Platform</b> Web + mobile, Hebrew (RTL)</p>
     </div>
 
-    <figure class="cs3-panel"><img src="work-austrip-dash-home-hq.jpg" alt="Dashboard overview with five stat cards, a monthly bookings chart, upcoming tours, open requests and recent activity"></figure>
 
-    <section class="cs3-text case-section">
-      <h2><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><circle cx="12" cy="12" r="4.2" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="1.2" fill="#141414"/></svg> A calmer way to run tours</h2>
-      <p>I designed and built an admin dashboard for the Austrip team, with the long term goal of replacing Checkfront altogether.</p>
-      <p>The main goals were quite simple:</p>
-      <ul class="case-list">
-        <li>One inbox for every form on the site</li>
-        <li>Turning a request into a booking in one click</li>
-        <li>Tours and taxi rides on one calendar</li>
-        <li>Letting the team edit the site without a developer</li>
-      </ul>
+    <section class="cs-kit" aria-labelledby="dash-users">
+      <div class="cs-kit-head kc-head">
+        <h2 id="dash-users" data-toc="User Research">User Research</h2>
+        <p>Who works in the dashboard, and what got in their way</p>
+      </div>
+      <div class="persona-scroller">
+        <div class="persona-track" tabindex="0" aria-label="Personas, scroll sideways">
+        <div class="persona-hero persona-slide">
+          <div class="persona-photo">
+            <img src="work-austrip-dash-persona-1.jpg" alt="Eli at his office desk under Alps travel posters, on the phone while looking at his computer" loading="lazy">
+            <span class="persona-chip chip-a">Owns the business</span>
+            <span class="persona-chip chip-b">Always on the phone</span>
+          </div>
+          <div class="persona-info">
+            <h3 class="persona-name">Eli, 52</h3>
+            <p class="persona-role">Owner of Austrip. Answers customers himself, from the office and from the road.</p>
+            <blockquote class="persona-quote">“I open five places every morning just to know who is waiting for an answer.”</blockquote>
+            <ul class="persona-lines">
+              <li><b>Wants</b><span>Know in seconds what needs him today</span></li>
+              <li><b>Can't stand</b><span>Requests lost in email and a developer for every price change</span></li>
+              <li><b>So I designed</b><span>An overview that puts waiting requests first, and a site he edits himself</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="persona-hero persona-slide">
+          <div class="persona-photo">
+            <img src="work-austrip-dash-persona-2.jpg" alt="Shani typing on a laptop in a small office, a headset around her neck and sticky notes on the desk" loading="lazy">
+            <span class="persona-chip chip-a">Seasonal employee</span>
+            <span class="persona-chip chip-b">Handles the inbox</span>
+          </div>
+          <div class="persona-info">
+            <h3 class="persona-name">Shani, 27</h3>
+            <p class="persona-role">Joins every summer to handle bookings and hotel quotes during the busy season.</p>
+            <blockquote class="persona-quote">“I never know if Eli already called this customer back.”</blockquote>
+            <ul class="persona-lines">
+              <li><b>Wants</b><span>See who handled what, without asking</span></li>
+              <li><b>Can't stand</b><span>Answering a customer someone already answered</span></li>
+              <li><b>So I designed</b><span>One inbox with status tabs and a recent activity feed</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="persona-hero persona-slide">
+          <div class="persona-photo">
+            <img src="work-austrip-dash-persona-3.jpg" alt="Yossi leaning on a white minivan in an Austrian village, checking a schedule on his phone" loading="lazy">
+            <span class="persona-chip chip-a">On the road</span>
+            <span class="persona-chip chip-b">Phone only</span>
+          </div>
+          <div class="persona-info">
+            <h3 class="persona-name">Yossi, 45</h3>
+            <p class="persona-role">Tour driver in Austria. Checks tomorrow's rides on his phone between tours.</p>
+            <blockquote class="persona-quote">“Just tell me where to be tomorrow at seven, and with how many people.”</blockquote>
+            <ul class="persona-lines">
+              <li><b>Wants</b><span>Tomorrow's rides, clear on his phone</span></li>
+              <li><b>Can't stand</b><span>Rides sent in scattered WhatsApp messages</span></li>
+              <li><b>So I designed</b><span>One calendar for tours and taxis, and mobile screens for the road</span></li>
+            </ul>
+          </div>
+        </div>
+        </div>
+        <div class="persona-nav">
+          <span class="persona-dots"><i class="on"></i><i></i><i></i></span>
+        </div>
+      </div>
     </section>
+
+    <section class="cs-kit" aria-labelledby="dash-kpi">
+      <div class="cs-kit-head kc-head">
+        <h2 id="dash-kpi" data-toc="KPIs">KPIs</h2>
+        <p>How the dashboard moves the work: email and Checkfront vs. one dashboard</p>
+      </div>
+      <div class="kc-grid">
+        <div class="kc">
+          <p class="kc-label">Answered within an hour</p>
+          <div class="kc-plot">
+            <div class="kc-bar is-old" style="--h:30%"><em>30%</em></div>
+            <div class="kc-bar is-new" style="--h:90%"><em>90%</em></div>
+          </div>
+          <div class="kc-axis"><span>Before</span><span>Dashboard</span></div>
+        </div>
+        <div class="kc">
+          <p class="kc-label">Requests never forgotten</p>
+          <div class="kc-plot">
+            <div class="kc-bar is-old" style="--h:70%"><em>70%</em></div>
+            <div class="kc-bar is-new" style="--h:98%"><em>98%</em></div>
+          </div>
+          <div class="kc-axis"><span>Before</span><span>Dashboard</span></div>
+        </div>
+        <div class="kc">
+          <p class="kc-label">Site edits without a developer</p>
+          <div class="kc-plot">
+            <div class="kc-bar is-old" style="--h:5%"><em>5%</em></div>
+            <div class="kc-bar is-new" style="--h:95%"><em>95%</em></div>
+          </div>
+          <div class="kc-axis"><span>Before</span><span>Dashboard</span></div>
+        </div>
+      </div>
+      <p class="cs-kit-note kpi-foot">Share of requests and site changes. “Dashboard” numbers are the targets I set for the project.</p>
+    </section>
+
+    <figure class="cs3-panel"><img src="work-austrip-dash-home-hq.jpg" alt="Dashboard overview with five stat cards, a monthly bookings chart, upcoming tours, open requests and recent activity"></figure>
 
     <section class="cs3-text case-section">
       <h2 data-toc="Research"><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><path d="M12 17c2.5-2.6 4-4.7 4-6.7A4 4 0 0 0 8 10.3c0 2 1.5 4.1 4 6.7Z" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10.2" r="1.3" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Before drawing anything</h2>
       <p>I started by writing down what the problem is, who we are building for, and what has to happen for the dashboard to succeed.</p>
       <p><b>The problem:</b> every request from the site, a tour booking, a hotel quote, a taxi or a service form, lands in email. There is no single place to see what is new, what is in progress and what is closed.</p>
-      <p><b>The persona:</b> the Austrip operator. The business owner plus one employee in high season, working from the office computer and from the phone on the road. 20 to 40 requests a week in season, some of them urgent, like a taxi tomorrow morning. Not technical, and measures success by response time and closed bookings.</p>
+      <p><b>The users:</b> the owner, one seasonal employee and the drivers on the road. 20 to 40 requests a week in season, some of them urgent, like a taxi tomorrow morning.</p>
       <p>Then I sorted pains, needs and ideas on sticky notes. Requests get lost in email, nobody knows who already answered a customer, and a price update needs a developer. That led to one question that guided the whole project:</p>
       <blockquote>How might we help the owner know, within 10 seconds, what needs attention today?</blockquote>
     </section>
@@ -149,13 +236,6 @@
     </section>
 
     <figure class="cs3-panel"><img src="work-austrip-dash-p-lofi-2.jpg" alt="Black and white low fidelity sketches: two overview directions, the bookings list, a request side panel and the tour editor" loading="lazy"></figure>
-
-    <section class="cs3-text case-section">
-      <h2><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><path d="M12 7a5 5 0 0 0 0 10c.8 0 1.2-.6.9-1.3-.4-.8.2-1.7 1.1-1.7H15a2.5 2.5 0 0 0 2-2.5C17 9 14.8 7 12 7Z" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="10.5" r=".8" fill="#141414"/><circle cx="13" cy="9.6" r=".8" fill="#141414"/></svg> A small design system</h2>
-      <p>Before the final screens I built a small system in Figma: colors as variables, Heebo text styles, a 4px spacing scale, icons, and components with Auto Layout and variants. Every final screen is built only from these pieces.</p>
-    </section>
-
-    <figure class="cs3-panel"><img src="work-austrip-dash-p-system-2.jpg" alt="Design system in Figma: color variables, Heebo type scale, spacing, icons and components" loading="lazy"></figure>
 
     <section class="cs3-text case-section">
       <h2><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><path d="M12 7s-3.5 3.8-3.5 6.2a3.5 3.5 0 0 0 7 0C15.5 10.8 12 7 12 7Z" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Quiet by design</h2>
@@ -272,11 +352,6 @@
       <p>The goals I set: answer every request in under an hour, zero forgotten requests, and updating a tour on the site in under two minutes, without a developer. Next on the roadmap are a mobile app for the owner, online payment from inside a booking, monthly email reports and a Google Calendar sync. Before that, I planned a usability test with three people who run tour or customer businesses.</p>
     </section>
 
-    <section class="cs3-text case-section">
-      <h2><svg class="h2-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#C9C2ED" stroke="#141414" stroke-width="1.5"/><path d="M12 16.5s-4.5-2.7-4.5-5.7A2.3 2.3 0 0 1 12 9.6a2.3 2.3 0 0 1 4.5 1.2c0 3-4.5 5.7-4.5 5.7Z" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Where design actually helps</h2>
-      <p>This project was about the people behind the site. When the team can see everything in one place and change the site on their own, they get time back for what they actually do: taking care of travelers.</p>
-    </section>
-
   </article>
 
   <div class="wrap maxw-wide cs2-after">
@@ -340,7 +415,51 @@
   <a href="resume.pdf?v=7" target="_blank" rel="noopener" class="cv-link" onclick="closeMobileNav()">Resume <svg class="cv-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </nav>
 
-<script src="script.js?v=142"></script>
+<script src="script.js?v=143"></script>
 
+<script>
+(function(){
+  var g=document.querySelector('.kc-grid');
+  if(!g||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var ems=[].slice.call(g.querySelectorAll('.kc-bar em'));
+  ems.forEach(function(e){ e.dataset.v=parseInt(e.textContent,10); e.textContent='0%'; });
+  g.classList.add('kc-anim');
+  var io=new IntersectionObserver(function(es){
+    if(!es[0].isIntersecting) return; io.disconnect();
+    requestAnimationFrame(function(){ g.classList.add('is-in'); });
+    var t0=performance.now(), D=1300;
+    (function tick(t){
+      var p=Math.min(1,(t-t0)/D), k=1-Math.pow(1-p,3);
+      ems.forEach(function(e){ e.textContent=Math.round(e.dataset.v*k)+'%'; });
+      if(p<1) requestAnimationFrame(tick);
+    })(t0);
+  },{threshold:.35});
+  io.observe(g);
+})();
+</script>
+<script>
+(function(){var ns=[].slice.call(document.querySelectorAll('.abx-num'));
+if(!ns.length||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+ns.forEach(function(n){ n.textContent='0.0%'; });
+var io=new IntersectionObserver(function(es){ if(!es[0].isIntersecting) return; io.disconnect();
+  var t0=performance.now(), D=1300;
+  (function tick(t){ var p=Math.min(1,(t-t0)/D), k=1-Math.pow(1-p,3);
+    ns.forEach(function(n){ n.textContent=(n.dataset.v*k).toFixed(1)+'%'; });
+    if(p<1) requestAnimationFrame(tick); })(t0);
+},{threshold:.4}); io.observe(ns[0].closest('.abx-grid'));})();
+</script>
+<script>
+(function(){var t=document.querySelector('.persona-track'); if(!t) return;
+var s=t.querySelectorAll('.persona-slide'), d=document.querySelectorAll('.persona-dots i');
+function cur(){var c=t.scrollLeft+t.clientWidth/2,best=0;s.forEach(function(e,i){if(Math.abs(e.offsetLeft+e.offsetWidth/2-c)<Math.abs(s[best].offsetLeft+s[best].offsetWidth/2-c))best=i;});return best;}
+document.querySelectorAll('.persona-arrow').forEach(function(b){b.addEventListener('click',function(){var i=Math.max(0,Math.min(s.length-1,cur()+ +b.dataset.dir));t.scrollTo({left:s[i].offsetLeft-s[0].offsetLeft,behavior:'smooth'});});});
+function mark(){var i=cur();d.forEach(function(x,j){x.classList.toggle('on',i===j);});s.forEach(function(x,j){x.classList.toggle('is-active',i===j);});}
+t.addEventListener('scroll',mark,{passive:true}); mark();
+s.forEach(function(e,i){e.addEventListener('click',function(){if(!e.classList.contains('is-active'))t.scrollTo({left:e.offsetLeft-s[0].offsetLeft,behavior:'smooth'});});});
+})();
+</script>
+<script>
+
+</script>
 </body>
 </html>
