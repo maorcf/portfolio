@@ -2126,3 +2126,6 @@ body.toc-off .cs-toc.fits.show{ opacity:0; visibility:hidden; pointer-events:non
 .abx:not(.is-b) .abx-shot{ box-shadow:0 2px 6px rgba(20,20,20,.04), 0 16px 32px -16px rgba(20,20,20,.12); }
 .abx:not(.is-b) .abx-shot img{ filter:grayscale(1); opacity:.8; }
 .abx:not(.is-b) .abx-what{ color:#8C877D; }
+/* No inner scrolling in tall screenshots (Nov 25): crop to the top with a soft fade instead */
+.cs3-tall{ overflow:hidden; position:relative; }
+.cs3-tall::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:120px; background:linear-gradient(180deg,rgba(255,255,255,0),#fff); pointer-events:none; }
