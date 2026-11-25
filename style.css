@@ -2101,3 +2101,8 @@ main.cs3-airy .cs-kit{ padding-top:136px; }
 .abx-result{ text-align:center; margin:64px 0 0; font-size:clamp(28px,3.6vw,44px); font-weight:800; letter-spacing:-0.03em; line-height:1.1; }
 .abx-result b{ background:linear-gradient(180deg,transparent 58%,#D3F26A 58%); padding:0 4px; }
 @media (max-width:720px){ .abx-grid{ grid-template-columns:1fr; gap:48px; } .abx-result{ margin-top:48px; } }
+/* A/B screens break out of the text grid (Nov 25) */
+.abx-grid{ max-width:none; width:min(1360px, calc(100vw - 48px)); position:relative; left:50%; transform:translateX(-50%); gap:clamp(20px,2.5vw,40px); }
+.abx-shot{ height:clamp(260px,38vw,560px); border-radius:24px; }
+@media (max-width:720px){ .abx-grid{ width:calc(100vw - 24px); } .abx-shot{ height:clamp(240px,70vw,360px); } }
+body.toc-off .cs-toc.fits.show{ opacity:0; visibility:hidden; pointer-events:none; transition:opacity .35s, visibility 0s linear .35s; }
